@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags - Algo Trading Blog</title>
-    <link>fregocap.github.io/tags/</link>
-    <description>Recent content in Tags on Algo Trading Blog</description>
+    <title>Tags - QuantFreedom</title>
+    <link>https://fregocap.github.io/tags/</link>
+    <description>Recent content in Tags on QuantFreedom</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-        <atom:link href="fregocap.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://fregocap.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
