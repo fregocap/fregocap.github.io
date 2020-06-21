@@ -3,32 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://fregocap.github.io/posts/</loc>
-    <lastmod>2020-06-21T23:15:37+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fregocap.github.io/</loc>
-    <lastmod>2020-06-21T23:15:37+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fregocap.github.io/posts/risk-parity/</loc>
-    <lastmod>2020-06-21T23:15:37+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://fregocap.github.io/categories/</loc>
     <lastmod>2020-06-21T01:04:38+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fregocap.github.io/categories/intro/</loc>
+    <loc>https://fregocap.github.io/posts/introduction/</loc>
     <lastmod>2020-06-21T01:04:38+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fregocap.github.io/posts/introduction/</loc>
+    <loc>https://fregocap.github.io/posts/</loc>
+    <lastmod>2020-06-21T01:04:38+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fregocap.github.io/</loc>
     <lastmod>2020-06-21T01:04:38+02:00</lastmod>
   </url>
   
