@@ -1,19 +1,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
-    <link>http://example.org/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <title>Algo Trading Blog</title>
+    <link>fregocap.github.io/</link>
+    <description>Recent content on Algo Trading Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sun, 21 Jun 2020 23:15:37 +0200</lastBuildDate>
     
-        <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="fregocap.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Posts</title>
-      <link></link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <link>fregocap.github.io/posts/</link>
+      <pubDate>Sun, 21 Jun 2020 23:15:37 +0200</pubDate>
       
-      <guid></guid>
+      <guid>fregocap.github.io/posts/</guid>
       <description></description>
     </item>
   </channel>

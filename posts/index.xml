@@ -1,20 +1,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts - My New Hugo Site</title>
-    <link>http://example.org/posts/</link>
-    <description>Recent content in Posts on My New Hugo Site</description>
+    <title>Posts - Algo Trading Blog</title>
+    <link>fregocap.github.io/posts/</link>
+    <description>Recent content in Posts on Algo Trading Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Jun 2020 01:04:38 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jun 2020 23:15:37 +0200</lastBuildDate>
     
-        <atom:link href="http://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="fregocap.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Risk Parity</title>
+      <link>fregocap.github.io/posts/risk-parity/</link>
+      <pubDate>Sun, 21 Jun 2020 23:15:37 +0200</pubDate>
+      
+      <guid>fregocap.github.io/posts/risk-parity/</guid>
+      <description></description>
+    </item><item>
       <title>Introduction</title>
-      <link>http://example.org/posts/introduction/</link>
+      <link>fregocap.github.io/posts/introduction/</link>
       <pubDate>Sun, 21 Jun 2020 01:04:38 +0200</pubDate>
       
-      <guid>http://example.org/posts/introduction/</guid>
+      <guid>fregocap.github.io/posts/introduction/</guid>
       <description></description>
     </item>
   </channel>
