@@ -42,8 +42,6 @@ if (!doNotTrack) {
     <ul id="menu" class="hamburger-menu-overlay">
       <li><a href="https://fregocap.github.io" class="hamburger-menu-overlay-link">Home</a></li>
       
-      <li><a href="https://fregocap.github.io/categories/intro/" class="hamburger-menu-overlay-link">intro</a></li>
-      
       <li><a href="https://fregocap.github.io/categories/whoami/" class="hamburger-menu-overlay-link">whoami</a></li>
       
       
@@ -59,7 +57,33 @@ if (!doNotTrack) {
         </header>
         
         
-        
+        <p>What is risk parity ?
+###########################</p>
+<p>There is different sorts of investors: the ones that like to take more risks than the market in exchange of a higher premium and  the ones that are risk averse and  prefer steady returns. Irrespective of your choices of risk, a large portion of  investors would like to optimize their returns with respect to the risks taken. But how to be sure that we are maximizing the Sharpe ratio of our portfolio, i.e. the ratio between return and risk ?</p>
+<p>Let me tell you a little secret: you can reach much higher returns than the market for a particular risk level, by providing the same level of risk to parts of your portfolio that are uncorrelated. What do I mean ? What we would like to have is each asset contributing in the same way to the overall portfolio volatility. To go a bit more into detail, let's define the volatility of the portfolio as :</p>
+<p>$$
+\sigma(w) = \sqrt(w&rsquo;\Sigma w)
+$$</p>
+<p>where $w$ are the weight contributions of each asset to the overall portfolio and \Sigma is the covariance matrix of the portfolio. The risk contribution of asset $i$ is computed as follows:</p>
+<p>$$
+\sigma_i(w) = w_i \ctimes \partial_{w_i}\sigma(w).
+$$</p>
+<p>You can then show that:</p>
+<p>$$
+\sigma(w) = \sum_{i=1}^n \sigma_i(w)
+$$</p>
+<p>Marginal contributions come from:</p>
+<p>$$
+\c(w) = \frac{\Sigma w}{\sqrt{w&rsquo;\Sigma w}}.
+$$</p>
+<p>Once we have defined all the atomic elements, it is pretty easy to understand that the solutionis found by running an optimization:</p>
+<p>$$
+\text{argmin}<em>w \sum</em>{i=1}^N \left[\frac{\sqrt(w^T\Sigma w)}{N} - w_i\dot c(w)_i \right]^2 .
+$$</p>
+<p>This is how we would define risk parity mathematically. Now, let's dig into the benefits.</p>
+<p>Results vs SP500
+#################</p>
+
       </article>
       <div id="disqus_thread"></div>
 <script type="application/javascript">
@@ -92,7 +116,7 @@ if (!doNotTrack) {
     <p class="card-text"></p>
     <div class="card-subtext muted-text">
       <p>Posted <time datetime="2020-06-21 621:00">Jun 21, 2020</time></p>
-      <p>#intro #whoami </p>
+      <p>#whoami </p>
     </div>
   </article>
 </a>
