@@ -5,11 +5,18 @@
     <description>Recent content in Categories on QuantFreedom</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Jun 2020 01:04:38 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jun 2020 23:15:37 +0200</lastBuildDate>
     
         <atom:link href="https://fregocap.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>strats</title>
+      <link>https://fregocap.github.io/categories/strats/</link>
+      <pubDate>Sun, 21 Jun 2020 23:15:37 +0200</pubDate>
+      
+      <guid>https://fregocap.github.io/categories/strats/</guid>
+      <description></description>
+    </item><item>
       <title>whoami</title>
       <link>https://fregocap.github.io/categories/whoami/</link>
       <pubDate>Sun, 21 Jun 2020 01:04:38 +0200</pubDate>
