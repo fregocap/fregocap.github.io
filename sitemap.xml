@@ -3,42 +3,55 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://fregocap.github.io/categories/</loc>
-    <lastmod>2020-06-21T23:15:37+02:00</lastmod>
+    <loc>http://capfab.io/blog/optimal-execution-in-algo-trading/</loc>
+    <lastmod>2020-12-30T23:06:26+06:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fregocap.github.io/posts/</loc>
-    <lastmod>2020-06-21T23:15:37+02:00</lastmod>
+    <loc>http://capfab.io/blog/</loc>
+    <lastmod>2020-12-30T23:06:26+06:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fregocap.github.io/</loc>
-    <lastmod>2020-06-21T23:15:37+02:00</lastmod>
+    <loc>http://capfab.io/</loc>
+    <lastmod>2020-12-30T23:06:26+06:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fregocap.github.io/posts/risk-parity/</loc>
-    <lastmod>2020-06-21T23:15:37+02:00</lastmod>
+    <loc>http://capfab.io/portfolio/</loc>
+    <lastmod>2020-08-12T18:19:35+06:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fregocap.github.io/categories/strats/</loc>
-    <lastmod>2020-06-21T23:15:37+02:00</lastmod>
+    <loc>http://capfab.io/portfolio/recipe-app-ux-study/</loc>
+    <lastmod>2020-08-12T18:19:35+06:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fregocap.github.io/posts/introduction/</loc>
-    <lastmod>2020-06-21T01:04:38+02:00</lastmod>
+    <loc>http://capfab.io/portfolio/ux-case-study-for-agriculture-app/</loc>
+    <lastmod>2020-08-12T12:13:40+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fregocap.github.io/categories/whoami/</loc>
-    <lastmod>2020-06-21T01:04:38+02:00</lastmod>
+    <loc>http://capfab.io/portfolio/event-app-case-study/</loc>
+    <lastmod>2020-08-12T18:07:16+06:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fregocap.github.io/tags/</loc>
+    <loc>http://capfab.io/portfolio/case-study-one/</loc>
+    <lastmod>2020-07-13T12:49:27+06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://capfab.io/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>http://capfab.io/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>http://capfab.io/tags/</loc>
   </url>
   
 </urlset>
