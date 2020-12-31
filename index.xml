@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CapFab.io</title>
+    <link>http://capfab.io/</link>
+    <description>Recent content on CapFab.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 Dec 2020 23:06:26 +0600</lastBuildDate>
+    
+	<atom:link href="http://capfab.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Algo Trading: The Optimal Execution Problem</title>
+      <link>http://capfab.io/blog/optimal-execution-in-algo-trading/</link>
+      <pubDate>Wed, 30 Dec 2020 23:06:26 +0600</pubDate>
+      
+      <guid>http://capfab.io/blog/optimal-execution-in-algo-trading/</guid>
+      <description>Introduction Algorithmic trading is omnipresent in the financial industry, where a form of automated trading executes the orders and decides the amount of shares, the entry point and/or the exit point. In the present blog post, we define and explore the problem of optimal execution in the context of algorithmic trading.
+Optimal Execution Let&#39;s imagine that you need to sell a large amount of shares $S_t$ at a certain time $t$ with $P_t$.</description>
+    </item>
+    
+    <item>
+      <title>Recipe App Ux Study</title>
+      <link>http://capfab.io/portfolio/recipe-app-ux-study/</link>
+      <pubDate>Wed, 12 Aug 2020 18:19:35 +0600</pubDate>
+      
+      <guid>http://capfab.io/portfolio/recipe-app-ux-study/</guid>
+      <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
+    </item>
+    
+    <item>
+      <title>UX Case Study for Agriculture App</title>
+      <link>http://capfab.io/portfolio/ux-case-study-for-agriculture-app/</link>
+      <pubDate>Wed, 12 Aug 2020 12:13:40 +0000</pubDate>
+      
+      <guid>http://capfab.io/portfolio/ux-case-study-for-agriculture-app/</guid>
+      <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
+    </item>
+    
+    <item>
+      <title>Event App Case Study</title>
+      <link>http://capfab.io/portfolio/event-app-case-study/</link>
+      <pubDate>Wed, 12 Aug 2020 18:07:16 +0600</pubDate>
+      
+      <guid>http://capfab.io/portfolio/event-app-case-study/</guid>
+      <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
+    </item>
+    
+    <item>
+      <title>Case Study One</title>
+      <link>http://capfab.io/portfolio/case-study-one/</link>
+      <pubDate>Mon, 13 Jul 2020 12:49:27 +0600</pubDate>
+      
+      <guid>http://capfab.io/portfolio/case-study-one/</guid>
+      <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
+    </item>
+    
+  </channel>
+</rss>
