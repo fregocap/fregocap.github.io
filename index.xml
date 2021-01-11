@@ -57,5 +57,24 @@ Optimal Execution Let&#39;s imagine that you need to sell a large amount of shar
       <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>http://capfab.io/blog/biggest-risk-to-the-cryptocurrencies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://capfab.io/blog/biggest-risk-to-the-cryptocurrencies/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A Simple Portfolio For Lazy Investors</title>
+      <link>http://capfab.io/blog/portfolio-for-lazy-investors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://capfab.io/blog/portfolio-for-lazy-investors/</guid>
+      <description>Introduction One of the topics that is of main interest to me and (I believe) to lots of investors is: how to get the same returns on a certain portfolio, while lowering the risk. This is a difficult question that has a simple answer for investors that do not want to waste too much time on it: the answer is risk parity.
+What is risk parity ? There are different sorts of investors: the ones that like to take more risks than the market in exchange of a higher premium and the ones that are risk averse and prefer steady returns.</description>
+    </item>
+    
   </channel>
 </rss>
