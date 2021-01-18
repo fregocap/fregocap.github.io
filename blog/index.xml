@@ -6,10 +6,19 @@
     <description>Recent content in Blogs on CapFab.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 09 Jan 2021 00:06:26 +0600</lastBuildDate>
+    <lastBuildDate>Mon, 18 Jan 2021 00:06:26 +0600</lastBuildDate>
     
 	<atom:link href="http://capfab.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Is Bitcoin Worthless ?</title>
+      <link>http://capfab.io/blog/biggest-risk-to-bitcoin/</link>
+      <pubDate>Mon, 18 Jan 2021 00:06:26 +0600</pubDate>
+      
+      <guid>http://capfab.io/blog/biggest-risk-to-bitcoin/</guid>
+      <description>Introduction In this blog post, we are going to address one of the biggest security problems of cryptocurrencies: quantum computers. The value of the bitcoin is sustained by the fact that people trust the transaction process between two entities and secured in the blockchain. Basically, they trust the fact that their bitcoins couldn&#39;t be stolen easily. That isn&#39;t true anymore if a person/entity has access to a big quantum computer. In order to understand why, we need to present some fundamentals of cryptography.</description>
+    </item>
     
     <item>
       <title>A Simple Portfolio For Lazy Investors</title>
