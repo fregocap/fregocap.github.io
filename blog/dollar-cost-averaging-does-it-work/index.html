@@ -128,10 +128,26 @@
               </div>
           </div>
       </div>
+ 
       <div class="row mt-5">
           <div class="col-lg-12">
-              <div class="singleBlog__content">
-                <h1 id="introduction">Introduction</h1>
+            <div class="singleBlog__content">
+	      <h2>
+		Table of Contents
+	      </h2>
+	      <aside>
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#dollar-cost-averaging-definition">Dollar Cost Averaging: Definition</a></li>
+    <li><a href="#the-simulations--results">The Simulations & Results</a></li>
+    <li><a href="#dollar-cost-averaging-the-bias">Dollar Cost Averaging: The Bias</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+	      </aside>
+
+                <h2 id="introduction">Introduction</h2>
 <p>There is a lot of people on the internet that say that instead of putting
 all of your money at once in the market, you should instead divide that lump sum
 over a certain period of time with equal installments. The underlying logic is that
@@ -140,7 +156,7 @@ Instead the dollar cost strategy avoids such tragic event by not investing every
 at once and instead spread your bets at different moments through time. Does it really
 make sense ? We have done some Monte Carlo simulations that are not in agreement with
 the common sense picture that is &ldquo;sold&rdquo; on the internet.</p>
-<h1 id="dollar-cost-averaging-definition">Dollar Cost Averaging: Definition</h1>
+<h2 id="dollar-cost-averaging-definition">Dollar Cost Averaging: Definition</h2>
 <p>In order to define properly the terms we are going to consider a very specific case:
 you want to invest 100'000 USD into an SP500 index and you have two possible choices:</p>
 <ol>
@@ -153,14 +169,14 @@ goes down just after you've made your investment, you can save a lot of money by
 the option 2 (dollar cost averaging). However, if the market goes up significantly just
 after the investment, then the strategy 1 would allow to pocket a quite big gain
 (strategy 2).</p>
-<h1 id="the-simulations--results">The Simulations &amp; Results</h1>
+<h2 id="the-simulations--results">The Simulations &amp; Results</h2>
 <p>To answer that question, we have decided to create a Monte Carlo simulation, where we
 consider that the SP500 returns are  approximately normal with a mean of 7% and a
 standard deviation of 14%. This assumption is not verified in reality, as we know that
 the market returns have &ldquo;fat tails&rdquo;. However, as a first simple assumption, let's consider
 it as a true to build an intuition about what is happening with the dollar cost
 averaging strategy.</p>
-<p><img src="../../images/blog/dollar_cost_average_sim1.png" alt="Figure1"></p>
+<p><img src="../../images/blog/dollar_cost_average_sim1.png#center" alt="Figure1"></p>
 <p><em>Figure 1.
 Portfolio value for the buy and hold strategy and for the dollar cost averaging strategy</em></p>
 <p>In Figure 1 is represented the average portfolio value for the buy &amp; hold strategy and
@@ -173,7 +189,7 @@ So actually, a realistic simulation would be even more in favor of the buy &amp;
 But why is it so? It does not look like
 a very intuitive result&hellip; The reason why it is better to follow a buy &amp; hold strategy is
 because of little detail that you should play in your favor.</p>
-<h1 id="dollar-cost-averaging-the-bias">Dollar Cost Averaging: The Bias</h1>
+<h2 id="dollar-cost-averaging-the-bias">Dollar Cost Averaging: The Bias</h2>
 <p>The dollar cost averaging protects you against a big drop that might happen just after
 you put all of your money in the market. However, you are just trading that risk against
 another risk: the market might as well go significantly higher.</p>
@@ -194,11 +210,11 @@ the full potential of a simple buy &amp; hold strategy.</p>
 return of 0%. In that particular case, it would not matter to buy &amp; hold or to dollar
 cost average your investments. But let's be frank: if the market returns 0%, we are far
 better to have our money on a savings account.</p>
-<p><img src="../../images/blog/dollar_cost_average_sim2.png" alt="Figure2"></p>
+<p><img src="../../images/blog/dollar_cost_average_sim2.png#center" alt="Figure2"></p>
 <p><em>Figure 2.
 If the market returns 0%, both strategies are equivalent at the end of the 20 year
 period</em></p>
-<h1 id="conclusion">Conclusion</h1>
+<h2 id="conclusion">Conclusion</h2>
 <p>The conclusion is pretty simple: buy &amp; hold is a much better strategy than dollar cost
 averaging in terms of profits (what we care about in the end). As long as you hold, there
 is a high probability you'll be profitable in the long term.</p>
@@ -206,7 +222,7 @@ is a high probability you'll be profitable in the long term.</p>
 doing lots of small ones. This tends to favor the buy &amp; hold strategy even more.</p>
 <p>Finally, don't believe everything that is on instagram or facebook, such as the following
 example&hellip;</p>
-<p><img src="../../images/blog/dollar_cost_average_insta.png" alt="Figure3"></p>
+<p><img src="../../images/blog/dollar_cost_average_insta.png#center" alt="Figure3"></p>
 <hr>
 <p>If you would like to cite the present content, please use:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Bash" data-lang="Bash">

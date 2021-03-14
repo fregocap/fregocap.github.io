@@ -128,15 +128,32 @@
               </div>
           </div>
       </div>
+ 
       <div class="row mt-5">
           <div class="col-lg-12">
-              <div class="singleBlog__content">
-                <h1 id="introduction">Introduction</h1>
+            <div class="singleBlog__content">
+	      <h2>
+		Table of Contents
+	      </h2>
+	      <aside>
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#optimal-execution">Optimal Execution</a></li>
+    <li><a href="#implementation-shortfall-algorithm">Implementation Shortfall Algorithm</a></li>
+    <li><a href="#reinforcement-learning">Reinforcement Learning</a></li>
+    <li><a href="#whats-next">What's Next</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+	      </aside>
+
+                <h2 id="introduction">Introduction</h2>
 <p>Algorithmic trading is omnipresent in the financial industry, where a form of automated trading
 executes the orders and decides the amount of shares, the entry point and/or the exit point.
 In the present blog post, we define and explore the problem of optimal execution in the context
 of algorithmic trading.</p>
-<h1 id="optimal-execution">Optimal Execution</h1>
+<h2 id="optimal-execution">Optimal Execution</h2>
 <p>Let's imagine that you need to sell a large amount of shares $S_t$ at a certain time $t$ with
 $P_t$. If the amount of shares that you would like to sell (or buy) is of the same order than
 the amount of shares that are traded daily at your broker, then asking your broker to sell your
@@ -171,7 +188,7 @@ The solution that they obtained is particularly simple and elegant: $S_1=S_2=\cd
 This is called Time-Weighted Average Price (TWAP) . Such algorithm is part of a class of algorithms
 that are called impact driven algorithms, where big trading orders are sliced into smaller orders to
 minimize the market impact.</p>
-<h1 id="implementation-shortfall-algorithm">Implementation Shortfall Algorithm</h1>
+<h2 id="implementation-shortfall-algorithm">Implementation Shortfall Algorithm</h2>
 <p>Implementation Shortfall (IS) corresponds to the difference between the price at which
 the investor decides to trade and the average execution price that is achieved.
 The aim of such IS algos is to minimize not only the market impact, but also to account for the
@@ -209,14 +226,14 @@ $$
 \left(2+\lambda\frac{\sigma_t^2}{\theta} \right) x_t - x_{t-1} = x_{t+1}
 $$
 under the constraint that at instant zero $x_0=1$ and $x_{T+1} =0$ the optimal trading curve takes the form of the Figure 1.</p>
-<p><img src="../../images/allpost/optimal_trading_curve50.png" alt=""></p>
+<p><img src="../../images/allpost/optimal_trading_curve50.png#center" alt=""></p>
 <p><em>Figure 1. Such curve represents the percentage of shares that are sold through time when minimizing the effect of market impact and market risk.
 The  trajacetory with $\lambda=0$ is the naive strategy that does not account for the variance. The risk averse trader would rather chose to sell
 quickly its shares.</em></p>
 <p>There is therefore in this particular framework first developped by <a href="#references">Almgren and Chriss [2]</a> an explicit solution to the optimal
 execution problem that takes into account the risk-reward tradeoff through the parameter $\lambda$. As one can see in the Figure 1,
 the risk averse trader choses to sell quickly to reduce the exposure to volatility risk, even though the trading costs might be higher.</p>
-<h1 id="reinforcement-learning">Reinforcement Learning</h1>
+<h2 id="reinforcement-learning">Reinforcement Learning</h2>
 <p>A clever way to think about the financial markets is through the context of reinforcement learning.
 The aim of reinforcement learning is to learn a policy $\pi \in \Pi$ that controls the system with states
 $s \in \mathcal{S}$ through the actions $x \in \mathcal{X}$ guided by the maximization of the total
@@ -246,7 +263,7 @@ function within an intra-period timestep $[t_{i},t_{i+1})$ is given by:</p>
 R_{i} = q_t \left(p_{t,i} - p_{t,i+1} \right) - \alpha x_t^2
 $$</p>
 <p>where $\alpha$ represents a constant parameter, and $p_{t,i}$ the price at time $t_{i}$.</p>
-<h1 id="whats-next">What's Next</h1>
+<h2 id="whats-next">What's Next</h2>
 <p>Brokers are almost all electronic and automated. In that context, the optimal execution problem is
 central to provide faire execution prices to the market players. In the present blog post, we discuss
 the core of the problem in a very simplistic manner.</p>

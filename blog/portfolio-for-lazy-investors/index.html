@@ -128,15 +128,32 @@
               </div>
           </div>
       </div>
+ 
       <div class="row mt-5">
           <div class="col-lg-12">
-              <div class="singleBlog__content">
-                <h1 id="introduction">Introduction</h1>
+            <div class="singleBlog__content">
+	      <h2>
+		Table of Contents
+	      </h2>
+	      <aside>
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#what-is-risk-parity-">What is risk parity ?</a></li>
+    <li><a href="#diversification-is-key">Diversification is key</a></li>
+    <li><a href="#a-simple-example">A simple example</a></li>
+    <li><a href="#some-final-remarks">Some final remarks</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+	      </aside>
+
+                <h2 id="introduction">Introduction</h2>
 <p>One of the topics that is of main interest to me and (I believe) to lots of investors is:
 how to get the same returns on a certain portfolio, while lowering the risk. This is a difficult
 question that has a simple answer for investors that do not want to waste too much time on
 it: the answer is <em>risk parity</em>.</p>
-<h1 id="what-is-risk-parity-">What is risk parity ?</h1>
+<h2 id="what-is-risk-parity-">What is risk parity ?</h2>
 <p>There are different sorts of investors: the ones that like to take more risks than the market
 in exchange of a higher premium and the ones that are risk averse and prefer steady returns.
 Irrespective of your choices of risk, a large portion (if not all) of investors would like to
@@ -174,7 +191,7 @@ portfolio such that the risk of each part is the same. Several papers (see <a hr
 have shown that risk parity is rather close to the tangency portfolio, which is the optimum portfolio
 with risky assets that maximizes the Sharpe ratio based on the capital asset pricing model. This
 is under the assumption that the Sharpe ratios and correlations among all assets are similar.</p>
-<h1 id="diversification-is-key">Diversification is key</h1>
+<h2 id="diversification-is-key">Diversification is key</h2>
 <p>Having a risk parity portfolio is part of the equation, but you also need to consider the assets
 that you put into your portfolio. The main element here is diversification: you have to consider
 the assets that are not fully correlated between them such that, if there is a big drop in one
@@ -206,7 +223,7 @@ particularly relevant nowadays as inflationary expectations are growing. Other a
 estate indexes, commodities and equities.</p>
 <p>To construct your risk parity portfolio, you just have to put those assets into the optimizer
 previously discussed and you should be good to go.</p>
-<h1 id="a-simple-example">A simple example</h1>
+<h2 id="a-simple-example">A simple example</h2>
 <p>Instead of continuing in the conceptualization of the risk parity framework, we have decided
 to run a backtest of the strategy with three assets that are historically uncorrelated:</p>
 <ul>
@@ -214,7 +231,7 @@ to run a backtest of the strategy with three assets that are historically uncorr
 <li>US Long-term treasuries (symbol <strong>TLT</strong>)</li>
 <li>US Equity market (proxy by <strong>SPY</strong>)</li>
 </ul>
-<p><img src="../../images/blog/simple_risk_parity.png" alt=""></p>
+<p><img src="../../images/blog/simple_risk_parity.png#center" alt=""></p>
 <p><em>Figure 1.
 The risk parity portfolio is much less volatile than the overall SP500 even though the expected returns seem to
 be quite similar</em></p>
@@ -256,7 +273,7 @@ Every individual that is putting his money at risk has the responsibility to stu
 is exactly happening.</p>
 <p>In any case, to help you start on this, I've put the code on <a href="https://github.com/fregocap/BlogCode/tree/master/risk_parity">github</a>
 that has been used to create the <em>Figure 1</em>.</p>
-<h1 id="some-final-remarks">Some final remarks</h1>
+<h2 id="some-final-remarks">Some final remarks</h2>
 <p>We have explored a little bit the concepts underlying the risk parity portfolios. As you might have seen, there
 is several benefits to the risk parity portfolios:</p>
 <ul>
