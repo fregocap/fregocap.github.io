@@ -16,7 +16,7 @@ My name is Fabio Capela. I am senior data scientist at Firmenich, where I
 develop advanced machine learning algorithms related to fragrance and flavor 
 creation. Prior to Firmenich, I've worked in several sectors such as in 
 banking, agriculture, architecture or software engineering. I have a PhD in 
-theoretical physics (specialized in black hole physics**) and it is still
+theoretical physics (specialized in black hole physics) and it is still
 nowadays one of the subjects that I do dwelve into. 
 
 My research interests are broad. That is why I might talk about very 
