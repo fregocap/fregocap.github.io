@@ -1,13 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mediumish</title>
-    <description>Jekyll template, Medium styled, free for bloggers.</description>
+    <title>LabFab</title>
+    <description>Exploring math, physics, machine learning, and finance insights.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 09 Jun 2024 23:16:15 +0200</pubDate>
-    <lastBuildDate>Sun, 09 Jun 2024 23:16:15 +0200</lastBuildDate>
+    <pubDate>Tue, 11 Jun 2024 22:31:34 +0200</pubDate>
+    <lastBuildDate>Tue, 11 Jun 2024 22:31:34 +0200</lastBuildDate>
     <generator>Jekyll v4.3.3</generator>
+    
+      <item>
+        <title>Unlocking Creativity: Dalle 2 and Diffusion Models</title>
+        <description>&lt;p&gt;In the rapidly evolving landscape of generative models, diffusion models have emerged as a groundbreaking approach, reshaping our understanding and capabilities in fields like image synthesis and beyond. Let’s delve into this fascinating world, breaking down complex concepts into digestible insights.&lt;/p&gt;
+
+&lt;h3 id=&quot;understanding-the-basics&quot;&gt;Understanding the basics&lt;/h3&gt;
+
+&lt;p&gt;At their core, diffusion models are a type of generative model, a family of algorithms designed to produce new data samples that mimic a give distribution. Unlike their predecessors (like GANs or VAEs), diffusion models operate on a novel principle: they systematically add noise to data and then learn to reverse this process.&lt;/p&gt;
+
+&lt;h3 id=&quot;the-process-from-noise-to-clarity&quot;&gt;The Process: From Noise to Clarity&lt;/h3&gt;
+
+&lt;p&gt;Diffusion models are inspired by the natural diffusion process, where particles move from regions of higher concentration to lower concentration until they are evenly distributed. In the context of generative modeling, this concept is metaphorically applied to data. The model starts with a piece of structured data, like an image or a text, and gradually introduces random noise over several iterations or steps. This process known as forward diffusion, incrementally adds Gaussian noise until the original data transforms into a state of pure, unstructured noise.&lt;/p&gt;
+
+&lt;p&gt;One of the most striking aspects of diffusion models is their gradual, stepwise approach to both deterioration and reconstruction. Unlike some generative models that attempt to generate data in a single step, diffusion models embrace a more nuanced path. This gradualism allows for a more controlled generation process and often results in higher-quality, more diverse samples. It’s a journey through a landscape of noise and structure, where each step is a careful move towards creating something new and unique from the vestiges of the old.&lt;/p&gt;
+
+&lt;h4 id=&quot;1-forward-diffusion---the-art-of-structured-deterioration&quot;&gt;1. Forward Diffusion - The Art of Structured Deterioration&lt;/h4&gt;
+
+&lt;p&gt;The forward diffusion process is methodical and controlled, typically occurring over hundreds or even thousands of steps. At each step, a small amount of Gaussian noise is added according to the equation \(\mathbf{x}_t = \sqrt(1-\beta_t)\mathbf{x}_{t-1}+\sqrt{\beta_t}\epsilon\) where \(\mathbf{x}_t\) represents data at timestamp \(t\), \(\beta_t\) is the noise variance, and \(\epsilon\) is a standard normal smaple. This gradual addition of noise, governed by a predefined variance schedule, carefully obscures the data’s structure while retaining latent traits of the initial input, ultimately transforming it into a purely noisy state. As previously said, the amount of Gaussian noise added at each step is governed by a fixed variance schedule with the following predefined properties:&lt;/p&gt;
+
+&lt;p&gt;\begin{equation}
+   E = mc^2
+\end{equation}&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 01 Jan 2024 00:00:00 +0100</pubDate>
+        <link>http://localhost:4000/diffusion-models/</link>
+        <guid isPermaLink="true">http://localhost:4000/diffusion-models/</guid>
+        
+        
+        <category>deep learning</category>
+        
+        <category>artificial intelligence</category>
+        
+      </item>
     
       <item>
         <title>Powerful things you can do with the Markdown editor</title>
@@ -356,29 +390,6 @@
         <pubDate>Fri, 12 Jan 2018 00:00:00 +0100</pubDate>
         <link>http://localhost:4000/press-and-education/</link>
         <guid isPermaLink="true">http://localhost:4000/press-and-education/</guid>
-        
-        
-        <category>Jekyll</category>
-        
-        <category>tutorial</category>
-        
-      </item>
-    
-      <item>
-        <title>Options for creating a new site with Jekyll</title>
-        <description>&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll new &amp;lt;PATH&amp;gt;&lt;/code&gt; installs a new Jekyll site at the path specified (relative to current directory). In this case, Jekyll will be installed in a directory called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;myblog&lt;/code&gt;. Here are some additional details:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;To install the Jekyll site into the directory you’re currently in, run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll new&lt;/code&gt; . If the existing directory isn’t empty, you can pass the –force option with jekyll new . –force.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll new&lt;/code&gt; automatically initiates &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle install&lt;/code&gt; to install the dependencies required. (If you don’t want Bundler to install the gems, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll new myblog --skip-bundle&lt;/code&gt;.)&lt;/li&gt;
-  &lt;li&gt;By default, the Jekyll site installed by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll new&lt;/code&gt; uses a gem-based theme called Minima. With gem-based themes, some of the directories and files are stored in the theme-gem, hidden from your immediate view.&lt;/li&gt;
-  &lt;li&gt;We recommend setting up Jekyll with a gem-based theme but if you want to start with a blank slate, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll new myblog --blank&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;To learn about other parameters you can include with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll new&lt;/code&gt;, type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll new --help&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Fri, 12 Jan 2018 00:00:00 +0100</pubDate>
-        <link>http://localhost:4000/options-for-creating-new-site-with-jekyll/</link>
-        <guid isPermaLink="true">http://localhost:4000/options-for-creating-new-site-with-jekyll/</guid>
         
         
         <category>Jekyll</category>
