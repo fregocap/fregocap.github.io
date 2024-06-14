@@ -8,6 +8,7 @@ description: "My review of Inception movie. Acting, plot and something else in t
 featured: true
 hidden: true
 rating: 4.5
+toc: true
 ---
 
 In the rapidly evolving landscape of generative models, diffusion models have emerged as a groundbreaking approach, reshaping our understanding and capabilities in fields like image synthesis and beyond. Let's delve into this fascinating world, breaking down complex concepts into digestible insights.
