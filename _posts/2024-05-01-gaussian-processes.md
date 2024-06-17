@@ -76,4 +76,81 @@ $$
 
 where $$\mathcal{N}(\mathbf{x}\vert\mathbf{\mu}_i, \mathbf{\Sigma}_i)$$ is the multivariate Gaussian distribution.
 
-###
+## Training the GMM: Expectation-Maximization (EM) algorithm 
+
+The EM algorithm is used to find the maximum likelihood parameters of a GMM, especially when there are latent variables influencing the data distribution. 
+
+### Steps of the EM Algorithm 
+
+1. **Expectation (E-step)**: Estimate the latent variables. 
+2. **Maximization (M-step)**: Maximize the parameters based on the current estimates of the latent variables. 
+
+In the particular case of GMMs, if one considers the maximum likelihood, we should maximize: 
+
+$$
+\ln p(\mathbf{x}|\phi_i, \mathbf{\mu}, \mathbf{\Sigma}) = \sum_{n=1}^N \ln\left( \sum_{i=1}^K \phi_i(\mathbf{x}^{(n)}) \mathcal{N}(\mathbf{x}^{(n)}|\mathbf{\mu}_i, \mathbf{\Sigma}_i) \right)$$
+
+with respect to $$\theta = (\phi_i, \mathbf{\mu}_i, \mathbf{\Sigma}_i)$$. However,
+two problems arise by doing so: 1) we can have very high (arbitrarily large) likelihood when a
+single Gaussian explains a point; 2) an unlimited number of solutions is acceptable up to
+permutations. Instead, if we do introduce a latent variable $$z$$, then one can consider that the
+mixture model generates the data by first sampling from $$z$$, and only then we sample the
+observable data $$\mathbf{x}$$ from a distribution that does depend on $$z$$, meaning: 
+
+$$
+p(z,\mathbf{x}) = p(z)p(\mathbf{x}|z).
+$$
+
+In mixture models, the **latent variables are easily interpreted as being the different
+components of the data distribution**, i.e. $$z=c$$ . 
+
+Let us try to optimize $$\ln p(\mathbf{x})$$ for the set of parameters $$\theta$$ by integrating
+over the latent variable 
+
+$$
+\begin{align}
+\frac{d}{d\theta} \ln p(\mathbf{x}) & = \frac{d}{d\theta} \ln \sum_{z} p(z, \mathbf{x})  \\
+& =  \frac{\frac{d}{d\theta} \sum_{z} p(z,\mathbf{x})}{\sum_{z'}p(z',\mathbf{x})}\\
+& = \sum_{z} p(z|\mathbf{x}) \frac{d}{d\theta} \ln p(z,\mathbf{x}) \\
+& = \mathbb{E}_{p(z|\mathbf{x})} \left[\frac{d}{d\theta} \ln p(z,\mathbf{x}) \right]. 
+\end{align}
+$$
+
+This means that the derivative of the marginal log-probability $$p(\mathbf{x})$$ is the expected
+value of the derivative of the joint log-probability, with the expectation on the posterior
+distribution. This formula is completely generic for any model with latent variables as we
+did not introduce any specificities related to GMMs. We have not given the full details of
+the derivation, but just keep in mind that we have used the known property: 
+
+$$
+\frac{d}{d\theta} \ln A(\theta) = \frac{1}{A(\theta)} \frac{d}{d\theta} A(\theta).
+$$
+
+It is rather tempting to equalize the derivative to zero for the particular case of the GMMs.
+Doing so, you end up with the optimum parameters that we are looking for. In particular, our
+two previous steps of the EM algorithm become: 
+
+**E-Step**: 
+
+$$
+r_{ni} :=p(z_{n} = i | \mathbf{x}_n) = \frac{\phi_i \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_i,\mathbf{\Sigma}_i)}{\sum_{j=1}^K \phi_j \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_j,\mathbf{\Sigma}_j)}
+$$
+
+**M-Step**: 
+
+$$
+\phi_i = \frac{\sum_{n=1}^N r_{ni}}{\sum_{i=1}^K \sum_{n=1}^N r_{ni}}, \qquad \mathbf{\mu}_i = \frac{\sum_{n=1}^N  r_{ni}\mathbf{x}_n}{\sum_{n=1}^N r_{ni}}, \qquad \Sigma_{i} = \frac{\sum_{n=1}^N r_{ni} \left(\mathbf{x}_n -\mathbf{\mu}_i\right)\left(\mathbf{x}_n - \mathbf{\mu}_i\right)^\intercal}{\sum_{n=1}^N r_{ni}}
+$$
+
+These two steps define fully the EM algorithm for the GMMs with a random initialization of
+the parameters $$\theta = \left\{\phi_i, \mathbf{\mu}_i, \mathbf{\Sigma}_i\right\}$$.
+
+## Clustering with GMMs
+
+...
+
+## Challenges and Considerations
+
+GMMs require specifying the number of components beforehand. Model selection criteria such as Akaike Information Criterion (AIC) or Bayesian Information Criterion (BIC) can help determine the optimal number of components. Additionally, the complexity of GMMs increases with the size of the dataset, particularly due to the covariance matrices. Simplifying assumptions, such as diagonal covariance matrices, can mitigate this issue.
+
+In summary, Gaussian Mixture Models are a robust tool for modeling and clustering complex data distributions. Their ability to handle multimodal distributions makes them valuable in various practical applications.

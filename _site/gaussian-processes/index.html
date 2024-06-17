@@ -238,6 +238,13 @@
   </li>
   <li><a href="#application-of-gmms">Application of GMMs</a></li>
   <li><a href="#mathematical-formulation-of-gmms">Mathematical Formulation of GMMs</a></li>
+  <li><a href="#training-the-gmm-expectation-maximization-em-algorithm">Training the GMM: Expectation-Maximization (EM) algorithm</a>
+    <ul>
+      <li><a href="#steps-of-the-em-algorithm">Steps of the EM Algorithm</a></li>
+    </ul>
+  </li>
+  <li><a href="#clustering-with-gmms">Clustering with GMMs</a></li>
+  <li><a href="#challenges-and-considerations">Challenges and Considerations</a></li>
 </ul>
                     </div>
                 
@@ -335,7 +342,75 @@
 
 <p>where \(\mathcal{N}(\mathbf{x}\vert\mathbf{\mu}_i, \mathbf{\Sigma}_i)\) is the multivariate Gaussian distribution.</p>
 
-<p>###</p>
+<h2 id="training-the-gmm-expectation-maximization-em-algorithm">Training the GMM: Expectation-Maximization (EM) algorithm</h2>
+
+<p>The EM algorithm is used to find the maximum likelihood parameters of a GMM, especially when there are latent variables influencing the data distribution.</p>
+
+<h3 id="steps-of-the-em-algorithm">Steps of the EM Algorithm</h3>
+
+<ol>
+  <li><strong>Expectation (E-step)</strong>: Estimate the latent variables.</li>
+  <li><strong>Maximization (M-step)</strong>: Maximize the parameters based on the current estimates of the latent variables.</li>
+</ol>
+
+<p>In the particular case of GMMs, if one considers the maximum likelihood, we should maximize:</p>
+
+\[\ln p(\mathbf{x}|\phi_i, \mathbf{\mu}, \mathbf{\Sigma}) = \sum_{n=1}^N \ln\left( \sum_{i=1}^K \phi_i(\mathbf{x}^{(n)}) \mathcal{N}(\mathbf{x}^{(n)}|\mathbf{\mu}_i, \mathbf{\Sigma}_i) \right)\]
+
+<p>with respect to \(\theta = (\phi_i, \mathbf{\mu}_i, \mathbf{\Sigma}_i)\). However,
+two problems arise by doing so: 1) we can have very high (arbitrarily large) likelihood when a
+single Gaussian explains a point; 2) an unlimited number of solutions is acceptable up to
+permutations. Instead, if we do introduce a latent variable \(z\), then one can consider that the
+mixture model generates the data by first sampling from \(z\), and only then we sample the
+observable data \(\mathbf{x}\) from a distribution that does depend on \(z\), meaning:</p>
+
+\[p(z,\mathbf{x}) = p(z)p(\mathbf{x}|z).\]
+
+<p>In mixture models, the <strong>latent variables are easily interpreted as being the different
+components of the data distribution</strong>, i.e. \(z=c\) .</p>
+
+<p>Let us try to optimize \(\ln p(\mathbf{x})\) for the set of parameters \(\theta\) by integrating
+over the latent variable</p>
+
+\[\begin{align}
+\frac{d}{d\theta} \ln p(\mathbf{x}) &amp; = \frac{d}{d\theta} \ln \sum_{z} p(z, \mathbf{x})  \\
+&amp; =  \frac{\frac{d}{d\theta} \sum_{z} p(z,\mathbf{x})}{\sum_{z'}p(z',\mathbf{x})}\\
+&amp; = \sum_{z} p(z|\mathbf{x}) \frac{d}{d\theta} \ln p(z,\mathbf{x}) \\
+&amp; = \mathbb{E}_{p(z|\mathbf{x})} \left[\frac{d}{d\theta} \ln p(z,\mathbf{x}) \right]. 
+\end{align}\]
+
+<p>This means that the derivative of the marginal log-probability \(p(\mathbf{x})\) is the expected
+value of the derivative of the joint log-probability, with the expectation on the posterior
+distribution. This formula is completely generic for any model with latent variables as we
+did not introduce any specificities related to GMMs. We have not given the full details of
+the derivation, but just keep in mind that we have used the known property:</p>
+
+\[\frac{d}{d\theta} \ln A(\theta) = \frac{1}{A(\theta)} \frac{d}{d\theta} A(\theta).\]
+
+<p>It is rather tempting to equalize the derivative to zero for the particular case of the GMMs.
+Doing so, you end up with the optimum parameters that we are looking for. In particular, our
+two previous steps of the EM algorithm become:</p>
+
+<p><strong>E-Step</strong>:</p>
+
+\[r_{ni} :=p(z_{n} = i | \mathbf{x}_n) = \frac{\phi_i \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_i,\mathbf{\Sigma}_i)}{\sum_{j=1}^K \phi_j \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_j,\mathbf{\Sigma}_j)}\]
+
+<p><strong>M-Step</strong>:</p>
+
+\[\phi_i = \frac{\sum_{n=1}^N r_{ni}}{\sum_{i=1}^K \sum_{n=1}^N r_{ni}}, \qquad \mathbf{\mu}_i = \frac{\sum_{n=1}^N  r_{ni}\mathbf{x}_n}{\sum_{n=1}^N r_{ni}}, \qquad \Sigma_{i} = \frac{\sum_{n=1}^N r_{ni} \left(\mathbf{x}_n -\mathbf{\mu}_i\right)\left(\mathbf{x}_n - \mathbf{\mu}_i\right)^\intercal}{\sum_{n=1}^N r_{ni}}\]
+
+<p>These two steps define fully the EM algorithm for the GMMs with a random initialization of
+the parameters \(\theta = \left\{\phi_i, \mathbf{\mu}_i, \mathbf{\Sigma}_i\right\}\).</p>
+
+<h2 id="clustering-with-gmms">Clustering with GMMs</h2>
+
+<p>…</p>
+
+<h2 id="challenges-and-considerations">Challenges and Considerations</h2>
+
+<p>GMMs require specifying the number of components beforehand. Model selection criteria such as Akaike Information Criterion (AIC) or Bayesian Information Criterion (BIC) can help determine the optimal number of components. Additionally, the complexity of GMMs increases with the size of the dataset, particularly due to the covariance matrices. Simplifying assumptions, such as diagonal covariance matrices, can mitigate this issue.</p>
+
+<p>In summary, Gaussian Mixture Models are a robust tool for modeling and clustering complex data distributions. Their ability to handle multimodal distributions makes them valuable in various practical applications.</p>
 
             </div>
 
