@@ -1,12 +1,11 @@
 ---
 layout: post
-title:  "An Introduction to Gaussian Mixture Models"
+title:  "An Intro to Gaussian Mixture Models"
 author: stacknets
 categories: [ unsupervised learning, machine learning ]
-image: assets/images/dalle.jpg
+image: assets/images/main_gmm.png
 description: "Gaussian Mixture Models (GMMs) are powerful unsupervised learning tools used to model multimodal data distributions through a combination of multiple Gaussian distributions, applicable in various fields such as image segmentation, clustering, and audio feature extraction, leveraging the Expectation-Maximization (EM) algorithm for parameter estimation."
 rating: 3.5
-hidden: true
 toc: true
 ---
 
@@ -184,8 +183,8 @@ As you can see for the second example, we did not consider a diagonal covariance
 That's also an interesting case, because there is some overlapping region that will definitely
 be challenging for the algorithm to understand.
 
-The stopping criteria is related to the difference between the log-likelihood at a step $𝑛-1$
-and step $𝑛$  being below a certain threshold. Meanwhile, until that threshold is not reached
+The stopping criteria is related to the difference between the log-likelihood at a step $$𝑛-1$$
+and step $$𝑛$$  being below a certain threshold. Meanwhile, until that threshold is not reached
 we continue updating the estimated parameters of the model. Let's therefore built a class with
 a `fit` method.
 
