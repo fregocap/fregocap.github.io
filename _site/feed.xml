@@ -5,12 +5,12 @@
     <description>Exploring math, physics, machine learning, and finance insights.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 19 Jun 2024 00:14:22 +0200</pubDate>
-    <lastBuildDate>Wed, 19 Jun 2024 00:14:22 +0200</lastBuildDate>
+    <pubDate>Thu, 20 Jun 2024 23:16:47 +0200</pubDate>
+    <lastBuildDate>Thu, 20 Jun 2024 23:16:47 +0200</lastBuildDate>
     <generator>Jekyll v4.3.3</generator>
     
       <item>
-        <title>An Introduction to Gaussian Mixture Models</title>
+        <title>An Intro to Gaussian Mixture Models</title>
         <description>&lt;p&gt;In this blog post, we will explore the concept of &lt;strong&gt;Gaussian Mixture Models&lt;/strong&gt; (GMMs). These models are intuitive and widely applicable in various domains such as image segmentation, clustering, and generative modeling.&lt;/p&gt;
 
 &lt;h2 id=&quot;introduction-to-gmms&quot;&gt;Introduction to GMMs&lt;/h2&gt;
@@ -216,8 +216,8 @@ the parameters \(\theta = \left\{\phi_i, \mathbf{\mu}_i, \mathbf{\Sigma}_i\right
 That’s also an interesting case, because there is some overlapping region that will definitely
 be challenging for the algorithm to understand.&lt;/p&gt;
 
-&lt;p&gt;The stopping criteria is related to the difference between the log-likelihood at a step $𝑛-1$
-and step $𝑛$  being below a certain threshold. Meanwhile, until that threshold is not reached
+&lt;p&gt;The stopping criteria is related to the difference between the log-likelihood at a step \(𝑛-1\)
+and step \(𝑛\)  being below a certain threshold. Meanwhile, until that threshold is not reached
 we continue updating the estimated parameters of the model. Let’s therefore built a class with
 a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/code&gt; method.&lt;/p&gt;
 
