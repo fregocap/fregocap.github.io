@@ -27,7 +27,7 @@ where $$\bar{u_i}$$ denotes the complex conjugate of $$u_i$$.
 The Cauchy-Schwarz inequality states that for any vectors $$\mathbf{u}$$ and $$\mathbf{v}$$ in an inner product space: 
 
 $$
-\| \langle\mathbf{u}, \mathbf{v} \rangle\| \leq \lVert \mathbf{u} \rVert \cdot \lVert \mathbf{u} \rVert
+\| \langle\mathbf{u}, \mathbf{v} \rangle\| \leq \lVert \mathbf{u} \rVert \cdot \lVert \mathbf{v} \rVert
 $$
 
 where $$\lVert\mathbf{u}\rVert = \sqrt{\langle \mathbf{u}, \mathbf{u} \rangle}$$ and $$\lVert\mathbf{v}\rVert = \sqrt{\langle \mathbf{v}, \mathbf{v} \rangle}$$. This inequality essentially states that the absolute value of the inner product of two vectors is always less than or equal to the product of their norms. 
@@ -60,6 +60,7 @@ $$
 The final trick is to fix $$\alpha$$ to be given by $$\alpha=\lVert \mathbf{u} \rVert/\lVert \mathbf{v} \rVert$$, which minimizes the expression on the right hand side (to convince yourself, just take the derivative wrt to $$\alpha$$ and find the $$\alpha$$ that minimizes it) for any non-zero $$\mathbf{u}$$, $$\mathbf{v}$$. That finishes the proof. 
 
 ## Conclusion
+The amplification method, as demonstrated in this proof of the Cauchy-Schwarz inequality, beautifully showcases the geometric and algebraic connections inherent in this technique. Originally highlighted in a
+[blog post by Terence Tao](https://terrytao.wordpress.com/2007/09/05/,amplification-arbitrage-and-the-tensor-power-trick/), this approach provides a clear and elegant pathway to understanding the depth and utility of the inequality. While seemingly straightforward, the method underscores a powerful concept in mathematical analysis, proving to be both insightful and practical for various applications. 
 
-The method presented here to prove Cauchy-Schwarz was initially shown in a [blog post by Terence Tao](https://terrytao.wordpress.com/2007/09/05/amplification-arbitrage-and-the-tensor-power-trick/) and highlights geometric and algebraic links of the trick (called amplification) shown. Quite trivial, but hopefully useful as well. 
 
