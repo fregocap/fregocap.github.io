@@ -3,10 +3,9 @@ layout: post
 title:  "A Simple Proof of the Cauchy-Schwarz Inequality"
 author: stacknets
 categories: [ mathematics]
-image: assets/images/main_gmm.png
-description: ""
+image: assets/images/cauchy_schwarz.jpg
+description: "Exploration of the Cauchy-Schwarz inequality through the amplification method."
 rating: 3.5
-hidden: true
 toc: false
 ---
 
