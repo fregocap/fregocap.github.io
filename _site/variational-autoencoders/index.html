@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="icon" href="/assets/images/logo.png">
+
+<title>An Intro to Gaussian Mixture Models | LabFab</title>
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>An Intro to Gaussian Mixture Models | LabFab</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="An Intro to Gaussian Mixture Models" />
+<meta name="author" content="stacknets" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Latent variables are unseen factors in data that influence observable outcomes, while VAEs are advanced models that learn these underlying structures through a latent space. VAEs are adept at handling complex datasets by leveraging latent representations to interpolate between different data points, like facial expressions in images." />
+<meta property="og:description" content="Latent variables are unseen factors in data that influence observable outcomes, while VAEs are advanced models that learn these underlying structures through a latent space. VAEs are adept at handling complex datasets by leveraging latent representations to interpolate between different data points, like facial expressions in images." />
+<link rel="canonical" href="http://localhost:4000/variational-autoencoders/" />
+<meta property="og:url" content="http://localhost:4000/variational-autoencoders/" />
+<meta property="og:site_name" content="LabFab" />
+<meta property="og:image" content="http://localhost:4000/assets/images/main_gmm.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-06-25T00:00:00+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/assets/images/main_gmm.png" />
+<meta property="twitter:title" content="An Intro to Gaussian Mixture Models" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"stacknets"},"dateModified":"2024-06-25T00:00:00+02:00","datePublished":"2024-06-25T00:00:00+02:00","description":"Latent variables are unseen factors in data that influence observable outcomes, while VAEs are advanced models that learn these underlying structures through a latent space. VAEs are adept at handling complex datasets by leveraging latent representations to interpolate between different data points, like facial expressions in images.","headline":"An Intro to Gaussian Mixture Models","image":"http://localhost:4000/assets/images/main_gmm.png","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/variational-autoencoders/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/images/logo.png"},"name":"stacknets"},"url":"http://localhost:4000/variational-autoencoders/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+<link href="/assets/css/screen.css" rel="stylesheet">
+
+<link href="/assets/css/main.css" rel="stylesheet">
+
+<script src="/assets/js/jquery.min.js"></script>
+
+</head>
+
+
+
+
+<body class="layout-post">
+	<!-- defer loading of font and font awesome -->
+	<noscript id="deferred-styles">
+		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	</noscript>
+
+
+<!-- Begin Menu Navigation
+================================================== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+    <div class="container pr-0">
+
+    <!-- Begin Logo -->
+    <a class="navbar-brand" href="/">
+    <img src="/assets/images/logo.png" alt="LabFab">
+    </a>
+    <!-- End Logo -->
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMediumish">
+
+        <!-- Begin Menu -->
+
+            <ul class="navbar-nav ml-auto">
+
+                
+                <li class="nav-item">
+                
+                <a class="nav-link" href="/index.html">Blog</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+                </li>
+
+                <!-- <li class="nav-item">
+                <a target="_blank" class="nav-link" href="https://bootstrapstarter.com/bootstrap-templates/template-mediumish-bootstrap-jekyll/"> Docs</a>
+                </li> -->
+
+
+                <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+            </ul>
+
+        <!-- End Menu -->
+
+    </div>
+
+    </div>
+</nav>
+<!-- End Navigation
+================================================== -->
+
+<div class="site-content">
+
+<div class="container">
+
+<!-- Site Title
+================================================== -->
+<div class="mainheading">
+    <h1 class="sitetitle">LabFab</h1>
+    <p class="lead">
+        Exploring math, physics, machine learning, and finance insights.
+    </p>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="main-content">
+    <!-- Begin Article
+================================================== -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<div class="container">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-md-2 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=An Intro to Gaussian Mixture Models&url=http://localhost:4000/variational-autoencoders/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=http://localhost:4000/variational-autoencoders/" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/variational-autoencoders/" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-9 flex-first flex-md-unordered">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb" src="/assets/images/avatar.png" alt="StackNets">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="https://labfab.io">StackNets</a><a target="_blank" href="https://twitter.com/capelfabio" class="btn follow">Follow</a>
+                        <span class="author-description">I'm interested in machine learning, trading and running. I'm currently learning how to make the best focaccia possible and looking to collaborate on any project that makes me grow (though perhaps not in that order).</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">An Intro to Gaussian Mixture Models</h1>
+
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid" src="/assets/images/main_gmm.png" alt="An Intro to Gaussian Mixture Models">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <!-- Toc if any -->
+                
+                    
+                    <div class="toc mt-4 mb-4 lead">
+                        <h3 class="font-weight-bold">Summary</h3>
+                        <ul>
+  <li><a href="#latent-variables-and-deep-generative-models">Latent Variables and Deep Generative Models</a></li>
+  <li><a href="#the-training-process">The training process</a>
+    <ul>
+      <li><a href="#auto-encoding-variational-bayes-aevb-as-a-solution">Auto-Encoding Variational Bayes (AEVB) as a Solution</a></li>
+      <li><a href="#the-score-function-gradient-estimator">The Score Function Gradient Estimator</a></li>
+      <li><a href="#reformulation-of-the-elbo">Reformulation of the ELBO</a></li>
+      <li><a href="#the-reparametrization-trick">The reparametrization trick</a></li>
+    </ul>
+  </li>
+  <li><a href="#overall">Overall</a>
+    <ul>
+      <li><a href="#encoder-architecture">Encoder Architecture</a></li>
+      <li><a href="#decoder-architecture">Decoder Architecture</a></li>
+    </ul>
+  </li>
+</ul>
+                    </div>
+                
+                <!-- End Toc -->
+                <p>In the realm of data science and machine learning, latent variables are like hidden factors or underlying structures in your data that you can’t directly observe. Think of them as the unseen forces that shape and influence the observable data. For example, in a dataset of movie ratings, latent variables could represent abstract concepts like genre preferences or viewing habits.</p>
+
+<h2 id="latent-variables-and-deep-generative-models">Latent Variables and Deep Generative Models</h2>
+<p>Variational AutoEncoders (VAEs) stand out in their ability to handle complex data like images. At their core, VAEs are based on a directed latent-variable model, expressed as</p>
+
+\[p(x,z) = p(x|z)p(z),\]
+
+<p>where $x$ is the observed data (such as an image of a face), and $z$ represents latent variables, the unseen factors influencing \(x\).</p>
+
+<p>In the application of VAEs to facial images, the model adeptly learns a latent space \(z\), which encodes a variety of facial features. This latent space is remarkably versatile. It enables us to interpolate between different facial expressions or other attributes, such as gender, by smoothly varying the values in the latent space. This ability to manipulate latent factors is particularly intriguing because these attributes are not explicitly labeled in the training process. Instead, the model infers them from the data, learning what constitutes a smile, a frown, or any other nuanced facial feature.</p>
+
+<p>Although we’re focusing on a single-layer latent model, it’s worthnoting that deep generative models can have multiple layers (e.g., ). These multi-layer models can learn hierarchies of latent representations, capturing more complex and abstract features at each level.</p>
+
+<p>However, VAEs face two significant challenges: intractability in computation and handling large datasets. The exact computation of the posterior probability is typically not feasible due to its complexity. To navigate this, VAEs apply a strategy called variational inference. This approach involves using an approximate posterior and tweaking it to minimize its divergence from the true posterior. This approximation is crucial for the model to be both computationally feasible and effective in learning the underlying data distribution. We will come back to that point later.</p>
+
+<p>When it comes to handling large datasets, which is a common scenario in image processing, VAEs adapt by using stochastic gradient descent methods (maybe we should write a blog post about it) that work with small, randomly sampled batches of data. This technique ensures that the model can be trained on large datasets without requiring immense computational resources to process the entire dataset at once.</p>
+
+<h2 id="the-training-process">The training process</h2>
+
+<p>In the context of VAEs, several traditional methods encounter significant challenges:</p>
+
+<ol>
+  <li>
+    <p><strong>EM Algorithm</strong>: while the Expectation-Maximization (EM) algorithm is a standard approach for learning latent-variable models, it falters in VAEs because the E-step, which requires computing the approximate posterior , is intractable. Additionally, the M-step, involving parameter learning across the entire dataset, is impractical for large datasets, despite some alleviations offered by online EM using mini-batches.</p>
+  </li>
+  <li>
+    <p><strong>Mean Field Approximation</strong>: This technique falls short in VAEs as it requires computing expectations over a Markov blanket, whose size becomes infeasible when every component of x depends on each component of z. The resulting computational complexity scales exponentially, rending this approach impractical.</p>
+  </li>
+  <li>
+    <p><strong>Sampling-Based Methods</strong>: While theoretically sound, sampling-based methods like Metropolis-Hastings struggle to scale to large datasets and require carefully crafted proposal distributions, which are challenging to design.</p>
+  </li>
+</ol>
+
+<h3 id="auto-encoding-variational-bayes-aevb-as-a-solution">Auto-Encoding Variational Bayes (AEVB) as a Solution</h3>
+<p>The Auto-Encoding Variational Bayes (AEVB) algorithm emerges as a robust solution to these challenges. It’s grounded in variational inference principles and efficiently addresses the three key tasks: learning the model parameters, performing approximate posterior inference over $z$, and handling marginal inference of \(x\).</p>
+
+<ol>
+  <li>
+    <p><strong>Evidence Lower Bound (ELBO)</strong>: The core of AEVB is to maximize the ELBO,. This maximization tightens around the log probability  while optimizing over .</p>
+  </li>
+  <li>
+    <p><strong>Optimizing</strong>: The optimization of in AEVB goes beyond mean field’s limitations. It involves using a broader class of $q$ distributions, more complex than fully factored ones, and employing gradient descent over , instead of coordinate descent.</p>
+  </li>
+  <li>
+    <p><strong>Joint Optimization</strong>: AEVB simultaneously optimizes both  (to keep the ELBO tight around ) and  (to increase the lower bound and hence ), mirroring the lower-bound optimization in EM but in a more scalable and flexible manner.</p>
+  </li>
+</ol>
+
+<h3 id="the-score-function-gradient-estimator">The Score Function Gradient Estimator</h3>
+
+<p>The gradient computation in AEVB is critical: .</p>
+
+<ol>
+  <li>
+    <p>**Gradient of **: The gradient with respect to  is estimated using Monte Carlo methods by sampling from \(q\). The swap between gradient and expectation is feasible here.</p>
+  </li>
+  <li>
+    <p><strong>Gradient of \(q\)</strong>: The challenge is in computing the gradient with respect to \(\phi\), where directly swapping gradient and expectation isn’t possible since the expectation is calculated in relation to the very distribution that is the subject of our differentiation. This is where the reparametrization trick comes into play, enabling efficient and low-variance gradient estimation.</p>
+  </li>
+</ol>
+
+<h3 id="reformulation-of-the-elbo">Reformulation of the ELBO</h3>
+
+<p>The restructuring of the ELBO can be presented in the following manner:</p>
+
+\[\log p(x) \geq \mathbb{E_{q_{\phi}(z|x)}}\left[ \log p_{\theta}(x|z) - KL(q_{\phi}(z|x)||p(z))\right]\]
+
+<p>This formulation can be seen as an alternate yet mathematically equivalent version of the ELBO, deduced through straightforward algebraic steps.</p>
+
+<p>Looking at this version, it offers a compelling way to interpret the mechanics of the model. Consider any given observed data point, denotaed as \(x\). The formula is composed of two key parts, each involving the generation of a latent variable  from , which can be seen as a unique ‘encoding’ of . Here, \(q\) acts as the ‘encoder’.</p>
+
+<p>The term  is the log-likelihood of observing $x$ when given this ‘enconding’ . The aim is for , the ‘decoder network’, to assign a high probability to the true , efficiently ‘decoding’ or reconstructing  from . This process is known as minimizing the ‘reconstruction error’.</p>
+
+<p>On the other hand, the Kullback-Leibler (KL) divergence, the second component, measures the deviation of the encoded distribution  from a predetermined prior distribution , typically a standard Gaussian. This ‘regularization term’ encourages the laten representations  to adopt a Gaussian distribution. Its purpose is to ensure that  goes beyond a simple identity mapping, pushing it to learn richer and more complex representations, such as identifying distinct facial features in image-related tasks.</p>
+
+<p>The overarching goal of this optimization is to fine-tune  so that it maps $x$ into a practical and interpretable latent space \(z\), enabling the effective reconstruction of \(x\) using . This objective mirrors the foundational concept of auto-encoder neural networks, which are designed to discover and utilize valuable data representations within a latent space.</p>
+
+<h3 id="the-reparametrization-trick">The reparametrization trick</h3>
+
+<p>The reparametrization trick is a crucial component in the VAE framework, primarily because it allows for a more efficient and stable estimation of gradients during the optimization process. This trick was a key innovation in the original VAE paper.</p>
+
+<p>To understand how this works, consider the distribution , which is the approximate posterior in a VAE. This distribution can be constructed through a two-step process:</p>
+
+<ol>
+  <li><strong>Sampling Noise Variable</strong>: First,a noise variable \(\epsilon\) is sampled from a simple distribution, typically the standard normal distribution :</li>
+</ol>
+
+\[\epsilon \sim p(\epsilon)\]
+
+<ol>
+  <li><strong>Deterministic Transformation</strong>: Next, this noise variable is transformed using a deterministic function \(g_{\phi}(\epsilon,x)\), resulting in the variable \(z\):</li>
+</ol>
+
+\[z = g_{\phi}(\epsilon,x)\]
+
+<p>This approach ensures that \(z\), when transformed by \(g_{\phi}\), follows the desired distribution .</p>
+
+<p>The simplest illustration of the reparametrization trick is with Gaussian variables. Normally, one might express \(z\) as being sampled from a Gaussian distribution \(\mathcal{N}(\mu, \sigma)\):</p>
+
+\[z\sim q_{\mu,\sigma}(z) = \mathcal{N}(\mu, \sigma)\]
+
+<p>However, with the reparametrization trick, this is re-expressed as:</p>
+
+\[z \sim q_{\mu,\sigma}(\epsilon) = \mu + \epsilon \cdot \sigma\]
+
+<p>where \(\epsilon \sim \mathcal{N}(0,1)\). This reformulation doesn’t change the distribution from which \(z\) is sampled, but it crucially alters how we compute gradients.</p>
+
+<p>The major advantage of the reparametrization trick is in computing gradients of expectations with respect to \(q(z)\) for any function \(f\). It allows us to rewrite the gradien as:</p>
+
+\[\nabla_{\phi}\mathbb{E}_{z\sim q_{\phi}(z|x)}\left[f(x,z)\right] = \nabla_{\phi} \mathbb{E}_{\epsilon \sim p(\epsilon)} \left[f(x,g_{\phi}(\epsilon,x))\right] = \mathbb{E}_{\epsilon \sim p(\epsilon)}\left[\nabla_{\phi} f(x,g_{\phi}(\epsilon, x))\right]\]
+
+<p>This restructed gradient falls inside the expectation, enabling us the use of sampling for estimating the term on the right. This method significantly reduces variance compared to other estimators and is key to effectively learning complex models in VAEs. By placing the gradient inside the expectation, the reparametrization trick not only facilitates a more efficient computation of gradients but also enhances the stability and performance of the learning process in VAEs.</p>
+
+<h2 id="overall">Overall</h2>
+
+<p>The VAE consists of two primary components: an encoder that maps inputs to a latent space and a decoder that reconstructs inputs from this latent space. Let’s summarize how each component is structured and operates within the VAE framework.</p>
+
+<h3 id="encoder-architecture">Encoder Architecture</h3>
+
+<ol>
+  <li>
+    <p><strong>Purpose and Function:</strong> The encoder in a VAE is responsible for transforming input data into a representation in the latent space. For an input $x$, the encoder outputs parameters of the probability distribution of the latent variables $z$, typically the mean and variance.</p>
+  </li>
+  <li>
+    <p><strong>Network Design:</strong> The encoder is usually a neural network. In the context of image processing, this might be a Convolutional Neural Network (CNN) that can effectively capture spatial hierarchies in pixels. For sequential data like text, Recurrent Neural Networks (RNNs) or Transformers might be used.</p>
+  </li>
+  <li>
+    <p><strong>Output:</strong> The key output of the encoder is two sets of values corresponding to each dimension of the latent space: the means (\(\mu\)) and variances (\(\sigma^2\)) or standard deviations (\(\sigma\)). These define a Gaussian distribution for each latent variable, from which we sample to obtain the latent representation.</p>
+  </li>
+  <li>
+    <p><strong>Reparametrization Trick:</strong> To allow for backpropagation through the stochastic sampling process, the reparametrization trick is used. Instead of sampling \(z\) directly from the distribution defined by \(\mu\) and \(\sigma\), \(z\) is expressed as \(\mu + \epsilon \cdot \sigma\), where \(\epsilon\) is sampled from a standard normal distribution.</p>
+  </li>
+</ol>
+
+<h3 id="decoder-architecture">Decoder Architecture</h3>
+
+<ol>
+  <li>
+    <p><strong>Purpose and Function:</strong> The decoder serves the opposite role of the encoder. It takes the latent representation \(z\) and reconstructs the input data \(x\). The aim is to generate data that is as close as possible to the original input.</p>
+  </li>
+  <li>
+    <p><strong>Network Design:</strong> The decoder is also a neural network, often mirroring the architecture of the encoder but in reverse. For images, this might involve deconvolutional layers (also known as transposed convolutions) to upsample from the latent representation to the original data dimensions. For sequential data, the decoder could be an RNN or a Transformer generating one element of the sequence at a time.</p>
+  </li>
+  <li>
+    <p><strong>Output:</strong> The decoder outputs a reconstruction of the original input data. In the case of images, this output is typically the same size as the input image, with each output unit representing a pixel’s properties (like color intensity).</p>
+  </li>
+  <li>
+    <p><strong>Objective Function:</strong> The performance of the decoder is evaluated based on how well the reconstructed data matches the original input. This is often measured by a reconstruction loss, such as mean squared error for continuous data or cross-entropy loss for binary or categorical data.</p>
+  </li>
+</ol>
+
+<p>In summary, the encoder learns to compress data into a compact latent representation, capturing the essential features, while the decoder learns to reconstruct the original data from this compressed form. This architecture allows VAEs to not only generate new data similar to the inputs but also to learn deep representations of the data, useful for various applications like anomaly detection, data denoising, and more.</p>
+
+            </div>
+
+            <!-- Rating -->
+            
+            <div class="rating mb-4 d-flex align-items-center">
+                <strong class="mr-1">Rating:</strong> <div class="rating-holder">
+<div class="c-rating c-rating--regular" data-rating-value="3.5">
+  <button>1</button>
+  <button>2</button>
+  <button>3</button>
+  <button>4</button>
+  <button>5</button>
+</div>
+</div>
+            </div>
+            
+
+            <!-- Post Date -->
+            <p>
+            <small>
+                <span class="post-date"><time class="post-date" datetime="2024-06-25">25 Jun 2024</time></span>           
+                
+                </small>
+            </p>
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#machine-learning">machine learning</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#unsupervised-learning">unsupervised learning</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+            
+            <a class="prev d-block col-md-6" href="//cauchy-schwarz/"> &laquo; A Simple Proof of the Cauchy-Schwarz Inequality</a>
+            
+            
+            <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== -->
+
+    <div class="container">
+        <div id="comments" class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'labfab'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+            </div>
+        </div>
+    </div>
+
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "Thing",
+    "name": "An Intro to Gaussian Mixture Models"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "StackNets"
+  },
+  "datePublished": "2024-06-25",
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "3.5",
+    "bestRating": "5"
+  }
+}
+</script>
+
+</div>
+
+
+<!-- Bottom Alert Bar
+================================================== -->
+<div class="alertbar">
+	<div class="container text-center">
+		<span><img src="/assets/images/logo.png" alt="LabFab" width="75" height="75"> &nbsp; Never miss a <b>story</b> from us, subscribe to our newsletter</span>
+        <form action="https://labfab.us17.list-manage.com/subscribe/post?u=60c617b562edb784e26cfc17e&amp;id=dd31e570e3&amp;f_id=0094c2e1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+        <div class="mc-field-group">
+            <label for="mce-EMAIL"></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="">
+            <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe">
+        </div>
+            <div id="mce-responses" class="clear foot">
+                <div class="response" id="mce-error-response" style="display: none;"></div>
+                <div class="response" id="mce-success-response" style="display: none;"></div>
+            </div>
+        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+            /* real people should not fill this in and expect good things - do not remove this or risk form bot signups */
+            <input type="text" name="b_60c617b562edb784e26cfc17e_dd31e570e3" tabindex="-1" value="">
+        </div>
+        </div>
+      </form>
+      </div>
+      <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script></div>
+      </div>
+
+    
+
+
+<!-- Categories Jumbotron
+================================================== -->
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+            <div class="d-md-flex align-items-center justify-content-center h-100">
+                <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
+            </div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+            
+            
+                
+                    <a class="mt-1 mb-1" href="/categories#deep-learning">deep learning (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#artificial-intelligence">artificial intelligence (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#unsupervised-learning">unsupervised learning (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#machine-learning">machine learning (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#mathematics">mathematics (1)</a>
+                
+            
+            
+		</div>
+	</div>
+</div>
+
+<!-- Begin Footer
+================================================== -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                Copyright © 2024 LabFab 
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer
+================================================== -->
+
+</div> <!-- /.site-content -->
+
+<!-- Scripts
+================================================== -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/assets/js/mediumish.js"></script>
+
+
+
+<script src="/assets/js/ie10-viewport-bug-workaround.js"></script> 
+
+
+<script id="dsq-count-scr" src="//labfab.disqus.com/count.js"></script>
+
+
+</body>
+</html>
