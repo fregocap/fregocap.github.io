@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "An Intro to Gaussian Mixture Models"
+title:  "Latent Variables and Deep Generative Models"
 author: stacknets
 categories: [ machine learning, unsupervised learning ]
 image: assets/images/main_gmm.png
@@ -20,22 +20,22 @@ $$
 p(x,z) = p(x|z)p(z),
 $$
 
-where $x$ is the observed data (such as an image of a face), and $z$ represents latent variables, the unseen factors influencing $$x$$. 
+where $$x$$ is the observed data (such as an image of a face), and $$z$$ represents latent variables, the unseen factors influencing $$x$$. 
 
 In the application of VAEs to facial images, the model adeptly learns a latent space $$z$$, which encodes a variety of facial features. This latent space is remarkably versatile. It enables us to interpolate between different facial expressions or other attributes, such as gender, by smoothly varying the values in the latent space. This ability to manipulate latent factors is particularly intriguing because these attributes are not explicitly labeled in the training process. Instead, the model infers them from the data, learning what constitutes a smile, a frown, or any other nuanced facial feature. 
 
-Although we're focusing on a single-layer latent model, it's worthnoting that deep generative models can have multiple layers (e.g., ). These multi-layer models can learn hierarchies of latent representations, capturing more complex and abstract features at each level. 
+Although we're focusing on a single-layer latent model, it's worth noting that deep generative models can have multiple layers (e.g., $$p(x\vert z_1)p(z_1 \vert z_2)\cdots p(z_{m-1}\vert p(z_m))$$). These multi-layer models can learn hierarchies of latent representations, capturing more complex and abstract features at each level. 
 
-However, VAEs face two significant challenges: intractability in computation and handling large datasets. The exact computation of the posterior probability is typically not feasible due to its complexity. To navigate this, VAEs apply a strategy called variational inference. This approach involves using an approximate posterior and tweaking it to minimize its divergence from the true posterior. This approximation is crucial for the model to be both computationally feasible and effective in learning the underlying data distribution. We will come back to that point later. 
+However, VAEs face two significant challenges: intractability in computation and handling large datasets. The exact computation of the posterior probability $$p(z\vert x)$$ is typically not feasible due to its complexity. To navigate this, VAEs apply a strategy called variational inference. This approach involves using an approximate posterior $$q_{\phi}(z \vert x)$$  and tweaking it to minimize its divergence from the true posterior. This approximation is crucial for the model to be both computationally feasible and effective in learning the underlying data distribution. We will come back to that point later. 
 
-When it comes to handling large datasets, which is a common scenario in image processing, VAEs adapt by using stochastic gradient descent methods (maybe we should write a blog post about it) that work with small, randomly sampled batches of data. This technique ensures that the model can be trained on large datasets without requiring immense computational resources to process the entire dataset at once. 
+When it comes to handling large datasets, which is a common scenario in image processing, VAEs adapt by using stochastic gradient descent methods that work with small, randomly sampled batches of data. This technique ensures that the model can be trained on large datasets without requiring immense computational resources to process the entire dataset at once. 
 
 
 ## The training process 
 
 In the context of VAEs, several traditional methods encounter significant challenges: 
 
-1. **EM Algorithm**: while the Expectation-Maximization (EM) algorithm is a standard approach for learning latent-variable models, it falters in VAEs because the E-step, which requires computing the approximate posterior , is intractable. Additionally, the M-step, involving parameter learning across the entire dataset, is impractical for large datasets, despite some alleviations offered by online EM using mini-batches.
+1. **EM Algorithm**: while the Expectation-Maximization (EM) algorithm is a standard approach for learning latent-variable models, it falters in VAEs because the E-step, which requires computing the approximate posterior $$p(z \vert x)$$, is intractable. Additionally, the M-step, involving parameter learning across the entire dataset, is impractical for large datasets, despite some alleviations offered by online EM using mini-batches.
    
 2. **Mean Field Approximation**: This technique falls short in VAEs as it requires computing expectations over a Markov blanket, whose size becomes infeasible when every component of x depends on each component of z. The resulting computational complexity scales exponentially, rending this approach impractical. 
 
@@ -44,11 +44,11 @@ In the context of VAEs, several traditional methods encounter significant challe
 ### Auto-Encoding Variational Bayes (AEVB) as a Solution
 The Auto-Encoding Variational Bayes (AEVB) algorithm emerges as a robust solution to these challenges. It's grounded in variational inference principles and efficiently addresses the three key tasks: learning the model parameters, performing approximate posterior inference over $z$, and handling marginal inference of $$x$$. 
 
-1. **Evidence Lower Bound (ELBO)**: The core of AEVB is to maximize the ELBO,. This maximization tightens around the log probability  while optimizing over .
+1. **Evidence Lower Bound (ELBO)**: The core of AEVB is to maximize the ELBO, $$L(p_{\phi}, q_{\phi}) = \mathbb{E}_{q_{\phi}(z \vert x)}\left[\log p_{\theta}(x,z) - \log q_{\phi}(z \vert x) \right]$$. This maximization tightens around the log probability $$\log p_{\theta}(x)$$ while optimizing over $$q_{\phi}$$.
 
-2. **Optimizing**: The optimization of in AEVB goes beyond mean field's limitations. It involves using a broader class of $q$ distributions, more complex than fully factored ones, and employing gradient descent over , instead of coordinate descent. 
+2. **Optimizing $$q(z \vert x)$$**: The optimization of in AEVB goes beyond mean field's limitations. It involves using a broader class of $$q$$ distributions, more complex than fully factored ones, and employing gradient descent over $$\phi$$, instead of coordinate descent. 
 
-3. **Joint Optimization**: AEVB simultaneously optimizes both  (to keep the ELBO tight around ) and  (to increase the lower bound and hence ), mirroring the lower-bound optimization in EM but in a more scalable and flexible manner. 
+3. **Joint Optimization**: AEVB simultaneously optimizes both $$\phi$$ (to keep the ELBO tight around ) and  (to increase the lower bound and hence ), mirroring the lower-bound optimization in EM but in a more scalable and flexible manner. 
 
 ### The Score Function Gradient Estimator 
 
