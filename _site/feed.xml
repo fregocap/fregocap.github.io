@@ -5,12 +5,12 @@
     <description>Exploring math, physics, machine learning, and finance insights.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 29 Jun 2024 16:29:30 +0200</pubDate>
-    <lastBuildDate>Sat, 29 Jun 2024 16:29:30 +0200</lastBuildDate>
+    <pubDate>Tue, 02 Jul 2024 00:14:16 +0200</pubDate>
+    <lastBuildDate>Tue, 02 Jul 2024 00:14:16 +0200</lastBuildDate>
     <generator>Jekyll v4.3.3</generator>
     
       <item>
-        <title>Latent Variables and Deep Generative Models</title>
+        <title>Latent Variables &amp; Generative Models</title>
         <description>&lt;p&gt;In the realm of data science and machine learning, latent variables are like hidden factors or underlying structures in your data that you can’t directly observe. Think of them as the unseen forces that shape and influence the observable data. For example, in a dataset of movie ratings, latent variables could represent abstract concepts like genre preferences or viewing habits.&lt;/p&gt;
 
 &lt;h2 id=&quot;latent-variables-and-deep-generative-models&quot;&gt;Latent Variables and Deep Generative Models&lt;/h2&gt;
@@ -22,20 +22,11 @@
 
 &lt;p&gt;In the application of VAEs to facial images, the model adeptly learns a latent space \(z\), which encodes a variety of facial features. This latent space is remarkably versatile. It enables us to interpolate between different facial expressions or other attributes, such as gender, by smoothly varying the values in the latent space. This ability to manipulate latent factors is particularly intriguing because these attributes are not explicitly labeled in the training process. Instead, the model infers them from the data, learning what constitutes a smile, a frown, or any other nuanced facial feature.&lt;/p&gt;
 
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Although we’re focusing on a single-layer latent model, it’s worth noting that deep generative models can have multiple layers (e.g., $$p(x&lt;/td&gt;
-      &lt;td&gt;z_1)p(z_1&lt;/td&gt;
-      &lt;td&gt;z_2)\cdots p(z_{m-1}&lt;/td&gt;
-      &lt;td&gt;p(z_m))$$). These multi-layer models can learn hierarchies of latent representations, capturing more complex and abstract features at each level.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;p&gt;Although we’re focusing on a single-layer latent model, it’s worth noting that deep generative models can have multiple layers (e.g., \(p(x\vert z_1)p(z_1 \vert z_2)\cdots p(z_{m-1}\vert p(z_m))\)). These multi-layer models can learn hierarchies of latent representations, capturing more complex and abstract features at each level.&lt;/p&gt;
 
-&lt;p&gt;However, VAEs face two significant challenges: intractability in computation and handling large datasets. The exact computation of the posterior probability is typically not feasible due to its complexity. To navigate this, VAEs apply a strategy called variational inference. This approach involves using an approximate posterior and tweaking it to minimize its divergence from the true posterior. This approximation is crucial for the model to be both computationally feasible and effective in learning the underlying data distribution. We will come back to that point later.&lt;/p&gt;
+&lt;p&gt;However, VAEs face two significant challenges: intractability in computation and handling large datasets. The exact computation of the posterior probability \(p(z\vert x)\) is typically not feasible due to its complexity. To navigate this, VAEs apply a strategy called variational inference. This approach involves using an approximate posterior \(q_{\phi}(z \vert x)\)  and tweaking it to minimize its divergence from the true posterior. This approximation is crucial for the model to be both computationally feasible and effective in learning the underlying data distribution. We will come back to that point later.&lt;/p&gt;
 
-&lt;p&gt;When it comes to handling large datasets, which is a common scenario in image processing, VAEs adapt by using stochastic gradient descent methods (maybe we should write a blog post about it) that work with small, randomly sampled batches of data. This technique ensures that the model can be trained on large datasets without requiring immense computational resources to process the entire dataset at once.&lt;/p&gt;
+&lt;p&gt;When it comes to handling large datasets, which is a common scenario in image processing, VAEs adapt by using stochastic gradient descent methods that work with small, randomly sampled batches of data. This technique ensures that the model can be trained on large datasets without requiring immense computational resources to process the entire dataset at once.&lt;/p&gt;
 
 &lt;h2 id=&quot;the-training-process&quot;&gt;The training process&lt;/h2&gt;
 
@@ -43,7 +34,7 @@
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;EM Algorithm&lt;/strong&gt;: while the Expectation-Maximization (EM) algorithm is a standard approach for learning latent-variable models, it falters in VAEs because the E-step, which requires computing the approximate posterior , is intractable. Additionally, the M-step, involving parameter learning across the entire dataset, is impractical for large datasets, despite some alleviations offered by online EM using mini-batches.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;EM Algorithm&lt;/strong&gt;: while the Expectation-Maximization (EM) algorithm is a standard approach for learning latent-variable models, it falters in VAEs because the E-step, which requires computing the approximate posterior \(p(z \vert x)\), is intractable. Additionally, the M-step, involving parameter learning across the entire dataset, is impractical for large datasets, despite some alleviations offered by online EM using mini-batches.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;Mean Field Approximation&lt;/strong&gt;: This technique falls short in VAEs as it requires computing expectations over a Markov blanket, whose size becomes infeasible when every component of x depends on each component of z. The resulting computational complexity scales exponentially, rending this approach impractical.&lt;/p&gt;
@@ -54,27 +45,27 @@
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;auto-encoding-variational-bayes-aevb-as-a-solution&quot;&gt;Auto-Encoding Variational Bayes (AEVB) as a Solution&lt;/h3&gt;
-&lt;p&gt;The Auto-Encoding Variational Bayes (AEVB) algorithm emerges as a robust solution to these challenges. It’s grounded in variational inference principles and efficiently addresses the three key tasks: learning the model parameters, performing approximate posterior inference over $z$, and handling marginal inference of \(x\).&lt;/p&gt;
+&lt;p&gt;The Auto-Encoding Variational Bayes (AEVB) algorithm emerges as a robust solution to these challenges. It’s grounded in variational inference principles and efficiently addresses the three key tasks: learning the model parameters, performing approximate posterior inference over \(z\), and handling marginal inference of \(x\).&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Evidence Lower Bound (ELBO)&lt;/strong&gt;: The core of AEVB is to maximize the ELBO,. This maximization tightens around the log probability  while optimizing over .&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Evidence Lower Bound (ELBO)&lt;/strong&gt;: The core of AEVB is to maximize the ELBO, \(L(p_{\phi}, q_{\phi}) = \mathbb{E}_{q_{\phi}(z \vert x)}\left[\log p_{\theta}(x,z) - \log q_{\phi}(z \vert x) \right]\). This maximization tightens around the log probability \(\log p_{\theta}(x)\) while optimizing over \(q_{\phi}\).&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Optimizing&lt;/strong&gt;: The optimization of in AEVB goes beyond mean field’s limitations. It involves using a broader class of $q$ distributions, more complex than fully factored ones, and employing gradient descent over , instead of coordinate descent.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Optimizing \(q(z \vert x)\)&lt;/strong&gt;: The optimization of \(q(z \vert x)\) in AEVB goes beyond mean field’s limitations. It involves using a broader class of \(q\) distributions, more complex than fully factored ones, and employing gradient descent over \(\phi\), instead of coordinate descent.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Joint Optimization&lt;/strong&gt;: AEVB simultaneously optimizes both  (to keep the ELBO tight around ) and  (to increase the lower bound and hence ), mirroring the lower-bound optimization in EM but in a more scalable and flexible manner.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Joint Optimization&lt;/strong&gt;: AEVB simultaneously optimizes both \(\phi\) (to keep the ELBO tight around \(\log p(x)\)) and \(\theta\) (to increase the lower bound and hence \(\log p(x)\)), mirroring the lower-bound optimization in EM but in a more scalable and flexible manner.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h3 id=&quot;the-score-function-gradient-estimator&quot;&gt;The Score Function Gradient Estimator&lt;/h3&gt;
 
-&lt;p&gt;The gradient computation in AEVB is critical: .&lt;/p&gt;
+&lt;p&gt;The gradient computation in AEVB is critical:\(\nabla_{\theta, \phi} \mathbb{E}_{q_{\phi}(z)}\left[\log p_{\theta}(x,z) - \log q_{\phi}(z) \right]\).&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;**Gradient of **: The gradient with respect to  is estimated using Monte Carlo methods by sampling from \(q\). The swap between gradient and expectation is feasible here.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Gradient of \(p\)&lt;/strong&gt;: The gradient with respect to \(\theta\) is estimated using Monte Carlo methods by sampling from \(q\). The swap between gradient and expectation is feasible here.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;Gradient of \(q\)&lt;/strong&gt;: The challenge is in computing the gradient with respect to \(\phi\), where directly swapping gradient and expectation isn’t possible since the expectation is calculated in relation to the very distribution that is the subject of our differentiation. This is where the reparametrization trick comes into play, enabling efficient and low-variance gradient estimation.&lt;/p&gt;
@@ -85,26 +76,26 @@
 
 &lt;p&gt;The restructuring of the ELBO can be presented in the following manner:&lt;/p&gt;
 
-\[\log p(x) \geq \mathbb{E_{q_{\phi}(z|x)}}\left[ \log p_{\theta}(x|z) - KL(q_{\phi}(z|x)||p(z))\right]\]
+\[\log p(x) \geq \mathbb{E}_{q_{\phi}(z|x)}\left[ \log p_{\theta}(x|z) - KL(q_{\phi}(z|x)||p(z))\right]\]
 
 &lt;p&gt;This formulation can be seen as an alternate yet mathematically equivalent version of the ELBO, deduced through straightforward algebraic steps.&lt;/p&gt;
 
-&lt;p&gt;Looking at this version, it offers a compelling way to interpret the mechanics of the model. Consider any given observed data point, denotaed as \(x\). The formula is composed of two key parts, each involving the generation of a latent variable  from , which can be seen as a unique ‘encoding’ of . Here, \(q\) acts as the ‘encoder’.&lt;/p&gt;
+&lt;p&gt;Looking at this version, it offers a compelling way to interpret the mechanics of the model. Consider any given observed data point, denoted as \(x\). The formula is composed of two key parts, each involving the generation of a latent variable \(z\) from \(q(z \vert x)\), which can be seen as a unique ‘encoding’ of \(x\). Here, \(q\) acts as the ‘encoder’.&lt;/p&gt;
 
-&lt;p&gt;The term  is the log-likelihood of observing $x$ when given this ‘enconding’ . The aim is for , the ‘decoder network’, to assign a high probability to the true , efficiently ‘decoding’ or reconstructing  from . This process is known as minimizing the ‘reconstruction error’.&lt;/p&gt;
+&lt;p&gt;The term \(\log p(x \vert z)\) is the log-likelihood of observing \(x\) when given this ‘encoding’ \(z\). The aim is for \(p(x \vert z)\), the ‘decoder network’, to assign a high probability to the true \(x\), efficiently ‘decoding’ or reconstructing \(x\) from \(z\). This process is known as minimizing the ‘reconstruction error’.&lt;/p&gt;
 
-&lt;p&gt;On the other hand, the Kullback-Leibler (KL) divergence, the second component, measures the deviation of the encoded distribution  from a predetermined prior distribution , typically a standard Gaussian. This ‘regularization term’ encourages the laten representations  to adopt a Gaussian distribution. Its purpose is to ensure that  goes beyond a simple identity mapping, pushing it to learn richer and more complex representations, such as identifying distinct facial features in image-related tasks.&lt;/p&gt;
+&lt;p&gt;On the other hand, the Kullback-Leibler (KL) divergence, the second component, measures the deviation of the encoded distribution \(q(z \vert x)\) from a predetermined prior distribution \(p(z)\) , typically a standard Gaussian. This ‘regularization term’ encourages the latent representations \(z\) to adopt a Gaussian distribution. Its purpose is to ensure that \(q(z \vert x)\) goes beyond a simple identity mapping, pushing it to learn richer and more complex representations, such as identifying distinct facial features in image-related tasks.&lt;/p&gt;
 
-&lt;p&gt;The overarching goal of this optimization is to fine-tune  so that it maps $x$ into a practical and interpretable latent space \(z\), enabling the effective reconstruction of \(x\) using . This objective mirrors the foundational concept of auto-encoder neural networks, which are designed to discover and utilize valuable data representations within a latent space.&lt;/p&gt;
+&lt;p&gt;The overarching goal of this optimization is to fine-tune \(q(z \vert x)\) so that it maps \(x\) into a practical and interpretable latent space \(z\), enabling the effective reconstruction of \(x\) using \(p(x \vert z)\) . This objective mirrors the foundational concept of auto-encoder neural networks, which are designed to discover and utilize valuable data representations within a latent space.&lt;/p&gt;
 
 &lt;h3 id=&quot;the-reparametrization-trick&quot;&gt;The reparametrization trick&lt;/h3&gt;
 
 &lt;p&gt;The reparametrization trick is a crucial component in the VAE framework, primarily because it allows for a more efficient and stable estimation of gradients during the optimization process. This trick was a key innovation in the original VAE paper.&lt;/p&gt;
 
-&lt;p&gt;To understand how this works, consider the distribution , which is the approximate posterior in a VAE. This distribution can be constructed through a two-step process:&lt;/p&gt;
+&lt;p&gt;To understand how this works, consider the distribution \(q_{\phi}(z \vert x)\), which is the approximate posterior in a VAE. This distribution can be constructed through a two-step process:&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Sampling Noise Variable&lt;/strong&gt;: First,a noise variable \(\epsilon\) is sampled from a simple distribution, typically the standard normal distribution :&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Sampling Noise Variable&lt;/strong&gt;: First,a noise variable \(\epsilon\) is sampled from a simple distribution, typically the standard normal distribution \(\mathcal{N}(0,1)\):&lt;/li&gt;
 &lt;/ol&gt;
 
 \[\epsilon \sim p(\epsilon)\]
@@ -115,7 +106,7 @@
 
 \[z = g_{\phi}(\epsilon,x)\]
 
-&lt;p&gt;This approach ensures that \(z\), when transformed by \(g_{\phi}\), follows the desired distribution .&lt;/p&gt;
+&lt;p&gt;This approach ensures that \(z\), when transformed by \(g_{\phi}\), follows the desired distribution \(q_{\phi}(z \vert x)\).&lt;/p&gt;
 
 &lt;p&gt;The simplest illustration of the reparametrization trick is with Gaussian variables. Normally, one might express \(z\) as being sampled from a Gaussian distribution \(\mathcal{N}(\mu, \sigma)\):&lt;/p&gt;
 
@@ -127,7 +118,7 @@
 
 &lt;p&gt;where \(\epsilon \sim \mathcal{N}(0,1)\). This reformulation doesn’t change the distribution from which \(z\) is sampled, but it crucially alters how we compute gradients.&lt;/p&gt;
 
-&lt;p&gt;The major advantage of the reparametrization trick is in computing gradients of expectations with respect to \(q(z)\) for any function \(f\). It allows us to rewrite the gradien as:&lt;/p&gt;
+&lt;p&gt;The major advantage of the reparametrization trick is in computing gradients of expectations with respect to \(q(z)\) for any function \(f\). It allows us to rewrite the gradient as:&lt;/p&gt;
 
 \[\nabla_{\phi}\mathbb{E}_{z\sim q_{\phi}(z|x)}\left[f(x,z)\right] = \nabla_{\phi} \mathbb{E}_{\epsilon \sim p(\epsilon)} \left[f(x,g_{\phi}(\epsilon,x))\right] = \mathbb{E}_{\epsilon \sim p(\epsilon)}\left[\nabla_{\phi} f(x,g_{\phi}(\epsilon, x))\right]\]
 
@@ -141,7 +132,7 @@
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Purpose and Function:&lt;/strong&gt; The encoder in a VAE is responsible for transforming input data into a representation in the latent space. For an input $x$, the encoder outputs parameters of the probability distribution of the latent variables $z$, typically the mean and variance.&lt;/p&gt;
+    &lt;p&gt;&lt;strong&gt;Purpose and Function:&lt;/strong&gt; The encoder in a VAE is responsible for transforming input data into a representation in the latent space. For an input \(x\), the encoder outputs parameters of the probability distribution of the latent variables \(z\), typically the mean and variance.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;Network Design:&lt;/strong&gt; The encoder is usually a neural network. In the context of image processing, this might be a Convolutional Neural Network (CNN) that can effectively capture spatial hierarchies in pixels. For sequential data like text, Recurrent Neural Networks (RNNs) or Transformers might be used.&lt;/p&gt;

@@ -6,7 +6,6 @@ categories: [ machine learning, unsupervised learning ]
 image: assets/images/latent_variables.jpg
 description: "Latent variables are unseen factors in data that influence observable outcomes, while VAEs are advanced models that learn these underlying structures through a latent space. VAEs are adept at handling complex datasets by leveraging latent representations to interpolate between different data points, like facial expressions in images."
 rating: 3.5
-hidden: true
 toc: true
 ---
 
