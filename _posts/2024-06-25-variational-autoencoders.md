@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Latent Variables and Deep Generative Models"
+title:  "Latent Variables & Generative Models"
 author: stacknets
 categories: [ machine learning, unsupervised learning ]
-image: assets/images/main_gmm.png
+image: assets/images/latent_variables.jpg
 description: "Latent variables are unseen factors in data that influence observable outcomes, while VAEs are advanced models that learn these underlying structures through a latent space. VAEs are adept at handling complex datasets by leveraging latent representations to interpolate between different data points, like facial expressions in images."
 rating: 3.5
 hidden: true
@@ -42,19 +42,19 @@ In the context of VAEs, several traditional methods encounter significant challe
 3. **Sampling-Based Methods**: While theoretically sound, sampling-based methods like Metropolis-Hastings struggle to scale to large datasets and require carefully crafted proposal distributions, which are challenging to design. 
 
 ### Auto-Encoding Variational Bayes (AEVB) as a Solution
-The Auto-Encoding Variational Bayes (AEVB) algorithm emerges as a robust solution to these challenges. It's grounded in variational inference principles and efficiently addresses the three key tasks: learning the model parameters, performing approximate posterior inference over $z$, and handling marginal inference of $$x$$. 
+The Auto-Encoding Variational Bayes (AEVB) algorithm emerges as a robust solution to these challenges. It's grounded in variational inference principles and efficiently addresses the three key tasks: learning the model parameters, performing approximate posterior inference over $$z$$, and handling marginal inference of $$x$$. 
 
 1. **Evidence Lower Bound (ELBO)**: The core of AEVB is to maximize the ELBO, $$L(p_{\phi}, q_{\phi}) = \mathbb{E}_{q_{\phi}(z \vert x)}\left[\log p_{\theta}(x,z) - \log q_{\phi}(z \vert x) \right]$$. This maximization tightens around the log probability $$\log p_{\theta}(x)$$ while optimizing over $$q_{\phi}$$.
 
-2. **Optimizing $$q(z \vert x)$$**: The optimization of in AEVB goes beyond mean field's limitations. It involves using a broader class of $$q$$ distributions, more complex than fully factored ones, and employing gradient descent over $$\phi$$, instead of coordinate descent. 
+2. **Optimizing $$q(z \vert x)$$**: The optimization of $$q(z \vert x)$$ in AEVB goes beyond mean field's limitations. It involves using a broader class of $$q$$ distributions, more complex than fully factored ones, and employing gradient descent over $$\phi$$, instead of coordinate descent. 
 
-3. **Joint Optimization**: AEVB simultaneously optimizes both $$\phi$$ (to keep the ELBO tight around ) and  (to increase the lower bound and hence ), mirroring the lower-bound optimization in EM but in a more scalable and flexible manner. 
+3. **Joint Optimization**: AEVB simultaneously optimizes both $$\phi$$ (to keep the ELBO tight around $$\log p(x)$$) and $$\theta$$ (to increase the lower bound and hence $$\log p(x)$$), mirroring the lower-bound optimization in EM but in a more scalable and flexible manner. 
 
 ### The Score Function Gradient Estimator 
 
-The gradient computation in AEVB is critical: .
+The gradient computation in AEVB is critical:$$\nabla_{\theta, \phi} \mathbb{E}_{q_{\phi}(z)}\left[\log p_{\theta}(x,z) - \log q_{\phi}(z) \right]$$.
 
-1. **Gradient of **: The gradient with respect to  is estimated using Monte Carlo methods by sampling from $$q$$. The swap between gradient and expectation is feasible here.
+1. **Gradient of $$p$$**: The gradient with respect to $$\theta$$ is estimated using Monte Carlo methods by sampling from $$q$$. The swap between gradient and expectation is feasible here.
 
 2. **Gradient of $$q$$**: The challenge is in computing the gradient with respect to $$\phi$$, where directly swapping gradient and expectation isn't possible since the expectation is calculated in relation to the very distribution that is the subject of our differentiation. This is where the reparametrization trick comes into play, enabling efficient and low-variance gradient estimation. 
 
@@ -63,26 +63,26 @@ The gradient computation in AEVB is critical: .
 The restructuring of the ELBO can be presented in the following manner: 
 
 $$
-\log p(x) \geq \mathbb{E_{q_{\phi}(z|x)}}\left[ \log p_{\theta}(x|z) - KL(q_{\phi}(z|x)||p(z))\right]
+\log p(x) \geq \mathbb{E}_{q_{\phi}(z|x)}\left[ \log p_{\theta}(x|z) - KL(q_{\phi}(z|x)||p(z))\right]
 $$
 
 This formulation can be seen as an alternate yet mathematically equivalent version of the ELBO, deduced through straightforward algebraic steps. 
 
-Looking at this version, it offers a compelling way to interpret the mechanics of the model. Consider any given observed data point, denotaed as $$x$$. The formula is composed of two key parts, each involving the generation of a latent variable  from , which can be seen as a unique 'encoding' of . Here, $$q$$ acts as the 'encoder'. 
+Looking at this version, it offers a compelling way to interpret the mechanics of the model. Consider any given observed data point, denoted as $$x$$. The formula is composed of two key parts, each involving the generation of a latent variable $$z$$ from $$q(z \vert x)$$, which can be seen as a unique 'encoding' of $$x$$. Here, $$q$$ acts as the 'encoder'. 
 
-The term  is the log-likelihood of observing $x$ when given this 'enconding' . The aim is for , the 'decoder network', to assign a high probability to the true , efficiently 'decoding' or reconstructing  from . This process is known as minimizing the 'reconstruction error'. 
+The term $$\log p(x \vert z)$$ is the log-likelihood of observing $$x$$ when given this 'encoding' $$z$$. The aim is for $$p(x \vert z)$$, the 'decoder network', to assign a high probability to the true $$x$$, efficiently 'decoding' or reconstructing $$x$$ from $$z$$. This process is known as minimizing the 'reconstruction error'. 
 
-On the other hand, the Kullback-Leibler (KL) divergence, the second component, measures the deviation of the encoded distribution  from a predetermined prior distribution , typically a standard Gaussian. This 'regularization term' encourages the laten representations  to adopt a Gaussian distribution. Its purpose is to ensure that  goes beyond a simple identity mapping, pushing it to learn richer and more complex representations, such as identifying distinct facial features in image-related tasks. 
+On the other hand, the Kullback-Leibler (KL) divergence, the second component, measures the deviation of the encoded distribution $$q(z \vert x)$$ from a predetermined prior distribution $$p(z)$$ , typically a standard Gaussian. This 'regularization term' encourages the latent representations $$z$$ to adopt a Gaussian distribution. Its purpose is to ensure that $$q(z \vert x)$$ goes beyond a simple identity mapping, pushing it to learn richer and more complex representations, such as identifying distinct facial features in image-related tasks. 
 
-The overarching goal of this optimization is to fine-tune  so that it maps $x$ into a practical and interpretable latent space $$z$$, enabling the effective reconstruction of $$x$$ using . This objective mirrors the foundational concept of auto-encoder neural networks, which are designed to discover and utilize valuable data representations within a latent space. 
+The overarching goal of this optimization is to fine-tune $$q(z \vert x)$$ so that it maps $$x$$ into a practical and interpretable latent space $$z$$, enabling the effective reconstruction of $$x$$ using $$p(x \vert z)$$ . This objective mirrors the foundational concept of auto-encoder neural networks, which are designed to discover and utilize valuable data representations within a latent space. 
 
 ### The reparametrization trick
 
 The reparametrization trick is a crucial component in the VAE framework, primarily because it allows for a more efficient and stable estimation of gradients during the optimization process. This trick was a key innovation in the original VAE paper. 
 
-To understand how this works, consider the distribution , which is the approximate posterior in a VAE. This distribution can be constructed through a two-step process: 
+To understand how this works, consider the distribution $$q_{\phi}(z \vert x)$$, which is the approximate posterior in a VAE. This distribution can be constructed through a two-step process: 
 
-1. **Sampling Noise Variable**: First,a noise variable $$\epsilon$$ is sampled from a simple distribution, typically the standard normal distribution : 
+1. **Sampling Noise Variable**: First,a noise variable $$\epsilon$$ is sampled from a simple distribution, typically the standard normal distribution $$\mathcal{N}(0,1)$$: 
 
 $$\epsilon \sim p(\epsilon)$$
 
@@ -90,7 +90,7 @@ $$\epsilon \sim p(\epsilon)$$
 
 $$z = g_{\phi}(\epsilon,x)$$
 
-This approach ensures that $$z$$, when transformed by $$g_{\phi}$$, follows the desired distribution . 
+This approach ensures that $$z$$, when transformed by $$g_{\phi}$$, follows the desired distribution $$q_{\phi}(z \vert x)$$. 
 
 The simplest illustration of the reparametrization trick is with Gaussian variables. Normally, one might express $$z$$ as being sampled from a Gaussian distribution $$\mathcal{N}(\mu, \sigma)$$:
 
@@ -106,7 +106,7 @@ $$
 
 where $$\epsilon \sim \mathcal{N}(0,1)$$. This reformulation doesn't change the distribution from which $$z$$ is sampled, but it crucially alters how we compute gradients. 
 
-The major advantage of the reparametrization trick is in computing gradients of expectations with respect to $$q(z)$$ for any function $$f$$. It allows us to rewrite the gradien as: 
+The major advantage of the reparametrization trick is in computing gradients of expectations with respect to $$q(z)$$ for any function $$f$$. It allows us to rewrite the gradient as: 
 
 $$
 \nabla_{\phi}\mathbb{E}_{z\sim q_{\phi}(z|x)}\left[f(x,z)\right] = \nabla_{\phi} \mathbb{E}_{\epsilon \sim p(\epsilon)} \left[f(x,g_{\phi}(\epsilon,x))\right] = \mathbb{E}_{\epsilon \sim p(\epsilon)}\left[\nabla_{\phi} f(x,g_{\phi}(\epsilon, x))\right]
@@ -121,7 +121,7 @@ The VAE consists of two primary components: an encoder that maps inputs to a lat
 
 ### Encoder Architecture 
 
-1. **Purpose and Function:** The encoder in a VAE is responsible for transforming input data into a representation in the latent space. For an input $x$, the encoder outputs parameters of the probability distribution of the latent variables $z$, typically the mean and variance. 
+1. **Purpose and Function:** The encoder in a VAE is responsible for transforming input data into a representation in the latent space. For an input $$x$$, the encoder outputs parameters of the probability distribution of the latent variables $$z$$, typically the mean and variance. 
    
 2. **Network Design:** The encoder is usually a neural network. In the context of image processing, this might be a Convolutional Neural Network (CNN) that can effectively capture spatial hierarchies in pixels. For sequential data like text, Recurrent Neural Networks (RNNs) or Transformers might be used. 
 
