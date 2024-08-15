@@ -5,8 +5,8 @@
     <description>Exploring math, physics, machine learning, and finance insights.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 16 Aug 2024 00:44:44 +0200</pubDate>
-    <lastBuildDate>Fri, 16 Aug 2024 00:44:44 +0200</lastBuildDate>
+    <pubDate>Fri, 16 Aug 2024 00:49:15 +0200</pubDate>
+    <lastBuildDate>Fri, 16 Aug 2024 00:49:15 +0200</lastBuildDate>
     <generator>Jekyll v4.3.3</generator>
     
       <item>
@@ -231,140 +231,6 @@ is the averaging over policies of our transition probability matrix and reward f
         <category>machine learning</category>
         
         <category>reinforcement learning</category>
-        
-      </item>
-    
-      <item>
-        <title>Elliptic Curves &amp; Modular Forms</title>
-        <description>&lt;p&gt;Mathematics is often described as the language of the universe, and within this vast language, elliptic curves and modular forms hold a special place. These two seemingly abstract concepts have deep and surprising connections to number theory, cryptography, and even the proof of some of the most famous conjectures in mathematics. In this blog post, we’ll dive into the intriguing realms of elliptic curves and modular forms, exploring their definitions, properties, and the profound link between them.&lt;/p&gt;
-
-&lt;h1 id=&quot;part-1--elliptic-curves&quot;&gt;Part 1 : Elliptic Curves&lt;/h1&gt;
-&lt;h2 id=&quot;definition-and-basic-properties&quot;&gt;Definition and Basic Properties&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Algebraic Definition&lt;/li&gt;
-  &lt;li&gt;Geometric Interpretation&lt;/li&gt;
-  &lt;li&gt;Examples of Elliptic Curves&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;elliptic-curve-equation&quot;&gt;Elliptic Curve Equation&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Weierstrass Equation&lt;/li&gt;
-  &lt;li&gt;Conditions for Non-singularity (Discriminant)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;group-law-on-elliptic-curves&quot;&gt;Group Law on Elliptic Curves&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Definition of the Group Law&lt;/li&gt;
-  &lt;li&gt;Geometric Construction: Chord-Tangent Process&lt;/li&gt;
-  &lt;li&gt;Properties of the Group Structure&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;elliptic-curves-over-finite-fields&quot;&gt;Elliptic Curves over Finite Fields&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Definition and Importance&lt;/li&gt;
-  &lt;li&gt;Hasse’s Theorem on the Number of Points&lt;/li&gt;
-  &lt;li&gt;Applications in Cryptography (ECC)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;elliptic-cruve-cryptography-ecc&quot;&gt;Elliptic Cruve Cryptography (ECC)&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Basic Principles&lt;/li&gt;
-  &lt;li&gt;Key Exchange Algorithms (e.g., Diffie-Hellman)&lt;/li&gt;
-  &lt;li&gt;Digital Signatures&lt;/li&gt;
-  &lt;li&gt;Security Advantages and Applications&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;part-2-modular-forms&quot;&gt;Part 2: Modular Forms&lt;/h1&gt;
-&lt;h2 id=&quot;introduction-to-modular-forms&quot;&gt;Introduction to Modular Forms&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Basic Definition and Historical Context&lt;/li&gt;
-  &lt;li&gt;Modular Group and Modular Transformations&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;properties--examples&quot;&gt;Properties &amp;amp; Examples&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Holomorphicity&lt;/li&gt;
-  &lt;li&gt;Fourier Expansion&lt;/li&gt;
-  &lt;li&gt;Eisenstein Series and Delta Function&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;modular-forms-of-different-weights&quot;&gt;Modular Forms of Different Weights&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Definitions and Examples&lt;/li&gt;
-  &lt;li&gt;Transformational Properties&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;applications-in-number-theory&quot;&gt;Applications in Number Theory&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Connection to L-functions&lt;/li&gt;
-  &lt;li&gt;Ramanujan’s Tau Function&lt;/li&gt;
-  &lt;li&gt;Partition Functions and Other Arithmetic Functions&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;part-3-the-connection-between-elliptic-curves-and-modular-forms&quot;&gt;Part 3: The Connection Between Elliptic Curves and Modular Forms&lt;/h1&gt;
-&lt;h2 id=&quot;introduction-to-the-modularity-theorem&quot;&gt;Introduction to the Modularity Theorem&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Historical Background&lt;/li&gt;
-  &lt;li&gt;Statement of the Theorem&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;proof-of-the-modularity-theorem&quot;&gt;Proof of the Modularity Theorem&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Key Ideas and Steps in Wiles’ Proof&lt;/li&gt;
-  &lt;li&gt;Importance of Ribet’s Theorem&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;implications-of-the-modularity-theorem&quot;&gt;Implications of the Modularity Theorem&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Proof of Fermat’s Last Theorem&lt;/li&gt;
-  &lt;li&gt;Broader Impact on Number Theory&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;elliptic-curves-as-modular-forms&quot;&gt;Elliptic Curves as Modular Forms&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Constructing Modular Forms from Elliptic Curves&lt;/li&gt;
-  &lt;li&gt;The Role of Galois Representations&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;part-4-advanced-topics-and-current-research&quot;&gt;Part 4: Advanced Topics and Current Research&lt;/h1&gt;
-&lt;h2 id=&quot;elliptic-curve-l-functions&quot;&gt;Elliptic Curve L-functions&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Definition and Properties&lt;/li&gt;
-  &lt;li&gt;Birch and Swinnerton-Dyer Conjecture&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;modular-forms-and-galois-representations&quot;&gt;Modular Forms and Galois Representations&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Langlands Program&lt;/li&gt;
-  &lt;li&gt;Serre’s Conjecture&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;recent-developments-in-elliptic-curves-and-modular-forms&quot;&gt;Recent Developments in Elliptic Curves and Modular Forms&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Cryptographic Innovations&lt;/li&gt;
-  &lt;li&gt;Modern Research in Number Theory&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Summary of Key Points&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The Continuing Journey of Mathematics: Discuss how elliptic curves and modular forms continue to be areads of active research and discovery&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;References and Further Reading…&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Wed, 07 Aug 2024 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/elliptic-curves/</link>
-        <guid isPermaLink="true">http://localhost:4000/elliptic-curves/</guid>
-        
-        
-        <category>mathematics</category>
-        
-        <category>algebra</category>
-        
-        <category>geometry</category>
         
       </item>
     
