@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Latent Variables & Generative Models"
+title:  "Markov Decision Processes"
 author: stacknets
 categories: [ machine learning, reinforcement learning ]
 image: assets/images/reinforcement_learning.jpg
