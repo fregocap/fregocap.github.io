@@ -50,9 +50,9 @@ This process is what researchers call "forward diffusion." Mathematically, at ea
 $$\mathbf{x}_t = \sqrt{1-\beta_t}\mathbf{x}_{t-1}+\sqrt{\beta_t}\epsilon$$
 
 Where:
-- $\mathbf{x}_t$ is our image at step $t$
-- $\beta_t$ controls how much noise we add at this step
-- $\epsilon$ is random noise drawn from a normal distribution
+- $$\mathbf{x}_t$$ is our image at step $t$
+- $$\beta_t$$ controls how much noise we add at this step
+- $$\epsilon$$ is random noise drawn from a normal distribution
 
 In probability terms, we're sampling from this distribution:
 
@@ -74,8 +74,8 @@ The reverse process follows this distribution:
 $$p_{\theta}(\mathbf{x}_{t-1}|\mathbf{x}_t) = \mathcal{N}(\mathbf{x}_{t-1}; \mu_{\theta}(\mathbf{x}_t, t), \Sigma_{\theta}(\mathbf{x}_t, t))$$
 
 Where:
-- $\mu_{\theta}$ is our model's prediction of the mean (the noise-free direction)
-- $\Sigma_{\theta}$ is the variance (how confident the model is)
+- $$\mu_{\theta}$$ is our model's prediction of the mean (the noise-free direction)
+- $$\Sigma_{\theta}$$ is the variance (how confident the model is)
 
 In practice, researchers found that the key challenge is having the model predict the noise that was added at each step. A neural network learns to estimate this noise, and we use that estimation to gradually clean up our image.
 

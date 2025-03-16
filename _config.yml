@@ -4,7 +4,7 @@ title: "LabFab"
 description: "Exploring math, physics, machine learning, and finance insights."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
-baseurl: ''
+baseurl: 'https://labfab.io'
 google_analytics: 'G-3K2EDM9K7H'
 disqus: 'labfab'
 mailchimp-list: 'https://labfab.us17.list-manage.com/subscribe/post?u=60c617b562edb784e26cfc17e&amp;id=dd31e570e3&amp;f_id=0094c2e1f0'

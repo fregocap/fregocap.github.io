@@ -3,10 +3,10 @@
   <channel>
     <title>LabFab</title>
     <description>Exploring math, physics, machine learning, and finance insights.</description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 16 Mar 2025 23:01:53 +0100</pubDate>
-    <lastBuildDate>Sun, 16 Mar 2025 23:01:53 +0100</lastBuildDate>
+    <link>http://localhost:4000https://labfab.io/</link>
+    <atom:link href="http://localhost:4000https://labfab.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 16 Mar 2025 23:10:00 +0100</pubDate>
+    <lastBuildDate>Sun, 16 Mar 2025 23:10:00 +0100</lastBuildDate>
     <generator>Jekyll v4.3.3</generator>
     
       <item>
@@ -224,8 +224,8 @@ is the averaging over policies of our transition probability matrix and reward f
 &lt;p&gt;So, let’s stop here. We have put in place the foundations for the understanding of a reinforcement learning setup through the study of MDPs. We have defined the Markov property and the closely related process of Markov Reward Processes. Then, after having introduced rewards, we talked about policies and the actions that are sampled from those policies. We derived some (Bellman) equations that allow to connect the (action)-value function at a certain state with the (action)-value functions at a future state. Finally, we approached the subject of optimal policies and how to choose optimal actions by solving the Bellman optimality equation.&lt;/p&gt;
 </description>
         <pubDate>Tue, 13 Aug 2024 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/reinforcement-learning/</link>
-        <guid isPermaLink="true">http://localhost:4000/reinforcement-learning/</guid>
+        <link>http://localhost:4000https://labfab.io/reinforcement-learning/</link>
+        <guid isPermaLink="true">http://localhost:4000https://labfab.io/reinforcement-learning/</guid>
         
         
         <category>machine learning</category>
@@ -390,8 +390,8 @@ is the averaging over policies of our transition probability matrix and reward f
 &lt;p&gt;In summary, the encoder learns to compress data into a compact latent representation, capturing the essential features, while the decoder learns to reconstruct the original data from this compressed form. This architecture allows VAEs to not only generate new data similar to the inputs but also to learn deep representations of the data, useful for various applications like anomaly detection, data denoising, and more.&lt;/p&gt;
 </description>
         <pubDate>Tue, 25 Jun 2024 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/variational-autoencoders/</link>
-        <guid isPermaLink="true">http://localhost:4000/variational-autoencoders/</guid>
+        <link>http://localhost:4000https://labfab.io/variational-autoencoders/</link>
+        <guid isPermaLink="true">http://localhost:4000https://labfab.io/variational-autoencoders/</guid>
         
         
         <category>machine learning</category>
@@ -447,8 +447,8 @@ is the averaging over policies of our transition probability matrix and reward f
 
 </description>
         <pubDate>Sat, 22 Jun 2024 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/cauchy-schwarz/</link>
-        <guid isPermaLink="true">http://localhost:4000/cauchy-schwarz/</guid>
+        <link>http://localhost:4000https://labfab.io/cauchy-schwarz/</link>
+        <guid isPermaLink="true">http://localhost:4000https://labfab.io/cauchy-schwarz/</guid>
         
         
         <category>mathematics</category>
@@ -521,7 +521,7 @@ is the averaging over policies of our transition probability matrix and reward f
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/density_estimation.png&quot; alt=&quot;&apos;Density Estimation With Gaussian Process&apos;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/density_estimation.png&quot; alt=&quot;&apos;Density Estimation With Gaussian Process&apos;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This example shows three Gaussian distributions fitting an overall distribution, with the black line representing the combined distribution.&lt;/p&gt;
 
@@ -656,7 +656,7 @@ the parameters \(\theta = \left\{\phi_i, \mathbf{\mu}_i, \mathbf{\Sigma}_i\right
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/gmm_clustering1.png&quot; alt=&quot;noise&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/gmm_clustering1.png&quot; alt=&quot;noise&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;As you can see for the second example, we did not consider a diagonal covariance matrix.
 That’s also an interesting case, because there is some overlapping region that will definitely
@@ -875,7 +875,7 @@ a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/cod
 
 &lt;p&gt;One can apply such class to our previous dataset and follows the figure below:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/gmm_components.png&quot; alt=&quot;&apos;Density Estimation With Gaussian Process&apos;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/gmm_components.png&quot; alt=&quot;&apos;Density Estimation With Gaussian Process&apos;&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;challenges-and-considerations&quot;&gt;Challenges and Considerations&lt;/h2&gt;
 
@@ -884,8 +884,8 @@ a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/cod
 &lt;p&gt;In summary, Gaussian Mixture Models are a robust tool for modeling and clustering complex data distributions. Their ability to handle multimodal distributions makes them valuable in various practical applications.&lt;/p&gt;
 </description>
         <pubDate>Wed, 01 May 2024 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000/gaussian-processes/</link>
-        <guid isPermaLink="true">http://localhost:4000/gaussian-processes/</guid>
+        <link>http://localhost:4000https://labfab.io/gaussian-processes/</link>
+        <guid isPermaLink="true">http://localhost:4000https://labfab.io/gaussian-processes/</guid>
         
         
         <category>unsupervised learning</category>
@@ -932,9 +932,9 @@ a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/cod
 
 &lt;p&gt;Where:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;$\mathbf{x}_t$ is our image at step $t$&lt;/li&gt;
-  &lt;li&gt;$\beta_t$ controls how much noise we add at this step&lt;/li&gt;
-  &lt;li&gt;$\epsilon$ is random noise drawn from a normal distribution&lt;/li&gt;
+  &lt;li&gt;\(\mathbf{x}_t\) is our image at step $t$&lt;/li&gt;
+  &lt;li&gt;\(\beta_t\) controls how much noise we add at this step&lt;/li&gt;
+  &lt;li&gt;\(\epsilon\) is random noise drawn from a normal distribution&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;In probability terms, we’re sampling from this distribution:&lt;/p&gt;
@@ -943,7 +943,7 @@ a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/cod
 
 &lt;p&gt;After hundreds or thousands of tiny steps, our pristine image becomes pure noise. The interesting part? This destruction follows precise mathematical rules.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/noisy_person.jpg&quot; alt=&quot;A person gradually dissolving into noise&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/noisy_person.jpg&quot; alt=&quot;A person gradually dissolving into noise&quot; /&gt;
 &lt;em&gt;The forward diffusion process gradually transforms a clear image into pure noise through many small steps.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;step-2-reverse-diffusion---the-art-of-creation&quot;&gt;Step 2: Reverse Diffusion - The Art of Creation&lt;/h4&gt;
@@ -958,13 +958,13 @@ a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/cod
 
 &lt;p&gt;Where:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;$\mu_{\theta}$ is our model’s prediction of the mean (the noise-free direction)&lt;/li&gt;
-  &lt;li&gt;$\Sigma_{\theta}$ is the variance (how confident the model is)&lt;/li&gt;
+  &lt;li&gt;\(\mu_{\theta}\) is our model’s prediction of the mean (the noise-free direction)&lt;/li&gt;
+  &lt;li&gt;\(\Sigma_{\theta}\) is the variance (how confident the model is)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;In practice, researchers found that the key challenge is having the model predict the noise that was added at each step. A neural network learns to estimate this noise, and we use that estimation to gradually clean up our image.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/flower_diffusion.jpg&quot; alt=&quot;A flower emerging from noise&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/flower_diffusion.jpg&quot; alt=&quot;A flower emerging from noise&quot; /&gt;
 &lt;em&gt;Reverse diffusion: starting from random noise (left), the model gradually refines the image until a recognizable flower emerges (right).&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;When I first implemented this on a simple dataset, watching images emerge from random noise felt like witnessing a magic trick whose secrets I finally understood. It’s like seeing a photograph develop in a darkroom, but the process is guided by an AI that’s learned the patterns of our visual world.&lt;/p&gt;
@@ -983,7 +983,7 @@ a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/cod
 
 &lt;p&gt;When discussing diffusion models, we can’t skip over the neural network architecture that makes it all possible. Most diffusion models use a modified U-Net, which was originally developed for biomedical image segmentation.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/unet.png&quot; alt=&quot;U-Net Architecture&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/unet.png&quot; alt=&quot;U-Net Architecture&quot; /&gt;
 &lt;em&gt;The U-Net architecture features a symmetric encoder-decoder structure with skip connections that help preserve spatial information.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;The U-Net’s design is particularly clever for diffusion models because:&lt;/p&gt;
@@ -1024,7 +1024,7 @@ a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/cod
 
 &lt;p&gt;Perhaps the most surprising application I’ve encountered is in molecular design for drug discovery. Traditional approaches to designing new molecules often rely on rules-based systems or more rigid generative methods.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/molecules_diffusion_models.png&quot; alt=&quot;Molecule generation with diffusion models&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/molecules_diffusion_models.png&quot; alt=&quot;Molecule generation with diffusion models&quot; /&gt;
 &lt;em&gt;Diffusion models can generate valid molecular structures by learning the patterns of existing molecules and gradually refining random noise into coherent chemical structures.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Diffusion models approach this differently – they learn the underlying distribution of valid molecular structures and can generate novel molecules that satisfy specific criteria. This is groundbreaking because:&lt;/p&gt;
@@ -1058,7 +1058,7 @@ a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/cod
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/ensemble_diffusion.jpg&quot; alt=&quot;Medical imaging applications&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/ensemble_diffusion.jpg&quot; alt=&quot;Medical imaging applications&quot; /&gt;
 &lt;em&gt;Diffusion models can enhance medical images, generate synthetic training data, and help identify anomalies that might indicate disease.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;What makes diffusion models particularly suitable for these applications is their probabilistic nature and ability to capture fine details while maintaining global coherence. Unlike traditional image processing techniques that might smooth out important details, diffusion models preserve the subtle variations that can be clinically significant.&lt;/p&gt;
@@ -1192,8 +1192,8 @@ A: Start with understanding the basics of deep learning and generative models. T
 &lt;p&gt;If you have any questions about these resources or want to discuss diffusion models further, feel free to reach out in the comments section below. Happy exploring!&lt;/p&gt;
 </description>
         <pubDate>Mon, 01 Jan 2024 00:00:00 +0100</pubDate>
-        <link>http://localhost:4000/diffusion-models/</link>
-        <guid isPermaLink="true">http://localhost:4000/diffusion-models/</guid>
+        <link>http://localhost:4000https://labfab.io/diffusion-models/</link>
+        <guid isPermaLink="true">http://localhost:4000https://labfab.io/diffusion-models/</guid>
         
         <category>dall-e 2</category>
         
