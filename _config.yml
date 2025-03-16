@@ -5,7 +5,7 @@ description: "Exploring math, physics, machine learning, and finance insights."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 baseurl: ''
-google_analytics: 'G-EW4E6NHNXL'
+google_analytics: 'G-3K2EDM9K7H'
 disqus: 'labfab'
 mailchimp-list: 'https://labfab.us17.list-manage.com/subscribe/post?u=60c617b562edb784e26cfc17e&amp;id=dd31e570e3&amp;f_id=0094c2e1f0'
 include: ["_pages"]

@@ -7,6 +7,7 @@ image: assets/images/main_gmm.png
 description: "Gaussian Mixture Models (GMMs) are powerful unsupervised learning tools used to model multimodal data distributions through a combination of multiple Gaussian distributions, applicable in various fields such as image segmentation, clustering, and audio feature extraction, leveraging the Expectation-Maximization (EM) algorithm for parameter estimation."
 rating: 3.5
 toc: true
+hidden: true
 ---
 
 In this blog post, we will explore the concept of **Gaussian Mixture Models** (GMMs). These models are intuitive and widely applicable in various domains such as image segmentation, clustering, and generative modeling.

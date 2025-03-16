@@ -7,6 +7,7 @@ image: assets/images/cauchy_schwarz.jpg
 description: "Exploration of the Cauchy-Schwarz inequality through the amplification method."
 rating: 3.5
 toc: false
+hidden: true
 ---
 
 Inner product spaces play a crucial role in various fields such as linear algebra, quantum mechanics and more. One of the key results in these spaces is the Cauchy-Schwarz inequality. This blog post explores this inequality and demonstrates its proof using the so-called amplification method. 

@@ -7,6 +7,7 @@ image: assets/images/reinforcement_learning.jpg
 description: "A Markov Decision Process is a mathematical framework used in reinforcement learning to model decision-making in environments where outcomes are partly random and partly under the control of a decision-maker. An MDP consists of states, transition probabilities and rewards. The goal is to find a policy that maximizes the cumulative reward over time."
 rating: 3.5
 toc: true
+hidden: true
 ---
 
 In this blog post, we are going to talk about Markov Decision Process (MDP). MDPs are very important in the context of reinforcement learning (RL), because lots of RL problems can be put into some form or another as MDPs. For example, the bandit problem, which is a typical RL problem, is actually an MDP with one state. One can also have MDPs with a full observable environment (e.g. chess) or with partially observable environment (financial market).

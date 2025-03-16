@@ -7,6 +7,7 @@ image: assets/images/latent_variables.jpg
 description: "Latent variables are unseen factors in data that influence observable outcomes, while VAEs are advanced models that learn these underlying structures through a latent space. VAEs are adept at handling complex datasets by leveraging latent representations to interpolate between different data points, like facial expressions in images."
 rating: 3.5
 toc: true
+hidden: true
 ---
 
 In the realm of data science and machine learning, latent variables are like hidden factors or underlying structures in your data that you can't directly observe. Think of them as the unseen forces that shape and influence the observable data. For example, in a dataset of movie ratings, latent variables could represent abstract concepts like genre preferences or viewing habits. 
