@@ -90,7 +90,7 @@ Training a diffusion model requires teaching it to predict the noise added durin
 
 $$L_{\text{simple}} = \mathbb{E}_{\mathbf{x}_{0}, \epsilon_t} [||\epsilon_t - \epsilon_{\theta}(\mathbf{x}_{t}, t)||^2]$$
 
-This means: "Make your prediction of the noise ($\epsilon_{\theta}$) as close as possible to the actual noise ($\epsilon_t$) we added."
+This means: "Make your prediction of the noise ($$\epsilon_{\theta}$$) as close as possible to the actual noise ($$\epsilon_t$$) we added."
 
 What fascinated me was how this simple objective leads to such powerful generative capabilities. The model learns not just to denoise, but to understand the underlying structure of the data – be it faces, landscapes, or abstract concepts.
 
