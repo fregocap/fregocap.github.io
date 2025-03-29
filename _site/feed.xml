@@ -3,894 +3,168 @@
   <channel>
     <title>LabFab</title>
     <description>Exploring math, physics, machine learning, and finance insights.</description>
-    <link>http://localhost:4000https://labfab.io/</link>
-    <atom:link href="http://localhost:4000https://labfab.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 17 Mar 2025 00:14:37 +0100</pubDate>
-    <lastBuildDate>Mon, 17 Mar 2025 00:14:37 +0100</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 29 Mar 2025 01:48:29 +0100</pubDate>
+    <lastBuildDate>Sat, 29 Mar 2025 01:48:29 +0100</lastBuildDate>
     <generator>Jekyll v4.3.3</generator>
     
       <item>
-        <title>Markov Decision Processes</title>
-        <description>&lt;p&gt;In this blog post, we are going to talk about Markov Decision Process (MDP). MDPs are very important in the context of reinforcement learning (RL), because lots of RL problems can be put into some form or another as MDPs. For example, the bandit problem, which is a typical RL problem, is actually an MDP with one state. One can also have MDPs with a full observable environment (e.g. chess) or with partially observable environment (financial market).&lt;/p&gt;
+        <title>Trend Following Strategies: Hidden Protection for Long-Term Investors</title>
+        <description>&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
-&lt;h2 id=&quot;what-are-markov-processes-&quot;&gt;What are Markov Processes ?&lt;/h2&gt;
+&lt;p&gt;Last week I came across a fascinating research paper, “Tail Protection for Long Investors: Trend Convexity at Work” by researchers from Capital Fund Management. As someone who’s weathered multiple market cycles, I’ve always been intrigued by investment strategies that can protect portfolios during turbulent times. The 2008 financial crisis and the March 2020 COVID crash demonstrated just how quickly markets can unravel, leaving many investors scrambling for protection.&lt;/p&gt;
 
-&lt;p&gt;So, what is a Markov Process anyway ? To understand that, we first need to
-clarify what does Markov means.&lt;/p&gt;
+&lt;p&gt;Most long-term investors face a common dilemma: how to maintain exposure to market growth while protecting against significant downturns. Traditional approaches like diversification often fail during crises when correlations spike. Buying put options works but comes at a steep cost that erodes returns over time. This is where trend following strategies reveal their hidden superpower—&lt;strong&gt;convexity&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;markov-property&quot;&gt;Markov Property&lt;/h3&gt;
+&lt;h1 id=&quot;what-makes-trend-following-special&quot;&gt;What Makes Trend Following Special?&lt;/h1&gt;
 
-&lt;p&gt;If you actually take a random variable (S), then the Markov property
-tells us that the future values \(S_{t+j}\) of that variable are
-independent of the past values \(S_{t-i}\), knowing (or conditioned on)
-the present value \(S_{t}\). This is a pretty interesting property,
-because it means that all of the history that happened to that variable is
-actually irrelevant to the future values of the variable. Imagine a chess game: two of your friends start a game and you let them play, while you cook some delicious meal in the kitchen. Then, one of your friends is kind of tired and does not want to play anymore, but the other is not very happy because he felt he could win the game, and he would like to continue. So, you propose to continue to play, replacing your friend. Should you be aware of all the moves that were done? No. The game is fully characterized by the positions of the pieces at that particular moment. All that really matters for the future of the game is already
-on the board.&lt;/p&gt;
+&lt;p&gt;Unlike typical hedge fund strategies that often disappoint during market crashes (showing negative convexity), trend following strategies have historically performed better during periods of high volatility. Look at the performance of Commodity Trading Advisors (CTAs) during the 2008 Lehman crisis—they delivered strong positive returns while markets collapsed.&lt;/p&gt;
 
-&lt;p&gt;Mathematically speaking, if we consider a state \(S_{t}\) (a state,
-in general, means “information available at a particular instant \(t\)”, in our case the random variable or the chess board with positioning of the pieces), then the probability distribution of the state \(S_{t+1}\) only depends on \(S_{t}\), i.e.&lt;/p&gt;
+&lt;p&gt;This distinctive behavior makes trend strategies a potentially valuable addition to long-only portfolios. But what drives this performance? The researchers explain it through a surprisingly elegant mathematical relationship. The performance of trend following can be understood as the difference between &lt;strong&gt;long-term variance&lt;/strong&gt; and &lt;strong&gt;short-term variance&lt;/strong&gt;.&lt;/p&gt;
 
-\[\mathbb{P}\left[S_{t+1} \vert S_{t},S_{t-1},\cdots,S_{1},S_{0} \right] = \mathbb{P}\left[S_{t+1} \vert S_{t}\right]\]
+&lt;h1 id=&quot;the-mathematics-behind-the-magic&quot;&gt;The Mathematics Behind the Magic&lt;/h1&gt;
+&lt;p&gt;For those who enjoy the technical details, here’s the core insight: If we define a simple trend strategy where the positino \(\Pi\) at time \(t\) is proportional to the price difference:&lt;/p&gt;
 
-&lt;p&gt;Another way to understand this is to basically consider that you start at a state \(s\) and you have the next state \(s&apos;\), then the state transition probability is defined by:&lt;/p&gt;
+\[\Pi_t := \lambda A_t \left(S_t - S_{0}\right)\]
 
-\[\mathbb{P}\left[S_{t+1} = s&apos; \vert S_t = s \right] = \mathcal{P}_{ss&apos;}.\]
+&lt;p&gt;where \(\lambda\) is a scaling factor and \(A_t\) is the capital engaged (set to 1 for simplicity). The profit and loss (PnL) from \(t-1\) to \(t\) becomes:&lt;/p&gt;
 
-&lt;p&gt;Therefore, I can transition to the next state that is completely characterized by the present state. Here, we have that \(S_{t+1}\) is a particular instantiation of \(s&apos;\), while \(S_{t}\) corresponds to the state \(s\).&lt;/p&gt;
+\[G_t:= \Pi_{t-1} D_t = \lambda D_t \sum_{t&apos;=1}^{t-1} D_{t&apos;}\]
 
-&lt;p&gt;Once we have that state transition probability \(\mathcal{P}_{ss&apos;}\), we can represent a state transition matrix \(\mathcal{P}\), where the index of my rows represent the present state \(s\) where my system is and the index of the columns represents the potential next state where my system might transition to. Therefore, the matrix \(\mathcal{P}\) is represented by:&lt;/p&gt;
+&lt;p&gt;where \(D_t\)  is the price changes from \(t-1\) to \(t\). Aggregating this over \(T\) over \(T\) days and rearranging the sums:&lt;/p&gt;
 
-\[\begin{equation*}
-\mathcal{P} = 
-\begin{bmatrix}
-\mathcal{P}_{11} &amp;amp; \cdots &amp;amp; \mathcal{P}_{1n} \\
-\vdots &amp;amp; \ddots &amp;amp; \vdots \\
-\mathcal{P}_{n1} &amp;amp; \cdots &amp;amp; \mathcal{P}_{nn}
-\end{bmatrix}
-\end{equation*}\]
+\[G_t = \frac{\lambda}{2} \left(S_T - S_0 \right)^2 - \frac{\lambda}{2} \sum_{t=1}^{T} D_t^2\]
 
-&lt;p&gt;This matrix provides the full information about how the Markov process evolves. We can sample from it and it will provide different kinds of possible evolutions to my system.&lt;/p&gt;
+&lt;p&gt;This means the strategy’s average aggregated performance equals:&lt;/p&gt;
 
-&lt;p&gt;We are finally equipped to define an MDP: it is a sequence of finite states that are fully characterized by the transition probability matrix \(\mathcal{P}\). Therefore, an MDP can be fully defined by a state space \(\mathcal{S}\) and a transition probability \(\mathcal{P}\).&lt;/p&gt;
+\[\left\langle \sum_{t=1}^{T}G_t \right\rangle = \frac{\lambda T}{2}\left(\sigma^2(T) - \sigma^2(1)\right)\]
 
-&lt;h2 id=&quot;rewards&quot;&gt;Rewards&lt;/h2&gt;
+&lt;p&gt;In plain English: trend following strategies swap &lt;strong&gt;short-term volatility&lt;/strong&gt; for &lt;strong&gt;long-term volatility&lt;/strong&gt;. When markets make large moves over extended periods, these strategies shine. This creates a natural convexity in the performance profile - the strategy performs increasingly better as market volatility increases.&lt;/p&gt;
 
-&lt;p&gt;Now that we have defined what a Markov process is, we will dig into the decision part of the MDPs. To be able to take good (whatever that might mean) decisions, we will need to introduce a value judgement that is called the &lt;strong&gt;reward&lt;/strong&gt; in the RL framework. Such reward represents what the &lt;em&gt;agent&lt;/em&gt; gets when it transitions from
-the state \(s\) to the state \(s&apos;\).&lt;/p&gt;
+&lt;p&gt;I’ve found this insight particularly valuable in my own investing. During calm markets, trend following often underperforms or generates modest returns. But when markets experience extended turbulence, these strategies can deliver outsized performance that helps offset losses in traditional investments.&lt;/p&gt;
 
-&lt;p&gt;We have now a &lt;em&gt;Markov reward process&lt;/em&gt;  that is defined through the tuple
-\((\mathcal{S},\mathcal{P},\mathcal{R},\gamma)\), where \(\mathcal{R}\) is defined as a reward function that tells us how much reward we get from the state \(s\), i.e.&lt;/p&gt;
+&lt;h1 id=&quot;understanding-different-trend-implementations&quot;&gt;Understanding Different Trend Implementations&lt;/h1&gt;
 
-\[\mathcal{R}_s = \mathbb{E}\left[R_t \vert S_t = s\right]\]
+&lt;p&gt;The beauty of the researchers’ findings is that this relationship holds true across various trend implementations. Whether using exponential moving averages (EMAs), position capping, or different signal processing methods, the core mathematical relationship remains.&lt;/p&gt;
 
-&lt;p&gt;and \(\gamma \in [0,1]\) is a discount factor that considers what’s the importance that we provide to rewards far in the future versus immediate rewards. If we do have \(\gamma = 1\), then we care about all the rewards far into the future, while in the case \(\gamma=0\), we care about the immediate rewards only.&lt;/p&gt;
+&lt;p&gt;For example, using a classic EMA-based trend strategy where:&lt;/p&gt;
 
-&lt;p&gt;Based on that, we can introduce the basic goal in reinforcement learning, which is
-to maximize the return \(G_t\) that corresponds to the total discounted reward
-that we sum up over all the states through which the system is gonna pass through,
-i.e.&lt;/p&gt;
+\[\Pi_t := \frac{\lambda_{\tau} L_{\tau}[R_t]}{\sigma_t}\]
 
-\[G_t = R_t + \gamma R_{t+1}+\cdots = \sum_{k=0}^{\infty} \gamma^k R_{t+k}.\]
+&lt;p&gt;Where \(L_{\tau}\) represents an EMA with timescale \(\tau\) and \(R_t\) are the returns normalized by volatility. The performance still captures the spread between long-term and short-term volatility:&lt;/p&gt;
 
-&lt;p&gt;If we do consider that there is indeed an infinite amount of steps, we do see that the discount factor \(\gamma\) plays as well a very useful mathematical role, which is to make the series finite. We will not dig into it in here though.&lt;/p&gt;
+\[L_{\tau &apos;} [G_t] = \frac{\lambda \tau}{\tau -1} \left( \tau L^2_{\tau} [R_t] - L_{\tau &apos;} [R_t^2] \right)\]
 
-&lt;h2 id=&quot;value-function&quot;&gt;Value Function&lt;/h2&gt;
+&lt;p&gt;When I first implemented trend strategies in my portfolio, I spent endless hours optimizing parameters without fully understanding these mathematical foundations. Knowing the underlying mechanics now helps me focus on what matters - ensuring my trend system captures the right time horizon for the risks I’m trying to hedge.&lt;/p&gt;
 
-&lt;p&gt;Until now, we did not talk about expectations, because we were considering the case of a particular sample and its corresponding total reward. However, at the end of the day what we do care about is expectations. In the case of MDPs, we talk about &lt;strong&gt;value function&lt;/strong&gt; as providing the long-term value of a state \(s\). Therefore, the expected return from a state \(s\) is&lt;/p&gt;
+&lt;h1 id=&quot;time-horizons-the-critical-factor&quot;&gt;Time Horizons: The Critical Factor&lt;/h1&gt;
 
-\[v(s) = \mathbb{E}\left[G_t \vert  S_t = s \right].\]
+&lt;p&gt;One crucial insight that changed my approach to trend following is understanding the importance of time horizons. A trend strategy with a 6-month lookback window provides protection against large market moves that unfold over several months—not against overnight crashes or flash crashes.&lt;/p&gt;
 
-&lt;p&gt;Being in a non-deterministic environment, you don’t know exactly what would be your final total return \(G_t\), but you can compute your expected return based on the transition probability matrix.&lt;/p&gt;
+&lt;p&gt;The paper elaborates on this by showing how the strategy’s convexity is most visible when performance is measured over the appropriate timeframe. Using a 180-day trend filter, the researchers demonstrated that aggregating performance over approximately 90 days reveals much stronger convexity than what appears in daily or monthly returns.&lt;/p&gt;
 
-&lt;h2 id=&quot;bellman-equation&quot;&gt;Bellman Equation&lt;/h2&gt;
+&lt;p&gt;This explains why many investors miss the protective benefits of trend following—they’re looking at returns on the wrong timeframe. During the COVID crash, for instance, many trend followers initially lost money in the sudden selloff, only to recover and profit as the trend established itself over subsequent weeks.&lt;/p&gt;
 
-&lt;p&gt;Now that we have defined the value function, we can finally introduce the most important relation in all MDPs: the Bellman equation. The basic idea is to split the reward into two parts: the immediate reward that you get and what comes after that immediate reward. Let’s introduce the definitions of \(G_t\) into the previous defintion \(v(s)\):&lt;/p&gt;
+&lt;h1 id=&quot;real-world-applications-cta-performance&quot;&gt;Real-World Applications: CTA Performance&lt;/h1&gt;
 
-\[\begin{align*}
-v(s) &amp;amp;= \mathbb{E}\left[G_t \vert S_t = s\right] \\
-&amp;amp;= \mathbb{E}\left[R_t + \gamma R_{t+1} + \gamma^2 R_{t+2}+\cdots \vert S_t = s\right] \\
-&amp;amp;= \mathbb{E}\left[R_t + \gamma \left(R_{t+1} + \gamma R_{t+2}+\cdots\right) \vert S_t = s\right] \\
-&amp;amp;= \mathbb{E}\left[R_t + \gamma G_{t+1} \vert S_t = s\right] \\
-&amp;amp;= \mathbb{E}\left[R_t + \gamma v\left(S_{t+1}\right) \vert S_t = s \right]\\
-\end{align*}\]
+&lt;p&gt;Commodity Trading Advisors (CTAs) are the most prominent practitioners of trend following strategies. The authors analyzed the SG CTA Index, demonstrating that their simple trend model achieved over 80% correlation with the index by using just a handful of liquid futures markets and a basic trend signal.&lt;/p&gt;
 
-&lt;p&gt;You do see a recurrent relation that tells us how good it is to be in a particular state \(s\) depends on the immediate reward plus how good it is to be in the next state with a discounted factor \(\gamma\).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/sg_cta_replication.png&quot; alt=&quot;SG CTA Index Replication&quot; /&gt;
+&lt;em&gt;SG CTA index replication through simple trend model&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Once we have that definition of the value function, we can rewrite it in terms of the transition probability matrix \(\mathcal{P}_{ss&apos;}\) and the reward function \(\mathcal{R}_{s}\) at state \(s\) by just inserting the definitions of the expectations into the equation. That leads to the following relation:&lt;/p&gt;
+&lt;p&gt;What struck me most was how they revealed the convexity of CTA performance. By appropriately measuring over the right timeframe (approximately 6 months for the trend and 3 months for performance aggregation), they showed much stronger convexity than previously observed. The R-squared of the quadratic fit increased from a mere 0.02 in naïve analysis to a more convincing 0.2 using their methodology.&lt;/p&gt;
 
-\[v(s) = \mathcal{R}_s + \gamma \sum_{s&apos; \in \mathcal{S}} \mathcal{P}_{ss&apos;}v(s&apos;).\]
+&lt;h1 id=&quot;diversification-effects-single-asset-vs-multi-asset-trend&quot;&gt;Diversification Effects: Single-Asset vs Multi-Asset Trend&lt;/h1&gt;
 
-&lt;p&gt;We can also rewrite that Bellman equation into something that is rather
-straightforward to understand, which are matrices and vectors:&lt;/p&gt;
+&lt;p&gt;The research also revealed an important nuance—diversification reduces convexity. A single-asset trend following strategy shows stronger convexity than a diversified portfolio of trend strategies.&lt;/p&gt;
 
-\[v = \mathcal{R} + \gamma \mathcal{P}v.\]
+&lt;p&gt;However, diversified trend strategies still offer significant protection to diversified long portfolios. The authors demonstrated a mathematical relationship showing that trend strategies provide effective hedging for Risk Parity portfolios in particular. This makes intuitive sense to me, as Risk Parity strategies already balance risk across asset classes, and trend strategies can adapt to trends in any of those same asset classes.&lt;/p&gt;
 
-&lt;p&gt;Being a linear equation, we can then invert it, getting:&lt;/p&gt;
+&lt;p&gt;In my experience, this creates a natural complementarity. When rising interest rates hurt both stocks and bonds in 2022, for instance, trend strategies were able to capture the downtrends across multiple assets, providing valuable protection to traditional portfolios.&lt;/p&gt;
 
-\[v = \left(1-\gamma \mathcal{P} \right)^{-1} \mathcal{R}.\]
+&lt;h1 id=&quot;trend-following-vs-options-a-cost-effective-alternative&quot;&gt;Trend Following vs. Options: A Cost-Effective Alternative&lt;/h1&gt;
 
-&lt;p&gt;There are a bunch of methods that can be used to solve the Bellman equation
-for large MDPs, such as linear programming, Temporal-Difference learning, etc. We might address some of those techniques in future blog posts.&lt;/p&gt;
+&lt;p&gt;Many investors turn to options for portfolio protection. While buying index puts provides guaranteed protection, they typically come with a high price tag that erodes long-term returns.&lt;/p&gt;
 
-&lt;p&gt;Let us now introduce the final essential element of MDPs: actions.&lt;/p&gt;
+&lt;p&gt;The research highlights how trend following offers similar convexity benefits but at a lower cost. Their analysis showed that a portfolio of strangle options provides exposure to long-term variance similar to trend following strategies. The key difference? Options have a fixed entry cost (the premium), while trend strategies pay with realized short-term volatility.&lt;/p&gt;
 
-&lt;h2 id=&quot;the-action-space&quot;&gt;The Action Space&lt;/h2&gt;
+&lt;p&gt;The researchers demonstrate this with a fascinating relationship. A properly constructed strangle portfolio’s P&amp;amp;L can be expressed as:&lt;/p&gt;
 
-&lt;p&gt;A MDP is basically a Markov reward process with decisions, therefore we can
-defined the MDP through the tuple \(\langle \mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R} \rangle\), where \(\mathcal{A}\) is a finite set of actions. Based on the existence of such set of actions, we are now able to actually generalize all of the previous concepts introduced. In particular, we can say that the state transition probability matrix depends not only on the state where you are, but as well on the action that you take:&lt;/p&gt;
+\[G_{T}^{\text{strangles}} := \frac{1}{2} \left( S_{T} - S_0 \right)^2 - T \bar{\sigma}^2_{0,T}\]
 
-\[\mathcal{P}_{ss&apos;}^{a} = \mathbb{P}\left[S_{t+} = s&apos; \vert S_t = s, A_t = a\right].\]
+&lt;p&gt;where \(\bar{\sigma}^2_{0,T}\) is an effective implied volatility. Compare this to the trend following P&amp;amp;L:&lt;/p&gt;
 
-&lt;p&gt;Therefore, the probability of ending up on all the possible different states depends on the action that you take at the instant \(t\) and at which state you are at time \(t\). The reward function \(\mathcal{R}\) might as well depend on the action:&lt;/p&gt;
+\[G_T := \frac{\lambda}{2} \left( S_{T} - S_0 \right)^2 - \frac{\lambda}{2} \sum_{t=1}^{T} D_t^2\]
 
-\[\mathcal{R}^{a}_{s} = \mathbb{E}\left[R_{t+} \vert S_t=s, A_t=a \right].\]
+&lt;p&gt;Both strategies provide exposure to \((S_T - S_0)^2\) (long-term variance), but at different costs. Since options are typically sold at a premium, trend following offers a more economical approach to convexity over time.&lt;/p&gt;
 
-&lt;p&gt;Apart from that, everything is the same.&lt;/p&gt;
+&lt;p&gt;This makes trend following a more cost-effective hedge over the long run, as demonstrated by their positive long-term performance compared to consistently losing money with long-option portfolios.&lt;/p&gt;
 
-&lt;h2 id=&quot;the-policy&quot;&gt;The Policy&lt;/h2&gt;
+&lt;h1 id=&quot;practical-implementation-considerations&quot;&gt;Practical Implementation Considerations&lt;/h1&gt;
 
-&lt;p&gt;We are now well equipped to define what it means to make and take decisions. In order to do that, we need to define what is called a &lt;strong&gt;policy&lt;/strong&gt;. The formal definition of a policy \(\pi\) is a distribution over actions given states:&lt;/p&gt;
+&lt;p&gt;If you’re considering adding trend following to your portfolio, here are some practical considerations I’ve learned through experience:&lt;/p&gt;
 
-\[\pi(a\vert s) = \mathbb{P} \left[A_t = a \vert S_t =s \right].\]
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Time horizon matching&lt;/strong&gt;: Choose trend parameters that align with the market risks you’re trying to hedge. Short-term traders need faster signals, while long-term investors can use longer lookback periods.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Position sizing&lt;/strong&gt;: Proper risk scaling is essential. Too little exposure won’t provide meaningful protection, while too much introduces its own risks.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Multiple timeframes&lt;/strong&gt;: Consider using trend signals across multiple timeframes to capture different market regimes.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Transaction costs&lt;/strong&gt;: Factor in trading costs, which can significantly impact performance, especially for shorter-term implementations.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Tax efficiency&lt;/strong&gt;: In taxable accounts, trend strategies may generate more frequent trading and short-term capital gains.&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;In other words, if our system is in a particular state \(S_t\), what’s the
-probability of taking a particular action \(A_t\). Therefore, once you have a policy you have fully defined the behavior of an agent taking action in a particular system (remember the chess player? That’s our agent in that example, i.e. the person taking actions).&lt;/p&gt;
+&lt;h1 id=&quot;my-key-takeaways&quot;&gt;My Key Takeaways&lt;/h1&gt;
+&lt;p&gt;After studying this paper and implementing trend strategies in my own portfolio, I’ve drawn three important conclusions for investors:&lt;/p&gt;
 
-&lt;p&gt;Another interesting implication of the Markov property is that the policy only depends on the current state (and not the past states) as we discussed for the Chess example. Therefore, the policy is said to be stationary or time-independent.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Time horizon matters&lt;/strong&gt;: Trend strategies protect against large moves over their specific time horizon. A 6-month trend strategy won’t help with overnight crashes.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Diversification reduces convexity&lt;/strong&gt;: Single-asset trend strategies show stronger convexity than diversified ones, but diversification brings other benefits like smoother returns.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Risk parity complement&lt;/strong&gt;: Trend following strategies offer excellent protection for risk parity portfolios, making them valuable for investors with diversified long positions across equities and bonds.&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;Also the policy depends on the rewards through the state where the system is, because the state where the system is characterized by the immediate and expected future rewards of the agent.&lt;/p&gt;
+&lt;h1 id=&quot;final-thoughts&quot;&gt;Final Thoughts&lt;/h1&gt;
+&lt;p&gt;What fascinated me most about this research is how it quantifies what many trend followers have intuitively understood. These strategies offer affordable downside protection without sacrificing long-term returns, making them uniquely valuable in an investment landscape dominated by high correlation during crises.&lt;/p&gt;
 
-&lt;p&gt;What defines a Markov reward process given by a chain of states and rewards
-is the averaging over policies of our transition probability matrix and reward function, i.e.&lt;/p&gt;
+&lt;p&gt;The elegant mathematics behind trend following—swapping short-term variance for long-term variance—explains why these strategies have persisted as effective tools for centuries despite being well-known market anomalies.&lt;/p&gt;
 
-\[\begin{align*}
-\mathcal{P}^{\pi}_{ss&apos;} &amp;amp;= \sum_{a\in \mathcal{A}} \pi(a \vert s) \mathcal{P}^{a}_{ss&apos;} \\
-\mathcal{R}^{\pi}_s &amp;amp;= \sum_{a\in \mathcal{A}} \pi(a \vert s) \mathcal{R}^{a}_{s}
-\end{align*}\]
+&lt;p&gt;For long-term investors, adding a trend component to your portfolio might be worth considering—especially if you’re concerned about preserving capital during extended market downturns. Whether implementing a simple moving average crossover system or a more sophisticated ensemble approach, the core mathematical benefits remain.&lt;/p&gt;
 
-&lt;p&gt;As such the Markov reward process corresponds to the tuple \(\langle \mathcal{S}, \mathcal{P}^{\pi}, \mathcal{R}^{\pi} \rangle\).&lt;/p&gt;
+&lt;p&gt;As markets continue to evolve, trend following strategies offer a robust approach to protection that doesn’t rely on forecasting or timing market tops—just systematically adapting to changing conditions as they unfold.&lt;/p&gt;
 
-&lt;p&gt;Previously, the value function didn’t have any agent, no way to define actions.We have now a way to choose the value function through the policy \(\pi\) and as such, the &lt;em&gt;state-value function&lt;/em&gt; \(v_{\pi}(s)\) of an MDP becomes the expected return from state \(s\) that follows a policy \(\pi\)&lt;/p&gt;
+&lt;hr /&gt;
 
-\[v_{\color{red}{\pi}}(s) =\mathbb{E}_{\color{red}{\pi}}\left[G_t \mid S_t = s \right];\]
+&lt;p&gt;Have you incorporated trend following strategies in your portfolio? Share your experience in the comments below. What timeframes have you found most effective for your investment goals?&lt;/p&gt;
 
-&lt;p&gt;we have an expectation \(\mathbb{E}_{\pi}\) over the total return when we sample the actions following the policy \(\pi\).&lt;/p&gt;
-
-&lt;p&gt;We can also define a second type of function that is the action value function, which tells us how good it is to take a particular action from a particular state. This is the mathematical object that we should consider when we have to take a particular action. Therefore, the action value function is the expected return from a state \(s\), taking an action \(a\) and by following a particular policy \(\pi\):&lt;/p&gt;
-
-\[q_{\pi}(a,s) = \mathbb{E}_{\pi}\left[G_t \vert S_t = s, A_t = a \right]\]
-
-&lt;p&gt;A new Bellman equation is obtained, as previously, by decomposing the immediate reward plus the value of the next state:&lt;/p&gt;
-
-\[v_{\pi}(s) = \mathbb{E}_{\pi}\left[R_{t}+\gamma v_{\pi}(S_{t+1}) \vert S_t = s \right].\]
-
-&lt;p&gt;In a similar way, we can get an equation for the action-value function&lt;/p&gt;
-
-\[q_{\pi}(s,a) = \mathbb{E}_{\pi} \left[R_t+\gamma q_{\pi}(S_{t+1},A_{t+1}) \vert S_t =s \right].\]
-
-&lt;p&gt;That last equation allows to relate the action-value of the next state with respect to the state where my system is right now.&lt;/p&gt;
-
-&lt;p&gt;The way to underst it a bit better is through the relationship that is present between \(v\) and \(q\). So, in order to get \(v_{\pi}(s)\), we are actually averaging over all the possible actions that we might take in the future. Since each action is really &lt;em&gt;valued&lt;/em&gt; by the action-value function \(q_{\pi}\) (at the next state), then we need to average over all the action-values under a certain policy \(\pi\) (since the actions are actually sampled from a particular policy), providing us the value of the present state \(s\), i.e.&lt;/p&gt;
-
-\[v_{\pi}(s) = \sum_{a \in \mathcal{A}} \pi(a \vert s) q_{\pi}(s,a).\]
-
-&lt;p&gt;Let’s now consider instead that  we are going to take a particular action \(a\) at a particular state \(s\). If we take the example of the chess game, we are not asking the question: how good is it to take a specific move, while in the previous paragraph, we were asking how good is it to be where I am now in the game (basically, my probability of winning the game). Therefore, we have to average over the possible states where the action that we are taking are going to lead me (plus the immediate reward), i.e.&lt;/p&gt;
-
-\[q_{\pi}(s,a) = \mathcal{R}^a_{s}+ \gamma \sum_{s&apos; \in \mathcal{S}}\mathcal{P}^a_{ss&apos;}v_{\pi}(s&apos;).\]
-
-&lt;p&gt;If we put the last two equations together, we end up with the following recursive relation&lt;/p&gt;
-
-\[v_{\pi}(s) = \sum_{a \in \mathcal{A}} \pi(a \vert s) \left( \mathcal{R}^a_{s}+ \gamma \sum_{s&apos; \in \mathcal{S}}\mathcal{P}^a_{ss&apos;}v_{\pi}(s&apos;)\right)\]
-
-&lt;p&gt;which is the new Bellman equation for \(v_{\pi}\) that we were looking for. We can also do the same trick with \(q_{\pi}\) to end up with the following recursive relation:&lt;/p&gt;
-
-\[q_{\pi}(s) = \mathcal{R}^a_{s} + \gamma \sum_{s&apos; \in \mathcal{S}} \mathcal{P}^a_{ss&apos;} \sum_{a&apos; \in \mathcal{A}} \pi(a&apos; \vert s&apos;) q_{\pi}(s&apos;, a&apos;).\]
-
-&lt;p&gt;The two equations are actually how we solve the MDPs. If you abstract the math, you understand that the idea behind those two equations are really simple: the value function at the actual step is just the immediate reward plus the value function at the step where you are after taking a particular action.&lt;/p&gt;
-
-&lt;p&gt;That’s all fine, but what we are looking for the optimal actions to pick. For that, we will need to get the optimal policy.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-optimal-policy&quot;&gt;The Optimal Policy&lt;/h2&gt;
-
-&lt;p&gt;Given a state you are in, you want to pick actions that will provide you the maximum future rewards. That policy is called the optimal policy.&lt;/p&gt;
-
-&lt;p&gt;Let’s first defined the &lt;em&gt;optimal state-value&lt;/em&gt; function \(v_{*}(s)\) as being the maximum value function over all possible policies:&lt;/p&gt;
-
-\[v_{*}(s) = \max_{\pi} v_{\pi}(s),\]
-
-&lt;p&gt;This function basically tells us what’s the maximum possible reward we can extract from the particular system we are in. In a similar fashion, one can define the &lt;em&gt;optimal action-value function&lt;/em&gt; \(q_{*}(s,a)\) as being the maximum action-value function over all policies&lt;/p&gt;
-
-\[q_{*}(s,a) = \max_{\pi} q_{\pi}(s,a),\]
-
-&lt;p&gt;meaning if you commit to a particular action, what’s the most reward you can get. What’s important to notice is that if we know \(q_{*}\), then we have solved the MDP, because under all policies it allows to understand the maximum reward you can get for a particular action. Therefore, knowing \(q_{*}\) allows us to behave optimally under the MDP. As such, (and again) solving an MDP is actually getting \(q_*\).&lt;/p&gt;
-
-&lt;h2 id=&quot;bellman-optimality-equation&quot;&gt;Bellman Optimality Equation&lt;/h2&gt;
-
-&lt;p&gt;Of course, that’s all good. But in practice, how do we get \(q_{*}\) anyways ? Well, you need to actually get the &lt;strong&gt;Bellman optimality equation&lt;/strong&gt; and solve it. Before, we were looking at expectation on action and rewards. Now, we are really looking at the maximum returns. So, our two previous equations become:&lt;/p&gt;
-
-\[v_{*}(s) = \max_{a}\mathcal{R}^a_{s} + \gamma \sum_{s&apos; \in \mathcal{S}} \mathcal{P}^{a}_{ss&apos;}v_{*}(s&apos;),\]
-
-\[q_{*}(s,a) = \mathcal{R}^a_{s} + \gamma \sum_{s&apos; \in \mathcal{S}} \mathcal{P}^a_{ss&apos;} \max_{a&apos;}q_{*}(s&apos;, a&apos;),\]
-
-&lt;p&gt;based on the fact that an optimal policy is found by maximizing over \(q_{*}(s,a)\), i.e.&lt;/p&gt;
-
-\[\pi_{*}(a\mid s) = \begin{cases} 1 &amp;amp; \text{if } a= \text{arg}\max_{a\in\mathcal{A}}q_{}(s,a), \\ 0 &amp;amp; \text{otherwise} . \end{cases}\]
-
-&lt;p&gt;Now that we have the Bellman optimality equation, we should be done. Unfortunately, things are not that easy because in the last two equations \(q_{*}\) and \(v_{*}\) are not linear anymore :-( . Moreover, there is no closed form solution because there are some &lt;strong&gt;max&lt;/strong&gt; involved that complexifies the problem. So, we have to resort to iterative solution methods such as Q-learning and dynamic programming methods. We will talk about those in a subsequent blog post.&lt;/p&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;So, let’s stop here. We have put in place the foundations for the understanding of a reinforcement learning setup through the study of MDPs. We have defined the Markov property and the closely related process of Markov Reward Processes. Then, after having introduced rewards, we talked about policies and the actions that are sampled from those policies. We derived some (Bellman) equations that allow to connect the (action)-value function at a certain state with the (action)-value functions at a future state. Finally, we approached the subject of optimal policies and how to choose optimal actions by solving the Bellman optimality equation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Keywords:&lt;/strong&gt; trend following strategies, portfolio protection, market volatility, CTA performance, risk management, convexity, long-term investing, tail risk, risk parity, options alternatives&lt;/p&gt;
 </description>
-        <pubDate>Tue, 13 Aug 2024 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000https://labfab.io/reinforcement-learning/</link>
-        <guid isPermaLink="true">http://localhost:4000https://labfab.io/reinforcement-learning/</guid>
+        <pubDate>Thu, 27 Mar 2025 00:00:00 +0100</pubDate>
+        <link>http://localhost:4000/trend-following/</link>
+        <guid isPermaLink="true">http://localhost:4000/trend-following/</guid>
+        
+        <category>trend following</category>
+        
+        <category>CTA performance</category>
+        
+        <category>market volatility</category>
+        
+        <category>convexity</category>
+        
+        <category>portfolio protection</category>
+        
+        <category>tail risk</category>
+        
+        <category>risk parity</category>
+        
+        <category>options alternatives</category>
+        
+        <category>hedge funds</category>
         
         
-        <category>machine learning</category>
+        <category>investing portfolio management</category>
         
-        <category>reinforcement learning</category>
+        <category>trading strategies</category>
         
-      </item>
-    
-      <item>
-        <title>Latent Variables &amp; Generative Models</title>
-        <description>&lt;p&gt;In the realm of data science and machine learning, latent variables are like hidden factors or underlying structures in your data that you can’t directly observe. Think of them as the unseen forces that shape and influence the observable data. For example, in a dataset of movie ratings, latent variables could represent abstract concepts like genre preferences or viewing habits.&lt;/p&gt;
-
-&lt;h2 id=&quot;latent-variables-and-deep-generative-models&quot;&gt;Latent Variables and Deep Generative Models&lt;/h2&gt;
-&lt;p&gt;Variational AutoEncoders (VAEs) stand out in their ability to handle complex data like images. At their core, VAEs are based on a directed latent-variable model, expressed as&lt;/p&gt;
-
-\[p(x,z) = p(x|z)p(z),\]
-
-&lt;p&gt;where \(x\) is the observed data (such as an image of a face), and \(z\) represents latent variables, the unseen factors influencing \(x\).&lt;/p&gt;
-
-&lt;p&gt;In the application of VAEs to facial images, the model adeptly learns a latent space \(z\), which encodes a variety of facial features. This latent space is remarkably versatile. It enables us to interpolate between different facial expressions or other attributes, such as gender, by smoothly varying the values in the latent space. This ability to manipulate latent factors is particularly intriguing because these attributes are not explicitly labeled in the training process. Instead, the model infers them from the data, learning what constitutes a smile, a frown, or any other nuanced facial feature.&lt;/p&gt;
-
-&lt;p&gt;Although we’re focusing on a single-layer latent model, it’s worth noting that deep generative models can have multiple layers (e.g., \(p(x\vert z_1)p(z_1 \vert z_2)\cdots p(z_{m-1}\vert p(z_m))\)). These multi-layer models can learn hierarchies of latent representations, capturing more complex and abstract features at each level.&lt;/p&gt;
-
-&lt;p&gt;However, VAEs face two significant challenges: intractability in computation and handling large datasets. The exact computation of the posterior probability \(p(z\vert x)\) is typically not feasible due to its complexity. To navigate this, VAEs apply a strategy called variational inference. This approach involves using an approximate posterior \(q_{\phi}(z \vert x)\)  and tweaking it to minimize its divergence from the true posterior. This approximation is crucial for the model to be both computationally feasible and effective in learning the underlying data distribution. We will come back to that point later.&lt;/p&gt;
-
-&lt;p&gt;When it comes to handling large datasets, which is a common scenario in image processing, VAEs adapt by using stochastic gradient descent methods that work with small, randomly sampled batches of data. This technique ensures that the model can be trained on large datasets without requiring immense computational resources to process the entire dataset at once.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-training-process&quot;&gt;The training process&lt;/h2&gt;
-
-&lt;p&gt;In the context of VAEs, several traditional methods encounter significant challenges:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;EM Algorithm&lt;/strong&gt;: while the Expectation-Maximization (EM) algorithm is a standard approach for learning latent-variable models, it falters in VAEs because the E-step, which requires computing the approximate posterior \(p(z \vert x)\), is intractable. Additionally, the M-step, involving parameter learning across the entire dataset, is impractical for large datasets, despite some alleviations offered by online EM using mini-batches.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Mean Field Approximation&lt;/strong&gt;: This technique falls short in VAEs as it requires computing expectations over a Markov blanket, whose size becomes infeasible when every component of x depends on each component of z. The resulting computational complexity scales exponentially, rending this approach impractical.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Sampling-Based Methods&lt;/strong&gt;: While theoretically sound, sampling-based methods like Metropolis-Hastings struggle to scale to large datasets and require carefully crafted proposal distributions, which are challenging to design.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;auto-encoding-variational-bayes-aevb-as-a-solution&quot;&gt;Auto-Encoding Variational Bayes (AEVB) as a Solution&lt;/h3&gt;
-&lt;p&gt;The Auto-Encoding Variational Bayes (AEVB) algorithm emerges as a robust solution to these challenges. It’s grounded in variational inference principles and efficiently addresses the three key tasks: learning the model parameters, performing approximate posterior inference over \(z\), and handling marginal inference of \(x\).&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Evidence Lower Bound (ELBO)&lt;/strong&gt;: The core of AEVB is to maximize the ELBO, \(L(p_{\phi}, q_{\phi}) = \mathbb{E}_{q_{\phi}(z \vert x)}\left[\log p_{\theta}(x,z) - \log q_{\phi}(z \vert x) \right]\). This maximization tightens around the log probability \(\log p_{\theta}(x)\) while optimizing over \(q_{\phi}\).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Optimizing \(q(z \vert x)\)&lt;/strong&gt;: The optimization of \(q(z \vert x)\) in AEVB goes beyond mean field’s limitations. It involves using a broader class of \(q\) distributions, more complex than fully factored ones, and employing gradient descent over \(\phi\), instead of coordinate descent.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Joint Optimization&lt;/strong&gt;: AEVB simultaneously optimizes both \(\phi\) (to keep the ELBO tight around \(\log p(x)\)) and \(\theta\) (to increase the lower bound and hence \(\log p(x)\)), mirroring the lower-bound optimization in EM but in a more scalable and flexible manner.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;the-score-function-gradient-estimator&quot;&gt;The Score Function Gradient Estimator&lt;/h3&gt;
-
-&lt;p&gt;The gradient computation in AEVB is critical:\(\nabla_{\theta, \phi} \mathbb{E}_{q_{\phi}(z)}\left[\log p_{\theta}(x,z) - \log q_{\phi}(z) \right]\).&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Gradient of \(p\)&lt;/strong&gt;: The gradient with respect to \(\theta\) is estimated using Monte Carlo methods by sampling from \(q\). The swap between gradient and expectation is feasible here.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Gradient of \(q\)&lt;/strong&gt;: The challenge is in computing the gradient with respect to \(\phi\), where directly swapping gradient and expectation isn’t possible since the expectation is calculated in relation to the very distribution that is the subject of our differentiation. This is where the reparametrization trick comes into play, enabling efficient and low-variance gradient estimation.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;reformulation-of-the-elbo&quot;&gt;Reformulation of the ELBO&lt;/h3&gt;
-
-&lt;p&gt;The restructuring of the ELBO can be presented in the following manner:&lt;/p&gt;
-
-\[\log p(x) \geq \mathbb{E}_{q_{\phi}(z|x)}\left[ \log p_{\theta}(x|z) - KL(q_{\phi}(z|x)||p(z))\right]\]
-
-&lt;p&gt;This formulation can be seen as an alternate yet mathematically equivalent version of the ELBO, deduced through straightforward algebraic steps.&lt;/p&gt;
-
-&lt;p&gt;Looking at this version, it offers a compelling way to interpret the mechanics of the model. Consider any given observed data point, denoted as \(x\). The formula is composed of two key parts, each involving the generation of a latent variable \(z\) from \(q(z \vert x)\), which can be seen as a unique ‘encoding’ of \(x\). Here, \(q\) acts as the ‘encoder’.&lt;/p&gt;
-
-&lt;p&gt;The term \(\log p(x \vert z)\) is the log-likelihood of observing \(x\) when given this ‘encoding’ \(z\). The aim is for \(p(x \vert z)\), the ‘decoder network’, to assign a high probability to the true \(x\), efficiently ‘decoding’ or reconstructing \(x\) from \(z\). This process is known as minimizing the ‘reconstruction error’.&lt;/p&gt;
-
-&lt;p&gt;On the other hand, the Kullback-Leibler (KL) divergence, the second component, measures the deviation of the encoded distribution \(q(z \vert x)\) from a predetermined prior distribution \(p(z)\) , typically a standard Gaussian. This ‘regularization term’ encourages the latent representations \(z\) to adopt a Gaussian distribution. Its purpose is to ensure that \(q(z \vert x)\) goes beyond a simple identity mapping, pushing it to learn richer and more complex representations, such as identifying distinct facial features in image-related tasks.&lt;/p&gt;
-
-&lt;p&gt;The overarching goal of this optimization is to fine-tune \(q(z \vert x)\) so that it maps \(x\) into a practical and interpretable latent space \(z\), enabling the effective reconstruction of \(x\) using \(p(x \vert z)\) . This objective mirrors the foundational concept of auto-encoder neural networks, which are designed to discover and utilize valuable data representations within a latent space.&lt;/p&gt;
-
-&lt;h3 id=&quot;the-reparametrization-trick&quot;&gt;The reparametrization trick&lt;/h3&gt;
-
-&lt;p&gt;The reparametrization trick is a crucial component in the VAE framework, primarily because it allows for a more efficient and stable estimation of gradients during the optimization process. This trick was a key innovation in the original VAE paper.&lt;/p&gt;
-
-&lt;p&gt;To understand how this works, consider the distribution \(q_{\phi}(z \vert x)\), which is the approximate posterior in a VAE. This distribution can be constructed through a two-step process:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Sampling Noise Variable&lt;/strong&gt;: First,a noise variable \(\epsilon\) is sampled from a simple distribution, typically the standard normal distribution \(\mathcal{N}(0,1)\):&lt;/li&gt;
-&lt;/ol&gt;
-
-\[\epsilon \sim p(\epsilon)\]
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Deterministic Transformation&lt;/strong&gt;: Next, this noise variable is transformed using a deterministic function \(g_{\phi}(\epsilon,x)\), resulting in the variable \(z\):&lt;/li&gt;
-&lt;/ol&gt;
-
-\[z = g_{\phi}(\epsilon,x)\]
-
-&lt;p&gt;This approach ensures that \(z\), when transformed by \(g_{\phi}\), follows the desired distribution \(q_{\phi}(z \vert x)\).&lt;/p&gt;
-
-&lt;p&gt;The simplest illustration of the reparametrization trick is with Gaussian variables. Normally, one might express \(z\) as being sampled from a Gaussian distribution \(\mathcal{N}(\mu, \sigma)\):&lt;/p&gt;
-
-\[z\sim q_{\mu,\sigma}(z) = \mathcal{N}(\mu, \sigma)\]
-
-&lt;p&gt;However, with the reparametrization trick, this is re-expressed as:&lt;/p&gt;
-
-\[z \sim q_{\mu,\sigma}(\epsilon) = \mu + \epsilon \cdot \sigma\]
-
-&lt;p&gt;where \(\epsilon \sim \mathcal{N}(0,1)\). This reformulation doesn’t change the distribution from which \(z\) is sampled, but it crucially alters how we compute gradients.&lt;/p&gt;
-
-&lt;p&gt;The major advantage of the reparametrization trick is in computing gradients of expectations with respect to \(q(z)\) for any function \(f\). It allows us to rewrite the gradient as:&lt;/p&gt;
-
-\[\nabla_{\phi}\mathbb{E}_{z\sim q_{\phi}(z|x)}\left[f(x,z)\right] = \nabla_{\phi} \mathbb{E}_{\epsilon \sim p(\epsilon)} \left[f(x,g_{\phi}(\epsilon,x))\right] = \mathbb{E}_{\epsilon \sim p(\epsilon)}\left[\nabla_{\phi} f(x,g_{\phi}(\epsilon, x))\right]\]
-
-&lt;p&gt;This restructed gradient falls inside the expectation, enabling us the use of sampling for estimating the term on the right. This method significantly reduces variance compared to other estimators and is key to effectively learning complex models in VAEs. By placing the gradient inside the expectation, the reparametrization trick not only facilitates a more efficient computation of gradients but also enhances the stability and performance of the learning process in VAEs.&lt;/p&gt;
-
-&lt;h2 id=&quot;overall&quot;&gt;Overall&lt;/h2&gt;
-
-&lt;p&gt;The VAE consists of two primary components: an encoder that maps inputs to a latent space and a decoder that reconstructs inputs from this latent space. Let’s summarize how each component is structured and operates within the VAE framework.&lt;/p&gt;
-
-&lt;h3 id=&quot;encoder-architecture&quot;&gt;Encoder Architecture&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Purpose and Function:&lt;/strong&gt; The encoder in a VAE is responsible for transforming input data into a representation in the latent space. For an input \(x\), the encoder outputs parameters of the probability distribution of the latent variables \(z\), typically the mean and variance.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Network Design:&lt;/strong&gt; The encoder is usually a neural network. In the context of image processing, this might be a Convolutional Neural Network (CNN) that can effectively capture spatial hierarchies in pixels. For sequential data like text, Recurrent Neural Networks (RNNs) or Transformers might be used.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt; The key output of the encoder is two sets of values corresponding to each dimension of the latent space: the means (\(\mu\)) and variances (\(\sigma^2\)) or standard deviations (\(\sigma\)). These define a Gaussian distribution for each latent variable, from which we sample to obtain the latent representation.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Reparametrization Trick:&lt;/strong&gt; To allow for backpropagation through the stochastic sampling process, the reparametrization trick is used. Instead of sampling \(z\) directly from the distribution defined by \(\mu\) and \(\sigma\), \(z\) is expressed as \(\mu + \epsilon \cdot \sigma\), where \(\epsilon\) is sampled from a standard normal distribution.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;decoder-architecture&quot;&gt;Decoder Architecture&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Purpose and Function:&lt;/strong&gt; The decoder serves the opposite role of the encoder. It takes the latent representation \(z\) and reconstructs the input data \(x\). The aim is to generate data that is as close as possible to the original input.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Network Design:&lt;/strong&gt; The decoder is also a neural network, often mirroring the architecture of the encoder but in reverse. For images, this might involve deconvolutional layers (also known as transposed convolutions) to upsample from the latent representation to the original data dimensions. For sequential data, the decoder could be an RNN or a Transformer generating one element of the sequence at a time.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Output:&lt;/strong&gt; The decoder outputs a reconstruction of the original input data. In the case of images, this output is typically the same size as the input image, with each output unit representing a pixel’s properties (like color intensity).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Objective Function:&lt;/strong&gt; The performance of the decoder is evaluated based on how well the reconstructed data matches the original input. This is often measured by a reconstruction loss, such as mean squared error for continuous data or cross-entropy loss for binary or categorical data.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;In summary, the encoder learns to compress data into a compact latent representation, capturing the essential features, while the decoder learns to reconstruct the original data from this compressed form. This architecture allows VAEs to not only generate new data similar to the inputs but also to learn deep representations of the data, useful for various applications like anomaly detection, data denoising, and more.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 25 Jun 2024 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000https://labfab.io/variational-autoencoders/</link>
-        <guid isPermaLink="true">http://localhost:4000https://labfab.io/variational-autoencoders/</guid>
-        
-        
-        <category>machine learning</category>
-        
-        <category>unsupervised learning</category>
-        
-      </item>
-    
-      <item>
-        <title>A Simple Proof of the Cauchy-Schwarz Inequality</title>
-        <description>&lt;p&gt;Inner product spaces play a crucial role in various fields such as linear algebra, quantum mechanics and more. One of the key results in these spaces is the Cauchy-Schwarz inequality. This blog post explores this inequality and demonstrates its proof using the so-called amplification method.&lt;/p&gt;
-
-&lt;h2 id=&quot;inner-product-spaces&quot;&gt;Inner Product Spaces&lt;/h2&gt;
-
-&lt;p&gt;An inner product space is a vector space equipped with an additional structure called an inner product. This inner product allows for the measurement of angles and lengths within the space. For complex vectors \(\mathbf{u}=(u_1,u_2,\cdots, u_n)\) and \(\mathbf{v}=(v_1,v_2,\cdots,v_n)\), the inner product is defined as:&lt;/p&gt;
-
-\[\langle \mathbf{u}, \mathbf{v} \rangle = \sum_{i=1} \bar{u_i} v_i\]
-
-&lt;p&gt;where \(\bar{u_i}\) denotes the complex conjugate of \(u_i\).&lt;/p&gt;
-
-&lt;h2 id=&quot;the-cauchy-schwarz-inequality&quot;&gt;The Cauchy-Schwarz Inequality&lt;/h2&gt;
-
-&lt;p&gt;The Cauchy-Schwarz inequality states that for any vectors \(\mathbf{u}\) and \(\mathbf{v}\) in an inner product space:&lt;/p&gt;
-
-\[\| \langle\mathbf{u}, \mathbf{v} \rangle\| \leq \lVert \mathbf{u} \rVert \cdot \lVert \mathbf{v} \rVert\]
-
-&lt;p&gt;where \(\lVert\mathbf{u}\rVert = \sqrt{\langle \mathbf{u}, \mathbf{u} \rangle}\) and \(\lVert\mathbf{v}\rVert = \sqrt{\langle \mathbf{v}, \mathbf{v} \rangle}\). This inequality essentially states that the absolute value of the inner product of two vectors is always less than or equal to the product of their norms.&lt;/p&gt;
-
-&lt;h2 id=&quot;the-proof&quot;&gt;The Proof&lt;/h2&gt;
-
-&lt;p&gt;To prove the Cauchy-Schwarz inequality, we follow these steps: let’s define a new vector \(\mathbf{w} = \mathbf{u} - \alpha \mathbf{v}\), where \(\alpha\) is a real number and let’s compute the inner product of \(\mathbf{w}\) with itself (i.e. the non-negative squared norm):&lt;/p&gt;
-
-\[\begin{align}
-\langle\mathbf{w}, \mathbf{w} \rangle &amp;amp; = \langle \mathbf{u} - \alpha \mathbf{v}, \mathbf{u} - \alpha \mathbf{v} \rangle \\
-&amp;amp; =\langle \mathbf{u}, \mathbf{u} \rangle - \alpha \langle \mathbf{u}, \mathbf{v} \rangle - \alpha \langle \mathbf{v}, \mathbf{u} \rangle + \alpha ^2 \langle \mathbf{v}, \mathbf{v} \rangle \\ 
-&amp;amp; = \lVert \mathbf{u} \rVert ^2 -\alpha \langle \mathbf{u}, \mathbf{v} \rangle -\alpha \overline{\langle \mathbf{u}, \mathbf{v} \rangle}+ \alpha ^2 \lVert \mathbf{v} \rVert ^2\\
-&amp;amp; = \lVert \mathbf{u} \rVert ^2 -2 \alpha \mathbf{Re}\left(\langle \mathbf{u}, \mathbf{v} \rangle \right)+ \alpha ^2\lVert \mathbf{v} \rVert ^2 \geq 0 .
-\end{align}\]
-
-&lt;p&gt;We have an inequality and approaching the expression we want. One interesting thing: norm of vectors are preserved by complex rotations \(v\rightarrow e^{i\theta} v\), but the real part is not. That is,&lt;/p&gt;
-
-\[\mathbf{Re}\left(e^{i\theta}\langle \mathbf{u}, \mathbf{v} \rangle\right) \leq \frac{\alpha}{2} \lVert e^{i\theta} \mathbf{v} \rVert ^2 + \frac{1}{2\alpha} \lVert \mathbf{u} \rVert ^2.\]
-
-&lt;p&gt;By choosing the \(\theta\) that turns the left hand side to a real number (i.e. maximizes it), the previous equation becomes:&lt;/p&gt;
-
-\[\left|\langle \mathbf{u}, \mathbf{v} \rangle\right | \leq \frac{\alpha}{2} \lVert \mathbf{v} \rVert ^2 + \frac{1}{2\alpha} \lVert \mathbf{u} \rVert ^2.\]
-
-&lt;p&gt;The final trick is to fix \(\alpha\) to be given by \(\alpha=\lVert \mathbf{u} \rVert/\lVert \mathbf{v} \rVert\), which minimizes the expression on the right hand side (to convince yourself, just take the derivative wrt to \(\alpha\) and find the \(\alpha\) that minimizes it) for any non-zero \(\mathbf{u}\), \(\mathbf{v}\). That finishes the proof.&lt;/p&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;The amplification method, as demonstrated in this proof of the Cauchy-Schwarz inequality, beautifully showcases the geometric and algebraic connections inherent in this technique. Originally highlighted in a
-&lt;a href=&quot;https://terrytao.wordpress.com/2007/09/05/,amplification-arbitrage-and-the-tensor-power-trick/&quot;&gt;blog post by Terence Tao&lt;/a&gt;, this approach provides a clear and elegant pathway to understanding the depth and utility of the inequality. While seemingly straightforward, the method underscores a powerful concept in mathematical analysis, proving to be both insightful and practical for various applications.&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 22 Jun 2024 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000https://labfab.io/cauchy-schwarz/</link>
-        <guid isPermaLink="true">http://localhost:4000https://labfab.io/cauchy-schwarz/</guid>
-        
-        
-        <category>mathematics</category>
-        
-      </item>
-    
-      <item>
-        <title>An Intro to Gaussian Mixture Models</title>
-        <description>&lt;p&gt;In this blog post, we will explore the concept of &lt;strong&gt;Gaussian Mixture Models&lt;/strong&gt; (GMMs). These models are intuitive and widely applicable in various domains such as image segmentation, clustering, and generative modeling.&lt;/p&gt;
-
-&lt;h2 id=&quot;introduction-to-gmms&quot;&gt;Introduction to GMMs&lt;/h2&gt;
-
-&lt;p&gt;Gaussian Mixture Models are used to model an overall distribution through multiple Gaussian distributions. They are a powerful tool for capturing, estimating, and clustering parts of an overall distribution as locally Gaussian-distributed. GMMs are unsupervised models, meaning they do not need to know the specific Gaussian distribution a data point belongs to in advance.&lt;/p&gt;
-
-&lt;h3 id=&quot;example-of-gmm&quot;&gt;Example of GMM&lt;/h3&gt;
-
-&lt;p&gt;Here’s a simple example to illustrate GMMs:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scipy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stats&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# first gaussian
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;standard_deviation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;y1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stats&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;norm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;standard_deviation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# second gaussian
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;2.5&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stats&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;norm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;standard_deviation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# third gaussian
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.5&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;y3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stats&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;norm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;standard_deviation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# overall plotting
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;gray&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;gray&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;gray&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;black&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Coordinates&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Density&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/density_estimation.png&quot; alt=&quot;&apos;Density Estimation With Gaussian Process&apos;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This example shows three Gaussian distributions fitting an overall distribution, with the black line representing the combined distribution.&lt;/p&gt;
-
-&lt;h2 id=&quot;application-of-gmms&quot;&gt;Application of GMMs&lt;/h2&gt;
-
-&lt;p&gt;GMMs have numerous applications, including:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Image segmentation&lt;/li&gt;
-  &lt;li&gt;Multi-object tracking in videos&lt;/li&gt;
-  &lt;li&gt;Audio feature extraction&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;They are particularly useful for multimodal distributions, where multiple peaks are present. These peaks can be modeled using multiple Gaussian distributions.&lt;/p&gt;
-
-&lt;h2 id=&quot;mathematical-formulation-of-gmms&quot;&gt;Mathematical Formulation of GMMs&lt;/h2&gt;
-
-&lt;p&gt;To represent GMMs mathematically, we need to understand three types of parameters:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Mixture Weights&lt;/strong&gt; (\(\phi\)): indicate the probability that a point belongs to a specific Gaussian component \(K\).&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Means&lt;/strong&gt; (\(\mu\)): the centers of each Gaussian component.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Covariances&lt;/strong&gt; (\(\mathbf{\Sigma}_i\)): describe the spread and orientation of each Gaussian component.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The probability density function for a GMM is given by:&lt;/p&gt;
-
-\[p(\mathbf{x}) = \sum_{i=1}^K \phi_i(\mathbf{x}) \mathcal{N}(\mathbf{x}|\mathbf{\mu}_i, \mathbf{\Sigma}_i)\]
-
-&lt;p&gt;where \(\mathcal{N}(\mathbf{x}\vert\mathbf{\mu}_i, \mathbf{\Sigma}_i)\) is the multivariate Gaussian distribution.&lt;/p&gt;
-
-&lt;h2 id=&quot;training-the-gmm-expectation-maximization-algorithm&quot;&gt;Training the GMM: Expectation-Maximization algorithm&lt;/h2&gt;
-
-&lt;p&gt;The EM algorithm is used to find the maximum likelihood parameters of a GMM, especially when there are latent variables influencing the data distribution.&lt;/p&gt;
-
-&lt;h3 id=&quot;steps-of-the-em-algorithm&quot;&gt;Steps of the EM Algorithm&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;strong&gt;Expectation (E-step)&lt;/strong&gt;: Estimate the latent variables.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Maximization (M-step)&lt;/strong&gt;: Maximize the parameters based on the current estimates of the latent variables.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;In the particular case of GMMs, if one considers the maximum likelihood, we should maximize:&lt;/p&gt;
-
-\[\ln p(\mathbf{x}|\phi_i, \mathbf{\mu}, \mathbf{\Sigma}) = \sum_{n=1}^N \ln\left( \sum_{i=1}^K \phi_i(\mathbf{x}^{(n)}) \mathcal{N}(\mathbf{x}^{(n)}|\mathbf{\mu}_i, \mathbf{\Sigma}_i) \right)\]
-
-&lt;p&gt;with respect to \(\theta = (\phi_i, \mathbf{\mu}_i, \mathbf{\Sigma}_i)\). However,
-two problems arise by doing so: 1) we can have very high (arbitrarily large) likelihood when a
-single Gaussian explains a point; 2) an unlimited number of solutions is acceptable up to
-permutations. Instead, if we do introduce a latent variable \(z\), then one can consider that the
-mixture model generates the data by first sampling from \(z\), and only then we sample the
-observable data \(\mathbf{x}\) from a distribution that does depend on \(z\), meaning:&lt;/p&gt;
-
-\[p(z,\mathbf{x}) = p(z)p(\mathbf{x}|z).\]
-
-&lt;p&gt;In mixture models, the &lt;strong&gt;latent variables are easily interpreted as being the different
-components of the data distribution&lt;/strong&gt;, i.e. \(z=c\) .&lt;/p&gt;
-
-&lt;p&gt;Let us try to optimize \(\ln p(\mathbf{x})\) for the set of parameters \(\theta\) by integrating
-over the latent variable&lt;/p&gt;
-
-\[\begin{align}
-\frac{d}{d\theta} \ln p(\mathbf{x}) &amp;amp; = \frac{d}{d\theta} \ln \sum_{z} p(z, \mathbf{x})  \\
-&amp;amp; =  \frac{\frac{d}{d\theta} \sum_{z} p(z,\mathbf{x})}{\sum_{z&apos;}p(z&apos;,\mathbf{x})}\\
-&amp;amp; = \sum_{z} p(z|\mathbf{x}) \frac{d}{d\theta} \ln p(z,\mathbf{x}) \\
-&amp;amp; = \mathbb{E}_{p(z|\mathbf{x})} \left[\frac{d}{d\theta} \ln p(z,\mathbf{x}) \right]. 
-\end{align}\]
-
-&lt;p&gt;This means that the derivative of the marginal log-probability \(p(\mathbf{x})\) is the expected
-value of the derivative of the joint log-probability, with the expectation on the posterior
-distribution. This formula is completely generic for any model with latent variables as we
-did not introduce any specificities related to GMMs. We have not given the full details of
-the derivation, but just keep in mind that we have used the known property:&lt;/p&gt;
-
-\[\frac{d}{d\theta} \ln A(\theta) = \frac{1}{A(\theta)} \frac{d}{d\theta} A(\theta).\]
-
-&lt;p&gt;It is rather tempting to equalize the derivative to zero for the particular case of the GMMs.
-Doing so, you end up with the optimum parameters that we are looking for. In particular, our
-two previous steps of the EM algorithm become:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;E-Step&lt;/strong&gt;:&lt;/p&gt;
-
-\[r_{ni} :=p(z_{n} = i | \mathbf{x}_n) = \frac{\phi_i \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_i,\mathbf{\Sigma}_i)}{\sum_{j=1}^K \phi_j \mathcal{N}(\mathbf{x}_n | \mathbf{\mu}_j,\mathbf{\Sigma}_j)}\]
-
-&lt;p&gt;&lt;strong&gt;M-Step&lt;/strong&gt;:&lt;/p&gt;
-
-\[\begin{align}
-\phi_i &amp;amp; = \frac{\sum_{n=1}^N r_{ni}}{\sum_{i=1}^K \sum_{n=1}^N r_{ni}}, \\
-\mathbf{\mu}_i &amp;amp; = \frac{\sum_{n=1}^N  r_{ni}\mathbf{x}_n}{\sum_{n=1}^N r_{ni}}, \\
-\Sigma_{i} &amp;amp; = \frac{\sum_{n=1}^N r_{ni} \left(\mathbf{x}_n -\mathbf{\mu}_i\right)\left(\mathbf{x}_n - \mathbf{\mu}_i\right)^\intercal}{\sum_{n=1}^N r_{ni}}
-\end{align}\]
-
-&lt;p&gt;These two steps define fully the EM algorithm for the GMMs with a random initialization of
-the parameters \(\theta = \left\{\phi_i, \mathbf{\mu}_i, \mathbf{\Sigma}_i\right\}\).&lt;/p&gt;
-
-&lt;h2 id=&quot;clustering-with-gmms&quot;&gt;Clustering with GMMs&lt;/h2&gt;
-
-&lt;p&gt;To use GMMs for clustering, follow these steps:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Train the model to obtain the parameters (means, covariances).&lt;/li&gt;
-  &lt;li&gt;Assign each data point to a Gaussian component based on the probability \(r_{ni}\).&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Let us first start by generating two non-trivial distributions:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;cov&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.05&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;cov2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;multivariate_normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cov&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;x2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;multivariate_normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cov2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;scatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;scatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/gmm_clustering1.png&quot; alt=&quot;noise&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As you can see for the second example, we did not consider a diagonal covariance matrix.
-That’s also an interesting case, because there is some overlapping region that will definitely
-be challenging for the algorithm to understand.&lt;/p&gt;
-
-&lt;p&gt;The stopping criteria is related to the difference between the log-likelihood at a step \(𝑛-1\)
-and step \(𝑛\)  being below a certain threshold. Meanwhile, until that threshold is not reached
-we continue updating the estimated parameters of the model. Let’s therefore built a class with
-a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/code&gt; method.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GMM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__init__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_iters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;threshold&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1e-6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        
-        &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_components&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_components&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;threshold&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;threshold&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_iters&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_iters&lt;/span&gt;
-        
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; 
-        &lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; Method that learns the parameters of the GMM
-        &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;# initialization of the parameters
-&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;old_log_likelihood&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-        
-        &lt;span class=&quot;c1&quot;&gt;## rni and weights, i.e. prior
-&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;n_row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_col&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rni&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;zeros&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;full&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            
-        &lt;span class=&quot;c1&quot;&gt;# mean initialization
-&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;seed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;means&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-
-        &lt;span class=&quot;c1&quot;&gt;# covariance matrix initialization
-&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;shape_var&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_col&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n_col&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;covariances&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;full&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape_var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cov&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rowvar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-        
-        &lt;span class=&quot;c1&quot;&gt;# start the main loop
-&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_iters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;# compute first the log-likelihhod
-&lt;/span&gt;            &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;__log_likelihood&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;new_log_likelihood&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rni&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
-        
-            &lt;span class=&quot;c1&quot;&gt;# run the E-M step
-&lt;/span&gt;            &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;__E_step&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;__M_step&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            
-            &lt;span class=&quot;c1&quot;&gt;# check convergence 
-&lt;/span&gt;            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;abs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new_log_likelihood&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;old_log_likelihood&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;threshold&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
-                
-            &lt;span class=&quot;c1&quot;&gt;# if it did not converge, then update the log-likelihood
-&lt;/span&gt;            &lt;span class=&quot;n&quot;&gt;old_log_likelihood&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_log_likelihood&lt;/span&gt;
-                        
-        
-    
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__E_step&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; Method that implements the E-step
-        &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;#normalize over the different cluster probabilities
-&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rni&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rni&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rni&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;keepdims&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        
-    
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__M_step&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; Method that implements the M-step
-        &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;phi_num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rni&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;phi_i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;phi_num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        
-        &lt;span class=&quot;c1&quot;&gt;# means
-&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;means&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rni&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;phi_num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;reshape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        
-        &lt;span class=&quot;c1&quot;&gt;#covariances
-&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;diff&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;means&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;cov_num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rni&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;diff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;diff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;covariances&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cov_num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;phi_num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        
-    
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__log_likelihood&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; Method to get the log-likelihood
-        &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;prior&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;likelihood&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;multivariate_normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;means&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;covariances&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rni&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prior&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;likelihood&lt;/span&gt;
-            
-    
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;plot_component&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Clusters&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; Method that plots the different components assigned to the data points X
-        &lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&quot;&quot;&quot;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;ko&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        
-        &lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.25&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;means&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;x_grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_grid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;meshgrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;coordinates&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x_grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ravel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ravel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()]).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;T&lt;/span&gt; 
-        
-        &lt;span class=&quot;n&quot;&gt;col&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;green&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;means&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;cov&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;covariances&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;z_grid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;multivariate_normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cov&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;coordinates&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;reshape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x_grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;contour&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x_grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z_grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;colors&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;col&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-            
-        &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;tight_layout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;One can apply such class to our previous dataset and follows the figure below:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/gmm_components.png&quot; alt=&quot;&apos;Density Estimation With Gaussian Process&apos;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;challenges-and-considerations&quot;&gt;Challenges and Considerations&lt;/h2&gt;
-
-&lt;p&gt;GMMs require specifying the number of components beforehand. Model selection criteria such as Akaike Information Criterion (AIC) or Bayesian Information Criterion (BIC) can help determine the optimal number of components. Additionally, the complexity of GMMs increases with the size of the dataset, particularly due to the covariance matrices. Simplifying assumptions, such as diagonal covariance matrices, can mitigate this issue.&lt;/p&gt;
-
-&lt;p&gt;In summary, Gaussian Mixture Models are a robust tool for modeling and clustering complex data distributions. Their ability to handle multimodal distributions makes them valuable in various practical applications.&lt;/p&gt;
-</description>
-        <pubDate>Wed, 01 May 2024 00:00:00 +0200</pubDate>
-        <link>http://localhost:4000https://labfab.io/gaussian-processes/</link>
-        <guid isPermaLink="true">http://localhost:4000https://labfab.io/gaussian-processes/</guid>
-        
-        
-        <category>unsupervised learning</category>
-        
-        <category>machine learning</category>
+        <category>risk management</category>
         
       </item>
     
@@ -943,7 +217,7 @@ a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/cod
 
 &lt;p&gt;After hundreds or thousands of tiny steps, our pristine image becomes pure noise. The interesting part? This destruction follows precise mathematical rules.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/noisy_person.jpg&quot; alt=&quot;A person gradually dissolving into noise&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/noisy_person.jpg&quot; alt=&quot;A person gradually dissolving into noise&quot; /&gt;
 &lt;em&gt;The forward diffusion process gradually transforms a clear image into pure noise through many small steps.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;step-2-reverse-diffusion---the-art-of-creation&quot;&gt;Step 2: Reverse Diffusion - The Art of Creation&lt;/h4&gt;
@@ -964,7 +238,7 @@ a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/cod
 
 &lt;p&gt;In practice, researchers found that the key challenge is having the model predict the noise that was added at each step. A neural network learns to estimate this noise, and we use that estimation to gradually clean up our image.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/flower_diffusion.jpg&quot; alt=&quot;A flower emerging from noise&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/flower_diffusion.jpg&quot; alt=&quot;A flower emerging from noise&quot; /&gt;
 &lt;em&gt;Reverse diffusion: starting from random noise (left), the model gradually refines the image until a recognizable flower emerges (right).&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;When I first implemented this on a simple dataset, watching images emerge from random noise felt like witnessing a magic trick whose secrets I finally understood. It’s like seeing a photograph develop in a darkroom, but the process is guided by an AI that’s learned the patterns of our visual world.&lt;/p&gt;
@@ -983,7 +257,7 @@ a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/cod
 
 &lt;p&gt;When discussing diffusion models, we can’t skip over the neural network architecture that makes it all possible. Most diffusion models use a modified U-Net, which was originally developed for biomedical image segmentation.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/unet.png&quot; alt=&quot;U-Net Architecture&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/unet.png&quot; alt=&quot;U-Net Architecture&quot; /&gt;
 &lt;em&gt;The U-Net architecture features a symmetric encoder-decoder structure with skip connections that help preserve spatial information.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;The U-Net’s design is particularly clever for diffusion models because:&lt;/p&gt;
@@ -1024,7 +298,7 @@ a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/cod
 
 &lt;p&gt;Perhaps the most surprising application I’ve encountered is in molecular design for drug discovery. Traditional approaches to designing new molecules often rely on rules-based systems or more rigid generative methods.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/molecules_diffusion_models.png&quot; alt=&quot;Molecule generation with diffusion models&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/molecules_diffusion_models.png&quot; alt=&quot;Molecule generation with diffusion models&quot; /&gt;
 &lt;em&gt;Diffusion models can generate valid molecular structures by learning the patterns of existing molecules and gradually refining random noise into coherent chemical structures.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Diffusion models approach this differently – they learn the underlying distribution of valid molecular structures and can generate novel molecules that satisfy specific criteria. This is groundbreaking because:&lt;/p&gt;
@@ -1058,7 +332,7 @@ a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fit&lt;/cod
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://labfab.io/assets/images/ensemble_diffusion.jpg&quot; alt=&quot;Medical imaging applications&quot; /&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/ensemble_diffusion.jpg&quot; alt=&quot;Medical imaging applications&quot; /&gt;
 &lt;em&gt;Diffusion models can enhance medical images, generate synthetic training data, and help identify anomalies that might indicate disease.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;What makes diffusion models particularly suitable for these applications is their probabilistic nature and ability to capture fine details while maintaining global coherence. Unlike traditional image processing techniques that might smooth out important details, diffusion models preserve the subtle variations that can be clinically significant.&lt;/p&gt;
@@ -1192,8 +466,8 @@ A: Start with understanding the basics of deep learning and generative models. T
 &lt;p&gt;If you have any questions about these resources or want to discuss diffusion models further, feel free to reach out in the comments section below. Happy exploring!&lt;/p&gt;
 </description>
         <pubDate>Mon, 01 Jan 2024 00:00:00 +0100</pubDate>
-        <link>http://localhost:4000https://labfab.io/diffusion-models/</link>
-        <guid isPermaLink="true">http://localhost:4000https://labfab.io/diffusion-models/</guid>
+        <link>http://localhost:4000/diffusion-models/</link>
+        <guid isPermaLink="true">http://localhost:4000/diffusion-models/</guid>
         
         <category>dall-e 2</category>
         
