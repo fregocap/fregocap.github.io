@@ -8,7 +8,7 @@ image: assets/images/trend_following.png
 description: "Discover how trend following strategies provide portfolio protection through market volatility, offering a cost-effective alternative to options with positive long-term returns."
 featured: true 
 hidden: false 
-rating: 4.7
+rating: 4.5
 toc: true 
 last_modified_at: 2025-03-27 
 seo: 
