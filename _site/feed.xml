@@ -5,15 +5,478 @@
     <description>Exploring math, physics, machine learning, and finance insights.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 29 Mar 2025 01:50:18 +0100</pubDate>
-    <lastBuildDate>Sat, 29 Mar 2025 01:50:18 +0100</lastBuildDate>
+    <pubDate>Fri, 18 Apr 2025 01:06:56 +0200</pubDate>
+    <lastBuildDate>Fri, 18 Apr 2025 01:06:56 +0200</lastBuildDate>
     <generator>Jekyll v4.3.3</generator>
     
       <item>
-        <title>Trend Following Strategies: Hidden Protection for Long-Term Investors</title>
-        <description>&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+        <title>Bayesian Perspectives on Neural Networks: Uncertainty, Regularization, and Beyond</title>
+        <description>&lt;p&gt;The incredible success of deep learning in recent years has transformed industries, 
+scientific research, and everyday technologies. From computer vision to natural language processing, deep neural networks have demonstrated remarkable capabilities. However, these powerful models often lack a crucial feature: a principled approach to quantifying uncertainty in their predictions.&lt;/p&gt;
 
-&lt;p&gt;Last week I came across a fascinating research paper, “Tail Protection for Long Investors: Trend Convexity at Work” by researchers from Capital Fund Management. As someone who’s weathered multiple market cycles, I’ve always been intrigued by investment strategies that can protect portfolios during turbulent times. The 2008 financial crisis and the March 2020 COVID crash demonstrated just how quickly markets can unravel, leaving many investors scrambling for protection.&lt;/p&gt;
+&lt;p&gt;Traditional neural networks typically output single point estimates, confidently predicting outcomes without expressing doubt. This can lead to overconfident decisions, particularly in high-stakes domaines like autonomous driving, medical diagnosis, or financial forecasting.&lt;/p&gt;
+
+&lt;p&gt;Enter Bayesian neural networks (BNNs), which offer an elegant mathematical framework for addressing these limitations. By viewing neural networks through the lens of Bayesian probability theory, we gain tools for representing uncertainty, preventing overfitting, and understanding model behavior in a more principled way.&lt;/p&gt;
+
+&lt;p&gt;In this deep dive, we’ll explore the theoretical foundations of Bayesian neural networks, examine their mathematical formuation, discuss practical implementation approaches, and consider their advantages and challenges. Whether you’re a machine learning practictioner, a statistics enthusiast, or a curious observer of AI developments, this exploration will give you a richer understanding of how probability theory can enhance neural network architectures.&lt;/p&gt;
+
+&lt;h1 id=&quot;from-classical-to-bayesian-neural-networks&quot;&gt;From Classical to Bayesian Neural Networks&lt;/h1&gt;
+&lt;h2 id=&quot;the-classical-neural-network-framework&quot;&gt;The Classical Neural Network Framework&lt;/h2&gt;
+
+&lt;p&gt;Before delving into Bayesian approaches, let’s briefly review the classical neural network framework. A standard neural network can be represented as a function \(f_\theta(x)\) that maps inputs \(x\) to outputs \(y\) through a series of transformations parameterized by weights and biases collectively denoted as \(\theta\).&lt;/p&gt;
+
+&lt;p&gt;The training process typically involves:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Defining a loss function \(L(y, f_\theta(x))\) that measures the discrepancy between predicted outputs and ground truth&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Finding the optimal parameters \(\theta\) that minimize this loss: \(\theta = \arg\min_\theta \sum_{i=1}^{N} L(y_i, f_\theta(x_i))\)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Using these fixed parameters for all future predictions&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This approach, known as maximum likelihood estimation (MLE) or its regularized variant maximum a posteriori (MAP) estimation, yeilds a single set of “best” parameters. While effective in many cases, this point estimate approach discards valuable information about parameter uncertainty.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-bayesian-paradigm-shift&quot;&gt;The Bayesian Paradigm Shift&lt;/h1&gt;
+
+&lt;p&gt;The Bayesian approach fundamentally changes our perspective. Instead of searching for a single “best” set of parameters, we aim to capture the full distribution of plausible parameters given our observed data.&lt;/p&gt;
+
+&lt;p&gt;Specifically, Bayesian neural networks:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Start with a prior distribution over parameters \(p(\theta(x))\), representing our beliefs before seeing any data&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Update this to a posterior distribution \(p(\theta(x) \| D)\) after observing dataset \(D={(x_1,y_1), (x_2, y_2),..., (x_N, y_N)}\)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Make predictions by integrating over all possible parameter configurations, weighted by their posterior probability&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This shift from point estimates to probability distributions over parameters is the essence of the Bayesian perspective.&lt;/p&gt;
+
+&lt;h1 id=&quot;mathematical-foundations-of-bayesian-neural-networks&quot;&gt;Mathematical Foundations of Bayesian Neural Networks&lt;/h1&gt;
+&lt;h2 id=&quot;bayes-theorem-the-core-engine&quot;&gt;Bayes’ Theorem: The Core Engine&lt;/h2&gt;
+
+&lt;p&gt;At the heart of Bayesian neural networks lies Bayes’ theorem:&lt;/p&gt;
+
+\[p(\theta \| D) = \frac{p(D\|\theta)p(\theta)}{p(D)}\]
+
+&lt;p&gt;Breaking this down:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;\(p(\theta \|D)\) is the posterior distribution over parameters given our observed data&lt;/li&gt;
+  &lt;li&gt;\(p(D \| \theta)\) is the likelihood of observing our data given specific parameter values&lt;/li&gt;
+  &lt;li&gt;$p(\theta)$ is our prior belief about parameter values before seeing any data&lt;/li&gt;
+  &lt;li&gt;\(p(D)\) is the marginal likelihood or “evidence” (a normalizing constant)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For neural networks, the likelihood function typically reflects our assumptions about the data generation process. For regression problems, we might assume:&lt;/p&gt;
+
+\[p(y \| x, \theta) = \mathcal{N}(y \|f_{\theta}(x), \sigma^2)\]
+
+&lt;p&gt;Where \(\mathcal{N}\) denotes a Gaussian distribution with mean \(f_{\theta(x)}\) (the network’s prediction) and variance $\sigma^2$ (representing observation noise).&lt;/p&gt;
+
+&lt;p&gt;For classification problems with $C$ classes, we might use:&lt;/p&gt;
+
+\[p(y\| x, \theta) = \text{Categorical}(y | f_{\theta}(x), \sigma^2)\]
+
+&lt;h2 id=&quot;prior-distributions-encoding-our-initial-beliefs&quot;&gt;Prior Distributions: Encoding Our Initial Beliefs&lt;/h2&gt;
+&lt;p&gt;The choice of priod distribution $p(\theta)$ is crucial in Bayesian modeling, as it encodes our initial beliefs about parameter values before seeing any data. Common priors for neural network weights include:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Gaussian priors&lt;/strong&gt;: $\theta \sim \mathcal{N}(0, \sigma^2_p)$, which encourage weights to remain small&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Laplace priors&lt;/strong&gt;: $\theta \sim \text{Laplace}(0, b)$, which encourage sparsity (many weights close to zero)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Hierarchical priors: Where hyperparameters of the prior are themselves given distributions&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The connection between priors and regularization is profound. In fact, many common regularization techniques in deep learning can be interpreted as imposing specific Bayesian priors:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;L2 regularization (weight decay) corresponds to a Gaussian prior on weights&lt;/li&gt;
+  &lt;li&gt;L1 regularization corresponds to a Laplace prior&lt;/li&gt;
+  &lt;li&gt;Dropout can be interpreted as approximate Bayesian inference with specific prior structures&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;side-note proof&quot;&gt;
+    &lt;h4&gt;Equivalence between Gaussian prior &amp;amp; L2 regularization&lt;/h4&gt;
+    &lt;p&gt;Let us establish the equivalence between L2 regularization and imposing a Gaussian prior in a formal manner.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bayesian Framework&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;In Bayesian parameter estimation, we seek the posterior distribution of parameters $\theta$ given data $X$:&lt;/p&gt;
+
+&lt;p&gt;$$P(\theta|X) = \frac{P(X|\theta)P(\theta)}{P(X)}$$&lt;/p&gt;
+
+&lt;p&gt;Since $P(X)$ is constant with respect to $\theta$, we have:&lt;/p&gt;
+
+&lt;p&gt;$$P(\theta|X) \propto P(X|\theta)P(\theta)$$&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Maximum a Posteriori (MAP) Estimation&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;MAP estimation finds parameters that maximize the posterior:&lt;/p&gt;
+
+&lt;p&gt;$$\theta_{MAP} = \arg\max_{\theta} P(\theta|X) = \arg\max_{\theta} P(X|\theta)P(\theta)$$&lt;/p&gt;
+
+&lt;p&gt;Taking the logarithm (which preserves the argmax):&lt;/p&gt;
+
+&lt;p&gt;$$\theta_{MAP} = \arg\max_{\theta} [\log P(X|\theta) + \log P(\theta)]$$&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Gaussian Prior&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Now we introduce a zero-mean Gaussian prior on the parameters:&lt;/p&gt;
+
+&lt;p&gt;$$P(\theta) = \frac{1}{(2\pi\sigma^2)^{d/2}} \exp\left(-\frac{\|\theta\|^2}{2\sigma^2}\right)$$&lt;/p&gt;
+
+&lt;p&gt;where $d$ is the dimensionality of $\theta$.&lt;/p&gt;
+
+&lt;p&gt;Taking the logarithm:&lt;/p&gt;
+
+&lt;p&gt;$$\log P(\theta) = -\frac{d}{2}\log(2\pi\sigma^2) - \frac{\|\theta\|^2}{2\sigma^2}$$&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;MAP Estimation with Gaussian Prior&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Substituting the log-prior into our MAP objective:&lt;/p&gt;
+
+&lt;p&gt;$$\theta_{MAP} = \arg\max_{\theta} \left[\log P(X|\theta) - \frac{d}{2}\log(2\pi\sigma^2) - \frac{\|\theta\|^2}{2\sigma^2}\right]$$&lt;/p&gt;
+
+&lt;p&gt;Since the term $\frac{d}{2}\log(2\pi\sigma^2)$ is constant with respect to $\theta$, we can simplify:&lt;/p&gt;
+
+&lt;p&gt;$$\theta_{MAP} = \arg\max_{\theta} \left[\log P(X|\theta) - \frac{\|\theta\|^2}{2\sigma^2}\right]$$&lt;/p&gt;
+
+&lt;p&gt;Equivalently, by negating the objective:&lt;/p&gt;
+
+&lt;p&gt;$$\theta_{MAP} = \arg\min_{\theta} \left[-\log P(X|\theta) + \frac{\|\theta\|^2}{2\sigma^2}\right]$$&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Connection to L2 Regularization&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Define the negative log-likelihood as our loss function $L(\theta;X) = -\log P(X|\theta)$. Then:&lt;/p&gt;
+
+&lt;p&gt;$$\theta_{MAP} = \arg\min_{\theta} \left[L(\theta;X) + \frac{\|\theta\|^2}{2\sigma^2}\right]$$&lt;/p&gt;
+
+&lt;p&gt;Setting $\lambda = \frac{1}{2\sigma^2}$, we get:&lt;/p&gt;
+
+&lt;p&gt;$$\theta_{MAP} = \arg\min_{\theta} \left[L(\theta;X) + \lambda\|\theta\|^2\right]$$&lt;/p&gt;
+
+&lt;p&gt;This is precisely the form of L2 regularization, where we minimize a loss function plus the squared L2 norm of the parameters, weighted by a regularization parameter $\lambda$.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;Therefore, L2 regularization in optimization is mathematically equivalent to imposing a zero-mean Gaussian prior on the parameters in a Bayesian framework, with the regularization strength $\lambda$ inversely related to the variance of the Gaussian prior as $\lambda = \frac{1}{2\sigma^2}$.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;posterior-predictive-distribution-integrating-over-uncertainty&quot;&gt;Posterior Predictive Distribution: Integrating Over Uncertainty&lt;/h2&gt;
+
+&lt;p&gt;Perhaps the most powerful aspect of the Bayesian approach is how we make predictions. Rather than using a single set of parameters, we integrate over all possible parameters wieghted by their posterior probability:&lt;/p&gt;
+
+\[p(y^*\|x^*, D) = \int p(y^*\|x^*, \theta)p(\theta\|D)d\theta\]
+
+&lt;p&gt;This integration captures predictive uncertainty arising from both aleatoric uncertainty (inherent noise in the data) and epistemic uncertainty (our limited knowledge about true parameter values).&lt;/p&gt;
+
+&lt;h1 id=&quot;epistemic-vs-aleatoric-uncertainty&quot;&gt;Epistemic vs Aleatoric Uncertainty&lt;/h1&gt;
+
+&lt;p&gt;One of the greatest strengths of Bayesian neural networks is their ability to distinguish between different types of uncertainty:&lt;/p&gt;
+
+&lt;h2 id=&quot;epistemic-uncertainty&quot;&gt;Epistemic Uncertainty&lt;/h2&gt;
+
+&lt;p&gt;Epistemic uncertainty, also called model uncertainty, captures our ignorance about which model parmaeters best explain our observed data. This type of uncertainty:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Is higher in regions with sparse or no training data&lt;/li&gt;
+  &lt;li&gt;Can be reduced by collecting more data&lt;/li&gt;
+  &lt;li&gt;Is captured by the variance in predictions across different possible parameters values&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Mathematically, epistemic uncertainty is reflected in the spread of the posterior distribution $p(\theta|D)$. In regions far from training data, this posterior tends to revert toward the prior, increasing predictive uncertainty.&lt;/p&gt;
+
+&lt;h2 id=&quot;aleatoric-uncertainty&quot;&gt;Aleatoric Uncertainty&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/mountain_uncertainty.jpeg&quot; alt=&quot;Is the world about probability distributions? AI generated&quot; /&gt;
+Aleatoric uncertainty captures inherent noise in the data generation process itself. This type of uncertainty:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Cannot be reduced by collecting more data of the same quality&lt;/li&gt;
+  &lt;li&gt;May vary across the input space (heteroscedastic noise)&lt;/li&gt;
+  &lt;li&gt;Is typically modeled directly in the likelihood function&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For regression problems, a common approach is to have the neural network predict both the mean and variance of the target distribution, allowing it to express higher uncertainty for intrinsically noisy data points.&lt;/p&gt;
+
+&lt;h1 id=&quot;practical-approaches-to-bayesian-neural-networks&quot;&gt;Practical Approaches to Bayesian Neural Networks&lt;/h1&gt;
+
+&lt;p&gt;While the theory of Bayesian neural networks is elegant, exact Bayesian inference is computationally intractable for modern deep learning architectures. This has led to the development of various approximation techniques:&lt;/p&gt;
+
+&lt;h3 id=&quot;markov-chain-monte-carlo-mcmc-methods&quot;&gt;Markov Chain Monte Carlo (MCMC) Methods&lt;/h3&gt;
+
+&lt;p&gt;MCMC methods approximate the posterior by generating samples. For neural networks, Hamiltonian Monte Carlo (HMC) and its variants like the No-U-Turn Sampler (NUTS) have shown promise. These methods:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Provide asymptotically exact samples from the posterior&lt;/li&gt;
+  &lt;li&gt;Scale poorly with parameter dimension and dataset size&lt;/li&gt;
+  &lt;li&gt;Work best for smaller networks or with specialized hardware&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;variational-inference&quot;&gt;Variational Inference&lt;/h2&gt;
+&lt;p&gt;Variational inference approximates the true posterior $p(\theta |D)$ with a simpler distribution $q_{\phi}(\theta)$, parametrized by $\phi$. We then minimize the Kullback-Leibler divergence between these distributions:&lt;/p&gt;
+
+\[\phi^* = \text{arg min}_{\phi} \text{KL}(q_{\phi}(\theta) \| p(\theta |D) )\]
+
+&lt;p&gt;This is equivalent to maximizing the evidence lower bound (ELBO):&lt;/p&gt;
+
+\[\mathcal{L}(\phi) = \mathbb{E}_{q_{\phi}(\theta)}\left[\log p(D|\theta) - \text{KL}(q_{\phi}(\theta) | p(\theta)) \right]\]
+
+&lt;p&gt;Popular approaches include:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Mean-field variational inference&lt;/strong&gt;: Assumes independence between parameters&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Bayes by Backprop&lt;/strong&gt;: Backpropagates through the variational objective&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Flipout&lt;/strong&gt;: Uses correlated weight perturbations for more efficient gradient estimation&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;monte-carlo-dropout&quot;&gt;Monte Carlo Dropout&lt;/h2&gt;
+
+&lt;p&gt;Perhaps the most practical approach is Monte Carlo dropout, which interprets dropout (a common regularization technique) as approximate Bayesian inference. The procedure is remarkably simple:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Train a network with dropout as usual&lt;/li&gt;
+  &lt;li&gt;At test time, keep dropout active&lt;/li&gt;
+  &lt;li&gt;Run multiple forward passes with different dropout masks&lt;/li&gt;
+  &lt;li&gt;Use the mean of these predictions as your predictino and their variance as a measure of uncertainty&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This approach requires minimal changes to existing architectures and training procedures, making it particularly appealing for practitioners.&lt;/p&gt;
+
+&lt;h2 id=&quot;deep-ensembles&quot;&gt;Deep Ensembles&lt;/h2&gt;
+
+&lt;p&gt;While not strictly Bayesian, deep ensembles (training multiple networks with different random initialization) provide a pragmatic alternative that captures many benefits of Bayesian inference:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Train $M$ independent neural networks with different random initializations&lt;/li&gt;
+  &lt;li&gt;Use the mean of their predictions as the ensemble prediction&lt;/li&gt;
+  &lt;li&gt;Use the variance across ensembles members as a measure of uncertainty&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Despite their simplicity, deep ensembles have demonstrated competitive or superior uncertainty quantification compared to more complex Bayesian approaches.&lt;/p&gt;
+
+&lt;h1 id=&quot;applications-and-benefits-of-bayesian-neural-networks&quot;&gt;Applications and Benefits of Bayesian Neural Networks&lt;/h1&gt;
+&lt;p&gt;The Bayesian approach to neural networks offers several advantages that make it particularly valuable in certain domains:&lt;/p&gt;
+
+&lt;h2 id=&quot;active-learning-and-experimental-design&quot;&gt;Active Learning and Experimental Design&lt;/h2&gt;
+&lt;p&gt;In active learning scenarios, an agent must decide which data points to collect labels for. Bayesian neural networks naturally suggest an acquisition strategy: select points with high epistemic uncertainty, where the model’s knowledge is lacking.&lt;/p&gt;
+
+&lt;p&gt;This approach has proven effective in areas like:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Scientific experimentation, where collecting data is expensive&lt;/li&gt;
+  &lt;li&gt;Medical imaging, where expert annotation time is limited&lt;/li&gt;
+  &lt;li&gt;Robotics, where exploration must be balanced with exploitation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;outlier-and-adversarial-example-detection&quot;&gt;Outlier and Adversarial Example Detection&lt;/h2&gt;
+&lt;p&gt;Bayesian neural networks typically assign high uncertainty to inputs that differ significantly from their training distribution. This property can be leveraged to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Detect outliers or anomalous inputs&lt;/li&gt;
+  &lt;li&gt;Identify potential adversarial examples&lt;/li&gt;
+  &lt;li&gt;Flag inputs where the model’s prediction should not be trusted&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;automatic-model-regularization&quot;&gt;Automatic Model Regularization&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/islands_uncertainty.jpeg&quot; alt=&quot;The islands of uncertainty - AI generated&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The Bayesian formulation naturally prevents overfitting through:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Marginalization over parameters, which averages out spurious patterns&lt;/li&gt;
+  &lt;li&gt;Prior distributions that encode useful inductive biases&lt;/li&gt;
+  &lt;li&gt;Automatic complexity control via the “Bayesian Occam’s razor” effect&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;continual-learning&quot;&gt;Continual Learning&lt;/h2&gt;
+&lt;p&gt;In continual learning scenarios, where models must adapt to new tasks without forgetting old ones, Bayesian approaches offer:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Natural incorporation of previous knowledge via the posterior-to-prior mechanism&lt;/li&gt;
+  &lt;li&gt;Resistance to catastrophic forgetting&lt;/li&gt;
+  &lt;li&gt;Principled ways to balance old and new information&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;challenges-and-limitations&quot;&gt;Challenges and Limitations&lt;/h1&gt;
+
+&lt;p&gt;Despite their theoretical appeal, Bayesian neural networks face several practical challenges:&lt;/p&gt;
+
+&lt;h2 id=&quot;computational-complexity&quot;&gt;Computational Complexity&lt;/h2&gt;
+&lt;p&gt;Exact Bayesian inference scales poorly with model size and dataset size. Even with approximaton methods:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Training is typically slower than for standard neural networks&lt;/li&gt;
+  &lt;li&gt;Memory requirements can be significantly higher&lt;/li&gt;
+  &lt;li&gt;Prediciton requires multiple forward passes or sampling operations&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;specification-of-meaningful-priors&quot;&gt;Specification of Meaningful Priors&lt;/h2&gt;
+
+&lt;p&gt;Choosing appropriate priors for complex deep networks is challenging:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Conventional priors may not capture the complex dependencies between parameters&lt;/li&gt;
+  &lt;li&gt;The impact of priors diminishes with large datasets&lt;/li&gt;
+  &lt;li&gt;Layer-wise correlations and architectural inductive biases are difficult to encode&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;scalability-to-modern-architectures&quot;&gt;Scalability to Modern Architectures&lt;/h2&gt;
+
+&lt;p&gt;Applying Bayesian principles to state-of-the-art architectures like transformers or large convolutional networks remains challenging due to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Memory limitations&lt;/li&gt;
+  &lt;li&gt;Convergence issues with variational methods&lt;/li&gt;
+  &lt;li&gt;Difficulties in amortizing inference across model components&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;evaluation-metrics&quot;&gt;Evaluation Metrics&lt;/h2&gt;
+
+&lt;p&gt;Evaluating Bayesian neural networks requires looking beyond accuracy to assess calibration and uncertainty quantification:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Proper scoring rules like log-likelihood or Brier score&lt;/li&gt;
+  &lt;li&gt;Calibration metrics like expected calibration error&lt;/li&gt;
+  &lt;li&gt;Selective prediction evaluations like retention curves&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;recent-advances-and-future-directions&quot;&gt;Recent Advances and Future Directions&lt;/h1&gt;
+
+&lt;p&gt;The field of Bayesian deep learning continues to evolve rapidly. Recent advances include:&lt;/p&gt;
+
+&lt;h2 id=&quot;implicit-variational-inference&quot;&gt;Implicit Variational Inference&lt;/h2&gt;
+
+&lt;p&gt;Newer methods avoid explicitly specifying the form of the approximate posterior, instead learning it implicitly through generative models or normalizing flows.&lt;/p&gt;
+
+&lt;h2 id=&quot;stochastic-weight-averaging-swa-and-swa-gaussian-swag&quot;&gt;Stochastic Weight Averaging (SWA) and SWA-Gaussian (SWAG)&lt;/h2&gt;
+
+&lt;p&gt;These methods approximate the posterior by fitting a Gaussian distribution to points along the optimization trajectory, offering a simple yet effective approach to uncertainty estimation.&lt;/p&gt;
+
+&lt;h2 id=&quot;function-space-inference&quot;&gt;Function-Space Inference&lt;/h2&gt;
+
+&lt;p&gt;Rather than reasoning about the posterior over weights, some approaches directly target the posterior over functions, which can be more interpretable and effective for uncertainty quantification.&lt;/p&gt;
+
+&lt;h2 id=&quot;neural-network-architecture-search&quot;&gt;Neural Network Architecture Search&lt;/h2&gt;
+
+&lt;p&gt;Combining Bayesian principles with neural architecture search allows for jointly optimizing model structure and parameter uncertainty.&lt;/p&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Bayesian neural networks offer a principled framework for reasoning about uncertainty in deep learning models. By viewing neural networks through the lens of Bayesian probability theory, we gain powerful tools for understanding model behavior, preventing overfitting, and making robust predictions in the face of limited data.&lt;/p&gt;
+
+&lt;p&gt;While practical challenges remain, especially around scalability and computational efficiency, the field is advancing rapidly. The growing recognition of uncertainty quantification’s importance in deploying AI systems safely and responsibly suggests that Bayesian approaches will continue to play a crucial role in the future of deep learning.&lt;/p&gt;
+
+&lt;p&gt;Whether implemented through variational inference, Monte Carlo dropout, or ensemble methods, the core principles of Bayesian statistics provide valuable guidance for developing more robust, trustworthy, and interpretable neural networks. As computational techniques continue to improve, we can expect Bayesian methods to become increasingly practical for mainstream deep learning applications.&lt;/p&gt;
+
+&lt;div class=&quot;references&quot;&gt;
+    &lt;h2&gt;References&lt;/h2&gt;
+    &lt;ol&gt;
+        &lt;li&gt;
+            &lt;span class=&quot;reference-title&quot;&gt;Weight Uncertainty in Neural Networks&lt;/span&gt;
+            &lt;span class=&quot;reference-authors&quot;&gt;Blundell, C., Cornebise, J., Kavukcuoglu, K., &amp;amp; Wierstra, D.&lt;/span&gt;
+            &lt;span class=&quot;reference-details&quot;&gt;International Conference on Machine Learning (2015).&lt;/span&gt;
+            &lt;a href=&quot;https://arxiv.org/pdf/1505.05424&quot; class=&quot;reference-doi&quot;&gt;arXiv:1505.05424v2&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;span class=&quot;reference-title&quot;&gt;Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning.&lt;/span&gt;
+            &lt;span class=&quot;reference-authors&quot;&gt;Gal, Y., &amp;amp; Ghahramani, Z.&lt;/span&gt;
+            &lt;span class=&quot;reference-details&quot;&gt;International Conference on Machine Learning (2016)&lt;/span&gt;
+            &lt;a href=&quot;https://arxiv.org/pdf/1506.02142&quot; class=&quot;reference-doi&quot;&gt;arXiv:1506.02142v6&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;span class=&quot;reference-title&quot;&gt;Variational Dropout and the Local Reparameterization Trick&lt;/span&gt;
+            &lt;span class=&quot;reference-authors&quot;&gt;Kingma, D. P., Salimans, T., &amp;amp; Welling, M. &lt;/span&gt;
+            &lt;span class=&quot;reference-details&quot;&gt;Advances in Neural Information Processing Systems. (2015)&lt;/span&gt;
+            &lt;a href=&quot;https://arxiv.org/pdf/1506.02557&quot; class=&quot;reference-doi&quot;&gt;arXiv:1506.02557v2&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;span class=&quot;reference-title&quot;&gt;Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles&lt;/span&gt;
+            &lt;span class=&quot;reference-authors&quot;&gt;Lakshminarayanan, B., Pritzel, A., &amp;amp; Blundell, C.&lt;/span&gt;
+            &lt;span class=&quot;reference-details&quot;&gt;Advances in Neural Information Processing Systems (2017).&lt;/span&gt;
+            &lt;a href=&quot;https://arxiv.org/pdf/1612.01474&quot; class=&quot;reference-doi&quot;&gt;arXiv:1612.01474v3&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;span class=&quot;reference-title&quot;&gt;A Practical Bayesian Framework for Backpropagation Networks&lt;/span&gt;
+            &lt;span class=&quot;reference-authors&quot;&gt;MacKay, D. J. &lt;/span&gt;
+            &lt;span class=&quot;reference-details&quot;&gt;Neural Computation (1992)&lt;/span&gt;
+            &lt;a href=&quot;https://core.ac.uk/download/pdf/216127203.pdf&quot; class=&quot;reference-doi&quot;&gt;4,448-472&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;span class=&quot;reference-title&quot;&gt;Bayesian Learning for Neural Networks&lt;/span&gt;
+            &lt;span class=&quot;reference-authors&quot;&gt;Neal, R. M.&lt;/span&gt;
+            &lt;span class=&quot;reference-details&quot;&gt;Springer Science &amp;amp; Business Media.&lt;/span&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;span class=&quot;reference-title&quot;&gt;Practical Variational Inference for Neural Networks.&lt;/span&gt;
+            &lt;span class=&quot;reference-authors&quot;&gt;Graves, A.&lt;/span&gt;
+            &lt;span class=&quot;reference-details&quot;&gt;Advances in Neural Information Processing Systems.(2011)&lt;/span&gt;
+            &lt;a href=&quot;https://papers.nips.cc/paper_files/paper/2011/file/7eb3c8be3d411e8ebfab08eba5f49632-Paper.pdf&quot; class=&quot;reference-doi&quot;&gt;NIPS&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;span class=&quot;reference-title&quot;&gt;What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?&lt;/span&gt;
+            &lt;span class=&quot;reference-authors&quot;&gt;Kendall, A., &amp;amp; Gal, Y.&lt;/span&gt;
+            &lt;span class=&quot;reference-details&quot;&gt;Advances in Neural Information Processing Systems (2017)&lt;/span&gt;
+            &lt;a href=&quot;https://arxiv.org/pdf/1703.04977&quot; class=&quot;reference-doi&quot;&gt;arXiv:1703.04977v2&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;span class=&quot;reference-title&quot;&gt;Bayesian Deep Learning and a Probabilistic Perspective of Generalization&lt;/span&gt;
+            &lt;span class=&quot;reference-authors&quot;&gt;Wilson, A. G., &amp;amp; Izmailov, P.&lt;/span&gt;
+            &lt;span class=&quot;reference-details&quot;&gt;Advances in Neural Information Processing Systems. (2020)&lt;/span&gt;
+            &lt;a href=&quot;https://arxiv.org/pdf/2002.08791&quot; class=&quot;reference-doi&quot;&gt;arXiv:2002.08791v4&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;span class=&quot;reference-title&quot;&gt;How Good is the Bayes Posterior in Deep Neural Networks Really?&lt;/span&gt;
+            &lt;span class=&quot;reference-authors&quot;&gt;Wenzel, F., Roth, K., Veeling, B. S., Świątkowski, J., Tran, L., Mandt, S., ... &amp;amp; Nowozin, S.&lt;/span&gt;
+            &lt;span class=&quot;reference-details&quot;&gt;International Conference on Machine Learning. (2020)&lt;/span&gt;
+            &lt;a href=&quot;https://arxiv.org/pdf/2002.02405&quot; class=&quot;reference-doi&quot;&gt;arXiv:2002.02405v2&lt;/a&gt;
+        &lt;/li&gt;        
+    &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Wed, 16 Apr 2025 00:00:00 +0200</pubDate>
+        <link>http://localhost:4000/bayesian-neural-net/</link>
+        <guid isPermaLink="true">http://localhost:4000/bayesian-neural-net/</guid>
+        
+        <category>bayesian neural networks</category>
+        
+        <category>uncertainty quantification</category>
+        
+        <category>probabilistic modeling</category>
+        
+        <category>variational inference</category>
+        
+        <category>MCMC</category>
+        
+        <category>deep ensembles</category>
+        
+        <category>epistemic uncertainty</category>
+        
+        <category>aleatoric uncertainty</category>
+        
+        <category>TensorFlow Probability</category>
+        
+        
+        <category>machine learning</category>
+        
+        <category>deep learning</category>
+        
+        <category>bayesian statistics</category>
+        
+      </item>
+    
+      <item>
+        <title>Trend Following Strategies: Hidden Protection for Long-Term Investors</title>
+        <description>&lt;p&gt;Last week I came across a fascinating research paper, “Tail Protection for Long Investors: Trend Convexity at Work” by researchers from Capital Fund Management. As someone who’s weathered multiple market cycles, I’ve always been intrigued by investment strategies that can protect portfolios during turbulent times. The 2008 financial crisis and the March 2020 COVID crash demonstrated just how quickly markets can unravel, leaving many investors scrambling for protection.&lt;/p&gt;
 
 &lt;p&gt;Most long-term investors face a common dilemma: how to maintain exposure to market growth while protecting against significant downturns. Traditional approaches like diversification often fail during crises when correlations spike. Buying put options works but comes at a steep cost that erodes returns over time. This is where trend following strategies reveal their hidden superpower—&lt;strong&gt;convexity&lt;/strong&gt;.&lt;/p&gt;
 

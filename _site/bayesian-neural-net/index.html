@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="icon" href="/assets/images/logo.png">
+
+<title>Bayesian Perspectives on Neural Networks: Uncertainty, Regularization, and Beyond | LabFab</title>
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bayesian Perspectives on Neural Networks: Uncertainty, Regularization, and Beyond | LabFab</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Bayesian Perspectives on Neural Networks: Uncertainty, Regularization, and Beyond" />
+<meta name="author" content="stacknets" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Explore how Bayesian perspectives on neural networks provide principled uncertainty quantification, natural regularization, and enhanced model robustness for critical applications." />
+<meta property="og:description" content="Explore how Bayesian perspectives on neural networks provide principled uncertainty quantification, natural regularization, and enhanced model robustness for critical applications." />
+<link rel="canonical" href="http://localhost:4000/bayesian-neural-net/" />
+<meta property="og:url" content="http://localhost:4000/bayesian-neural-net/" />
+<meta property="og:site_name" content="LabFab" />
+<meta property="og:image" content="http://localhost:4000/assets/images/mountain_uncertainty.jpeg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-04-16T00:00:00+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://localhost:4000/assets/images/mountain_uncertainty.jpeg" />
+<meta property="twitter:title" content="Bayesian Perspectives on Neural Networks: Uncertainty, Regularization, and Beyond" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"stacknets"},"dateModified":"2025-04-16T00:00:00+02:00","datePublished":"2025-04-16T00:00:00+02:00","description":"Explore how Bayesian perspectives on neural networks provide principled uncertainty quantification, natural regularization, and enhanced model robustness for critical applications.","headline":"Bayesian Perspectives on Neural Networks: Uncertainty, Regularization, and Beyond","image":"http://localhost:4000/assets/images/mountain_uncertainty.jpeg","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/bayesian-neural-net/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/images/logo.png"},"name":"stacknets"},"url":"http://localhost:4000/bayesian-neural-net/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+<link href="/assets/css/screen.css" rel="stylesheet">
+
+<link href="/assets/css/main.css" rel="stylesheet">
+
+<script src="/assets/js/jquery.min.js"></script>
+
+<!-- MathJax Configuration -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+
+
+
+<body class="layout-post">
+	<!-- defer loading of font and font awesome -->
+	<noscript id="deferred-styles">
+		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	</noscript>
+
+
+<!-- Begin Menu Navigation
+================================================== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+    <div class="container pr-0">
+
+    <!-- Begin Logo -->
+    <a class="navbar-brand" href="/">
+    <img src="/assets/images/logo.png" alt="LabFab">
+    </a>
+    <!-- End Logo -->
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMediumish">
+
+        <!-- Begin Menu -->
+
+            <ul class="navbar-nav ml-auto">
+
+                
+                <li class="nav-item">
+                
+                <a class="nav-link" href="/index.html">Blog</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+                </li>
+
+                <!-- <li class="nav-item">
+                <a target="_blank" class="nav-link" href="https://bootstrapstarter.com/bootstrap-templates/template-mediumish-bootstrap-jekyll/"> Docs</a>
+                </li> -->
+
+
+                <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+            </ul>
+
+        <!-- End Menu -->
+
+    </div>
+
+    </div>
+</nav>
+<!-- End Navigation
+================================================== -->
+
+<div class="site-content">
+
+<div class="container">
+
+<!-- Site Title
+================================================== -->
+<div class="mainheading">
+    <h1 class="sitetitle">LabFab</h1>
+    <p class="lead">
+        Exploring math, physics, machine learning, and finance insights.
+    </p>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="main-content">
+    <!-- Begin Article
+================================================== -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<div class="container">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-md-2 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=Bayesian Perspectives on Neural Networks: Uncertainty, Regularization, and Beyond&url=http://localhost:4000/bayesian-neural-net/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=http://localhost:4000/bayesian-neural-net/" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/bayesian-neural-net/" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-9 flex-first flex-md-unordered">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb" src="/assets/images/avatar.png" alt="StackNets">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="https://labfab.io">StackNets</a><a target="_blank" href="https://twitter.com/capelfabio" class="btn follow">Follow</a>
+                        <span class="author-description">I'm interested in machine learning, trading and running. I'm currently learning how to make the best focaccia possible and looking to collaborate on any project that makes me grow (though perhaps not in that order).</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">Bayesian Perspectives on Neural Networks: Uncertainty, Regularization, and Beyond</h1>
+
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+
+            
+            <img class="featured-image img-fluid" src="/assets/images/mountain_uncertainty.jpeg" alt="Bayesian Perspectives on Neural Networks: Uncertainty, Regularization, and Beyond">
+            
+
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <!-- Toc if any -->
+                
+                    
+                    <div class="toc mt-4 mb-4 lead">
+                        <h3 class="font-weight-bold">Summary</h3>
+                        <ul>
+  <li><a href="#from-classical-to-bayesian-neural-networks">From Classical to Bayesian Neural Networks</a>
+    <ul>
+      <li><a href="#the-classical-neural-network-framework">The Classical Neural Network Framework</a></li>
+    </ul>
+  </li>
+  <li><a href="#the-bayesian-paradigm-shift">The Bayesian Paradigm Shift</a></li>
+  <li><a href="#mathematical-foundations-of-bayesian-neural-networks">Mathematical Foundations of Bayesian Neural Networks</a>
+    <ul>
+      <li><a href="#bayes-theorem-the-core-engine">Bayes’ Theorem: The Core Engine</a></li>
+      <li><a href="#prior-distributions-encoding-our-initial-beliefs">Prior Distributions: Encoding Our Initial Beliefs</a>
+      - {:.} <a href="#">Equivalence between Gaussian prior &amp; L2 regularization</a></li>
+      <li><a href="#posterior-predictive-distribution-integrating-over-uncertainty">Posterior Predictive Distribution: Integrating Over Uncertainty</a></li>
+    </ul>
+  </li>
+  <li><a href="#epistemic-vs-aleatoric-uncertainty">Epistemic vs Aleatoric Uncertainty</a>
+    <ul>
+      <li><a href="#epistemic-uncertainty">Epistemic Uncertainty</a></li>
+      <li><a href="#aleatoric-uncertainty">Aleatoric Uncertainty</a></li>
+    </ul>
+  </li>
+  <li><a href="#practical-approaches-to-bayesian-neural-networks">Practical Approaches to Bayesian Neural Networks</a>
+      - {:.} <a href="#markov-chain-monte-carlo-mcmc-methods">Markov Chain Monte Carlo (MCMC) Methods</a>
+    <ul>
+      <li><a href="#variational-inference">Variational Inference</a></li>
+      <li><a href="#monte-carlo-dropout">Monte Carlo Dropout</a></li>
+      <li><a href="#deep-ensembles">Deep Ensembles</a></li>
+    </ul>
+  </li>
+  <li><a href="#applications-and-benefits-of-bayesian-neural-networks">Applications and Benefits of Bayesian Neural Networks</a>
+    <ul>
+      <li><a href="#active-learning-and-experimental-design">Active Learning and Experimental Design</a></li>
+      <li><a href="#outlier-and-adversarial-example-detection">Outlier and Adversarial Example Detection</a></li>
+      <li><a href="#automatic-model-regularization">Automatic Model Regularization</a></li>
+      <li><a href="#continual-learning">Continual Learning</a></li>
+    </ul>
+  </li>
+  <li><a href="#challenges-and-limitations">Challenges and Limitations</a>
+    <ul>
+      <li><a href="#computational-complexity">Computational Complexity</a></li>
+      <li><a href="#specification-of-meaningful-priors">Specification of Meaningful Priors</a></li>
+      <li><a href="#scalability-to-modern-architectures">Scalability to Modern Architectures</a></li>
+      <li><a href="#evaluation-metrics">Evaluation Metrics</a></li>
+    </ul>
+  </li>
+  <li><a href="#recent-advances-and-future-directions">Recent Advances and Future Directions</a>
+    <ul>
+      <li><a href="#implicit-variational-inference">Implicit Variational Inference</a></li>
+      <li><a href="#stochastic-weight-averaging-swa-and-swa-gaussian-swag">Stochastic Weight Averaging (SWA) and SWA-Gaussian (SWAG)</a></li>
+      <li><a href="#function-space-inference">Function-Space Inference</a></li>
+      <li><a href="#neural-network-architecture-search">Neural Network Architecture Search</a></li>
+    </ul>
+  </li>
+  <li><a href="#conclusion">Conclusion</a>
+    <ul>
+      <li><a href="#">References</a></li>
+    </ul>
+  </li>
+</ul>
+                    </div>
+                
+                <!-- End Toc -->
+                <p>The incredible success of deep learning in recent years has transformed industries, 
+scientific research, and everyday technologies. From computer vision to natural language processing, deep neural networks have demonstrated remarkable capabilities. However, these powerful models often lack a crucial feature: a principled approach to quantifying uncertainty in their predictions.</p>
+
+<p>Traditional neural networks typically output single point estimates, confidently predicting outcomes without expressing doubt. This can lead to overconfident decisions, particularly in high-stakes domaines like autonomous driving, medical diagnosis, or financial forecasting.</p>
+
+<p>Enter Bayesian neural networks (BNNs), which offer an elegant mathematical framework for addressing these limitations. By viewing neural networks through the lens of Bayesian probability theory, we gain tools for representing uncertainty, preventing overfitting, and understanding model behavior in a more principled way.</p>
+
+<p>In this deep dive, we’ll explore the theoretical foundations of Bayesian neural networks, examine their mathematical formuation, discuss practical implementation approaches, and consider their advantages and challenges. Whether you’re a machine learning practictioner, a statistics enthusiast, or a curious observer of AI developments, this exploration will give you a richer understanding of how probability theory can enhance neural network architectures.</p>
+
+<h1 id="from-classical-to-bayesian-neural-networks">From Classical to Bayesian Neural Networks</h1>
+<h2 id="the-classical-neural-network-framework">The Classical Neural Network Framework</h2>
+
+<p>Before delving into Bayesian approaches, let’s briefly review the classical neural network framework. A standard neural network can be represented as a function \(f_\theta(x)\) that maps inputs \(x\) to outputs \(y\) through a series of transformations parameterized by weights and biases collectively denoted as \(\theta\).</p>
+
+<p>The training process typically involves:</p>
+
+<ol>
+  <li>
+    <p>Defining a loss function \(L(y, f_\theta(x))\) that measures the discrepancy between predicted outputs and ground truth</p>
+  </li>
+  <li>
+    <p>Finding the optimal parameters \(\theta\) that minimize this loss: \(\theta = \arg\min_\theta \sum_{i=1}^{N} L(y_i, f_\theta(x_i))\)</p>
+  </li>
+  <li>
+    <p>Using these fixed parameters for all future predictions</p>
+  </li>
+</ol>
+
+<p>This approach, known as maximum likelihood estimation (MLE) or its regularized variant maximum a posteriori (MAP) estimation, yeilds a single set of “best” parameters. While effective in many cases, this point estimate approach discards valuable information about parameter uncertainty.</p>
+
+<h1 id="the-bayesian-paradigm-shift">The Bayesian Paradigm Shift</h1>
+
+<p>The Bayesian approach fundamentally changes our perspective. Instead of searching for a single “best” set of parameters, we aim to capture the full distribution of plausible parameters given our observed data.</p>
+
+<p>Specifically, Bayesian neural networks:</p>
+
+<ol>
+  <li>
+    <p>Start with a prior distribution over parameters \(p(\theta(x))\), representing our beliefs before seeing any data</p>
+  </li>
+  <li>
+    <p>Update this to a posterior distribution \(p(\theta(x) \| D)\) after observing dataset \(D={(x_1,y_1), (x_2, y_2),..., (x_N, y_N)}\)</p>
+  </li>
+  <li>
+    <p>Make predictions by integrating over all possible parameter configurations, weighted by their posterior probability</p>
+  </li>
+</ol>
+
+<p>This shift from point estimates to probability distributions over parameters is the essence of the Bayesian perspective.</p>
+
+<h1 id="mathematical-foundations-of-bayesian-neural-networks">Mathematical Foundations of Bayesian Neural Networks</h1>
+<h2 id="bayes-theorem-the-core-engine">Bayes’ Theorem: The Core Engine</h2>
+
+<p>At the heart of Bayesian neural networks lies Bayes’ theorem:</p>
+
+\[p(\theta \| D) = \frac{p(D\|\theta)p(\theta)}{p(D)}\]
+
+<p>Breaking this down:</p>
+
+<ul>
+  <li>\(p(\theta \|D)\) is the posterior distribution over parameters given our observed data</li>
+  <li>\(p(D \| \theta)\) is the likelihood of observing our data given specific parameter values</li>
+  <li>$p(\theta)$ is our prior belief about parameter values before seeing any data</li>
+  <li>\(p(D)\) is the marginal likelihood or “evidence” (a normalizing constant)</li>
+</ul>
+
+<p>For neural networks, the likelihood function typically reflects our assumptions about the data generation process. For regression problems, we might assume:</p>
+
+\[p(y \| x, \theta) = \mathcal{N}(y \|f_{\theta}(x), \sigma^2)\]
+
+<p>Where \(\mathcal{N}\) denotes a Gaussian distribution with mean \(f_{\theta(x)}\) (the network’s prediction) and variance $\sigma^2$ (representing observation noise).</p>
+
+<p>For classification problems with $C$ classes, we might use:</p>
+
+\[p(y\| x, \theta) = \text{Categorical}(y | f_{\theta}(x), \sigma^2)\]
+
+<h2 id="prior-distributions-encoding-our-initial-beliefs">Prior Distributions: Encoding Our Initial Beliefs</h2>
+<p>The choice of priod distribution $p(\theta)$ is crucial in Bayesian modeling, as it encodes our initial beliefs about parameter values before seeing any data. Common priors for neural network weights include:</p>
+
+<ol>
+  <li>
+    <p><strong>Gaussian priors</strong>: $\theta \sim \mathcal{N}(0, \sigma^2_p)$, which encourage weights to remain small</p>
+  </li>
+  <li>
+    <p><strong>Laplace priors</strong>: $\theta \sim \text{Laplace}(0, b)$, which encourage sparsity (many weights close to zero)</p>
+  </li>
+  <li>
+    <p>Hierarchical priors: Where hyperparameters of the prior are themselves given distributions</p>
+  </li>
+</ol>
+
+<p>The connection between priors and regularization is profound. In fact, many common regularization techniques in deep learning can be interpreted as imposing specific Bayesian priors:</p>
+
+<ul>
+  <li>L2 regularization (weight decay) corresponds to a Gaussian prior on weights</li>
+  <li>L1 regularization corresponds to a Laplace prior</li>
+  <li>Dropout can be interpreted as approximate Bayesian inference with specific prior structures</li>
+</ul>
+
+<div class="side-note proof">
+    <h4>Equivalence between Gaussian prior &amp; L2 regularization</h4>
+    <p>Let us establish the equivalence between L2 regularization and imposing a Gaussian prior in a formal manner.</p>
+<p><strong>Bayesian Framework</strong>:</p>
+<p>In Bayesian parameter estimation, we seek the posterior distribution of parameters $\theta$ given data $X$:</p>
+
+<p>$$P(\theta|X) = \frac{P(X|\theta)P(\theta)}{P(X)}$$</p>
+
+<p>Since $P(X)$ is constant with respect to $\theta$, we have:</p>
+
+<p>$$P(\theta|X) \propto P(X|\theta)P(\theta)$$</p>
+
+<p><strong>Maximum a Posteriori (MAP) Estimation</strong>:</p>
+<p>MAP estimation finds parameters that maximize the posterior:</p>
+
+<p>$$\theta_{MAP} = \arg\max_{\theta} P(\theta|X) = \arg\max_{\theta} P(X|\theta)P(\theta)$$</p>
+
+<p>Taking the logarithm (which preserves the argmax):</p>
+
+<p>$$\theta_{MAP} = \arg\max_{\theta} [\log P(X|\theta) + \log P(\theta)]$$</p>
+
+<p><strong>Gaussian Prior</strong>:</p>
+<p>Now we introduce a zero-mean Gaussian prior on the parameters:</p>
+
+<p>$$P(\theta) = \frac{1}{(2\pi\sigma^2)^{d/2}} \exp\left(-\frac{\|\theta\|^2}{2\sigma^2}\right)$$</p>
+
+<p>where $d$ is the dimensionality of $\theta$.</p>
+
+<p>Taking the logarithm:</p>
+
+<p>$$\log P(\theta) = -\frac{d}{2}\log(2\pi\sigma^2) - \frac{\|\theta\|^2}{2\sigma^2}$$</p>
+
+<p><strong>MAP Estimation with Gaussian Prior</strong>:</p>
+<p>Substituting the log-prior into our MAP objective:</p>
+
+<p>$$\theta_{MAP} = \arg\max_{\theta} \left[\log P(X|\theta) - \frac{d}{2}\log(2\pi\sigma^2) - \frac{\|\theta\|^2}{2\sigma^2}\right]$$</p>
+
+<p>Since the term $\frac{d}{2}\log(2\pi\sigma^2)$ is constant with respect to $\theta$, we can simplify:</p>
+
+<p>$$\theta_{MAP} = \arg\max_{\theta} \left[\log P(X|\theta) - \frac{\|\theta\|^2}{2\sigma^2}\right]$$</p>
+
+<p>Equivalently, by negating the objective:</p>
+
+<p>$$\theta_{MAP} = \arg\min_{\theta} \left[-\log P(X|\theta) + \frac{\|\theta\|^2}{2\sigma^2}\right]$$</p>
+
+<p><strong>Connection to L2 Regularization</strong>:</p>
+<p>Define the negative log-likelihood as our loss function $L(\theta;X) = -\log P(X|\theta)$. Then:</p>
+
+<p>$$\theta_{MAP} = \arg\min_{\theta} \left[L(\theta;X) + \frac{\|\theta\|^2}{2\sigma^2}\right]$$</p>
+
+<p>Setting $\lambda = \frac{1}{2\sigma^2}$, we get:</p>
+
+<p>$$\theta_{MAP} = \arg\min_{\theta} \left[L(\theta;X) + \lambda\|\theta\|^2\right]$$</p>
+
+<p>This is precisely the form of L2 regularization, where we minimize a loss function plus the squared L2 norm of the parameters, weighted by a regularization parameter $\lambda$.</p>
+
+<p><strong>Conclusion</strong>:</p>
+<p>Therefore, L2 regularization in optimization is mathematically equivalent to imposing a zero-mean Gaussian prior on the parameters in a Bayesian framework, with the regularization strength $\lambda$ inversely related to the variance of the Gaussian prior as $\lambda = \frac{1}{2\sigma^2}$.</p>
+</div>
+
+<h2 id="posterior-predictive-distribution-integrating-over-uncertainty">Posterior Predictive Distribution: Integrating Over Uncertainty</h2>
+
+<p>Perhaps the most powerful aspect of the Bayesian approach is how we make predictions. Rather than using a single set of parameters, we integrate over all possible parameters wieghted by their posterior probability:</p>
+
+\[p(y^*\|x^*, D) = \int p(y^*\|x^*, \theta)p(\theta\|D)d\theta\]
+
+<p>This integration captures predictive uncertainty arising from both aleatoric uncertainty (inherent noise in the data) and epistemic uncertainty (our limited knowledge about true parameter values).</p>
+
+<h1 id="epistemic-vs-aleatoric-uncertainty">Epistemic vs Aleatoric Uncertainty</h1>
+
+<p>One of the greatest strengths of Bayesian neural networks is their ability to distinguish between different types of uncertainty:</p>
+
+<h2 id="epistemic-uncertainty">Epistemic Uncertainty</h2>
+
+<p>Epistemic uncertainty, also called model uncertainty, captures our ignorance about which model parmaeters best explain our observed data. This type of uncertainty:</p>
+
+<ul>
+  <li>Is higher in regions with sparse or no training data</li>
+  <li>Can be reduced by collecting more data</li>
+  <li>Is captured by the variance in predictions across different possible parameters values</li>
+</ul>
+
+<p>Mathematically, epistemic uncertainty is reflected in the spread of the posterior distribution $p(\theta|D)$. In regions far from training data, this posterior tends to revert toward the prior, increasing predictive uncertainty.</p>
+
+<h2 id="aleatoric-uncertainty">Aleatoric Uncertainty</h2>
+
+<p><img src="/assets/images/mountain_uncertainty.jpeg" alt="Is the world about probability distributions? AI generated" />
+Aleatoric uncertainty captures inherent noise in the data generation process itself. This type of uncertainty:</p>
+
+<ul>
+  <li>Cannot be reduced by collecting more data of the same quality</li>
+  <li>May vary across the input space (heteroscedastic noise)</li>
+  <li>Is typically modeled directly in the likelihood function</li>
+</ul>
+
+<p>For regression problems, a common approach is to have the neural network predict both the mean and variance of the target distribution, allowing it to express higher uncertainty for intrinsically noisy data points.</p>
+
+<h1 id="practical-approaches-to-bayesian-neural-networks">Practical Approaches to Bayesian Neural Networks</h1>
+
+<p>While the theory of Bayesian neural networks is elegant, exact Bayesian inference is computationally intractable for modern deep learning architectures. This has led to the development of various approximation techniques:</p>
+
+<h3 id="markov-chain-monte-carlo-mcmc-methods">Markov Chain Monte Carlo (MCMC) Methods</h3>
+
+<p>MCMC methods approximate the posterior by generating samples. For neural networks, Hamiltonian Monte Carlo (HMC) and its variants like the No-U-Turn Sampler (NUTS) have shown promise. These methods:</p>
+
+<ul>
+  <li>Provide asymptotically exact samples from the posterior</li>
+  <li>Scale poorly with parameter dimension and dataset size</li>
+  <li>Work best for smaller networks or with specialized hardware</li>
+</ul>
+
+<h2 id="variational-inference">Variational Inference</h2>
+<p>Variational inference approximates the true posterior $p(\theta |D)$ with a simpler distribution $q_{\phi}(\theta)$, parametrized by $\phi$. We then minimize the Kullback-Leibler divergence between these distributions:</p>
+
+\[\phi^* = \text{arg min}_{\phi} \text{KL}(q_{\phi}(\theta) \| p(\theta |D) )\]
+
+<p>This is equivalent to maximizing the evidence lower bound (ELBO):</p>
+
+\[\mathcal{L}(\phi) = \mathbb{E}_{q_{\phi}(\theta)}\left[\log p(D|\theta) - \text{KL}(q_{\phi}(\theta) | p(\theta)) \right]\]
+
+<p>Popular approaches include:</p>
+
+<ol>
+  <li><strong>Mean-field variational inference</strong>: Assumes independence between parameters</li>
+  <li><strong>Bayes by Backprop</strong>: Backpropagates through the variational objective</li>
+  <li><strong>Flipout</strong>: Uses correlated weight perturbations for more efficient gradient estimation</li>
+</ol>
+
+<h2 id="monte-carlo-dropout">Monte Carlo Dropout</h2>
+
+<p>Perhaps the most practical approach is Monte Carlo dropout, which interprets dropout (a common regularization technique) as approximate Bayesian inference. The procedure is remarkably simple:</p>
+
+<ol>
+  <li>Train a network with dropout as usual</li>
+  <li>At test time, keep dropout active</li>
+  <li>Run multiple forward passes with different dropout masks</li>
+  <li>Use the mean of these predictions as your predictino and their variance as a measure of uncertainty</li>
+</ol>
+
+<p>This approach requires minimal changes to existing architectures and training procedures, making it particularly appealing for practitioners.</p>
+
+<h2 id="deep-ensembles">Deep Ensembles</h2>
+
+<p>While not strictly Bayesian, deep ensembles (training multiple networks with different random initialization) provide a pragmatic alternative that captures many benefits of Bayesian inference:</p>
+
+<ol>
+  <li>Train $M$ independent neural networks with different random initializations</li>
+  <li>Use the mean of their predictions as the ensemble prediction</li>
+  <li>Use the variance across ensembles members as a measure of uncertainty</li>
+</ol>
+
+<p>Despite their simplicity, deep ensembles have demonstrated competitive or superior uncertainty quantification compared to more complex Bayesian approaches.</p>
+
+<h1 id="applications-and-benefits-of-bayesian-neural-networks">Applications and Benefits of Bayesian Neural Networks</h1>
+<p>The Bayesian approach to neural networks offers several advantages that make it particularly valuable in certain domains:</p>
+
+<h2 id="active-learning-and-experimental-design">Active Learning and Experimental Design</h2>
+<p>In active learning scenarios, an agent must decide which data points to collect labels for. Bayesian neural networks naturally suggest an acquisition strategy: select points with high epistemic uncertainty, where the model’s knowledge is lacking.</p>
+
+<p>This approach has proven effective in areas like:</p>
+
+<ul>
+  <li>Scientific experimentation, where collecting data is expensive</li>
+  <li>Medical imaging, where expert annotation time is limited</li>
+  <li>Robotics, where exploration must be balanced with exploitation</li>
+</ul>
+
+<h2 id="outlier-and-adversarial-example-detection">Outlier and Adversarial Example Detection</h2>
+<p>Bayesian neural networks typically assign high uncertainty to inputs that differ significantly from their training distribution. This property can be leveraged to:</p>
+
+<ul>
+  <li>Detect outliers or anomalous inputs</li>
+  <li>Identify potential adversarial examples</li>
+  <li>Flag inputs where the model’s prediction should not be trusted</li>
+</ul>
+
+<h2 id="automatic-model-regularization">Automatic Model Regularization</h2>
+
+<p><img src="/assets/images/islands_uncertainty.jpeg" alt="The islands of uncertainty - AI generated" /></p>
+
+<p>The Bayesian formulation naturally prevents overfitting through:</p>
+
+<ul>
+  <li>Marginalization over parameters, which averages out spurious patterns</li>
+  <li>Prior distributions that encode useful inductive biases</li>
+  <li>Automatic complexity control via the “Bayesian Occam’s razor” effect</li>
+</ul>
+
+<h2 id="continual-learning">Continual Learning</h2>
+<p>In continual learning scenarios, where models must adapt to new tasks without forgetting old ones, Bayesian approaches offer:</p>
+
+<ul>
+  <li>Natural incorporation of previous knowledge via the posterior-to-prior mechanism</li>
+  <li>Resistance to catastrophic forgetting</li>
+  <li>Principled ways to balance old and new information</li>
+</ul>
+
+<h1 id="challenges-and-limitations">Challenges and Limitations</h1>
+
+<p>Despite their theoretical appeal, Bayesian neural networks face several practical challenges:</p>
+
+<h2 id="computational-complexity">Computational Complexity</h2>
+<p>Exact Bayesian inference scales poorly with model size and dataset size. Even with approximaton methods:</p>
+
+<ul>
+  <li>Training is typically slower than for standard neural networks</li>
+  <li>Memory requirements can be significantly higher</li>
+  <li>Prediciton requires multiple forward passes or sampling operations</li>
+</ul>
+
+<h2 id="specification-of-meaningful-priors">Specification of Meaningful Priors</h2>
+
+<p>Choosing appropriate priors for complex deep networks is challenging:</p>
+
+<ul>
+  <li>Conventional priors may not capture the complex dependencies between parameters</li>
+  <li>The impact of priors diminishes with large datasets</li>
+  <li>Layer-wise correlations and architectural inductive biases are difficult to encode</li>
+</ul>
+
+<h2 id="scalability-to-modern-architectures">Scalability to Modern Architectures</h2>
+
+<p>Applying Bayesian principles to state-of-the-art architectures like transformers or large convolutional networks remains challenging due to:</p>
+
+<ul>
+  <li>Memory limitations</li>
+  <li>Convergence issues with variational methods</li>
+  <li>Difficulties in amortizing inference across model components</li>
+</ul>
+
+<h2 id="evaluation-metrics">Evaluation Metrics</h2>
+
+<p>Evaluating Bayesian neural networks requires looking beyond accuracy to assess calibration and uncertainty quantification:</p>
+
+<ul>
+  <li>Proper scoring rules like log-likelihood or Brier score</li>
+  <li>Calibration metrics like expected calibration error</li>
+  <li>Selective prediction evaluations like retention curves</li>
+</ul>
+
+<h1 id="recent-advances-and-future-directions">Recent Advances and Future Directions</h1>
+
+<p>The field of Bayesian deep learning continues to evolve rapidly. Recent advances include:</p>
+
+<h2 id="implicit-variational-inference">Implicit Variational Inference</h2>
+
+<p>Newer methods avoid explicitly specifying the form of the approximate posterior, instead learning it implicitly through generative models or normalizing flows.</p>
+
+<h2 id="stochastic-weight-averaging-swa-and-swa-gaussian-swag">Stochastic Weight Averaging (SWA) and SWA-Gaussian (SWAG)</h2>
+
+<p>These methods approximate the posterior by fitting a Gaussian distribution to points along the optimization trajectory, offering a simple yet effective approach to uncertainty estimation.</p>
+
+<h2 id="function-space-inference">Function-Space Inference</h2>
+
+<p>Rather than reasoning about the posterior over weights, some approaches directly target the posterior over functions, which can be more interpretable and effective for uncertainty quantification.</p>
+
+<h2 id="neural-network-architecture-search">Neural Network Architecture Search</h2>
+
+<p>Combining Bayesian principles with neural architecture search allows for jointly optimizing model structure and parameter uncertainty.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Bayesian neural networks offer a principled framework for reasoning about uncertainty in deep learning models. By viewing neural networks through the lens of Bayesian probability theory, we gain powerful tools for understanding model behavior, preventing overfitting, and making robust predictions in the face of limited data.</p>
+
+<p>While practical challenges remain, especially around scalability and computational efficiency, the field is advancing rapidly. The growing recognition of uncertainty quantification’s importance in deploying AI systems safely and responsibly suggests that Bayesian approaches will continue to play a crucial role in the future of deep learning.</p>
+
+<p>Whether implemented through variational inference, Monte Carlo dropout, or ensemble methods, the core principles of Bayesian statistics provide valuable guidance for developing more robust, trustworthy, and interpretable neural networks. As computational techniques continue to improve, we can expect Bayesian methods to become increasingly practical for mainstream deep learning applications.</p>
+
+<div class="references">
+    <h2>References</h2>
+    <ol>
+        <li>
+            <span class="reference-title">Weight Uncertainty in Neural Networks</span>
+            <span class="reference-authors">Blundell, C., Cornebise, J., Kavukcuoglu, K., &amp; Wierstra, D.</span>
+            <span class="reference-details">International Conference on Machine Learning (2015).</span>
+            <a href="https://arxiv.org/pdf/1505.05424" class="reference-doi">arXiv:1505.05424v2</a>
+        </li>
+        <li>
+            <span class="reference-title">Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning.</span>
+            <span class="reference-authors">Gal, Y., &amp; Ghahramani, Z.</span>
+            <span class="reference-details">International Conference on Machine Learning (2016)</span>
+            <a href="https://arxiv.org/pdf/1506.02142" class="reference-doi">arXiv:1506.02142v6</a>
+        </li>
+        <li>
+            <span class="reference-title">Variational Dropout and the Local Reparameterization Trick</span>
+            <span class="reference-authors">Kingma, D. P., Salimans, T., &amp; Welling, M. </span>
+            <span class="reference-details">Advances in Neural Information Processing Systems. (2015)</span>
+            <a href="https://arxiv.org/pdf/1506.02557" class="reference-doi">arXiv:1506.02557v2</a>
+        </li>
+        <li>
+            <span class="reference-title">Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles</span>
+            <span class="reference-authors">Lakshminarayanan, B., Pritzel, A., &amp; Blundell, C.</span>
+            <span class="reference-details">Advances in Neural Information Processing Systems (2017).</span>
+            <a href="https://arxiv.org/pdf/1612.01474" class="reference-doi">arXiv:1612.01474v3</a>
+        </li>
+        <li>
+            <span class="reference-title">A Practical Bayesian Framework for Backpropagation Networks</span>
+            <span class="reference-authors">MacKay, D. J. </span>
+            <span class="reference-details">Neural Computation (1992)</span>
+            <a href="https://core.ac.uk/download/pdf/216127203.pdf" class="reference-doi">4,448-472</a>
+        </li>
+        <li>
+            <span class="reference-title">Bayesian Learning for Neural Networks</span>
+            <span class="reference-authors">Neal, R. M.</span>
+            <span class="reference-details">Springer Science &amp; Business Media.</span>
+        </li>
+        <li>
+            <span class="reference-title">Practical Variational Inference for Neural Networks.</span>
+            <span class="reference-authors">Graves, A.</span>
+            <span class="reference-details">Advances in Neural Information Processing Systems.(2011)</span>
+            <a href="https://papers.nips.cc/paper_files/paper/2011/file/7eb3c8be3d411e8ebfab08eba5f49632-Paper.pdf" class="reference-doi">NIPS</a>
+        </li>
+        <li>
+            <span class="reference-title">What Uncertainties Do We Need in Bayesian Deep Learning for Computer Vision?</span>
+            <span class="reference-authors">Kendall, A., &amp; Gal, Y.</span>
+            <span class="reference-details">Advances in Neural Information Processing Systems (2017)</span>
+            <a href="https://arxiv.org/pdf/1703.04977" class="reference-doi">arXiv:1703.04977v2</a>
+        </li>
+        <li>
+            <span class="reference-title">Bayesian Deep Learning and a Probabilistic Perspective of Generalization</span>
+            <span class="reference-authors">Wilson, A. G., &amp; Izmailov, P.</span>
+            <span class="reference-details">Advances in Neural Information Processing Systems. (2020)</span>
+            <a href="https://arxiv.org/pdf/2002.08791" class="reference-doi">arXiv:2002.08791v4</a>
+        </li>
+        <li>
+            <span class="reference-title">How Good is the Bayes Posterior in Deep Neural Networks Really?</span>
+            <span class="reference-authors">Wenzel, F., Roth, K., Veeling, B. S., Świątkowski, J., Tran, L., Mandt, S., ... &amp; Nowozin, S.</span>
+            <span class="reference-details">International Conference on Machine Learning. (2020)</span>
+            <a href="https://arxiv.org/pdf/2002.02405" class="reference-doi">arXiv:2002.02405v2</a>
+        </li>        
+    </ol>
+</div>
+
+            </div>
+
+            <!-- Rating -->
+            
+            <div class="rating mb-4 d-flex align-items-center">
+                <strong class="mr-1">Rating:</strong> <div class="rating-holder">
+<div class="c-rating c-rating--regular" data-rating-value="4.5">
+  <button>1</button>
+  <button>2</button>
+  <button>3</button>
+  <button>4</button>
+  <button>5</button>
+</div>
+</div>
+            </div>
+            
+
+            <!-- Post Date -->
+            <p>
+            <small>
+                <span class="post-date"><time class="post-date" datetime="2025-04-16">16 Apr 2025</time></span>           
+                
+                (Updated: <time datetime="2025-04-16T00:00:00+02:00" itemprop="dateModified">Apr 16, 2025</time>)
+                
+                </small>
+            </p>
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#bayesian-statistics">bayesian statistics</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#deep-learning">deep learning</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#machine-learning">machine learning</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#MCMC">#MCMC</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#TensorFlow-Probability">#TensorFlow Probability</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#aleatoric-uncertainty">#aleatoric uncertainty</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#bayesian-neural-networks">#bayesian neural networks</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#deep-ensembles">#deep ensembles</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#epistemic-uncertainty">#epistemic uncertainty</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#probabilistic-modeling">#probabilistic modeling</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#uncertainty-quantification">#uncertainty quantification</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#variational-inference">#variational inference</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+            
+            <a class="prev d-block col-md-6" href="https://labfab.io//trend-following/"> &laquo; Trend Following Strategies: Hidden Protection for Long-Term Investors</a>
+            
+            
+            <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== -->
+
+    <div class="container">
+        <div id="comments" class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'labfab'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+            </div>
+        </div>
+    </div>
+
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "Thing",
+    "name": "Bayesian Perspectives on Neural Networks: Uncertainty, Regularization, and Beyond"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "StackNets"
+  },
+  "datePublished": "2025-04-16",
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "4.5",
+    "bestRating": "5"
+  }
+}
+</script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3K2EDM9K7H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3K2EDM9K7H');
+</script>
+</div>
+
+
+<!-- Bottom Alert Bar
+================================================== -->
+<div class="alertbar" style="margin-bottom: 0.5rem;">
+	<div class="container text-center" style="padding: 0 15px;">
+		<span><img src="/assets/images/logo.png" alt="LabFab" width="40" height="40"> &nbsp; Never miss a <b>story</b> from us, subscribe to our newsletter</span>
+        <div style="padding: 10px;">
+            <iframe
+                scrolling="no"
+                style="width:100%!important;height:120px;border:1px #ccc solid !important;margin-top:0.25rem;"
+                src="https://buttondown.com/capela?as_embed=true"
+            ></iframe>
+        </div>
+	</div>
+</div>
+
+    
+
+
+<!-- Categories Jumbotron
+================================================== -->
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+            <div class="d-md-flex align-items-center justify-content-center h-100">
+                <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
+            </div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+            
+            
+                
+                    <a class="mt-1 mb-1" href="/categories#deep-learning">deep learning (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#artificial-intelligence">artificial intelligence (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#generative-ai">generative ai (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#diffusion-models">diffusion models (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#investing-portfolio-management">investing portfolio management (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#trading-strategies">trading strategies (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#risk-management">risk management (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#machine-learning">machine learning (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#bayesian-statistics">bayesian statistics (1)</a>
+                
+            
+            
+		</div>
+	</div>
+</div>
+
+<!-- Begin Footer
+================================================== -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                Copyright © 2025 LabFab 
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer
+================================================== -->
+
+</div> <!-- /.site-content -->
+
+<!-- Scripts
+================================================== -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/assets/js/mediumish.js"></script>
+
+
+
+<script src="/assets/js/ie10-viewport-bug-workaround.js"></script> 
+
+
+<script id="dsq-count-scr" src="//labfab.disqus.com/count.js"></script>
+
+
+</body>
+</html>

@@ -17,8 +17,6 @@ seo:
     focus_keyword: "trend following strategies"
 ---
 
-# Introduction
-
 Last week I came across a fascinating research paper, "Tail Protection for Long Investors: Trend Convexity at Work" by researchers from Capital Fund Management. As someone who's weathered multiple market cycles, I've always been intrigued by investment strategies that can protect portfolios during turbulent times. The 2008 financial crisis and the March 2020 COVID crash demonstrated just how quickly markets can unravel, leaving many investors scrambling for protection.
 
 Most long-term investors face a common dilemma: how to maintain exposure to market growth while protecting against significant downturns. Traditional approaches like diversification often fail during crises when correlations spike. Buying put options works but comes at a steep cost that erodes returns over time. This is where trend following strategies reveal their hidden superpower—**convexity**.

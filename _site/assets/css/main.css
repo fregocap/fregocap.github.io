@@ -440,4 +440,85 @@ pre.lineno {
   font-size: 150%;
 }
 
+.side-note {
+  background-color: #f8f9fa;
+  border-left: 4px solid #6c757d;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.side-note.proof {
+  background-color: #e8f4f8;
+  border-left-color: #17a2b8;
+}
+.side-note.warning {
+  background-color: #fff3cd;
+  border-left-color: #ffc107;
+}
+.side-note.info {
+  background-color: #d1ecf1;
+  border-left-color: #0dcaf0;
+}
+.side-note h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #495057;
+  font-size: 1.1rem;
+}
+.side-note p {
+  margin-bottom: 0.5rem;
+}
+.side-note p:last-child {
+  margin-bottom: 0;
+}
+
+.references {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dee2e6;
+}
+.references h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #212529;
+}
+.references ol {
+  list-style-type: none;
+  counter-reset: ref-counter;
+  padding-left: 0;
+}
+.references ol li {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 1rem;
+  counter-increment: ref-counter;
+}
+.references ol li::before {
+  content: "[" counter(ref-counter) "]";
+  position: absolute;
+  left: 0;
+  color: #6c757d;
+  font-weight: 500;
+}
+.references ol li .reference-title {
+  font-weight: 600;
+  color: #212529;
+}
+.references ol li .reference-authors {
+  color: #495057;
+  font-style: italic;
+}
+.references ol li .reference-details {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+.references ol li .reference-doi {
+  color: #0d6efd;
+  text-decoration: none;
+}
+.references ol li .reference-doi:hover {
+  text-decoration: underline;
+}
+
 /*# sourceMappingURL=main.css.map */

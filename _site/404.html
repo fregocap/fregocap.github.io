@@ -35,6 +35,23 @@
 
 <script src="/assets/js/jquery.min.js"></script>
 
+<!-- MathJax Configuration -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 </head>
 
 
@@ -144,27 +161,18 @@
 
 <!-- Bottom Alert Bar
 ================================================== -->
-<div class="alertbar">
-	<div class="container text-center">
-		<span><img src="/assets/images/logo.png" alt="LabFab" width="75" height="75"> &nbsp; Never miss a <b>story</b> from us, subscribe to our newsletter</span>
-        <form action="https://labfab.us17.list-manage.com/subscribe/post?u=60c617b562edb784e26cfc17e&amp;id=dd31e570e3&amp;f_id=0094c2e1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-        <div class="mc-field-group">
-            <label for="mce-EMAIL"></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value="">
-            <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe">
+<div class="alertbar" style="margin-bottom: 0.5rem;">
+	<div class="container text-center" style="padding: 0 15px;">
+		<span><img src="/assets/images/logo.png" alt="LabFab" width="40" height="40"> &nbsp; Never miss a <b>story</b> from us, subscribe to our newsletter</span>
+        <div style="padding: 10px;">
+            <iframe
+                scrolling="no"
+                style="width:100%!important;height:120px;border:1px #ccc solid !important;margin-top:0.25rem;"
+                src="https://buttondown.com/capela?as_embed=true"
+            ></iframe>
         </div>
-            <div id="mce-responses" class="clear foot">
-                <div class="response" id="mce-error-response" style="display: none;"></div>
-                <div class="response" id="mce-success-response" style="display: none;"></div>
-            </div>
-        <div style="position: absolute; left: -5000px;" aria-hidden="true">
-            /* real people should not fill this in and expect good things - do not remove this or risk form bot signups */
-            <input type="text" name="b_60c617b562edb784e26cfc17e_dd31e570e3" tabindex="-1" value="">
-        </div>
-        </div>
-      </form>
-      </div>
-      <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script></div>
-      </div>
+	</div>
+</div>
 
     
 
@@ -182,7 +190,7 @@
             
             
                 
-                    <a class="mt-1 mb-1" href="/categories#deep-learning">deep learning (1)</a>
+                    <a class="mt-1 mb-1" href="/categories#deep-learning">deep learning (2)</a>
                 
                     <a class="mt-1 mb-1" href="/categories#artificial-intelligence">artificial intelligence (1)</a>
                 
@@ -195,6 +203,10 @@
                     <a class="mt-1 mb-1" href="/categories#trading-strategies">trading strategies (1)</a>
                 
                     <a class="mt-1 mb-1" href="/categories#risk-management">risk management (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#machine-learning">machine learning (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#bayesian-statistics">bayesian statistics (1)</a>
                 
             
             
