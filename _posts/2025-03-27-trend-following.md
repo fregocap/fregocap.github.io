@@ -9,7 +9,6 @@ description: "Discover how trend following strategies provide portfolio protecti
 featured: true 
 hidden: false 
 rating: 4.5
-toc: true 
 last_modified_at: 2025-03-27 
 seo: 
     title: "Trend Following Strategies Explained: The Mathematical Edge Behind Crisis Alpha [2025 Guide]"
@@ -21,7 +20,7 @@ Last week I came across a fascinating research paper, "Tail Protection for Long 
 
 Most long-term investors face a common dilemma: how to maintain exposure to market growth while protecting against significant downturns. Traditional approaches like diversification often fail during crises when correlations spike. Buying put options works but comes at a steep cost that erodes returns over time. This is where trend following strategies reveal their hidden superpower—**convexity**.
 
-# What Makes Trend Following Special?
+## What Makes Trend Following Special?
 
 Unlike typical hedge fund strategies that often disappoint during market crashes (showing negative convexity), trend following strategies have historically performed better during periods of high volatility. Look at the performance of Commodity Trading Advisors (CTAs) during the 2008 Lehman crisis—they delivered strong positive returns while markets collapsed.
 
@@ -57,7 +56,7 @@ In plain English: trend following strategies swap **short-term volatility** for 
 
 I've found this insight particularly valuable in my own investing. During calm markets, trend following often underperforms or generates modest returns. But when markets experience extended turbulence, these strategies can deliver outsized performance that helps offset losses in traditional investments. 
 
-# Understanding Different Trend Implementations 
+## Understanding Different Trend Implementations 
 
 The beauty of the researchers' findings is that this relationship holds true across various trend implementations. Whether using exponential moving averages (EMAs), position capping, or different signal processing methods, the core mathematical relationship remains.
 
@@ -75,7 +74,7 @@ $$
 
 When I first implemented trend strategies in my portfolio, I spent endless hours optimizing parameters without fully understanding these mathematical foundations. Knowing the underlying mechanics now helps me focus on what matters - ensuring my trend system captures the right time horizon for the risks I'm trying to hedge. 
 
-# Time Horizons: The Critical Factor 
+## Time Horizons: The Critical Factor 
  
 One crucial insight that changed my approach to trend following is understanding the importance of time horizons. A trend strategy with a 6-month lookback window provides protection against large market moves that unfold over several months—not against overnight crashes or flash crashes.
 
@@ -83,7 +82,7 @@ The paper elaborates on this by showing how the strategy's convexity is most vis
 
 This explains why many investors miss the protective benefits of trend following—they're looking at returns on the wrong timeframe. During the COVID crash, for instance, many trend followers initially lost money in the sudden selloff, only to recover and profit as the trend established itself over subsequent weeks.
 
-# Real-World Applications: CTA Performance 
+## Real-World Applications: CTA Performance 
 
 Commodity Trading Advisors (CTAs) are the most prominent practitioners of trend following strategies. The authors analyzed the SG CTA Index, demonstrating that their simple trend model achieved over 80% correlation with the index by using just a handful of liquid futures markets and a basic trend signal.
 
@@ -92,7 +91,7 @@ Commodity Trading Advisors (CTAs) are the most prominent practitioners of trend 
 
 What struck me most was how they revealed the convexity of CTA performance. By appropriately measuring over the right timeframe (approximately 6 months for the trend and 3 months for performance aggregation), they showed much stronger convexity than previously observed. The R-squared of the quadratic fit increased from a mere 0.02 in naïve analysis to a more convincing 0.2 using their methodology.      
 
-# Diversification Effects: Single-Asset vs Multi-Asset Trend
+## Diversification Effects: Single-Asset vs Multi-Asset Trend
 
 The research also revealed an important nuance—diversification reduces convexity. A single-asset trend following strategy shows stronger convexity than a diversified portfolio of trend strategies.
 
@@ -100,7 +99,7 @@ However, diversified trend strategies still offer significant protection to dive
 
 In my experience, this creates a natural complementarity. When rising interest rates hurt both stocks and bonds in 2022, for instance, trend strategies were able to capture the downtrends across multiple assets, providing valuable protection to traditional portfolios.
 
-# Trend Following vs. Options: A Cost-Effective Alternative
+## Trend Following vs. Options: A Cost-Effective Alternative
 
 Many investors turn to options for portfolio protection. While buying index puts provides guaranteed protection, they typically come with a high price tag that erodes long-term returns.
 
@@ -122,7 +121,7 @@ Both strategies provide exposure to $$(S_T - S_0)^2$$ (long-term variance), but 
 
 This makes trend following a more cost-effective hedge over the long run, as demonstrated by their positive long-term performance compared to consistently losing money with long-option portfolios.
 
-# Practical Implementation Considerations
+## Practical Implementation Considerations
 
 If you're considering adding trend following to your portfolio, here are some practical considerations I've learned through experience:
 
@@ -132,7 +131,7 @@ If you're considering adding trend following to your portfolio, here are some pr
 4. **Transaction costs**: Factor in trading costs, which can significantly impact performance, especially for shorter-term implementations.
 5. **Tax efficiency**: In taxable accounts, trend strategies may generate more frequent trading and short-term capital gains.
 
-# My Key Takeaways
+## My Key Takeaways
 After studying this paper and implementing trend strategies in my own portfolio, I've drawn three important conclusions for investors:
 
 1. **Time horizon matters**: Trend strategies protect against large moves over their specific time horizon. A 6-month trend strategy won't help with overnight crashes.

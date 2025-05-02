@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/diffusion-models/</loc>
-<lastmod>2025-03-16T00:00:00+01:00</lastmod>
-</url>
-<url>
 <loc>http://localhost:4000/trend-following/</loc>
 <lastmod>2025-03-27T00:00:00+01:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/bayesian-neural-net/</loc>
-<lastmod>2025-04-16T00:00:00+02:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/about</loc>
@@ -19,22 +11,13 @@
 <loc>http://localhost:4000/categories</loc>
 </url>
 <url>
+<loc>http://localhost:4000/fire-calculator/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/tags</loc>
-</url>
-<url>
-<loc>http://localhost:4000/category/deep-learning/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/category/artificial-intelligence/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/category/generative-ai/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/category/diffusion-models/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/category/investing-portfolio-management/</loc>
@@ -46,9 +29,11 @@
 <loc>http://localhost:4000/category/risk-management/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/category/machine-learning/</loc>
+<loc>http://localhost:4000/assets/html/2025-04-28-distill-example/plotly_demo_1.html</loc>
+<lastmod>2025-04-30T23:34:36+02:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/category/bayesian-statistics/</loc>
+<loc>http://localhost:4000/assets/html/fire-calculator/</loc>
+<lastmod>2025-05-02T23:56:14+02:00</lastmod>
 </url>
 </urlset>

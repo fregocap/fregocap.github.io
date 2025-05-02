@@ -46,6 +46,11 @@
     },
     options: {
       skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    },
+    chtml: {
+      scale: 1.2,        // Scaling factor for display equations
+      displayAlign: 'center',
+      displayIndent: '0'
     }
   };
 </script>
@@ -94,7 +99,7 @@
                 </li>
 
                 <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
+                    <a class="nav-link" href="/fire-calculator">FIRE Calculator</a>
                 </li>
 
                 <!-- <li class="nav-item">
@@ -224,22 +229,13 @@ In addition to my professional and athletic pursuits, I have a deep interest in 
 </div>
 
 
-<!-- Bottom Alert Bar
-================================================== -->
-<div class="alertbar" style="margin-bottom: 0.5rem;">
-	<div class="container text-center" style="padding: 0 15px;">
-		<span><img src="/assets/images/logo.png" alt="LabFab" width="40" height="40"> &nbsp; Never miss a <b>story</b> from us, subscribe to our newsletter</span>
-        <div style="padding: 10px;">
-            <iframe
-                scrolling="no"
-                style="width:100%!important;height:120px;border:1px #ccc solid !important;margin-top:0.25rem;"
-                src="https://buttondown.com/capela?as_embed=true"
-            ></iframe>
-        </div>
-	</div>
-</div>
 
-    
+
+<!-- Newsletter Subscription
+================================================== -->
+<div class="newsletter-subscription" style="text-align: center; margin: 20px 0; font-size: 0.9em; color: #666;">
+    <p>Never miss a <b>story</b> from us, <a href="https://buttondown.com/capela" target="_blank">subscribe to our newsletter</a></p>
+</div>
 
 
 <!-- Categories Jumbotron
@@ -255,23 +251,11 @@ In addition to my professional and athletic pursuits, I have a deep interest in 
             
             
                 
-                    <a class="mt-1 mb-1" href="/categories#deep-learning">deep learning (2)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#artificial-intelligence">artificial intelligence (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#generative-ai">generative ai (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#diffusion-models">diffusion models (1)</a>
-                
                     <a class="mt-1 mb-1" href="/categories#investing-portfolio-management">investing portfolio management (1)</a>
                 
                     <a class="mt-1 mb-1" href="/categories#trading-strategies">trading strategies (1)</a>
                 
                     <a class="mt-1 mb-1" href="/categories#risk-management">risk management (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#machine-learning">machine learning (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#bayesian-statistics">bayesian statistics (1)</a>
                 
             
             
@@ -297,6 +281,54 @@ In addition to my professional and athletic pursuits, I have a deep interest in 
 
 <!-- Scripts
 ================================================== -->
+
+<script>
+// Floating TOC functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const toc = document.getElementById('toc');
+    if (!toc) return;
+
+    // Get all h2 headings from the main content
+    const mainContent = document.querySelector('.main-content');
+    const headings = mainContent.querySelectorAll('h2');
+    if (headings.length < 1) return;
+
+    const tocList = document.createElement('ul');
+    
+    headings.forEach((heading, index) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        
+        // Add ID to heading if it doesn't have one
+        if (!heading.id) {
+            heading.id = 'heading-' + index;
+        }
+        
+        a.href = '#' + heading.id;
+        a.textContent = heading.textContent;
+        
+        li.appendChild(a);
+        tocList.appendChild(li);
+    });
+
+    toc.appendChild(tocList);
+    toc.classList.add('visible');
+
+    // Show/hide TOC based on scroll position
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > lastScrollTop) {
+            // Scrolling down
+            toc.style.opacity = '0.7';
+        } else {
+            // Scrolling up
+            toc.style.opacity = '1';
+        }
+        lastScrollTop = st <= 0 ? 0 : st;
+    });
+});
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 

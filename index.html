@@ -5,26 +5,121 @@ title: Home
 
 {% if page.url == "/" %}
 
-<!-- Featured
+
+
+<!-- About
 ================================================== -->
-<section class="featured-posts">
-    <div class="section-title">
-        <h2><span>Featured</span></h2>
-    </div>
+<section class="about-section">
     <div class="row">
-
-    {% for post in site.posts %}
-
-        {% if post.featured == true %}
-
-            {% include featuredbox.html %}
-
-        {% endif %}
-
-    {% endfor %}
-
+        <div class="col-md-4">
+            <img src="{{ '/assets/images/iron.jpeg' | relative_url }}" alt="Fabio Capela" class="profile-image">
+        </div>
+        <div class="col-md-8">
+            <p>Hi there! I'm Fabio, and I work at LDC in Geneva as a quant trader. I develop trading strategies using quantitative methods. Before this, I worked at Firmenich SA on some AI projects related to flavors, and I was part of starting a company called SamurAI that worked with sentiment analysis.</p>
+            <p>I enjoy triathlons in my free time - swimming, biking, and running help me clear my head. Family time is really important to me too.</p>
+            <p>I studied physics and got my PhD from ULB in Brussels, which helps me in my data work today. I also like reading philosophy when I can - it gives me different perspectives on problems.</p>
+            <div class="about-links">
+                <a href="https://calendly.com/capela625/30min" class="calendly-link" target="_blank">
+                    <i class="fa fa-calendar-check-o"></i> Schedule a Chat
+                </a>
+                <a href="https://www.linkedin.com/in/fabio-capela-phd-3a19925b/" class="social-link linkedin" target="_blank">
+                    <i class="fa fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/fregocap" class="social-link github" target="_blank">
+                    <i class="fa fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
     </div>
 </section>
+
+<style>
+.profile-image {
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1rem;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.profile-image:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.about-links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.calendly-link, .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+}
+
+.calendly-link {
+    background: linear-gradient(135deg, #0066cc, #004d99);
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
+}
+
+.calendly-link:hover {
+    background: linear-gradient(135deg, #004d99, #003366);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 102, 204, 0.3);
+}
+
+.social-link {
+    background-color: white;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.social-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.social-link.linkedin:hover {
+    background-color: #0077b5;
+    color: white;
+    border-color: #0077b5;
+}
+
+.social-link.github:hover {
+    background-color: #333;
+    color: white;
+    border-color: #333;
+}
+
+.social-link i {
+    font-size: 1.1em;
+}
+
+@media (max-width: 768px) {
+    .about-links {
+        justify-content: center;
+    }
+    
+    .calendly-link, .social-link {
+        padding: 0.65rem 1.15rem;
+        font-size: 0.9rem;
+    }
+}
+</style>
 
 {% endif %}
 

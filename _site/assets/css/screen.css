@@ -209,8 +209,21 @@ section.recent-posts {
 }
 
 .toc ul {
-    list-style: decimal;
-    font-weight: 400;
+    list-style: none !important;
+    padding-left: 1rem;
+}
+
+.toc li {
+    margin: 0.5rem 0;
+}
+
+.toc a {
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: none;
+}
+
+.toc a:hover {
+    color: #00ab6b;
 }
 
 .author-meta {
@@ -334,6 +347,29 @@ span.post-read-more a:hover {
     font-size: 1.1rem;
     line-height: 1.84;
     color: rgba(0, 0, 0, .8);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.article-post p {
+    margin: 0 0 1.5rem 0;
+}
+
+.article-post .h1,
+.article-post .h2,
+.article-post .h3,
+.article-post .h4,
+.article-post .h5,
+.article-post .h6,
+.article-post h1,
+.article-post h2,
+.article-post h3,
+.article-post h4,
+.article-post h5,
+.article-post h6 {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
 }
 
 blockquote {
@@ -560,7 +596,19 @@ ul.tags li a:hover {
     width: 100%;
     padding: 14px 0;
     z-index: 1;
-    display: none;
+}
+
+.alertbar .close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #666;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
 }
 
 .alertbar form {
@@ -686,22 +734,6 @@ h4,
 h5,
 h6 {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-.article-post .h1,
-.article-post .h2,
-.article-post .h3,
-.article-post .h4,
-.article-post .h5,
-.article-post .h6,
-.article-post h1,
-.article-post h2,
-.article-post h3,
-.article-post h4,
-.article-post h5,
-.article-post h6 {
-    font-weight: 700;
-    margin-bottom: 1.5rem;
 }
 
 .article-post img.shadow {
@@ -898,4 +930,108 @@ iframe {
 .lazyimg[data-srcset] {
     opacity: 0;
     transition: opacity .25s;
+}
+
+/* Container modifications for article layout */
+.container {
+    max-width: 1140px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.col-md-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* Floating TOC styles */
+#toc {
+    position: fixed;
+    right: -250px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 250px;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+#toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#toc li {
+    margin: 0.8rem 0;
+    padding-left: 0.5rem;
+    border-left: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+#toc li:hover {
+    border-left-color: #00ab6b;
+}
+
+#toc a {
+    color: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    transition: color 0.2s ease;
+}
+
+#toc a:hover {
+    color: #00ab6b;
+}
+
+#toc:hover,
+#toc:focus-within,
+#toc-trigger:hover + #toc {
+    right: 2rem;
+    opacity: 1;
+}
+
+#toc-trigger {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    z-index: 999;
+    cursor: pointer;
+}
+
+#toc-trigger::before {
+    content: "›";
+    position: fixed;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: rgba(0, 0, 0, 0.3);
+    transition: color 0.3s ease;
+    z-index: 1000;
+}
+
+#toc-trigger:hover::before {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Hide TOC on mobile */
+@media (max-width: 768px) {
+    #toc,
+    #toc-trigger {
+        display: none;
+    }
 }
