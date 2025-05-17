@@ -4,7 +4,6 @@ title: "Trend Following Strategies: Hidden Protection for Long-Term Investors"
 author: stacknets
 categories: [investing portfolio management, trading strategies, risk management]
 tags: [trend following, CTA performance, market volatility, convexity, portfolio protection, tail risk, risk parity, options alternatives, hedge funds]
-image: assets/images/trend_following.png
 description: "Discover how trend following strategies provide portfolio protection through market volatility, offering a cost-effective alternative to options with positive long-term returns."
 featured: true 
 hidden: false 
@@ -39,7 +38,7 @@ $$
 G_t:= \Pi_{t-1} D_t = \lambda D_t \sum_{t'=1}^{t-1} D_{t'}
 $$ 
 
-where $$D_t$$  is the price changes from $$t-1$$ to $$t$$. Aggregating this over $$T$$ over $$T$$ days and rearranging the sums: 
+where $$D_t$$  is the price changes from $$t-1$$ to $$t$$. Aggregating this over $$T$$ days and rearranging the sums: 
 
 $$
 G_t = \frac{\lambda}{2} \left(S_T - S_0 \right)^2 - \frac{\lambda}{2} \sum_{t=1}^{T} D_t^2

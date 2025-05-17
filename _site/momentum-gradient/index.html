@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="icon" href="/assets/images/logo.png">
+
+<title>Why Momentum Works: The Physics of Optimization | LabFab</title>
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Why Momentum Works: The Physics of Optimization | LabFab</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Why Momentum Works: The Physics of Optimization" />
+<meta name="author" content="stacknets" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Discover how momentum gradient descent dramatically accelerates neural network training through mathematical principles, offering both theoretical guarantees and practical performance improvements." />
+<meta property="og:description" content="Discover how momentum gradient descent dramatically accelerates neural network training through mathematical principles, offering both theoretical guarantees and practical performance improvements." />
+<link rel="canonical" href="http://localhost:4000/momentum-gradient/" />
+<meta property="og:url" content="http://localhost:4000/momentum-gradient/" />
+<meta property="og:site_name" content="LabFab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-05-16T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Why Momentum Works: The Physics of Optimization" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"stacknets"},"dateModified":"2025-05-17T00:00:00+02:00","datePublished":"2025-05-16T00:00:00+02:00","description":"Discover how momentum gradient descent dramatically accelerates neural network training through mathematical principles, offering both theoretical guarantees and practical performance improvements.","headline":"Why Momentum Works: The Physics of Optimization","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/momentum-gradient/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/images/logo.png"},"name":"stacknets"},"url":"http://localhost:4000/momentum-gradient/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+<link href="/assets/css/screen.css" rel="stylesheet">
+
+<link href="/assets/css/main.css" rel="stylesheet">
+
+<script src="/assets/js/jquery.min.js"></script>
+
+<!-- MathJax Configuration -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    },
+    chtml: {
+      scale: 1.2,        // Scaling factor for display equations
+      displayAlign: 'center',
+      displayIndent: '0'
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+
+
+
+<body class="layout-post">
+	<!-- defer loading of font and font awesome -->
+	<noscript id="deferred-styles">
+		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	</noscript>
+
+
+<!-- Begin Menu Navigation
+================================================== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+    <div class="container pr-0">
+
+    <!-- Begin Logo -->
+    <a class="navbar-brand" href="/">
+    <img src="/assets/images/logo.png" alt="LabFab">
+    </a>
+    <!-- End Logo -->
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMediumish">
+
+        <!-- Begin Menu -->
+
+            <ul class="navbar-nav ml-auto">
+
+                
+                <li class="nav-item">
+                
+                <a class="nav-link" href="/index.html">Blog</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/fire-calculator">FIRE Calculator</a>
+                </li>
+
+                <!-- <li class="nav-item">
+                <a target="_blank" class="nav-link" href="https://bootstrapstarter.com/bootstrap-templates/template-mediumish-bootstrap-jekyll/"> Docs</a>
+                </li> -->
+
+
+                <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+            </ul>
+
+        <!-- End Menu -->
+
+    </div>
+
+    </div>
+</nav>
+<!-- End Navigation
+================================================== -->
+
+<div class="site-content">
+
+<div class="container">
+
+<!-- Site Title
+================================================== -->
+<div class="mainheading">
+    <h1 class="sitetitle">LabFab</h1>
+    <p class="lead">
+        Exploring math, physics, machine learning, and finance insights.
+    </p>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="main-content">
+    <!-- Begin Article
+================================================== -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<div class="container">
+    <div class="row">
+
+        <!-- Post Share -->
+        <div class="col-md-2 pl-0">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=Why Momentum Works: The Physics of Optimization&url=http://localhost:4000/momentum-gradient/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=http://localhost:4000/momentum-gradient/" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/momentum-gradient/" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-md-9 flex-first flex-md-unordered">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb" src="/assets/images/avatar.png" alt="StackNets">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="https://labfab.io">StackNets</a><a target="_blank" href="https://twitter.com/capelfabio" class="btn follow">Follow</a>
+                        <span class="author-description">I'm interested in machine learning, trading and running. I'm currently learning how to make the best focaccia possible and looking to collaborate on any project that makes me grow (though perhaps not in that order).</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">Why Momentum Works: The Physics of Optimization</h1>
+
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <!-- Toc if any -->
+                
+                <!-- End Toc -->
+                <p>Gradient descent is the workhorse of modern machine learning, but vanilla gradient descent often struggles with challenges like saddle points, ravines, and local minima. Momentum-based methods address these limitations through elegant mathematical principles that provide remarkable benefits. This post explores why momentum gradient descent works so effectively and has become fundamental to modern optimization algorithms.</p>
+
+<h2 id="the-physics-of-momentum-optimization">The Physics of Momentum Optimization</h2>
+
+<p>Classical gradient descent performs a simple update: \(\theta_{t+1} = \theta_t - \alpha \nabla_\theta J(\theta_t)\), where \(\theta_t\) represents parameters, $\alpha$ is the learning rate, and $\nabla_\theta J(\theta_t)$ is the gradient. This approach navigates the loss landscape by always moving in the steepest downhill direction at each step.</p>
+
+<p>Momentum gradient descent transforms this process by introducing a velocity term that accumulates previous gradients:</p>
+
+\[\begin{align}
+v_{t+1} &amp;= \gamma v_t + \alpha \nabla_\theta J(\theta_t) \\
+\theta_{t+1} &amp;= \theta_t - v_{t+1}
+\end{align}\]
+
+<p>Here, \(\gamma \in [0,1)\) is the momentum coefficient, typically around 0.9. This simple modification dramatically improves optimization.</p>
+
+<p>The most intuitive way to understand momentum is through physics: imagine a ball rolling down a hill with friction. Standard gradient descent is like a ball in a thick fluid that can only move directly downhill at each point. Momentum is like giving this ball mass, allowing it to build up speed and continue moving even through small uphill sections.</p>
+
+<p>This physical intuition can be formalized mathematically. Momentum optimization approximates a damped mechanical system governed by:</p>
+
+\[\begin{align}
+m\frac{d^2\theta}{dt^2} + c\frac{d\theta}{dt} &amp;= -\nabla_\theta J(\theta)
+\end{align}\]
+
+<p>Where the effective mass is related to the momentum coefficient by \(m \propto \frac{1}{1-\gamma}\). This means higher momentum values (closer to 1) give the system more inertia.</p>
+
+<div style="text-align: center; margin: 2rem 0 1.5rem;">
+    <img src="/assets/images/optimization_comparison.png" alt="Phase space diagram showing trajectories of vanilla gradient descent vs. momentum in a 2D contour plot" style="max-width: 100%; height: auto;" />
+    <p style="margin-top: 0.75rem; color: #666; font-style: italic; font-size: 0.9rem;">
+        Phase space diagram showing trajectories of vanilla gradient descent vs. momentum in a 2D contour plot
+    </p>
+</div>
+
+<h2 id="why-momentum-works-so-well">Why Momentum Works So Well</h2>
+
+<p>Momentum acceleration provides three key benefits that dramatically improve optimization:</p>
+
+<h4 id="1-smoothing-oscillations-in-ravines">1. Smoothing Oscillations in Ravines</h4>
+
+<p>One of momentum’s greatest strengths is navigating ravines—regions where the loss surface is much steeper in some directions than others.</p>
+
+<p>Consider optimizing a simple quadratic function \(J(\theta) = 100\theta_1^2 + \theta_2^2\). The surface is 100 times steeper in the \(\theta_1\) direction than in the \(\theta_2\) direction. Standard gradient descent zigzags inefficiently, oscillating wildly in the steep direction while making minimal progress in the flat direction.</p>
+
+<p>Momentum naturally dampens these oscillations. The velocity accumulates in consistent directions while canceling out in oscillatory directions. This creates an effective “shortcut” through the zigzag path that vanilla gradient descent would take.</p>
+
+<h4 id="2-escaping-saddle-points">2. Escaping Saddle Points</h4>
+
+<p>Saddle points are locations where the gradient is zero, but the surface curves upward in some directions and downward in others. They’re extremely common in high-dimensional spaces like neural networks.</p>
+
+<p>Standard gradient descent can get trapped at saddle points because the gradient vanishes. Momentum’s accumulated velocity allows it to cruise past these points, much like how a rolling ball doesn’t stop at the middle of a mountain pass.</p>
+
+<p>This property is especially important in deep learning, where saddle points are far more common than local minima in high-dimensional parameter spaces.</p>
+
+<div style="text-align: center; margin: 2rem 0;">
+    <img src="/assets/images/optimization_3d.gif" alt="3D visualization of optimization paths showing how momentum helps navigate the loss landscape" style="max-width: 100%; height: auto; border-radius: 4px;" />
+    <p style="margin-top: 0.75rem; color: #666; font-style: italic; font-size: 0.9rem;">
+        3D visualization showing how momentum helps navigate the complex loss landscape. The rotating view reveals the valleys and ridges that make optimization challenging.
+    </p>
+</div>
+
+<h4 id="3-adaptive-effective-learning-rates">3. <em>Adaptive Effective Learning Rates</em></h4>
+
+<p>A less obvious benefit of momentum is how it creates dimension-specific effective learning rates. When we expand the momentum update recursively, we get:</p>
+
+\[\begin{align}
+v_t &amp;= \alpha\sum_{i=0}^{t-1} \gamma^{t-1-i} \nabla_\theta J(\theta_i)
+\end{align}\]
+
+<p>This shows that momentum computes an exponentially weighted moving average of past gradients. When gradients consistently point in the same direction, this sum grows, effectively increasing the step size. When gradients oscillate, they partially cancel out, effectively reducing the step size.</p>
+
+<p>This natural adaptation happens automatically along different dimensions of the parameter space, creating a crude but effective form of preconditioning that adjusts to the local geometry.</p>
+
+<h2 id="applications-in-modern-deep-learning">Applications in Modern Deep Learning</h2>
+
+<p>The mathematical principles of momentum extend to more sophisticated algorithms used throughout deep learning. Nesterov’s accelerated gradient introduces a “look-ahead” evaluation:</p>
+
+\[\begin{align}
+v_{t+1} &amp;= \gamma v_t + \alpha \nabla_\theta J(\theta_t + \gamma v_t) \\
+\theta_{t+1} &amp;= \theta_t - v_{t+1}
+\end{align}\]
+
+<p>This subtle modification further improves momentum’s performance, especially for convex problems.</p>
+
+<p>The widely-used Adam optimizer combines momentum with adaptive learning rates through a system of equations:</p>
+
+\[\begin{align}
+m_t &amp;= \beta_1 m_{t-1} + (1-\beta_1)\nabla_\theta J(\theta_t) \\
+v_t &amp;= \beta_2 v_{t-1} + (1-\beta_2)(\nabla_\theta J(\theta_t))^2 \\
+\theta_{t+1} &amp;= \theta_t - \alpha \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
+\end{align}\]
+
+<p>Here, the first equation is essentially momentum with $\beta_1$ as the momentum coefficient. Even the most advanced optimizers still incorporate momentum as a fundamental building block.</p>
+
+<h2 id="practical-tips-for-using-momentum">Practical Tips for Using Momentum</h2>
+
+<p>When implementing momentum in your own projects, keep these practical considerations in mind:</p>
+
+<ol>
+  <li>
+    <p><strong>Default momentum value</strong>: 0.9 is a good starting point for most problems</p>
+  </li>
+  <li>
+    <p><strong>Effective learning rate</strong>: With momentum, the effective step size is approximately \(\frac{\alpha}{1-\gamma}\) in the long run. For \(\gamma = 0.9\), this means the effective learning rate is 10× the nominal value! When switching from vanilla gradient descent to momentum, you may need to reduce your learning rate to maintain stability.</p>
+  </li>
+  <li>
+    <p><strong>Improved generalization</strong>: Beyond faster training, momentum methods tend to find solutions that generalize better. The dynamics of momentum optimization naturally favor wider, flatter minima over sharp ones, which often translates to better test performance.</p>
+  </li>
+</ol>
+
+<p>Momentum gradient descent represents one of the most profound advances in optimization for machine learning. Its elegant mathematical formulation combines insights from physics with optimization theory to create an algorithm that accelerates convergence, navigates challenging geometries, and improves generalization. Understanding these principles helps explain why momentum remains a core component of modern optimizers and continues to inspire new algorithmic developments in deep learning.</p>
+
+            </div>
+
+            <!-- Post Date -->
+            <p>
+            <small>
+                <span class="post-date"><time class="post-date" datetime="2025-05-16">16 May 2025</time></span>           
+                
+                (Updated: <time datetime="2025-05-17T00:00:00+02:00" itemprop="dateModified">May 17, 2025</time>)
+                
+                </small>
+            </p>
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#deep-learning">deep learning</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#machine-learning">machine learning</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#optimization-algorithms">optimization algorithms</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#convergence-analysis">#convergence analysis</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#dynamical-systems">#dynamical systems</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#gradient-descent">#gradient descent</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#momentum">#momentum</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#neural-networks">#neural networks</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#optimization-theory">#optimization theory</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#ravines">#ravines</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#saddle-points">#saddle points</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+            
+            <a class="prev d-block col-md-6" href="https://labfab.io//trend-following/"> &laquo; Trend Following Strategies: Hidden Protection for Long-Term Investors</a>
+            
+            
+            <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== -->
+
+    <div class="container">
+        <div id="comments" class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'labfab'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+            </div>
+        </div>
+    </div>
+
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "Thing",
+    "name": "Why Momentum Works: The Physics of Optimization"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "StackNets"
+  },
+  "datePublished": "2025-05-16",
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "4.7",
+    "bestRating": "5"
+  }
+}
+</script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3K2EDM9K7H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3K2EDM9K7H');
+</script>
+</div>
+
+
+<!-- Floating TOC -->
+<div id="toc-trigger"></div>
+<div id="toc"></div>
+
+
+
+<!-- Newsletter Subscription
+================================================== -->
+<div class="newsletter-subscription" style="text-align: center; margin: 20px 0; font-size: 0.9em; color: #666;">
+    <p>Never miss a <b>story</b> from us, <a href="https://buttondown.com/capela" target="_blank">subscribe to our newsletter</a></p>
+</div>
+
+
+<!-- Categories Jumbotron
+================================================== -->
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+            <div class="d-md-flex align-items-center justify-content-center h-100">
+                <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
+            </div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+            
+            
+                
+                    <a class="mt-1 mb-1" href="/categories#investing-portfolio-management">investing portfolio management (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#trading-strategies">trading strategies (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#risk-management">risk management (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#machine-learning">machine learning (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#optimization-algorithms">optimization algorithms (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#deep-learning">deep learning (1)</a>
+                
+            
+            
+		</div>
+	</div>
+</div>
+
+<!-- Begin Footer
+================================================== -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                Copyright © 2025 LabFab 
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer
+================================================== -->
+
+</div> <!-- /.site-content -->
+
+<!-- Scripts
+================================================== -->
+
+<script>
+// Floating TOC functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const toc = document.getElementById('toc');
+    if (!toc) return;
+
+    // Get all h2 headings from the main content
+    const mainContent = document.querySelector('.main-content');
+    const headings = mainContent.querySelectorAll('h2');
+    if (headings.length < 1) return;
+
+    const tocList = document.createElement('ul');
+    
+    headings.forEach((heading, index) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        
+        // Add ID to heading if it doesn't have one
+        if (!heading.id) {
+            heading.id = 'heading-' + index;
+        }
+        
+        a.href = '#' + heading.id;
+        a.textContent = heading.textContent;
+        
+        li.appendChild(a);
+        tocList.appendChild(li);
+    });
+
+    toc.appendChild(tocList);
+    toc.classList.add('visible');
+
+    // Show/hide TOC based on scroll position
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > lastScrollTop) {
+            // Scrolling down
+            toc.style.opacity = '0.7';
+        } else {
+            // Scrolling up
+            toc.style.opacity = '1';
+        }
+        lastScrollTop = st <= 0 ? 0 : st;
+    });
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/assets/js/mediumish.js"></script>
+
+
+
+<script src="/assets/js/ie10-viewport-bug-workaround.js"></script> 
+
+
+<script id="dsq-count-scr" src="//labfab.disqus.com/count.js"></script>
+
+
+</body>
+</html>

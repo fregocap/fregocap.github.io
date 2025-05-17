@@ -5,9 +5,150 @@
     <description>Exploring math, physics, machine learning, and finance insights.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 03 May 2025 00:51:43 +0200</pubDate>
-    <lastBuildDate>Sat, 03 May 2025 00:51:43 +0200</lastBuildDate>
+    <pubDate>Sat, 17 May 2025 13:29:54 +0200</pubDate>
+    <lastBuildDate>Sat, 17 May 2025 13:29:54 +0200</lastBuildDate>
     <generator>Jekyll v4.3.3</generator>
+    
+      <item>
+        <title>Why Momentum Works: The Physics of Optimization</title>
+        <description>&lt;p&gt;Gradient descent is the workhorse of modern machine learning, but vanilla gradient descent often struggles with challenges like saddle points, ravines, and local minima. Momentum-based methods address these limitations through elegant mathematical principles that provide remarkable benefits. This post explores why momentum gradient descent works so effectively and has become fundamental to modern optimization algorithms.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-physics-of-momentum-optimization&quot;&gt;The Physics of Momentum Optimization&lt;/h2&gt;
+
+&lt;p&gt;Classical gradient descent performs a simple update: \(\theta_{t+1} = \theta_t - \alpha \nabla_\theta J(\theta_t)\), where \(\theta_t\) represents parameters, $\alpha$ is the learning rate, and $\nabla_\theta J(\theta_t)$ is the gradient. This approach navigates the loss landscape by always moving in the steepest downhill direction at each step.&lt;/p&gt;
+
+&lt;p&gt;Momentum gradient descent transforms this process by introducing a velocity term that accumulates previous gradients:&lt;/p&gt;
+
+\[\begin{align}
+v_{t+1} &amp;amp;= \gamma v_t + \alpha \nabla_\theta J(\theta_t) \\
+\theta_{t+1} &amp;amp;= \theta_t - v_{t+1}
+\end{align}\]
+
+&lt;p&gt;Here, \(\gamma \in [0,1)\) is the momentum coefficient, typically around 0.9. This simple modification dramatically improves optimization.&lt;/p&gt;
+
+&lt;p&gt;The most intuitive way to understand momentum is through physics: imagine a ball rolling down a hill with friction. Standard gradient descent is like a ball in a thick fluid that can only move directly downhill at each point. Momentum is like giving this ball mass, allowing it to build up speed and continue moving even through small uphill sections.&lt;/p&gt;
+
+&lt;p&gt;This physical intuition can be formalized mathematically. Momentum optimization approximates a damped mechanical system governed by:&lt;/p&gt;
+
+\[\begin{align}
+m\frac{d^2\theta}{dt^2} + c\frac{d\theta}{dt} &amp;amp;= -\nabla_\theta J(\theta)
+\end{align}\]
+
+&lt;p&gt;Where the effective mass is related to the momentum coefficient by \(m \propto \frac{1}{1-\gamma}\). This means higher momentum values (closer to 1) give the system more inertia.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center; margin: 2rem 0 1.5rem;&quot;&gt;
+    &lt;img src=&quot;/assets/images/optimization_comparison.png&quot; alt=&quot;Phase space diagram showing trajectories of vanilla gradient descent vs. momentum in a 2D contour plot&quot; style=&quot;max-width: 100%; height: auto;&quot; /&gt;
+    &lt;p style=&quot;margin-top: 0.75rem; color: #666; font-style: italic; font-size: 0.9rem;&quot;&gt;
+        Phase space diagram showing trajectories of vanilla gradient descent vs. momentum in a 2D contour plot
+    &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;why-momentum-works-so-well&quot;&gt;Why Momentum Works So Well&lt;/h2&gt;
+
+&lt;p&gt;Momentum acceleration provides three key benefits that dramatically improve optimization:&lt;/p&gt;
+
+&lt;h4 id=&quot;1-smoothing-oscillations-in-ravines&quot;&gt;1. Smoothing Oscillations in Ravines&lt;/h4&gt;
+
+&lt;p&gt;One of momentum’s greatest strengths is navigating ravines—regions where the loss surface is much steeper in some directions than others.&lt;/p&gt;
+
+&lt;p&gt;Consider optimizing a simple quadratic function \(J(\theta) = 100\theta_1^2 + \theta_2^2\). The surface is 100 times steeper in the \(\theta_1\) direction than in the \(\theta_2\) direction. Standard gradient descent zigzags inefficiently, oscillating wildly in the steep direction while making minimal progress in the flat direction.&lt;/p&gt;
+
+&lt;p&gt;Momentum naturally dampens these oscillations. The velocity accumulates in consistent directions while canceling out in oscillatory directions. This creates an effective “shortcut” through the zigzag path that vanilla gradient descent would take.&lt;/p&gt;
+
+&lt;h4 id=&quot;2-escaping-saddle-points&quot;&gt;2. Escaping Saddle Points&lt;/h4&gt;
+
+&lt;p&gt;Saddle points are locations where the gradient is zero, but the surface curves upward in some directions and downward in others. They’re extremely common in high-dimensional spaces like neural networks.&lt;/p&gt;
+
+&lt;p&gt;Standard gradient descent can get trapped at saddle points because the gradient vanishes. Momentum’s accumulated velocity allows it to cruise past these points, much like how a rolling ball doesn’t stop at the middle of a mountain pass.&lt;/p&gt;
+
+&lt;p&gt;This property is especially important in deep learning, where saddle points are far more common than local minima in high-dimensional parameter spaces.&lt;/p&gt;
+
+&lt;div style=&quot;text-align: center; margin: 2rem 0;&quot;&gt;
+    &lt;img src=&quot;/assets/images/optimization_3d.gif&quot; alt=&quot;3D visualization of optimization paths showing how momentum helps navigate the loss landscape&quot; style=&quot;max-width: 100%; height: auto; border-radius: 4px;&quot; /&gt;
+    &lt;p style=&quot;margin-top: 0.75rem; color: #666; font-style: italic; font-size: 0.9rem;&quot;&gt;
+        3D visualization showing how momentum helps navigate the complex loss landscape. The rotating view reveals the valleys and ridges that make optimization challenging.
+    &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;3-adaptive-effective-learning-rates&quot;&gt;3. &lt;em&gt;Adaptive Effective Learning Rates&lt;/em&gt;&lt;/h4&gt;
+
+&lt;p&gt;A less obvious benefit of momentum is how it creates dimension-specific effective learning rates. When we expand the momentum update recursively, we get:&lt;/p&gt;
+
+\[\begin{align}
+v_t &amp;amp;= \alpha\sum_{i=0}^{t-1} \gamma^{t-1-i} \nabla_\theta J(\theta_i)
+\end{align}\]
+
+&lt;p&gt;This shows that momentum computes an exponentially weighted moving average of past gradients. When gradients consistently point in the same direction, this sum grows, effectively increasing the step size. When gradients oscillate, they partially cancel out, effectively reducing the step size.&lt;/p&gt;
+
+&lt;p&gt;This natural adaptation happens automatically along different dimensions of the parameter space, creating a crude but effective form of preconditioning that adjusts to the local geometry.&lt;/p&gt;
+
+&lt;h2 id=&quot;applications-in-modern-deep-learning&quot;&gt;Applications in Modern Deep Learning&lt;/h2&gt;
+
+&lt;p&gt;The mathematical principles of momentum extend to more sophisticated algorithms used throughout deep learning. Nesterov’s accelerated gradient introduces a “look-ahead” evaluation:&lt;/p&gt;
+
+\[\begin{align}
+v_{t+1} &amp;amp;= \gamma v_t + \alpha \nabla_\theta J(\theta_t + \gamma v_t) \\
+\theta_{t+1} &amp;amp;= \theta_t - v_{t+1}
+\end{align}\]
+
+&lt;p&gt;This subtle modification further improves momentum’s performance, especially for convex problems.&lt;/p&gt;
+
+&lt;p&gt;The widely-used Adam optimizer combines momentum with adaptive learning rates through a system of equations:&lt;/p&gt;
+
+\[\begin{align}
+m_t &amp;amp;= \beta_1 m_{t-1} + (1-\beta_1)\nabla_\theta J(\theta_t) \\
+v_t &amp;amp;= \beta_2 v_{t-1} + (1-\beta_2)(\nabla_\theta J(\theta_t))^2 \\
+\theta_{t+1} &amp;amp;= \theta_t - \alpha \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}
+\end{align}\]
+
+&lt;p&gt;Here, the first equation is essentially momentum with $\beta_1$ as the momentum coefficient. Even the most advanced optimizers still incorporate momentum as a fundamental building block.&lt;/p&gt;
+
+&lt;h2 id=&quot;practical-tips-for-using-momentum&quot;&gt;Practical Tips for Using Momentum&lt;/h2&gt;
+
+&lt;p&gt;When implementing momentum in your own projects, keep these practical considerations in mind:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Default momentum value&lt;/strong&gt;: 0.9 is a good starting point for most problems&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Effective learning rate&lt;/strong&gt;: With momentum, the effective step size is approximately \(\frac{\alpha}{1-\gamma}\) in the long run. For \(\gamma = 0.9\), this means the effective learning rate is 10× the nominal value! When switching from vanilla gradient descent to momentum, you may need to reduce your learning rate to maintain stability.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Improved generalization&lt;/strong&gt;: Beyond faster training, momentum methods tend to find solutions that generalize better. The dynamics of momentum optimization naturally favor wider, flatter minima over sharp ones, which often translates to better test performance.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Momentum gradient descent represents one of the most profound advances in optimization for machine learning. Its elegant mathematical formulation combines insights from physics with optimization theory to create an algorithm that accelerates convergence, navigates challenging geometries, and improves generalization. Understanding these principles helps explain why momentum remains a core component of modern optimizers and continues to inspire new algorithmic developments in deep learning.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 16 May 2025 00:00:00 +0200</pubDate>
+        <link>http://localhost:4000/momentum-gradient/</link>
+        <guid isPermaLink="true">http://localhost:4000/momentum-gradient/</guid>
+        
+        <category>momentum</category>
+        
+        <category>gradient descent</category>
+        
+        <category>convergence analysis</category>
+        
+        <category>optimization theory</category>
+        
+        <category>neural networks</category>
+        
+        <category>saddle points</category>
+        
+        <category>ravines</category>
+        
+        <category>dynamical systems</category>
+        
+        
+        <category>machine learning</category>
+        
+        <category>optimization algorithms</category>
+        
+        <category>deep learning</category>
+        
+      </item>
     
       <item>
         <title>Trend Following Strategies: Hidden Protection for Long-Term Investors</title>
@@ -30,7 +171,7 @@
 
 \[G_t:= \Pi_{t-1} D_t = \lambda D_t \sum_{t&apos;=1}^{t-1} D_{t&apos;}\]
 
-&lt;p&gt;where \(D_t\)  is the price changes from \(t-1\) to \(t\). Aggregating this over \(T\) over \(T\) days and rearranging the sums:&lt;/p&gt;
+&lt;p&gt;where \(D_t\)  is the price changes from \(t-1\) to \(t\). Aggregating this over \(T\) days and rearranging the sums:&lt;/p&gt;
 
 \[G_t = \frac{\lambda}{2} \left(S_T - S_0 \right)^2 - \frac{\lambda}{2} \sum_{t=1}^{T} D_t^2\]
 
