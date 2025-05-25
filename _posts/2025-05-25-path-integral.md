@@ -8,7 +8,7 @@ description: "A comprehensive technical guide to Feynman's path integral formula
 featured: true 
 hidden: false 
 rating: 4.8
-last_modified_at: 2025-05-25 
+last_modified_at: 2025-05-24 
 seo: 
     title: "Feynman Path Integral: Complete Mathematical Guide to Quantum Mechanics [2025]"
     meta_description: "Master the Feynman path integral formulation with detailed mathematical derivations, applications in quantum field theory, and modern computational methods."
