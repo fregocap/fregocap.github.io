@@ -28,6 +28,7 @@ $$\nabla: \Gamma(TM) \times \Gamma(TM) \to \Gamma(TM)$$
 where $\Gamma(TM)$ denotes smooth vector fields on $M$. The connection satisfies:
 
 $$\nabla_{fX}Y = f\nabla_X Y$$
+
 $$\nabla_X(fY) = (Xf)Y + f\nabla_X Y$$
 
 for any smooth function $f$ and vector fields $X, Y$. The second property, encoding the Leibniz rule, is what makes connections fundamentally different from ordinary derivatives.
