@@ -5,9 +5,184 @@
     <description>Exploring math, physics, machine learning, and finance insights.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 11 Jun 2025 00:06:24 +0200</pubDate>
-    <lastBuildDate>Wed, 11 Jun 2025 00:06:24 +0200</lastBuildDate>
+    <pubDate>Sun, 22 Jun 2025 00:17:07 +0200</pubDate>
+    <lastBuildDate>Sun, 22 Jun 2025 00:17:07 +0200</lastBuildDate>
     <generator>Jekyll v4.3.3</generator>
+    
+      <item>
+        <title>Graph Neural Networks: Deep Learning on Non-Euclidean Data</title>
+        <description>&lt;p&gt;Graph Neural Networks (GNNs) represent a fundamental paradigm shift in deep learning, extending the remarkable success of neural networks from Euclidean domains like images and sequences to the irregular, non-Euclidean world of graphs. While traditional convolutional neural networks excel at processing grid-like data where spatial relationships are well-defined and translation-invariant, real-world data often exists in graph-structured formats where entities and their relationships cannot be captured by regular grids. Social networks, molecular structures, knowledge graphs, transportation systems, and citation networks all exhibit complex relational patterns that require specialized architectures to process effectively. GNNs address this challenge by learning representations that respect the underlying graph topology while leveraging the powerful optimization techniques developed for deep learning.&lt;/p&gt;
+
+&lt;h2 id=&quot;mathematical-foundations-and-message-passing&quot;&gt;Mathematical Foundations and Message Passing&lt;/h2&gt;
+
+&lt;p&gt;The mathematical foundation of GNNs builds upon the concept of message passing, where nodes iteratively aggregate information from their local neighborhoods to update their representations. Consider a graph $G = (V, E)$ with node features $X \in \mathbb{R}^{\lvert V \rvert \times d}$ where each node $v_i$ has a $d$-dimensional feature vector $\mathbf{x}_i$. The core idea is to learn node embeddings $\mathbf{h}_i^{(l)}$ at layer $l$ by combining the node’s current representation with aggregated information from its neighbors $\mathcal{N}(i)$.&lt;/p&gt;
+
+&lt;p&gt;This process can be formalized as a two-step procedure: first, aggregate messages from neighboring nodes using an aggregation function $\text{AGG}^{(l)}$, then update the node representation using an update function $\text{UPDATE}^{(l)}$. The general message passing framework can be written as:&lt;/p&gt;
+
+\[\mathbf{m}_i^{(l+1)} = \text{AGG}^{(l)}\left(\{\mathbf{h}_j^{(l)} : j \in \mathcal{N}(i)\}\right)\]
+
+\[\mathbf{h}_i^{(l+1)} = \text{UPDATE}^{(l)}\left(\mathbf{h}_i^{(l)}, \mathbf{m}_i^{(l+1)}\right)\]
+
+&lt;p&gt;where $\mathbf{m}_i^{(l+1)}$ represents the aggregated message for node $i$ at layer $l+1$. This framework encompasses a wide variety of GNN architectures, each differing in their choice of aggregation and update functions, their treatment of edge features, and their approach to ensuring permutation invariance with respect to the ordering of neighbors.&lt;/p&gt;
+
+&lt;h2 id=&quot;graph-convolutional-networks-gcns&quot;&gt;Graph Convolutional Networks (GCNs)&lt;/h2&gt;
+
+&lt;p&gt;Graph Convolutional Networks, introduced by Kipf and Welling, provide one of the most influential instantiations of this framework by drawing inspiration from spectral graph theory. The spectral approach begins with the graph Laplacian matrix $L = D - A$, where $A$ is the adjacency matrix and $D$ is the degree matrix with $D_{ii} = \sum_j A_{ij}$. The normalized symmetric Laplacian $\tilde{L} = D^{-1/2}LD^{-1/2}$ has eigenvalues $0 = \lambda_0 \leq \lambda_1 \leq \cdots \leq \lambda_{n-1} \leq 2$ with corresponding orthonormal eigenvectors that form the graph Fourier basis.&lt;/p&gt;
+
+&lt;p&gt;Spectral convolution is defined as the multiplication of a signal $\mathbf{x}$ with a filter $g_\theta$ in the Fourier domain:&lt;/p&gt;
+
+\[g_\theta \star \mathbf{x} = Ug_\theta(\Lambda)U^T\mathbf{x}\]
+
+&lt;p&gt;where $U$ is the matrix of eigenvectors, $\Lambda$ is the diagonal matrix of eigenvalues, and $g_\theta(\Lambda)$ is a diagonal matrix containing the filter parameters. However, this approach suffers from computational complexity issues due to eigendecomposition and lacks localization in the spatial domain. Kipf and Welling addressed these limitations by approximating the spectral filters using Chebyshev polynomials and making a first-order approximation, ultimately arriving at the simplified GCN layer:&lt;/p&gt;
+
+\[H^{(l+1)} = \sigma\left(\tilde{A}H^{(l)}W^{(l)}\right)\]
+
+&lt;p&gt;where $\tilde{A} = D^{-1/2}(A + I)D^{-1/2}$ is the normalized adjacency matrix with added self-loops, $H^{(l)}$ contains the node representations at layer $l$, $W^{(l)}$ is the learnable weight matrix, and $\sigma$ is a non-linear activation function. This formulation elegantly combines the mathematical rigor of spectral graph theory with the computational efficiency required for practical applications.&lt;/p&gt;
+
+&lt;h2 id=&quot;graphsage-sampling-and-aggregation&quot;&gt;GraphSAGE: Sampling and Aggregation&lt;/h2&gt;
+
+&lt;p&gt;GraphSAGE (Graph Sample and Aggregate) takes a different approach by emphasizing inductive learning and scalability to large graphs. Rather than relying on spectral properties, GraphSAGE focuses on sampling and aggregating features from a node’s local neighborhood using various aggregation functions. The update rule for GraphSAGE consists of two steps:&lt;/p&gt;
+
+\[\mathbf{h}_{\mathcal{N}(v)}^{(l)} = \text{AGGREGATE}_l\left(\{\mathbf{h}_u^{(l-1)} : u \in \mathcal{N}(v)\}\right)\]
+
+\[\mathbf{h}_v^{(l)} = \sigma\left(W^{(l)} \cdot \text{CONCAT}\left(\mathbf{h}_v^{(l-1)}, \mathbf{h}_{\mathcal{N}(v)}^{(l)}\right)\right)\]
+
+&lt;p&gt;where the aggregation function can be mean aggregation, max pooling, or LSTM-based aggregation applied to a random permutation of neighbors. The inductive nature of GraphSAGE allows it to generate embeddings for previously unseen nodes during inference, making it particularly suitable for dynamic graphs and scenarios where the graph structure evolves over time. The sampling strategy employed by GraphSAGE addresses the computational challenges associated with neighborhoods that grow exponentially with the number of layers, enabling efficient training on large-scale graphs by sampling a fixed-size set of neighbors at each layer.&lt;/p&gt;
+
+&lt;h2 id=&quot;graph-attention-networks-gats&quot;&gt;Graph Attention Networks (GATs)&lt;/h2&gt;
+
+&lt;p&gt;Graph Attention Networks introduce attention mechanisms to graph neural networks, allowing nodes to assign different weights to their neighbors based on the relevance of their features. The attention mechanism in GATs computes attention coefficients for each edge $(i,j)$:&lt;/p&gt;
+
+\[e_{ij} = a\left(W\mathbf{h}_i, W\mathbf{h}_j\right)\]
+
+&lt;p&gt;where $a$ is a learnable attention function, typically implemented as a single-layer feedforward neural network:&lt;/p&gt;
+
+\[e_{ij} = \text{LeakyReLU}\left(\mathbf{a}^T[W\mathbf{h}_i \| W\mathbf{h}_j]\right)\]
+
+&lt;p&gt;These raw attention scores are then normalized using the softmax function:&lt;/p&gt;
+
+\[\alpha_{ij} = \text{softmax}_j(e_{ij}) = \frac{\exp(e_{ij})}{\sum_{k \in \mathcal{N}(i)} \exp(e_{ik})}\]
+
+&lt;p&gt;The final node representation is computed as a weighted sum of transformed neighbor features:&lt;/p&gt;
+
+\[\mathbf{h}_i&apos; = \sigma\left(\sum_{j \in \mathcal{N}(i)} \alpha_{ij} W \mathbf{h}_j\right)\]
+
+&lt;p&gt;Multi-head attention extends this mechanism by computing $K$ independent attention heads and concatenating or averaging their outputs. The attention mechanism provides interpretability by revealing which neighbors contribute most to each node’s representation, while the multi-head structure captures different types of relationships and increases the model’s expressiveness.&lt;/p&gt;
+
+&lt;h2 id=&quot;message-passing-neural-networks-mpnns&quot;&gt;Message Passing Neural Networks (MPNNs)&lt;/h2&gt;
+
+&lt;p&gt;Message Passing Neural Networks provide a unified framework that generalizes many existing GNN architectures by explicitly separating the message passing phase from the readout phase. In the message passing phase, hidden states are updated according to:&lt;/p&gt;
+
+\[\mathbf{h}_v^{(t+1)} = U_t\left(\mathbf{h}_v^{(t)}, \sum_{w \in \mathcal{N}(v)} M_t\left(\mathbf{h}_v^{(t)}, \mathbf{h}_w^{(t)}, \mathbf{e}_{vw}\right)\right)\]
+
+&lt;p&gt;where $M_t$ is a message function that computes messages between nodes using node states and edge features $\mathbf{e}_{vw}$, and $U_t$ is an update function that combines the node’s current state with the aggregated messages. After $T$ time steps of message passing, a readout function $R$ computes a graph-level representation:&lt;/p&gt;
+
+\[\hat{\mathbf{y}} = R\left(\{\mathbf{h}_v^{(T)} : v \in G\}\right)\]
+
+&lt;p&gt;This framework encompasses GCNs by setting appropriate message and update functions, GraphSAGE through specific choices of aggregation functions, and GATs by incorporating attention weights into the message function. The MPNN framework facilitates the design of novel architectures by providing a systematic way to think about message passing operations and their properties.&lt;/p&gt;
+
+&lt;h2 id=&quot;theoretical-foundations-and-expressive-power&quot;&gt;Theoretical Foundations and Expressive Power&lt;/h2&gt;
+
+&lt;p&gt;The theoretical understanding of GNNs has been significantly advanced through the analysis of their expressive power and limitations. The Weisfeiler-Leman (WL) hierarchy provides a natural way to characterize the discriminative ability of different GNN architectures. The 1-WL test, which forms the basis for understanding standard message-passing GNNs, iteratively refines node colorings by considering the multiset of neighbor colors. Formally, at each iteration, the color of node $v$ is updated as:&lt;/p&gt;
+
+\[c^{(t+1)}(v) = \text{HASH}\left(c^{(t)}(v), \{\{c^{(t)}(u) : u \in \mathcal{N}(v)\}\}\right)\]
+
+&lt;p&gt;where HASH is an injective hash function. Xu et al. proved that the expressive power of message-passing GNNs is at most as powerful as the 1-WL test, meaning that if two graphs cannot be distinguished by the 1-WL test, they will produce identical representations in any message-passing GNN regardless of the parameters. This theoretical result explains why standard GNNs struggle with certain graph properties like counting triangles or distinguishing between regular graphs of the same degree.&lt;/p&gt;
+
+&lt;iframe src=&quot;/assets/html/wl_hierarchy_explorer.html&quot; width=&quot;100%&quot; height=&quot;800&quot; frameborder=&quot;0&quot; style=&quot;border: none;&quot; title=&quot;1-WL Test: GNN Limitation Demo&quot;&gt;
+&lt;/iframe&gt;
+
+&lt;h2 id=&quot;graph-transformers-and-global-attention&quot;&gt;Graph Transformers and Global Attention&lt;/h2&gt;
+
+&lt;p&gt;Graph transformers represent a recent evolution in GNN architectures that aim to overcome the limitations of message passing by incorporating global attention mechanisms. Traditional message passing constrains information flow to local neighborhoods, potentially requiring many layers for long-range interactions and suffering from issues like over-smoothing and over-squashing. Graph transformers address these limitations by allowing each node to attend to all other nodes in the graph, either directly or through learned representations.&lt;/p&gt;
+
+&lt;p&gt;The GraphiT architecture, for example, computes attention weights between all pairs of nodes while incorporating positional encodings based on graph structure:&lt;/p&gt;
+
+\[\text{Attention}(\mathbf{h}_i, \mathbf{h}_j) = \text{softmax}\left(\frac{(\mathbf{h}_i W^Q)(\mathbf{h}_j W^K + PE(\mathbf{d}_{ij}))^T}{\sqrt{d_k}}\right)(\mathbf{h}_j W^V)\]
+
+&lt;p&gt;where $PE(\mathbf{d}_{ij})$ is a positional encoding based on the shortest path distance between nodes $i$ and $j$. Other approaches like the Spectral Attention Network use spectral properties to define attention patterns, while Graph-BERT applies transformer architectures to subgraphs sampled from the original graph.&lt;/p&gt;
+
+&lt;h2 id=&quot;training-and-optimization-challenges&quot;&gt;Training and Optimization Challenges&lt;/h2&gt;
+
+&lt;p&gt;The optimization and training of GNNs present unique challenges that distinguish them from standard deep learning scenarios. The irregular structure of graphs makes batching non-trivial, requiring techniques like graph padding, sparse tensor representations, or specialized batching strategies that pack multiple graphs into a single computational unit. Mini-batch training on large graphs typically employs sampling strategies such as node sampling, where a subset of nodes and their induced subgraphs are selected for each batch, or layer-wise sampling methods like FastGCN that sample different subsets of nodes at each layer.&lt;/p&gt;
+
+&lt;p&gt;The choice of loss function depends on the task: node-level tasks use standard classification or regression losses applied to node representations, edge-level tasks require pairwise comparisons or link prediction losses:&lt;/p&gt;
+
+\[\mathcal{L} = -\sum_{(u,v) \in E} \log \sigma(\mathbf{h}_u^T \mathbf{h}_v) - \sum_{(u,v) \notin E} \log(1 - \sigma(\mathbf{h}_u^T \mathbf{h}_v))\]
+
+&lt;p&gt;and graph-level tasks aggregate node representations before applying global losses. Regularization techniques specific to graphs include DropEdge, which randomly removes edges during training to prevent overfitting to specific graph structures, and DropNode, which removes entire nodes and their connections.&lt;/p&gt;
+
+&lt;h2 id=&quot;advanced-architectures-and-specialized-models&quot;&gt;Advanced Architectures and Specialized Models&lt;/h2&gt;
+
+&lt;p&gt;Advanced GNN architectures have emerged to address specific challenges and application domains. Graph Isomorphism Networks (GINs) achieve maximum expressive power within the 1-WL hierarchy by using sum aggregation and MLPs as update functions:&lt;/p&gt;
+
+\[\mathbf{h}_v^{(l+1)} = \text{MLP}^{(l)}\left((1 + \epsilon^{(l)}) \cdot \mathbf{h}_v^{(l)} + \sum_{u \in \mathcal{N}(v)} \mathbf{h}_u^{(l)}\right)\]
+
+&lt;p&gt;where $\epsilon^{(l)}$ is either a learnable parameter or fixed to 0. Principal Neighbourhood Aggregation (PNA) systematically combines multiple aggregation functions (mean, max, min, sum) with multiple scaling functions (identity, amplification, attenuation) to create more expressive aggregators. Directional Graph Networks introduce anisotropic message passing by considering the directional relationships between nodes, while Graph Networks with Individual Edge Information explicitly model edge features throughout the message passing process.&lt;/p&gt;
+
+&lt;h2 id=&quot;molecular-property-prediction&quot;&gt;Molecular Property Prediction&lt;/h2&gt;
+
+&lt;p&gt;The application of GNNs to molecular property prediction represents one of the most successful domains for graph neural networks, where molecules are naturally represented as graphs with atoms as nodes and bonds as edges. Molecular graphs possess unique characteristics including chirality, aromaticity, and complex 3D structures that standard GNNs must account for. The D-MPNN (Directed Message Passing Neural Network) addresses molecular representation by treating bonds as directed edges and incorporating bond features directly into the message passing process:&lt;/p&gt;
+
+\[\mathbf{m}_{v \rightarrow w}^{(t+1)} = \sum_{u \in \mathcal{N}(v) \setminus \{w\}} M\left(\mathbf{h}_v^{(t)}, \mathbf{h}_u^{(t)}, \mathbf{e}_{u,v}\right)\]
+
+&lt;p&gt;where messages are computed along directed edges and the summation excludes the target node to prevent information leakage. SchNet and DimeNet extend molecular GNNs to continuous 3D space by using radial basis functions and spherical harmonics to encode geometric information:&lt;/p&gt;
+
+\[\mathbf{m}_{ij} = \mathbf{W}_m \mathbf{h}_i \odot g\left(\|\mathbf{r}_i - \mathbf{r}_j\|\right)\]
+
+&lt;p&gt;where $g$ is a radial basis function expansion and $\mathbf{r}_i$ represents atomic coordinates.&lt;/p&gt;
+
+&lt;h2 id=&quot;knowledge-graph-embeddings-and-reasoning&quot;&gt;Knowledge Graph Embeddings and Reasoning&lt;/h2&gt;
+
+&lt;p&gt;Knowledge graph embeddings and reasoning represent another critical application area where GNNs excel at capturing the complex semantic relationships encoded in large-scale knowledge bases. Knowledge graphs consist of entities connected by typed relations, typically represented as triples $(h, r, t)$ where $h$ is the head entity, $r$ is the relation, and $t$ is the tail entity. R-GCN (Relational Graph Convolutional Networks) extends standard GCNs to handle multiple relation types by using relation-specific transformation matrices:&lt;/p&gt;
+
+\[\mathbf{h}_i^{(l+1)} = \sigma\left(W_0^{(l)}\mathbf{h}_i^{(l)} + \sum_{r \in \mathcal{R}} \sum_{j \in \mathcal{N}_i^r} \frac{1}{c_{i,r}} W_r^{(l)} \mathbf{h}_j^{(l)}\right)\]
+
+&lt;p&gt;where $ \mathcal{N}^{r}$ denotes the set of neighbors of node $i$ under relation $r$, and $ c_{i,r} $ is a normalization constant. The computational complexity of maintaining separate parameters for each relation type necessitates parameter sharing strategies such as basis decomposition or block diagonal decomposition.&lt;/p&gt;
+
+&lt;h2 id=&quot;social-network-analysis-and-temporal-dynamics&quot;&gt;Social Network Analysis and Temporal Dynamics&lt;/h2&gt;
+
+&lt;p&gt;Social network analysis has been revolutionized by the application of GNNs to tasks such as community detection, influence prediction, and recommendation systems. Social graphs exhibit unique properties including homophily (similar nodes tend to be connected), clustering patterns, and dynamic evolution over time. Dynamic GNNs like DynGEM and DynamicGCN handle the temporal evolution of social networks by incorporating temporal information into the message passing process or by using recurrent neural networks to model the evolution of node embeddings over time:&lt;/p&gt;
+
+\[\mathbf{h}_i^{(t+1)} = \text{GNN}\left(\mathbf{h}_i^{(t)}, \{\mathbf{h}_j^{(t)} : j \in \mathcal{N}_i^{(t)}\}, \mathbf{x}_i^{(t+1)}\right)\]
+
+&lt;p&gt;where the superscript $(t)$ denotes the time step. These temporal models have shown significant improvements in tasks like user behavior prediction and viral content detection in social media platforms.&lt;/p&gt;
+
+&lt;h2 id=&quot;scalability-and-distributed-training&quot;&gt;Scalability and Distributed Training&lt;/h2&gt;
+
+&lt;p&gt;The scalability of GNNs to massive graphs remains an active area of research, with approaches ranging from sampling-based methods to distributed computing frameworks. Mini-batch training strategies include node-wise sampling, layer-wise sampling, and subgraph sampling. FastGCN reformulates the convolution operation as an integral over node distributions and uses Monte Carlo sampling to approximate the integral, reducing the computational complexity from $O(\lvert \mathcal{N} \rvert^L)$ to $O(s^L)$ where $s$ is the sample size and $L$ is the number of layers.&lt;/p&gt;
+
+&lt;p&gt;Distributed GNN training frameworks like DistDGL and PyTorch Geometric leverage multiple GPUs or machines to handle graphs with billions of nodes and edges, employing techniques such as graph partitioning, gradient compression, and asynchronous communication protocols.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 21 Jun 2025 00:00:00 +0200</pubDate>
+        <link>http://localhost:4000/graphs/</link>
+        <guid isPermaLink="true">http://localhost:4000/graphs/</guid>
+        
+        <category>graph neural networks</category>
+        
+        <category>message passing</category>
+        
+        <category>graph convolution</category>
+        
+        <category>attention mechanisms</category>
+        
+        <category>molecular modeling</category>
+        
+        <category>knowledge graphs</category>
+        
+        <category>geometric deep learning</category>
+        
+        <category>neural networks</category>
+        
+        
+        <category>machine learning</category>
+        
+        <category>deep learning</category>
+        
+        <category>graph theory</category>
+        
+      </item>
     
       <item>
         <title>Gauge Fields: The Hidden Geometry Behind Nature&apos;s Forces</title>

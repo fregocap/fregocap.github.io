@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="icon" href="/assets/images/logo.png">
+
+<title>Graph Neural Networks: Deep Learning on Non-Euclidean Data | LabFab</title>
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Graph Neural Networks: Deep Learning on Non-Euclidean Data | LabFab</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Graph Neural Networks: Deep Learning on Non-Euclidean Data" />
+<meta name="author" content="stacknets" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A comprehensive technical exploration of Graph Neural Networks, from mathematical foundations to cutting-edge architectures for processing relational data structures." />
+<meta property="og:description" content="A comprehensive technical exploration of Graph Neural Networks, from mathematical foundations to cutting-edge architectures for processing relational data structures." />
+<link rel="canonical" href="http://localhost:4000/graphs/" />
+<meta property="og:url" content="http://localhost:4000/graphs/" />
+<meta property="og:site_name" content="LabFab" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-06-21T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Graph Neural Networks: Deep Learning on Non-Euclidean Data" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"stacknets"},"dateModified":"2025-06-21T00:00:00+02:00","datePublished":"2025-06-21T00:00:00+02:00","description":"A comprehensive technical exploration of Graph Neural Networks, from mathematical foundations to cutting-edge architectures for processing relational data structures.","headline":"Graph Neural Networks: Deep Learning on Non-Euclidean Data","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/graphs/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/images/logo.png"},"name":"stacknets"},"url":"http://localhost:4000/graphs/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+<link href="/assets/css/screen.css" rel="stylesheet">
+
+<link href="/assets/css/main.css" rel="stylesheet">
+
+<script src="/assets/js/jquery.min.js"></script>
+
+<!-- MathJax Configuration -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    },
+    chtml: {
+      scale: 1.2,        // Scaling factor for display equations
+      displayAlign: 'center',
+      displayIndent: '0'
+    }
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+
+
+
+<body class="layout-post">
+	<!-- defer loading of font and font awesome -->
+	<noscript id="deferred-styles">
+		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	</noscript>
+
+
+<!-- Begin Menu Navigation
+================================================== -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+
+    <div class="container pr-0">
+
+    <!-- Begin Logo -->
+    <a class="navbar-brand" href="/">
+    <img src="/assets/images/logo.png" alt="LabFab">
+    </a>
+    <!-- End Logo -->
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMediumish">
+
+        <!-- Begin Menu -->
+
+            <ul class="navbar-nav ml-auto">
+
+                
+                <li class="nav-item">
+                
+                <a class="nav-link" href="/index.html">Blog</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/fire-calculator">FIRE Calculator</a>
+                </li>
+
+                <!-- <li class="nav-item">
+                <a target="_blank" class="nav-link" href="https://bootstrapstarter.com/bootstrap-templates/template-mediumish-bootstrap-jekyll/"> Docs</a>
+                </li> -->
+
+
+                <script src="/assets/js/lunr.js"></script>
+
+
+<style>
+    .lunrsearchresult .title {color: #d9230f;}
+    .lunrsearchresult .url {color: silver;}
+    .lunrsearchresult a {display: block; color: #777;}
+    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
+    .lunrsearchresult a:hover .title {text-decoration: underline;}
+</style>
+
+
+<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
+    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
+</form>
+
+<div id="lunrsearchresults">
+    <ul></ul>
+</div>
+
+<script src="/assets/js/lunrsearchengine.js"></script>
+
+            </ul>
+
+        <!-- End Menu -->
+
+    </div>
+
+    </div>
+</nav>
+<!-- End Navigation
+================================================== -->
+
+<div class="site-content">
+
+<div class="container">
+
+<!-- Site Title
+================================================== -->
+<div class="mainheading">
+    <h1 class="sitetitle">LabFab</h1>
+    <p class="lead">
+        Exploring math, physics, machine learning, and finance insights.
+    </p>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="main-content">
+    <!-- Begin Article
+================================================== -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<div class="container">
+    <div class="row">
+        <!-- Post Share -->
+        <div class="col-md-2 pl-0 d-none d-md-block">
+            <div class="share sticky-top sticky-top-offset">
+    <p>
+        Share
+    </p>
+    <ul>
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=Graph Neural Networks: Deep Learning on Non-Euclidean Data&url=http://localhost:4000/graphs/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://facebook.com/sharer.php?u=http://localhost:4000/graphs/" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/graphs/" onclick="window.open(this.href, 'width=550,height=435');return false;">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </li>
+
+    </ul>
+    
+    <div class="sep">
+    </div>
+    <ul>
+        <li>
+        <a class="small smoothscroll" href="#disqus_thread"></a>
+        </li>
+    </ul>
+    
+</div>
+
+        </div>
+
+        <!-- Post -->
+        
+
+        <div class="col-12 col-md-9 flex-first flex-md-unordered">
+            <div class="mainheading">
+
+                <!-- Author Box -->
+                
+                <div class="row post-top-meta">
+                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
+                        
+                        <img class="author-thumb" src="/assets/images/avatar.png" alt="StackNets">
+                        
+                    </div>
+                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
+                        <a target="_blank" class="link-dark" href="https://labfab.io">StackNets</a><a target="_blank" href="https://twitter.com/capelfabio" class="btn follow">Follow</a>
+                        <span class="author-description">I'm interested in machine learning, trading and running. I'm currently learning how to make the best focaccia possible and looking to collaborate on any project that makes me grow (though perhaps not in that order).</span>
+                    </div>
+                </div>
+                
+
+                <!-- Post Title -->
+                <h1 class="posttitle">Graph Neural Networks: Deep Learning on Non-Euclidean Data</h1>
+
+            </div>
+
+            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
+            
+            <!-- End Adsense -->
+
+            <!-- Post Featured Image -->
+            
+            <!-- End Featured Image -->
+
+            <!-- Post Content -->
+            <div class="article-post">
+                <!-- Toc if any -->
+                
+                <!-- End Toc -->
+                <p>Graph Neural Networks (GNNs) represent a fundamental paradigm shift in deep learning, extending the remarkable success of neural networks from Euclidean domains like images and sequences to the irregular, non-Euclidean world of graphs. While traditional convolutional neural networks excel at processing grid-like data where spatial relationships are well-defined and translation-invariant, real-world data often exists in graph-structured formats where entities and their relationships cannot be captured by regular grids. Social networks, molecular structures, knowledge graphs, transportation systems, and citation networks all exhibit complex relational patterns that require specialized architectures to process effectively. GNNs address this challenge by learning representations that respect the underlying graph topology while leveraging the powerful optimization techniques developed for deep learning.</p>
+
+<h2 id="mathematical-foundations-and-message-passing">Mathematical Foundations and Message Passing</h2>
+
+<p>The mathematical foundation of GNNs builds upon the concept of message passing, where nodes iteratively aggregate information from their local neighborhoods to update their representations. Consider a graph $G = (V, E)$ with node features $X \in \mathbb{R}^{\lvert V \rvert \times d}$ where each node $v_i$ has a $d$-dimensional feature vector $\mathbf{x}_i$. The core idea is to learn node embeddings $\mathbf{h}_i^{(l)}$ at layer $l$ by combining the node’s current representation with aggregated information from its neighbors $\mathcal{N}(i)$.</p>
+
+<p>This process can be formalized as a two-step procedure: first, aggregate messages from neighboring nodes using an aggregation function $\text{AGG}^{(l)}$, then update the node representation using an update function $\text{UPDATE}^{(l)}$. The general message passing framework can be written as:</p>
+
+\[\mathbf{m}_i^{(l+1)} = \text{AGG}^{(l)}\left(\{\mathbf{h}_j^{(l)} : j \in \mathcal{N}(i)\}\right)\]
+
+\[\mathbf{h}_i^{(l+1)} = \text{UPDATE}^{(l)}\left(\mathbf{h}_i^{(l)}, \mathbf{m}_i^{(l+1)}\right)\]
+
+<p>where $\mathbf{m}_i^{(l+1)}$ represents the aggregated message for node $i$ at layer $l+1$. This framework encompasses a wide variety of GNN architectures, each differing in their choice of aggregation and update functions, their treatment of edge features, and their approach to ensuring permutation invariance with respect to the ordering of neighbors.</p>
+
+<h2 id="graph-convolutional-networks-gcns">Graph Convolutional Networks (GCNs)</h2>
+
+<p>Graph Convolutional Networks, introduced by Kipf and Welling, provide one of the most influential instantiations of this framework by drawing inspiration from spectral graph theory. The spectral approach begins with the graph Laplacian matrix $L = D - A$, where $A$ is the adjacency matrix and $D$ is the degree matrix with $D_{ii} = \sum_j A_{ij}$. The normalized symmetric Laplacian $\tilde{L} = D^{-1/2}LD^{-1/2}$ has eigenvalues $0 = \lambda_0 \leq \lambda_1 \leq \cdots \leq \lambda_{n-1} \leq 2$ with corresponding orthonormal eigenvectors that form the graph Fourier basis.</p>
+
+<p>Spectral convolution is defined as the multiplication of a signal $\mathbf{x}$ with a filter $g_\theta$ in the Fourier domain:</p>
+
+\[g_\theta \star \mathbf{x} = Ug_\theta(\Lambda)U^T\mathbf{x}\]
+
+<p>where $U$ is the matrix of eigenvectors, $\Lambda$ is the diagonal matrix of eigenvalues, and $g_\theta(\Lambda)$ is a diagonal matrix containing the filter parameters. However, this approach suffers from computational complexity issues due to eigendecomposition and lacks localization in the spatial domain. Kipf and Welling addressed these limitations by approximating the spectral filters using Chebyshev polynomials and making a first-order approximation, ultimately arriving at the simplified GCN layer:</p>
+
+\[H^{(l+1)} = \sigma\left(\tilde{A}H^{(l)}W^{(l)}\right)\]
+
+<p>where $\tilde{A} = D^{-1/2}(A + I)D^{-1/2}$ is the normalized adjacency matrix with added self-loops, $H^{(l)}$ contains the node representations at layer $l$, $W^{(l)}$ is the learnable weight matrix, and $\sigma$ is a non-linear activation function. This formulation elegantly combines the mathematical rigor of spectral graph theory with the computational efficiency required for practical applications.</p>
+
+<h2 id="graphsage-sampling-and-aggregation">GraphSAGE: Sampling and Aggregation</h2>
+
+<p>GraphSAGE (Graph Sample and Aggregate) takes a different approach by emphasizing inductive learning and scalability to large graphs. Rather than relying on spectral properties, GraphSAGE focuses on sampling and aggregating features from a node’s local neighborhood using various aggregation functions. The update rule for GraphSAGE consists of two steps:</p>
+
+\[\mathbf{h}_{\mathcal{N}(v)}^{(l)} = \text{AGGREGATE}_l\left(\{\mathbf{h}_u^{(l-1)} : u \in \mathcal{N}(v)\}\right)\]
+
+\[\mathbf{h}_v^{(l)} = \sigma\left(W^{(l)} \cdot \text{CONCAT}\left(\mathbf{h}_v^{(l-1)}, \mathbf{h}_{\mathcal{N}(v)}^{(l)}\right)\right)\]
+
+<p>where the aggregation function can be mean aggregation, max pooling, or LSTM-based aggregation applied to a random permutation of neighbors. The inductive nature of GraphSAGE allows it to generate embeddings for previously unseen nodes during inference, making it particularly suitable for dynamic graphs and scenarios where the graph structure evolves over time. The sampling strategy employed by GraphSAGE addresses the computational challenges associated with neighborhoods that grow exponentially with the number of layers, enabling efficient training on large-scale graphs by sampling a fixed-size set of neighbors at each layer.</p>
+
+<h2 id="graph-attention-networks-gats">Graph Attention Networks (GATs)</h2>
+
+<p>Graph Attention Networks introduce attention mechanisms to graph neural networks, allowing nodes to assign different weights to their neighbors based on the relevance of their features. The attention mechanism in GATs computes attention coefficients for each edge $(i,j)$:</p>
+
+\[e_{ij} = a\left(W\mathbf{h}_i, W\mathbf{h}_j\right)\]
+
+<p>where $a$ is a learnable attention function, typically implemented as a single-layer feedforward neural network:</p>
+
+\[e_{ij} = \text{LeakyReLU}\left(\mathbf{a}^T[W\mathbf{h}_i \| W\mathbf{h}_j]\right)\]
+
+<p>These raw attention scores are then normalized using the softmax function:</p>
+
+\[\alpha_{ij} = \text{softmax}_j(e_{ij}) = \frac{\exp(e_{ij})}{\sum_{k \in \mathcal{N}(i)} \exp(e_{ik})}\]
+
+<p>The final node representation is computed as a weighted sum of transformed neighbor features:</p>
+
+\[\mathbf{h}_i' = \sigma\left(\sum_{j \in \mathcal{N}(i)} \alpha_{ij} W \mathbf{h}_j\right)\]
+
+<p>Multi-head attention extends this mechanism by computing $K$ independent attention heads and concatenating or averaging their outputs. The attention mechanism provides interpretability by revealing which neighbors contribute most to each node’s representation, while the multi-head structure captures different types of relationships and increases the model’s expressiveness.</p>
+
+<h2 id="message-passing-neural-networks-mpnns">Message Passing Neural Networks (MPNNs)</h2>
+
+<p>Message Passing Neural Networks provide a unified framework that generalizes many existing GNN architectures by explicitly separating the message passing phase from the readout phase. In the message passing phase, hidden states are updated according to:</p>
+
+\[\mathbf{h}_v^{(t+1)} = U_t\left(\mathbf{h}_v^{(t)}, \sum_{w \in \mathcal{N}(v)} M_t\left(\mathbf{h}_v^{(t)}, \mathbf{h}_w^{(t)}, \mathbf{e}_{vw}\right)\right)\]
+
+<p>where $M_t$ is a message function that computes messages between nodes using node states and edge features $\mathbf{e}_{vw}$, and $U_t$ is an update function that combines the node’s current state with the aggregated messages. After $T$ time steps of message passing, a readout function $R$ computes a graph-level representation:</p>
+
+\[\hat{\mathbf{y}} = R\left(\{\mathbf{h}_v^{(T)} : v \in G\}\right)\]
+
+<p>This framework encompasses GCNs by setting appropriate message and update functions, GraphSAGE through specific choices of aggregation functions, and GATs by incorporating attention weights into the message function. The MPNN framework facilitates the design of novel architectures by providing a systematic way to think about message passing operations and their properties.</p>
+
+<h2 id="theoretical-foundations-and-expressive-power">Theoretical Foundations and Expressive Power</h2>
+
+<p>The theoretical understanding of GNNs has been significantly advanced through the analysis of their expressive power and limitations. The Weisfeiler-Leman (WL) hierarchy provides a natural way to characterize the discriminative ability of different GNN architectures. The 1-WL test, which forms the basis for understanding standard message-passing GNNs, iteratively refines node colorings by considering the multiset of neighbor colors. Formally, at each iteration, the color of node $v$ is updated as:</p>
+
+\[c^{(t+1)}(v) = \text{HASH}\left(c^{(t)}(v), \{\{c^{(t)}(u) : u \in \mathcal{N}(v)\}\}\right)\]
+
+<p>where HASH is an injective hash function. Xu et al. proved that the expressive power of message-passing GNNs is at most as powerful as the 1-WL test, meaning that if two graphs cannot be distinguished by the 1-WL test, they will produce identical representations in any message-passing GNN regardless of the parameters. This theoretical result explains why standard GNNs struggle with certain graph properties like counting triangles or distinguishing between regular graphs of the same degree.</p>
+
+<iframe src="/assets/html/wl_hierarchy_explorer.html" width="100%" height="800" frameborder="0" style="border: none;" title="1-WL Test: GNN Limitation Demo">
+</iframe>
+
+<h2 id="graph-transformers-and-global-attention">Graph Transformers and Global Attention</h2>
+
+<p>Graph transformers represent a recent evolution in GNN architectures that aim to overcome the limitations of message passing by incorporating global attention mechanisms. Traditional message passing constrains information flow to local neighborhoods, potentially requiring many layers for long-range interactions and suffering from issues like over-smoothing and over-squashing. Graph transformers address these limitations by allowing each node to attend to all other nodes in the graph, either directly or through learned representations.</p>
+
+<p>The GraphiT architecture, for example, computes attention weights between all pairs of nodes while incorporating positional encodings based on graph structure:</p>
+
+\[\text{Attention}(\mathbf{h}_i, \mathbf{h}_j) = \text{softmax}\left(\frac{(\mathbf{h}_i W^Q)(\mathbf{h}_j W^K + PE(\mathbf{d}_{ij}))^T}{\sqrt{d_k}}\right)(\mathbf{h}_j W^V)\]
+
+<p>where $PE(\mathbf{d}_{ij})$ is a positional encoding based on the shortest path distance between nodes $i$ and $j$. Other approaches like the Spectral Attention Network use spectral properties to define attention patterns, while Graph-BERT applies transformer architectures to subgraphs sampled from the original graph.</p>
+
+<h2 id="training-and-optimization-challenges">Training and Optimization Challenges</h2>
+
+<p>The optimization and training of GNNs present unique challenges that distinguish them from standard deep learning scenarios. The irregular structure of graphs makes batching non-trivial, requiring techniques like graph padding, sparse tensor representations, or specialized batching strategies that pack multiple graphs into a single computational unit. Mini-batch training on large graphs typically employs sampling strategies such as node sampling, where a subset of nodes and their induced subgraphs are selected for each batch, or layer-wise sampling methods like FastGCN that sample different subsets of nodes at each layer.</p>
+
+<p>The choice of loss function depends on the task: node-level tasks use standard classification or regression losses applied to node representations, edge-level tasks require pairwise comparisons or link prediction losses:</p>
+
+\[\mathcal{L} = -\sum_{(u,v) \in E} \log \sigma(\mathbf{h}_u^T \mathbf{h}_v) - \sum_{(u,v) \notin E} \log(1 - \sigma(\mathbf{h}_u^T \mathbf{h}_v))\]
+
+<p>and graph-level tasks aggregate node representations before applying global losses. Regularization techniques specific to graphs include DropEdge, which randomly removes edges during training to prevent overfitting to specific graph structures, and DropNode, which removes entire nodes and their connections.</p>
+
+<h2 id="advanced-architectures-and-specialized-models">Advanced Architectures and Specialized Models</h2>
+
+<p>Advanced GNN architectures have emerged to address specific challenges and application domains. Graph Isomorphism Networks (GINs) achieve maximum expressive power within the 1-WL hierarchy by using sum aggregation and MLPs as update functions:</p>
+
+\[\mathbf{h}_v^{(l+1)} = \text{MLP}^{(l)}\left((1 + \epsilon^{(l)}) \cdot \mathbf{h}_v^{(l)} + \sum_{u \in \mathcal{N}(v)} \mathbf{h}_u^{(l)}\right)\]
+
+<p>where $\epsilon^{(l)}$ is either a learnable parameter or fixed to 0. Principal Neighbourhood Aggregation (PNA) systematically combines multiple aggregation functions (mean, max, min, sum) with multiple scaling functions (identity, amplification, attenuation) to create more expressive aggregators. Directional Graph Networks introduce anisotropic message passing by considering the directional relationships between nodes, while Graph Networks with Individual Edge Information explicitly model edge features throughout the message passing process.</p>
+
+<h2 id="molecular-property-prediction">Molecular Property Prediction</h2>
+
+<p>The application of GNNs to molecular property prediction represents one of the most successful domains for graph neural networks, where molecules are naturally represented as graphs with atoms as nodes and bonds as edges. Molecular graphs possess unique characteristics including chirality, aromaticity, and complex 3D structures that standard GNNs must account for. The D-MPNN (Directed Message Passing Neural Network) addresses molecular representation by treating bonds as directed edges and incorporating bond features directly into the message passing process:</p>
+
+\[\mathbf{m}_{v \rightarrow w}^{(t+1)} = \sum_{u \in \mathcal{N}(v) \setminus \{w\}} M\left(\mathbf{h}_v^{(t)}, \mathbf{h}_u^{(t)}, \mathbf{e}_{u,v}\right)\]
+
+<p>where messages are computed along directed edges and the summation excludes the target node to prevent information leakage. SchNet and DimeNet extend molecular GNNs to continuous 3D space by using radial basis functions and spherical harmonics to encode geometric information:</p>
+
+\[\mathbf{m}_{ij} = \mathbf{W}_m \mathbf{h}_i \odot g\left(\|\mathbf{r}_i - \mathbf{r}_j\|\right)\]
+
+<p>where $g$ is a radial basis function expansion and $\mathbf{r}_i$ represents atomic coordinates.</p>
+
+<h2 id="knowledge-graph-embeddings-and-reasoning">Knowledge Graph Embeddings and Reasoning</h2>
+
+<p>Knowledge graph embeddings and reasoning represent another critical application area where GNNs excel at capturing the complex semantic relationships encoded in large-scale knowledge bases. Knowledge graphs consist of entities connected by typed relations, typically represented as triples $(h, r, t)$ where $h$ is the head entity, $r$ is the relation, and $t$ is the tail entity. R-GCN (Relational Graph Convolutional Networks) extends standard GCNs to handle multiple relation types by using relation-specific transformation matrices:</p>
+
+\[\mathbf{h}_i^{(l+1)} = \sigma\left(W_0^{(l)}\mathbf{h}_i^{(l)} + \sum_{r \in \mathcal{R}} \sum_{j \in \mathcal{N}_i^r} \frac{1}{c_{i,r}} W_r^{(l)} \mathbf{h}_j^{(l)}\right)\]
+
+<p>where $ \mathcal{N}^{r}$ denotes the set of neighbors of node $i$ under relation $r$, and $ c_{i,r} $ is a normalization constant. The computational complexity of maintaining separate parameters for each relation type necessitates parameter sharing strategies such as basis decomposition or block diagonal decomposition.</p>
+
+<h2 id="social-network-analysis-and-temporal-dynamics">Social Network Analysis and Temporal Dynamics</h2>
+
+<p>Social network analysis has been revolutionized by the application of GNNs to tasks such as community detection, influence prediction, and recommendation systems. Social graphs exhibit unique properties including homophily (similar nodes tend to be connected), clustering patterns, and dynamic evolution over time. Dynamic GNNs like DynGEM and DynamicGCN handle the temporal evolution of social networks by incorporating temporal information into the message passing process or by using recurrent neural networks to model the evolution of node embeddings over time:</p>
+
+\[\mathbf{h}_i^{(t+1)} = \text{GNN}\left(\mathbf{h}_i^{(t)}, \{\mathbf{h}_j^{(t)} : j \in \mathcal{N}_i^{(t)}\}, \mathbf{x}_i^{(t+1)}\right)\]
+
+<p>where the superscript $(t)$ denotes the time step. These temporal models have shown significant improvements in tasks like user behavior prediction and viral content detection in social media platforms.</p>
+
+<h2 id="scalability-and-distributed-training">Scalability and Distributed Training</h2>
+
+<p>The scalability of GNNs to massive graphs remains an active area of research, with approaches ranging from sampling-based methods to distributed computing frameworks. Mini-batch training strategies include node-wise sampling, layer-wise sampling, and subgraph sampling. FastGCN reformulates the convolution operation as an integral over node distributions and uses Monte Carlo sampling to approximate the integral, reducing the computational complexity from $O(\lvert \mathcal{N} \rvert^L)$ to $O(s^L)$ where $s$ is the sample size and $L$ is the number of layers.</p>
+
+<p>Distributed GNN training frameworks like DistDGL and PyTorch Geometric leverage multiple GPUs or machines to handle graphs with billions of nodes and edges, employing techniques such as graph partitioning, gradient compression, and asynchronous communication protocols.</p>
+
+
+            </div>
+
+            <!-- Post Date -->
+            <p>
+            <small>
+                <span class="post-date"><time class="post-date" datetime="2025-06-21">21 Jun 2025</time></span>           
+                
+                (Updated: <time datetime="2025-06-21T00:00:00+02:00" itemprop="dateModified">Jun 21, 2025</time>)
+                
+                </small>
+            </p>
+
+            <!-- Post Categories -->
+            <div class="after-post-cats">
+                <ul class="tags mb-4">
+                    
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#deep-learning">deep learning</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#graph-theory">graph theory</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/categories#machine-learning">machine learning</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Categories -->
+
+            <!-- Post Tags -->
+            <div class="after-post-tags">
+                <ul class="tags">
+                    
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#attention-mechanisms">#attention mechanisms</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#geometric-deep-learning">#geometric deep learning</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#graph-convolution">#graph convolution</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#graph-neural-networks">#graph neural networks</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#knowledge-graphs">#knowledge graphs</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#message-passing">#message passing</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#molecular-modeling">#molecular modeling</a>
+                    </li>
+                    
+                    <li>
+                        <a class="smoothscroll" href="/tags#neural-networks">#neural networks</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- End Tags -->
+
+            <!-- Prev/Next -->
+            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+            
+            <a class="prev d-block col-md-6" href="https://labfab.io//connections/"> &laquo; Gauge Fields: The Hidden Geometry Behind Nature's Forces</a>
+            
+            
+            <div class="clearfix"></div>
+            </div>
+            <!-- End Categories -->
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<!-- End Article
+================================================== -->
+
+<!-- Begin Comments
+================================================== -->
+
+    <div class="container">
+        <div id="comments" class="row justify-content-center mb-5">
+            <div class="col-md-8">
+                <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'labfab'; 
+        var disqus_developer = 0;
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = window.location.protocol + '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+            </div>
+        </div>
+    </div>
+
+<!--End Comments
+================================================== -->
+
+<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
+https://search.google.com/structured-data/testing-tool/u/0/
+================================================== -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "Thing",
+    "name": "Graph Neural Networks: Deep Learning on Non-Euclidean Data"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "StackNets"
+  },
+  "datePublished": "2025-06-21",
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "4.8",
+    "bestRating": "5"
+  }
+}
+</script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3K2EDM9K7H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3K2EDM9K7H');
+</script>
+</div>
+
+
+<!-- Floating TOC -->
+<div id="toc-trigger"></div>
+<div id="toc"></div>
+
+
+
+<!-- Newsletter Subscription
+================================================== -->
+<div class="newsletter-subscription" style="text-align: center; margin: 20px 0; font-size: 0.9em; color: #666;">
+    <p>Never miss a <b>story</b> from us, <a href="https://buttondown.com/capela" target="_blank">subscribe to our newsletter</a></p>
+</div>
+
+
+<!-- Categories Jumbotron
+================================================== -->
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+            <div class="d-md-flex align-items-center justify-content-center h-100">
+                <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
+            </div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+            
+            
+                
+                    <a class="mt-1 mb-1" href="/categories#investing-portfolio-management">investing portfolio management (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#trading-strategies">trading strategies (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#risk-management">risk management (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#machine-learning">machine learning (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#optimization-algorithms">optimization algorithms (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#deep-learning">deep learning (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#quantum-physics">quantum physics (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#theoretical-physics">theoretical physics (3)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#mathematics">mathematics (2)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#mathematical-physics">mathematical physics (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#particle-physics">particle physics (1)</a>
+                
+                    <a class="mt-1 mb-1" href="/categories#graph-theory">graph theory (1)</a>
+                
+            
+            
+		</div>
+	</div>
+</div>
+
+<!-- Begin Footer
+================================================== -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                Copyright © 2025 LabFab 
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer
+================================================== -->
+
+</div> <!-- /.site-content -->
+
+<!-- Scripts
+================================================== -->
+
+<script>
+// Floating TOC functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const toc = document.getElementById('toc');
+    if (!toc) return;
+
+    // Get all h2 headings from the main content
+    const mainContent = document.querySelector('.main-content');
+    const headings = mainContent.querySelectorAll('h2');
+    if (headings.length < 1) return;
+
+    const tocList = document.createElement('ul');
+    
+    headings.forEach((heading, index) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        
+        // Add ID to heading if it doesn't have one
+        if (!heading.id) {
+            heading.id = 'heading-' + index;
+        }
+        
+        a.href = '#' + heading.id;
+        a.textContent = heading.textContent;
+        
+        li.appendChild(a);
+        tocList.appendChild(li);
+    });
+
+    toc.appendChild(tocList);
+    toc.classList.add('visible');
+
+    // Show/hide TOC based on scroll position
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', function() {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > lastScrollTop) {
+            // Scrolling down
+            toc.style.opacity = '0.7';
+        } else {
+            // Scrolling up
+            toc.style.opacity = '1';
+        }
+        lastScrollTop = st <= 0 ? 0 : st;
+    });
+});
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/assets/js/mediumish.js"></script>
+
+
+
+<script src="/assets/js/ie10-viewport-bug-workaround.js"></script> 
+
+
+<script id="dsq-count-scr" src="//labfab.disqus.com/count.js"></script>
+
+
+</body>
+</html>
