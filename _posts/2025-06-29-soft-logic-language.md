@@ -8,7 +8,7 @@ description: "Exploring the paradox of LLMs' linguistic power versus logical fra
 featured: true
 hidden: false
 rating: 4.7
-last_modified_at: 2025-06-30
+last_modified_at: 2025-06-29
 seo:
     title: "LLM Mathematical Reasoning: Why Language Models Struggle with Logic [2025]"
     meta_description: "Discover why large language models excel at language but struggle with mathematical reasoning, and explore new approaches to AI mathematical intelligence."
