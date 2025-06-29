@@ -17,7 +17,7 @@ seo:
 
 Large Language Models present us with a fascinating paradox. They can write poetry that moves us to tears, engage in sophisticated philosophical discussions, and even generate code that solves complex problems. Yet ask them to follow a precise logical chain of reasoning, and they often stumble in surprisingly basic ways. This contradiction reveals something profound about the nature of intelligence itself—and raises crucial questions about how we might bridge the gap between linguistic fluency and mathematical rigor.
 
-![Spin Network Animation]({{ site.baseurl }}/assets/images/soft-language.png)
+![Abstract Representation]({{ site.baseurl }}/assets/images/soft-language.png)
 
 ## The Softness of Language
 
