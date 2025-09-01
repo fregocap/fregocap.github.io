@@ -8,7 +8,7 @@ comments: true
 <div class="row justify-content-between">
 <div class="col-md-8 pr-5">
 
-<p>Hi there! I'm Fabio, a passionate data scientist with a love for turning complex data into actionable insights. Currently, I work on innovative projects as a Senior Strategist at LDC in Geneva, where I design and implement advanced quantitative trading strategies. My journey in data science has been quite an adventure, from developing AI-driven flavors at Firmenich SA to co-founding SamurAI, where we built cutting-edge sentiment analysis tools.
+<p>Hi there! My name is Fabio, a passionate data scientist with a love for turning complex data into actionable insights. Currently, I work on innovative projects as a Senior Strategist at LDC in Geneva, where I design and implement advanced quantitative trading strategies. My journey in data science has been quite an adventure, from developing AI-driven flavors at Firmenich SA to co-founding SamurAI, where we built cutting-edge sentiment analysis tools.
 
 Outside of work, I'm an avid triathlete, always chasing the next challenge. Whether it's swimming, biking, or running, I find great joy in pushing my physical limits. When I'm not training, you'll often find me spending quality time with my family, which is incredibly important to me.</p>
 
