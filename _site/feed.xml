@@ -5,9 +5,161 @@
     <description>Exploring math, physics, machine learning, and finance insights.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 02 Sep 2025 14:06:39 +0100</pubDate>
-    <lastBuildDate>Tue, 02 Sep 2025 14:06:39 +0100</lastBuildDate>
+    <pubDate>Fri, 12 Sep 2025 00:41:08 +0100</pubDate>
+    <lastBuildDate>Fri, 12 Sep 2025 00:41:08 +0100</lastBuildDate>
     <generator>Jekyll v4.3.3</generator>
+    
+      <item>
+        <title>Mirror Symmetry: Building Bridges Between Geometric Worlds</title>
+        <description>&lt;p&gt;Mirror symmetry is one of the most beautiful ideas in modern mathematics. It says that for many geometric shapes (specifically, Calabi-Yau varieties), there exists a “mirror partner” - a completely different geometric object that encodes the same mathematical information in a dual way.&lt;/p&gt;
+
+&lt;p&gt;Think of it like this: imagine you have a complicated 3D sculpture, and somewhere out there is another sculpture that looks totally different but whose shadows, when projected in just the right way, give you all the information about your original sculpture. That’s essentially what mirror symmetry does with geometric objects.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-construction-challenge&quot;&gt;The Construction Challenge&lt;/h2&gt;
+
+&lt;p&gt;For decades, mathematicians knew mirror symmetry existed - they could see the numerical evidence. But they faced a fundamental problem: &lt;strong&gt;given a geometric shape, how do you actually build its mirror?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s like knowing that every person has a perfect doppelganger somewhere in the world, but having no systematic way to find them.&lt;/p&gt;
+
+&lt;h2 id=&quot;three-revolutionary-approaches&quot;&gt;Three Revolutionary Approaches&lt;/h2&gt;
+
+&lt;p&gt;Recent breakthroughs have given us three different ways to construct mirrors. Here’s what’s happening:&lt;/p&gt;
+
+&lt;h3 id=&quot;1-the-algebraic-approach-gross-siebert&quot;&gt;1. The Algebraic Approach (Gross-Siebert)&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Key Papers:&lt;/strong&gt; &lt;a href=&quot;https://arxiv.org/abs/1609.00624&quot;&gt;arXiv:1609.00624&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/abs/1909.07649&quot;&gt;arXiv:1909.07649&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Mark Gross and Bernd Siebert figured out how to build mirrors using &lt;strong&gt;pure algebra&lt;/strong&gt;. Their trick is something called “punctured Gromov-Witten invariants” - these are special numbers that count geometric curves in a very careful way.&lt;/p&gt;
+
+&lt;p&gt;Here’s the beautiful part: you feed these numbers into an algebraic construction, and out pops the mirror geometry. No guesswork, no case-by-case analysis - just a systematic recipe.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Why this matters:&lt;/strong&gt; For the first time, we can construct mirrors algorithmically. Given the right input data, a computer could in principle build the mirror for you.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-the-category-theory-approach-abouzaid&quot;&gt;2. The Category Theory Approach (Abouzaid)&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Key Papers:&lt;/strong&gt; &lt;a href=&quot;https://arxiv.org/abs/1703.07898&quot;&gt;arXiv:1703.07898&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/abs/1404.2659&quot;&gt;arXiv:1404.2659&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Mohammed Abouzaid took a completely different route. Instead of building the mirror geometry directly, he proved that the &lt;strong&gt;categories&lt;/strong&gt; (mathematical structures that organize geometric objects) on both sides are equivalent.&lt;/p&gt;
+
+&lt;p&gt;Think of it like proving that two different libraries contain exactly the same information, even though they organize their books completely differently. Once you know the catalogs match perfectly, you can translate between them.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Why this matters:&lt;/strong&gt; This approach explains &lt;em&gt;why&lt;/em&gt; mirror symmetry works at the deepest level - it’s about fundamental categorical equivalences that exist in mathematics.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-the-direct-proof-approach-ganatra-perutz-sheridan&quot;&gt;3. The Direct Proof Approach (Ganatra-Perutz-Sheridan)&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Key Papers:&lt;/strong&gt; &lt;a href=&quot;https://arxiv.org/abs/2406.05272&quot;&gt;arXiv:2406.05272&lt;/a&gt;, &lt;a href=&quot;https://arxiv.org/abs/2312.01949&quot;&gt;arXiv:2312.01949&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Sheel Ganatra, Timothy Perutz, and Nick Sheridan have been systematically proving mirror symmetry for huge classes of geometric objects. Their recent work covers:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Batyrev mirror pairs&lt;/strong&gt; - a vast family of Calabi-Yau varieties&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Greene-Plesser mirrors&lt;/strong&gt; - with surprising connections to number theory&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;K3 surfaces&lt;/strong&gt; - some of the most important geometric objects in mathematics&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Why this matters:&lt;/strong&gt; They’re not just proving that mirror symmetry exists - they’re showing it connects to arithmetic and number theory in ways nobody expected.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-makes-this-revolutionary&quot;&gt;What Makes This Revolutionary&lt;/h2&gt;
+
+&lt;h3 id=&quot;from-mystery-to-method&quot;&gt;From Mystery to Method&lt;/h3&gt;
+
+&lt;p&gt;Before these breakthroughs, mirror symmetry was largely empirical - mathematicians could observe it but couldn’t systematically construct it. Now we have multiple algorithmic approaches.&lt;/p&gt;
+
+&lt;h3 id=&quot;unexpected-connections&quot;&gt;Unexpected Connections&lt;/h3&gt;
+
+&lt;p&gt;The recent work reveals that mirror symmetry connects to:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Tropical geometry&lt;/strong&gt; (a “linearized” version of algebraic geometry)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Number theory&lt;/strong&gt; (through arithmetic mirror symmetry)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Category theory&lt;/strong&gt; (through derived categories and functors)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Physics&lt;/strong&gt; (through string theory and quantum field theory)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;computational-power&quot;&gt;Computational Power&lt;/h3&gt;
+
+&lt;p&gt;These aren’t just theoretical advances. The new methods provide computational tools for:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Counting curves on geometric spaces&lt;/li&gt;
+  &lt;li&gt;Computing quantum cohomology&lt;/li&gt;
+  &lt;li&gt;Predicting enumerative invariants&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;recent-breakthrough-k3-surfaces&quot;&gt;Recent Breakthrough: K3 Surfaces&lt;/h2&gt;
+
+&lt;p&gt;The March 2025 paper &lt;a href=&quot;https://arxiv.org/abs/2503.05680&quot;&gt;arXiv:2503.05680&lt;/a&gt; proved mirror symmetry for &lt;strong&gt;all projective K3 surfaces&lt;/strong&gt; - a major milestone. K3 surfaces are fundamental geometric objects that appear throughout mathematics, and this result shows that mirror symmetry is a universal feature of their geometry.&lt;/p&gt;
+
+&lt;h2 id=&quot;why-this-matters-beyond-mathematics&quot;&gt;Why This Matters Beyond Mathematics&lt;/h2&gt;
+
+&lt;p&gt;Mirror symmetry originated in string theory, where it describes how the same physics can emerge from completely different geometric backgrounds. The mathematical developments are feeding back into physics, providing new tools for understanding:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Quantum field theories&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;String compactifications&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Topological phases of matter&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;the-future&quot;&gt;The Future&lt;/h2&gt;
+
+&lt;p&gt;We’re witnessing the transformation of mirror symmetry from a mysterious duality into a systematic theory with explicit constructions. The convergence of algebraic, categorical, and geometric approaches suggests we’re approaching a complete understanding.&lt;/p&gt;
+
+&lt;p&gt;The next challenges involve:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Unifying the different approaches&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Developing computational tools&lt;/strong&gt; for practical calculations&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Exploring new applications&lt;/strong&gt; in geometry, topology, and physics&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;key-takeaway&quot;&gt;Key Takeaway&lt;/h2&gt;
+
+&lt;p&gt;Mirror symmetry is revealing itself not as an isolated mathematical curiosity, but as a &lt;strong&gt;fundamental principle&lt;/strong&gt; governing how different areas of mathematics connect. We’re not just learning to build mirrors - we’re uncovering deep structural relationships that organize vast areas of mathematical knowledge.&lt;/p&gt;
+
+&lt;p&gt;What seemed impossible just decades ago - the systematic construction of mirror partners - is now becoming routine mathematics. That’s the mark of a field that’s reached maturity and is ready to unlock new frontiers.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Further Reading:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Start with &lt;a href=&quot;https://arxiv.org/abs/1609.00624&quot;&gt;arXiv:1609.00624&lt;/a&gt; for the Gross-Siebert approach&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/abs/1703.07898&quot;&gt;arXiv:1703.07898&lt;/a&gt; for categorical foundations&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/abs/2406.05272&quot;&gt;arXiv:2406.05272&lt;/a&gt; for the latest systematic results&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 12 Sep 2025 00:00:00 +0100</pubDate>
+        <link>http://localhost:4000/mirror-symmetry/</link>
+        <guid isPermaLink="true">http://localhost:4000/mirror-symmetry/</guid>
+        
+        <category>mirror symmetry</category>
+        
+        <category>Calabi-Yau manifolds</category>
+        
+        <category>homological mirror symmetry</category>
+        
+        <category>Gromov-Witten invariants</category>
+        
+        <category>derived categories</category>
+        
+        <category>SYZ conjecture</category>
+        
+        <category>torus fibrations</category>
+        
+        <category>punctured invariants</category>
+        
+        <category>tropical geometry</category>
+        
+        <category>K3 surfaces</category>
+        
+        <category>enumerative geometry</category>
+        
+        <category>quantum cohomology</category>
+        
+        
+        <category>algebraic geometry</category>
+        
+        <category>mathematical physics</category>
+        
+        <category>string theory</category>
+        
+      </item>
     
       <item>
         <title>The Hidden Geometry of Motion: A Journey into Symplectic Geometry</title>
