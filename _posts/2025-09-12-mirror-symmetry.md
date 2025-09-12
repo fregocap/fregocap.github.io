@@ -9,9 +9,10 @@ featured: true
 hidden: false
 rating: 4.9
 last_modified_at: 2025-09-12
-meta_description: "Discover the breakthrough methods for constructing mirror partners in algebraic geometry, from punctured Gromov-Witten invariants to categorical equivalences and systematic HMS proofs."
-focus_keyword: "mirror symmetry algebraic geometry Calabi-Yau construction methods"
-Mirror Symmetry: Building Bridges Between Geometric Worlds
+seo: 
+    title: "Mirror Symmetry: Building Bridges Between Geometric Worlds"
+    meta_description: "Discover the breakthrough methods for constructing mirror partners in algebraic geometry, from punctured Gromov-Witten invariants to categorical equivalences and systematic HMS proofs."
+    focus_keyword: "mirror symmetry algebraic geometry Calabi-Yau construction methods"
 ---
 
 
