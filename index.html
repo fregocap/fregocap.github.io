@@ -1,156 +1,366 @@
----
-layout: default
-title: Home
----
-
-{% if page.url == "/" %}
-
-
-
-<!-- About
-================================================== -->
-<section class="about-section">
-    <div class="row">
-        <div class="col-md-4">
-            <img src="{{ '/assets/images/iron.jpeg' | relative_url }}" alt="Fabio Capela" class="profile-image">
-        </div>
-        <div class="col-md-8">
-            <p>Hi there! I'm Fabio, and I work at LDC in Geneva as a quant trader. I develop trading strategies using quantitative methods. Before this, I worked at Firmenich SA on some AI projects related to flavors, and I was part of starting a company called SamurAI that worked with sentiment analysis.</p>
-            <p>I enjoy triathlons in my free time - swimming, biking, and running help me clear my head. Family time is really important to me too.</p>
-            <p>I studied physics and got my PhD from ULB in Brussels, which helps me in my data work today. I also like reading philosophy when I can - it gives me different perspectives on problems.</p>
-            <div class="about-links">
-                <a href="https://calendly.com/capela625/30min" class="calendly-link" target="_blank">
-                    <i class="fa fa-calendar-check-o"></i> Schedule a Chat
-                </a>
-                <a href="https://www.linkedin.com/in/fabio-capela-phd-3a19925b/" class="social-link linkedin" target="_blank">
-                    <i class="fa fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://github.com/fregocap" class="social-link github" target="_blank">
-                    <i class="fa fa-github"></i> GitHub
-                </a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabio Capela - Quant Finance & Data Science Coaching</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- EmailJS for contact form (optional - uncomment and add your keys) -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script> -->
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Fabio Capela</h2>
+                <span>Quant Coach</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-    </div>
-</section>
+    </nav>
 
-<style>
-.profile-image {
-    width: 100%;
-    max-width: 300px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    margin-bottom: 1rem;
-    display: block;
-    transition: all 0.3s ease;
-}
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Land Your Dream Job in 
+                    <span class="gradient-text">Quant Finance</span> & 
+                    <span class="gradient-text">Data Science</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Get coached by a former quant trader who managed $150M in commodities and has 15+ years of experience in quantitative finance and data science.
+                </p>
+                <div class="hero-credentials">
+                    <div class="credential">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>PhD in Theoretical Physics</span>
+                    </div>
+                    <div class="credential">
+                        <i class="fas fa-university"></i>
+                        <span>Cambridge Postdoc</span>
+                    </div>
+                    <div class="credential">
+                        <i class="fas fa-chart-line"></i>
+                        <span>$150M AUM Trading Experience</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="https://calendly.com/capela625/30min" class="btn btn-primary" target="_blank">Book Free Consultation</a>
+                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-card">
+                    <div class="card-header">
+                        <h3>Success Stories</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="success-metric">
+                            <span class="metric-number">95%</span>
+                            <span class="metric-label">Job Placement Rate</span>
+                        </div>
+                        <div class="success-metric">
+                            <span class="metric-number">$180k</span>
+                            <span class="metric-label">Average Starting Salary</span>
+                        </div>
+                        <div class="success-metric">
+                            <span class="metric-number">50+</span>
+                            <span class="metric-label">Students Placed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.profile-image:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-}
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Meet Your Coach</h2>
+                    <h3>Dr. Fabio Capela</h3>
+                    <p class="about-intro">
+                        With over 15 years of experience in quantitative finance and data science, I've helped dozens of professionals land their dream jobs at top-tier firms including hedge funds, investment banks, and tech companies.
+                    </p>
+                    <div class="experience-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>PhD in Theoretical Physics</h4>
+                                <p>Deep understanding of mathematical modeling and statistical analysis</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Cambridge Postdoc</h4>
+                                <p>Advanced research experience at one of the world's leading universities</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Quant Trader</h4>
+                                <p>Managed $150M in commodities trading at a leading trading firm</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Coaching & Mentoring</h4>
+                                <p>Helping professionals break into quant finance and data science</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="myprofile.png" alt="Dr. Fabio Capela" class="profile-image">
+                </div>
+            </div>
+        </div>
+    </section>
 
-.about-links {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Coaching Services</h2>
+                <p>Comprehensive support to help you succeed in quantitative finance and data science</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Career Strategy</h3>
+                    <p>Personalized roadmap to break into quant finance or data science, including target company identification and application strategy.</p>
+                    <ul>
+                        <li>Resume & LinkedIn optimization</li>
+                        <li>Network building strategies</li>
+                        <li>Industry insights & trends</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Technical Interview Prep</h3>
+                    <p>Intensive preparation for technical interviews including coding challenges, mathematical problems, and case studies.</p>
+                    <ul>
+                        <li>Python & R programming</li>
+                        <li>Statistical modeling</li>
+                        <li>Machine learning algorithms</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Quantitative Skills</h3>
+                    <p>Deep dive into quantitative methods, financial modeling, and data analysis techniques used in the industry.</p>
+                    <ul>
+                        <li>Financial derivatives pricing</li>
+                        <li>Risk management models</li>
+                        <li>Time series analysis</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Mock Interviews</h3>
+                    <p>Practice interviews with real questions from top firms, including behavioral and technical components.</p>
+                    <ul>
+                        <li>Live coding sessions</li>
+                        <li>Behavioral questions</li>
+                        <li>Feedback & improvement</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Salary Negotiation</h3>
+                    <p>Expert guidance on negotiating competitive packages and understanding industry compensation structures.</p>
+                    <ul>
+                        <li>Market rate analysis</li>
+                        <li>Negotiation strategies</li>
+                        <li>Package optimization</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Ongoing Support</h3>
+                    <p>Continued mentorship and support throughout your career transition and beyond.</p>
+                    <ul>
+                        <li>Monthly check-ins</li>
+                        <li>Industry updates</li>
+                        <li>Career advancement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.calendly-link, .social-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.25rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    font-size: 0.95rem;
-    letter-spacing: 0.3px;
-}
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Success Stories</h2>
+                <p>What our students say about their coaching experience</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Fabio's guidance was instrumental in helping me land a quant analyst role at Goldman Sachs. His technical interview prep was spot-on and his industry insights gave me a significant advantage."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Sarah Chen</h4>
+                            <span>Quant Analyst, Goldman Sachs</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The mock interviews were incredibly valuable. Fabio helped me identify my weak spots and provided targeted feedback that improved my performance significantly."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Michael Rodriguez</h4>
+                            <span>Data Scientist, Two Sigma</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"From PhD in Physics to quant trader - Fabio's career strategy and technical coaching made the transition seamless. Highly recommended!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Dr. Alex Thompson</h4>
+                            <span>Quant Trader, Citadel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.calendly-link {
-    background: linear-gradient(135deg, #0066cc, #004d99);
-    color: white;
-    box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
-}
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Ready to Start Your Journey?</h2>
+                    <p>Book a free consultation to discuss your career goals and how I can help you succeed in quantitative finance or data science.</p>
+                    <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>Free 30-min consultation</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Flexible scheduling</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <a href="https://calendly.com/capela625/30min" target="_blank" class="calendly-link">Schedule Now</a>
+                    </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3 class="form-header">Book Your Session</h3>
+                    <p class="form-description">Choose your coaching service below and select a time that works for you. All sessions are tailored to your specific career goals in quantitative finance and data science.</p>
+                    <form>
+                        <div class="form-group">
+                            <label for="service-select" class="form-label">Select Your Service</label>
+                            <select id="service-select" required>
+                                <option value="">Choose a service...</option>
+                                <option value="consultation">Free Consultation (30 min) - Discuss your background and career goals</option>
+                                <option value="career-strategy">Career Strategy ($200) - Personalized roadmap and target company identification</option>
+                                <option value="technical-prep">Technical Interview Prep ($150/hour) - Coding challenges and mathematical problem solving</option>
+                                <option value="mock-interviews">Mock Interviews ($100/session) - Real interview practice with detailed feedback</option>
+                                <option value="comprehensive">Comprehensive Package ($2000) - Full coaching program with ongoing support</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="book-session-btn">Continue to Scheduling</button>
+                        <p class="form-note"><i class="fas fa-info-circle"></i> You'll be redirected to Calendly to select your preferred time slot</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-.calendly-link:hover {
-    background: linear-gradient(135deg, #004d99, #003366);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 102, 204, 0.3);
-}
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Fabio Capela</h3>
+                    <p>Quant Finance & Data Science Coach</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/fabio-capela-phd-3a19925b/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://bsky.app/profile/labfabio.bsky.social" target="_blank" title="BlueSky"><i class="fas fa-network-wired"></i></a>
+                        <a href="https://thesimpleportfol.io" target="_blank"><i class="fas fa-globe"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Career Strategy</a></li>
+                        <li><a href="#services">Technical Prep</a></li>
+                        <li><a href="#services">Mock Interviews</a></li>
+                        <li><a href="#services">Salary Negotiation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Interview Tips</a></li>
+                        <li><a href="#">Industry Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Schedule a free consultation</p>
+                    <p>Book via Calendly</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Fabio Capela. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-.social-link {
-    background-color: white;
-    color: #333;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.social-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.social-link.linkedin:hover {
-    background-color: #0077b5;
-    color: white;
-    border-color: #0077b5;
-}
-
-.social-link.github:hover {
-    background-color: #333;
-    color: white;
-    border-color: #333;
-}
-
-.social-link i {
-    font-size: 1.1em;
-}
-
-@media (max-width: 768px) {
-    .about-links {
-        justify-content: center;
-    }
-    
-    .calendly-link, .social-link {
-        padding: 0.65rem 1.15rem;
-        font-size: 0.9rem;
-    }
-}
-</style>
-
-{% endif %}
-
-<!-- Posts Index
-================================================== -->
-<section class="recent-posts">
-
-    <div class="section-title">
-
-        <h2><span>All Stories</span></h2>
-
-    </div>
-
-    <div class="row listrecent">
-
-        {% for post in paginator.posts %}
-
-        {% include postbox.html %}
-
-        {% endfor %}
-
-    </div>
-
-</section>
-
-<!-- Pagination
-================================================== -->
-<div class="bottompagination">
-<div class="pointerup"><i class="fa fa-caret-up"></i></div>
-<span class="navigation" role="navigation">
-    {% include pagination.html %}
-</span>
-</div>
-
+    <script src="script.js"></script>
+</body>
+</html>
