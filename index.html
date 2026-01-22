@@ -1,156 +1,102 @@
----
-layout: default
-title: Home
----
+<!DOCTYPE html>
+<html lang="en">
 
-{% if page.url == "/" %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>labfab.io - Your Path to Financial Independence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lexend:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
 
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-lexend {
+            font-family: 'Lexend', sans-serif;
+        }
 
+        @keyframes pulse-slow {
 
-<!-- About
-================================================== -->
-<section class="about-section">
-    <div class="row">
-        <div class="col-md-4">
-            <img src="{{ '/assets/images/iron.jpeg' | relative_url }}" alt="Fabio Capela" class="profile-image">
-        </div>
-        <div class="col-md-8">
-            <p>Hi there! I'm Fabio, and I work at LDC in Geneva as a quant trader. I develop trading strategies using quantitative methods. Before this, I worked at Firmenich SA on some AI projects related to flavors, and I was part of starting a company called SamurAI that worked with sentiment analysis.</p>
-            <p>I enjoy triathlons in my free time - swimming, biking, and running help me clear my head. Family time is really important to me too.</p>
-            <p>I studied physics and got my PhD from ULB in Brussels, which helps me in my data work today. I also like reading philosophy when I can - it gives me different perspectives on problems.</p>
-            <div class="about-links">
-                <a href="https://calendly.com/capela625/30min" class="calendly-link" target="_blank">
-                    <i class="fa fa-calendar-check-o"></i> Schedule a Chat
-                </a>
-                <a href="https://www.linkedin.com/in/fabio-capela-phd-3a19925b/" class="social-link linkedin" target="_blank">
-                    <i class="fa fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://github.com/fregocap" class="social-link github" target="_blank">
-                    <i class="fa fa-github"></i> GitHub
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+            0%,
+            100% {
+                transform: scale(1.05);
+            }
 
-<style>
-.profile-image {
-    width: 100%;
-    max-width: 300px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    margin-bottom: 1rem;
-    display: block;
-    transition: all 0.3s ease;
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse-slow 20s ease-in-out infinite;
+        }
+
+        @keyframes bounce-subtle {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .animate-bounce-subtle {
+            animation: bounce-subtle 3s ease-in-out infinite;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "recharts": "https://esm.sh/recharts@^3.6.0",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.35.0"
+  }
 }
+</script>
+    <link rel="stylesheet" href="/index.css">
+</head>
 
-.profile-image:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-}
+<body class="bg-slate-50 text-slate-900 selection:bg-emerald-100 selection:text-emerald-900">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
 
-.about-links {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.calendly-link, .social-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.25rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    font-size: 0.95rem;
-    letter-spacing: 0.3px;
-}
-
-.calendly-link {
-    background: linear-gradient(135deg, #0066cc, #004d99);
-    color: white;
-    box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
-}
-
-.calendly-link:hover {
-    background: linear-gradient(135deg, #004d99, #003366);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 102, 204, 0.3);
-}
-
-.social-link {
-    background-color: white;
-    color: #333;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.social-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.social-link.linkedin:hover {
-    background-color: #0077b5;
-    color: white;
-    border-color: #0077b5;
-}
-
-.social-link.github:hover {
-    background-color: #333;
-    color: white;
-    border-color: #333;
-}
-
-.social-link i {
-    font-size: 1.1em;
-}
-
-@media (max-width: 768px) {
-    .about-links {
-        justify-content: center;
-    }
-    
-    .calendly-link, .social-link {
-        padding: 0.65rem 1.15rem;
-        font-size: 0.9rem;
-    }
-}
-</style>
-
-{% endif %}
-
-<!-- Posts Index
-================================================== -->
-<section class="recent-posts">
-
-    <div class="section-title">
-
-        <h2><span>All Stories</span></h2>
-
-    </div>
-
-    <div class="row listrecent">
-
-        {% for post in paginator.posts %}
-
-        {% include postbox.html %}
-
-        {% endfor %}
-
-    </div>
-
-</section>
-
-<!-- Pagination
-================================================== -->
-<div class="bottompagination">
-<div class="pointerup"><i class="fa fa-caret-up"></i></div>
-<span class="navigation" role="navigation">
-    {% include pagination.html %}
-</span>
-</div>
-
+</html>

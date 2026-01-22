@@ -1,715 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>labfab.io - Your Path to Financial Independence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lexend:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-lexend {
+            font-family: 'Lexend', sans-serif;
+        }
 
-<link rel="icon" href="/assets/images/logo.png">
+        @keyframes pulse-slow {
 
-<title>Home | LabFab</title>
+            0%,
+            100% {
+                transform: scale(1.05);
+            }
 
-<!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Home | LabFab</title>
-<meta name="generator" content="Jekyll v4.3.3" />
-<meta property="og:title" content="Home" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Exploring math, physics, machine learning, and finance insights." />
-<meta property="og:description" content="Exploring math, physics, machine learning, and finance insights." />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
-<meta property="og:site_name" content="LabFab" />
-<meta property="og:type" content="website" />
-<link rel="next" href="http://localhost:4000/page2/" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Home" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"Exploring math, physics, machine learning, and finance insights.","headline":"Home","name":"LabFab","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/images/logo.png"}},"url":"http://localhost:4000/"}</script>
-<!-- End Jekyll SEO tag -->
+            50% {
+                transform: scale(1.08);
+            }
+        }
 
+        .animate-pulse-slow {
+            animation: pulse-slow 20s ease-in-out infinite;
+        }
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    
-<link href="/assets/css/screen.css" rel="stylesheet">
+        @keyframes bounce-subtle {
 
-<link href="/assets/css/main.css" rel="stylesheet">
+            0%,
+            100% {
+                transform: translateY(0);
+            }
 
-<script src="/assets/js/jquery.min.js"></script>
+            50% {
+                transform: translateY(-5px);
+            }
+        }
 
-<!-- MathJax Configuration -->
-<script>
-  MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']],
-      processEscapes: true,
-      processEnvironments: true
-    },
-    options: {
-      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    },
-    chtml: {
-      scale: 1.2,        // Scaling factor for display equations
-      displayAlign: 'center',
-      displayIndent: '0'
-    }
-  };
+        .animate-bounce-subtle {
+            animation: bounce-subtle 3s ease-in-out infinite;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "recharts": "https://esm.sh/recharts@^3.6.0",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.35.0"
+  }
+}
 </script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
+    <link rel="stylesheet" href="/index.css">
 </head>
 
-
-
-
-<body class="layout-default">
-	<!-- defer loading of font and font awesome -->
-	<noscript id="deferred-styles">
-		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-	</noscript>
-
-
-<!-- Begin Menu Navigation
-================================================== -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
-
-    <div class="container pr-0">
-
-    <!-- Begin Logo -->
-    <a class="navbar-brand" href="/">
-    <img src="/assets/images/logo.png" alt="LabFab">
-    </a>
-    <!-- End Logo -->
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarMediumish">
-
-        <!-- Begin Menu -->
-
-            <ul class="navbar-nav ml-auto">
-
-                
-                <li class="nav-item active">
-                
-                <a class="nav-link" href="/index.html">Blog</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/fire-calculator">FIRE Calculator</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="https://thesimpleportfol.io" target="_blank">Finance</a>
-                </li>
-
-                <!-- <li class="nav-item">
-                <a target="_blank" class="nav-link" href="https://bootstrapstarter.com/bootstrap-templates/template-mediumish-bootstrap-jekyll/"> Docs</a>
-                </li> -->
-
-
-                <script src="/assets/js/lunr.js"></script>
-
-
-<style>
-    .lunrsearchresult .title {color: #d9230f;}
-    .lunrsearchresult .url {color: silver;}
-    .lunrsearchresult a {display: block; color: #777;}
-    .lunrsearchresult a:hover, .lunrsearchresult a:focus {text-decoration: none;}
-    .lunrsearchresult a:hover .title {text-decoration: underline;}
-</style>
-
-
-<form class="bd-search" onSubmit="return lunr_search(document.getElementById('lunrsearch').value);">
-    <input type="text" class="form-control text-small launch-modal-search" id="lunrsearch" name="q" maxlength="255" value="" placeholder="Type and enter..."/>
-</form>
-
-<div id="lunrsearchresults">
-    <ul></ul>
-</div>
-
-<script src="/assets/js/lunrsearchengine.js"></script>
-
-            </ul>
-
-        <!-- End Menu -->
-
-    </div>
-
-    </div>
-</nav>
-<!-- End Navigation
-================================================== -->
-
-<div class="site-content">
-
-<div class="container">
-
-<!-- Site Title
-================================================== -->
-<div class="mainheading">
-    <h1 class="sitetitle">LabFab</h1>
-    <p class="lead">
-        Exploring math, physics, machine learning, and finance insights.
-    </p>
-</div>
-
-<!-- Content
-================================================== -->
-<div class="main-content">
-    
-
-
-
-<!-- About
-================================================== -->
-<section class="about-section">
-    <div class="row">
-        <div class="col-md-4">
-            <img src="/assets/images/iron.jpeg" alt="Fabio Capela" class="profile-image">
-        </div>
-        <div class="col-md-8">
-            <p>Hi there! I'm Fabio, and I work at LDC in Geneva as a quant trader. I develop trading strategies using quantitative methods. Before this, I worked at Firmenich SA on some AI projects related to flavors, and I was part of starting a company called SamurAI that worked with sentiment analysis.</p>
-            <p>I enjoy triathlons in my free time - swimming, biking, and running help me clear my head. Family time is really important to me too.</p>
-            <p>I studied physics and got my PhD from ULB in Brussels, which helps me in my data work today. I also like reading philosophy when I can - it gives me different perspectives on problems.</p>
-            <div class="about-links">
-                <a href="https://calendly.com/capela625/30min" class="calendly-link" target="_blank">
-                    <i class="fa fa-calendar-check-o"></i> Schedule a Chat
-                </a>
-                <a href="https://www.linkedin.com/in/fabio-capela-phd-3a19925b/" class="social-link linkedin" target="_blank">
-                    <i class="fa fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://github.com/fregocap" class="social-link github" target="_blank">
-                    <i class="fa fa-github"></i> GitHub
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
-.profile-image {
-    width: 100%;
-    max-width: 300px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    margin-bottom: 1rem;
-    display: block;
-    transition: all 0.3s ease;
-}
-
-.profile-image:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-}
-
-.about-links {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.calendly-link, .social-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.25rem;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    font-size: 0.95rem;
-    letter-spacing: 0.3px;
-}
-
-.calendly-link {
-    background: linear-gradient(135deg, #0066cc, #004d99);
-    color: white;
-    box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
-}
-
-.calendly-link:hover {
-    background: linear-gradient(135deg, #004d99, #003366);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 102, 204, 0.3);
-}
-
-.social-link {
-    background-color: white;
-    color: #333;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.social-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.social-link.linkedin:hover {
-    background-color: #0077b5;
-    color: white;
-    border-color: #0077b5;
-}
-
-.social-link.github:hover {
-    background-color: #333;
-    color: white;
-    border-color: #333;
-}
-
-.social-link i {
-    font-size: 1.1em;
-}
-
-@media (max-width: 768px) {
-    .about-links {
-        justify-content: center;
-    }
-    
-    .calendly-link, .social-link {
-        padding: 0.65rem 1.15rem;
-        font-size: 0.9rem;
-    }
-}
-</style>
-
-
-
-<!-- Posts Index
-================================================== -->
-<section class="recent-posts">
-
-    <div class="section-title">
-
-        <h2><span>All Stories</span></h2>
-
-    </div>
-
-    <div class="row listrecent">
-
-        
-
-        <!-- begin post -->
-
-
-<div class="col-lg-4 col-md-6 mb-30px card-group">
-    <div class="card h-100">
-        <div class="maxthumb">
-            <a href="/mirror-symmetry/">
-                
-            </a>
-        </div>
-        <div class="card-body">
-            <h2 class="card-title">
-                <a class="text-dark" href="/mirror-symmetry/">Mirror Symmetry: Building Bridges Between Geometric Worlds</a>
-            </h2>
-            <h4 class="card-text">Mirror symmetry is one of the most beautiful ideas in modern mathematics. It says that for many geometric shapes (specifically, Calabi-Yau varieties), there exists a “mirror partner” - a completely...</h4>
-        </div>
-        <div class="card-footer bg-white">
-            <div class="wrapfooter">
-                
-                <span class="meta-footer-thumb">
-                
-                <img class="author-thumb" src="/assets/images/avatar.png" alt="StackNets">
-                
-                </span>
-                <span class="author-meta">
-                <span class="post-name"><a target="_blank" href="https://labfab.io">StackNets</a></span><br/>
-                
-                <span class="post-date">12 Sep 2025</span>
-                </span>
-                <span class="post-read-more"><a href="/mirror-symmetry/" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end post -->
-
-        
-
-        <!-- begin post -->
-
-
-<div class="col-lg-4 col-md-6 mb-30px card-group">
-    <div class="card h-100">
-        <div class="maxthumb">
-            <a href="/symplectric-geometry-intro/">
-                
-            </a>
-        </div>
-        <div class="card-body">
-            <h2 class="card-title">
-                <a class="text-dark" href="/symplectric-geometry-intro/">The Hidden Geometry of Motion: A Journey into Symplectic Geometry</a>
-            </h2>
-            <h4 class="card-text">Picture this: every time you throw a ball, swing a pendulum, or watch planets orbit the sun, you’re witnessing one of mathematics’ most elegant and profound geometric structures at work....</h4>
-        </div>
-        <div class="card-footer bg-white">
-            <div class="wrapfooter">
-                
-                <span class="meta-footer-thumb">
-                
-                <img class="author-thumb" src="/assets/images/avatar.png" alt="StackNets">
-                
-                </span>
-                <span class="author-meta">
-                <span class="post-name"><a target="_blank" href="https://labfab.io">StackNets</a></span><br/>
-                
-                <span class="post-date">01 Sep 2025</span>
-                </span>
-                <span class="post-read-more"><a href="/symplectric-geometry-intro/" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end post -->
-
-        
-
-        <!-- begin post -->
-
-
-<div class="col-lg-4 col-md-6 mb-30px card-group">
-    <div class="card h-100">
-        <div class="maxthumb">
-            <a href="/soft-logic-language/">
-                
-            </a>
-        </div>
-        <div class="card-body">
-            <h2 class="card-title">
-                <a class="text-dark" href="/soft-logic-language/">The Soft Logic of Language Models: Mathematical Reasoning in the Age of AI</a>
-            </h2>
-            <h4 class="card-text">Large Language Models present us with a fascinating paradox. They can write poetry that moves us to tears, engage in sophisticated philosophical discussions, and even generate code that solves complex...</h4>
-        </div>
-        <div class="card-footer bg-white">
-            <div class="wrapfooter">
-                
-                <span class="meta-footer-thumb">
-                
-                <img class="author-thumb" src="/assets/images/avatar.png" alt="StackNets">
-                
-                </span>
-                <span class="author-meta">
-                <span class="post-name"><a target="_blank" href="https://labfab.io">StackNets</a></span><br/>
-                
-                <span class="post-date">29 Jun 2025</span>
-                </span>
-                <span class="post-read-more"><a href="/soft-logic-language/" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end post -->
-
-        
-
-        <!-- begin post -->
-
-
-<div class="col-lg-4 col-md-6 mb-30px card-group">
-    <div class="card h-100">
-        <div class="maxthumb">
-            <a href="/graphs/">
-                
-            </a>
-        </div>
-        <div class="card-body">
-            <h2 class="card-title">
-                <a class="text-dark" href="/graphs/">Graph Neural Networks: Deep Learning on Non-Euclidean Data</a>
-            </h2>
-            <h4 class="card-text">Graph Neural Networks (GNNs) represent a fundamental paradigm shift in deep learning, extending the remarkable success of neural networks from Euclidean domains like images and sequences to the irregular, non-Euclidean...</h4>
-        </div>
-        <div class="card-footer bg-white">
-            <div class="wrapfooter">
-                
-                <span class="meta-footer-thumb">
-                
-                <img class="author-thumb" src="/assets/images/avatar.png" alt="StackNets">
-                
-                </span>
-                <span class="author-meta">
-                <span class="post-name"><a target="_blank" href="https://labfab.io">StackNets</a></span><br/>
-                
-                <span class="post-date">21 Jun 2025</span>
-                </span>
-                <span class="post-read-more"><a href="/graphs/" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end post -->
-
-        
-
-        <!-- begin post -->
-
-
-<div class="col-lg-4 col-md-6 mb-30px card-group">
-    <div class="card h-100">
-        <div class="maxthumb">
-            <a href="/connections/">
-                
-            </a>
-        </div>
-        <div class="card-body">
-            <h2 class="card-title">
-                <a class="text-dark" href="/connections/">Gauge Fields: The Hidden Geometry Behind Nature's Forces</a>
-            </h2>
-            <h4 class="card-text">The concept of a connection stands as one of the most beautiful unifications in mathematical physics, bridging the abstract world of differential geometry with the concrete phenomena of gauge fields...</h4>
-        </div>
-        <div class="card-footer bg-white">
-            <div class="wrapfooter">
-                
-                <span class="meta-footer-thumb">
-                
-                <img class="author-thumb" src="/assets/images/avatar.png" alt="StackNets">
-                
-                </span>
-                <span class="author-meta">
-                <span class="post-name"><a target="_blank" href="https://labfab.io">StackNets</a></span><br/>
-                
-                <span class="post-date">10 Jun 2025</span>
-                </span>
-                <span class="post-read-more"><a href="/connections/" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end post -->
-
-        
-
-        <!-- begin post -->
-
-
-<div class="col-lg-4 col-md-6 mb-30px card-group">
-    <div class="card h-100">
-        <div class="maxthumb">
-            <a href="/path-integral/">
-                
-            </a>
-        </div>
-        <div class="card-body">
-            <h2 class="card-title">
-                <a class="text-dark" href="/path-integral/">The Feynman Path Integral: Revolutionizing Our Understanding of Quantum Mechanics</a>
-            </h2>
-            <h4 class="card-text">Richard Feynman’s path integral formulation stands as one of the most elegant and profound reformulations of quantum mechanics ever conceived. Unlike the traditional Schrödinger equation approach, path integrals offer an...</h4>
-        </div>
-        <div class="card-footer bg-white">
-            <div class="wrapfooter">
-                
-                <span class="meta-footer-thumb">
-                
-                <img class="author-thumb" src="/assets/images/avatar.png" alt="StackNets">
-                
-                </span>
-                <span class="author-meta">
-                <span class="post-name"><a target="_blank" href="https://labfab.io">StackNets</a></span><br/>
-                
-                <span class="post-date">25 May 2025</span>
-                </span>
-                <span class="post-read-more"><a href="/path-integral/" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end post -->
-
-        
-
-    </div>
-
-</section>
-
-<!-- Pagination
-================================================== -->
-<div class="bottompagination">
-<div class="pointerup"><i class="fa fa-caret-up"></i></div>
-<span class="navigation" role="navigation">
-    
-<div class="pagination">
-  
-    <span>&laquo; Prev</span>
-  
-
-  
-    
-      <span class="ml-1 mr-1">1</span>
-    
-  
-    
-      <a class="ml-1 mr-1" href="/page2/">2</a>
-    
-  
-
-  
-    <a class="ml-1 mr-1" href="/page2/">Next &raquo;</a>
-  
-</div>
-
-</span>
-</div>
-
-
-</div>
-
-
-
-
-<!-- Newsletter Subscription
-================================================== -->
-<div class="newsletter-subscription" style="text-align: center; margin: 20px 0; font-size: 0.9em; color: #666;">
-    <p>Never miss a <b>story</b> from us, <a href="https://buttondown.com/capela" target="_blank">subscribe to our newsletter</a></p>
-</div>
-
-
-<!-- Categories Jumbotron
-================================================== -->
-<div class="jumbotron fortags">
-	<div class="d-md-flex h-100">
-		<div class="col-md-4 transpdark align-self-center text-center h-100">
-            <div class="d-md-flex align-items-center justify-content-center h-100">
-                <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
-            </div>
-		</div>
-		<div class="col-md-8 p-5 align-self-center text-center">
-            
-            
-                
-                    <a class="mt-1 mb-1" href="/categories#investing-portfolio-management">investing portfolio management (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#trading-strategies">trading strategies (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#risk-management">risk management (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#machine-learning">machine learning (2)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#optimization-algorithms">optimization algorithms (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#deep-learning">deep learning (2)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#quantum-physics">quantum physics (2)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#theoretical-physics">theoretical physics (3)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#mathematics">mathematics (2)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#mathematical-physics">mathematical physics (3)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#particle-physics">particle physics (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#graph-theory">graph theory (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#artificial-intelligence">artificial intelligence (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#mathematical-reasoning">mathematical reasoning (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#computational-logic">computational logic (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#differential-geometry">differential geometry (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#topology">topology (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#algebraic-geometry">algebraic geometry (1)</a>
-                
-                    <a class="mt-1 mb-1" href="/categories#string-theory">string theory (1)</a>
-                
-            
-            
-		</div>
-	</div>
-</div>
-
-<!-- Begin Footer
-================================================== -->
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 text-center text-lg-left">
-                Copyright © 2025 LabFab 
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- End Footer
-================================================== -->
-
-</div> <!-- /.site-content -->
-
-<!-- Scripts
-================================================== -->
-
-<script>
-// Floating TOC functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const toc = document.getElementById('toc');
-    if (!toc) return;
-
-    // Get all h2 headings from the main content
-    const mainContent = document.querySelector('.main-content');
-    const headings = mainContent.querySelectorAll('h2');
-    if (headings.length < 1) return;
-
-    const tocList = document.createElement('ul');
-    
-    headings.forEach((heading, index) => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        
-        // Add ID to heading if it doesn't have one
-        if (!heading.id) {
-            heading.id = 'heading-' + index;
-        }
-        
-        a.href = '#' + heading.id;
-        a.textContent = heading.textContent;
-        
-        li.appendChild(a);
-        tocList.appendChild(li);
-    });
-
-    toc.appendChild(tocList);
-    toc.classList.add('visible');
-
-    // Show/hide TOC based on scroll position
-    let lastScrollTop = 0;
-    window.addEventListener('scroll', function() {
-        const st = window.pageYOffset || document.documentElement.scrollTop;
-        if (st > lastScrollTop) {
-            // Scrolling down
-            toc.style.opacity = '0.7';
-        } else {
-            // Scrolling up
-            toc.style.opacity = '1';
-        }
-        lastScrollTop = st <= 0 ? 0 : st;
-    });
-});
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
-<script src="/assets/js/mediumish.js"></script>
-
-
-
-<script src="/assets/js/ie10-viewport-bug-workaround.js"></script> 
-
-
-
+<body class="bg-slate-50 text-slate-900 selection:bg-emerald-100 selection:text-emerald-900">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
 </body>
+
 </html>
