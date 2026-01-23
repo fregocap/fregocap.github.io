@@ -52,7 +52,7 @@ export const BLOG_POSTS: BlogPost[] = [
       </p>
     `,
     category: 'Strategy',
-    date: 'Oct 12, 2023',
+    date: 'Nov 12, 2025',
     author: 'Fabio',
     readTime: '8 min',
     imageUrl: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=800'
@@ -121,7 +121,7 @@ export const BLOG_POSTS: BlogPost[] = [
       </ol>
     `,
     category: 'Investing',
-    date: 'Jan 24, 2024',
+    date: 'Jan 15, 2026',
     author: 'Fabio',
     readTime: '12 min',
     imageUrl: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=800'
@@ -182,7 +182,7 @@ export const BLOG_POSTS: BlogPost[] = [
       </div>
     `,
     category: 'Income',
-    date: 'Dec 15, 2023',
+    date: 'Jan 20, 2026',
     author: 'Fabio',
     readTime: '10 min',
     imageUrl: 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&q=80&w=800'
