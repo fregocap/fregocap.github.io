@@ -157,7 +157,7 @@ Error generating stack: `+h.message+`
       <p class="text-slate-600 leading-relaxed">
         Ultimately, the 4% rule is a guide, not a law. Your personal risk tolerance and lifestyle goals will dictate your unique "Safe Exit" number.
       </p>
-    `,category:"Strategy",date:"Oct 12, 2023",author:"Fabio",readTime:"8 min",imageUrl:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=800"},{id:"2",title:"Your First Steps into Investing: A Practical Guide for European Beginners",excerpt:"Starting your investment journey can feel overwhelming. Here is why the best time to start is today, and how to do it correctly in Europe.",content:`
+    `,category:"Strategy",date:"Nov 12, 2025",author:"Fabio",readTime:"8 min",imageUrl:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=800"},{id:"2",title:"Your First Steps into Investing: A Practical Guide for European Beginners",excerpt:"Starting your investment journey can feel overwhelming. Here is why the best time to start is today, and how to do it correctly in Europe.",content:`
       <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
         "The best time to start investing was yesterday. The second-best time is today."
       </p>
@@ -215,7 +215,7 @@ Error generating stack: `+h.message+`
         <li><strong>Month 1:</strong> Buy your first share of a World ETF (e.g., VWCE).</li>
         <li><strong>Forever:</strong> Do nothing. Let compound interest work.</li>
       </ol>
-    `,category:"Investing",date:"Jan 24, 2024",author:"Fabio",readTime:"12 min",imageUrl:"https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=800"},{id:"3",title:"Side Hustle Stack: 5 Income Streams to Accelerate Your Journey",excerpt:"Retiring early isn't just about saving more. It's about earning more. Here are 5 scalable ways to increase your income without burnout.",content:`
+    `,category:"Investing",date:"Jan 15, 2026",author:"Fabio",readTime:"12 min",imageUrl:"https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=800"},{id:"3",title:"Side Hustle Stack: 5 Income Streams to Accelerate Your Journey",excerpt:"Retiring early isn't just about saving more. It's about earning more. Here are 5 scalable ways to increase your income without burnout.",content:`
       <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic">
         The faster you want to reach financial independence, the more you need to widen the "gap" between your income and expenses. Frugality has a floor; income has no ceiling.
       </p>
@@ -265,7 +265,7 @@ Error generating stack: `+h.message+`
           I help people identify their most profitable skills and turn them into income streams.
         </p>
       </div>
-    `,category:"Income",date:"Dec 15, 2023",author:"Fabio",readTime:"10 min",imageUrl:"https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&q=80&w=800"}];var OJ={};/**
+    `,category:"Income",date:"Jan 20, 2026",author:"Fabio",readTime:"10 min",imageUrl:"https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&q=80&w=800"}];var OJ={};/**
  * @license
  * Copyright 2025 Google LLC
  * SPDX-License-Identifier: Apache-2.0
