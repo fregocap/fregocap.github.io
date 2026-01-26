@@ -95,14 +95,7 @@ const App: React.FC = () => {
                   </button>
                 </div>
 
-                <div className="mt-12 flex items-center gap-6 text-white/60 text-sm font-medium">
-                  <div className="flex -space-x-3">
-                    {[1, 2, 3, 4].map(i => (
-                      <img key={i} className="w-8 h-8 rounded-full border-2 border-slate-900" src={`https://i.pravatar.cc/100?u=${i}`} alt="user" />
-                    ))}
-                  </div>
-                  <span>Join 12,000+ Members</span>
-                </div>
+
               </div>
             </section>
 
