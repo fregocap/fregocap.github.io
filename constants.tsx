@@ -3,6 +3,76 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '4',
+    title: 'Portfolio Reallocation: How Often Should You Press the Reset Button?',
+    excerpt: 'Daily, monthly, or yearly? We analyze the data on portfolio rebalancing to find the sweet spot between neglect and over-optimization.',
+    content: `
+      <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
+        "In investing, activity is often the enemy of returns. Rebalancing is the exception—but only if done right."
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Rebalancing Dilemma</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        You set your target asset allocation: 80% Stocks, 20% Bonds. Six months later, a bull market pushes your stocks to 85%. Do you sell?
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Reallocating (or rebalancing) is the act of selling winners to buy losers. It feels counterintuitive, but it is the mechanical heart of "buy low, sell high." The question isn't <em>if</em> you should do it, but <em>when</em>.
+      </p>
+
+      <div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">
+        <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-scale-balanced text-emerald-600"></i> The Three Strategies
+        </h3>
+        <ul class="space-y-4 text-slate-600">
+          <li class="flex items-start gap-3">
+            <span class="font-bold text-slate-900 min-w-[80px]">Calendar:</span>
+            <span>Checking on a set date (e.g., Jan 1st or your birthday). Simple, predictable, low stress.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="font-bold text-slate-900 min-w-[80px]">Threshold:</span>
+            <span>Acting only when an asset drifts by X% (e.g., 5%). more precise, but requires monitoring.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="font-bold text-slate-900 min-w-[80px]">Hybrid:</span>
+            <span>Checking quarterly, but only acting if thresholds are breached. The "Goldilocks" approach.</span>
+          </li>
+        </ul>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Does Frequency Matter?</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Vanguard's research suggests that for most investors, there is <strong>no significant difference</strong> in returns between rebalancing quarterly vs. annually.
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        However, rebalancing <em>too often</em> (weekly/monthly) can hurt you due to transaction costs and taxes (if outside a tax-sheltered account). You curb momentum without gaining meaningful risk reduction.
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Verdict</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        For 90% of investors, the <strong>Annual Review</strong> is sufficient.
+      </p>
+      <ul class="space-y-4 mb-8">
+        <li class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold">1</div>
+          <div class="text-slate-600">Pick a date (like today!).</div>
+        </li>
+        <li class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold">2</div>
+          <div class="text-slate-600">Check your drift. Is it >5% off target?</div>
+        </li>
+        <li class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
+          <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold">3</div>
+          <div class="text-slate-600">If yes, execute the trade. If no, go enjoy your life.</div>
+        </li>
+      </ul>
+    `,
+    category: 'Strategy',
+    date: 'Jan 27, 2026',
+    author: 'Fabio',
+    readTime: '6 min',
+    imageUrl: 'https://images.unsplash.com/photo-1611974765270-ca1258634369?auto=format&fit=crop&q=80&w=800'
+  },
+  {
     id: '1',
     title: 'The 4% Rule: Is It Still Relevant in 2024?',
     excerpt: 'Understanding the bedrock of retirement withdrawal strategies and how to adjust for current market volatility.',
