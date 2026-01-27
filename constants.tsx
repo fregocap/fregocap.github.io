@@ -19,6 +19,11 @@ export const BLOG_POSTS: BlogPost[] = [
         Reallocating (or rebalancing) is the act of selling winners to buy losers. It feels counterintuitive, but it is the mechanical heart of "buy low, sell high." The question isn't <em>if</em> you should do it, but <em>when</em>.
       </p>
 
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&q=80&w=800" alt="Balanced stones representing portfolio balance" class="w-full h-auto object-cover" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Finding the perfect balance is a continuous process.</p>
+      </div>
+
       <div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">
         <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
           <i class="fa-solid fa-scale-balanced text-emerald-600"></i> The Three Strategies
@@ -47,6 +52,11 @@ export const BLOG_POSTS: BlogPost[] = [
         However, rebalancing <em>too often</em> (weekly/monthly) can hurt you due to transaction costs and taxes (if outside a tax-sheltered account). You curb momentum without gaining meaningful risk reduction.
       </p>
 
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="Data chart showing rebalancing impact" class="w-full h-auto object-cover" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Data shows that yearly rebalancing captures most benefits with least effort.</p>
+      </div>
+
       <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Verdict</h2>
       <p class="text-slate-600 leading-relaxed mb-6">
         For 90% of investors, the <strong>Annual Review</strong> is sufficient.
@@ -70,7 +80,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Jan 27, 2026',
     author: 'Fabio',
     readTime: '6 min',
-    imageUrl: 'https://images.unsplash.com/photo-1611974765270-ca1258634369?auto=format&fit=crop&q=80&w=800'
+    imageUrl: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: '1',
