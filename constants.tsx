@@ -3,6 +3,69 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '5',
+    title: 'The "Boredom" Crisis: Why Early Retirement Might Drive You Crazy',
+    excerpt: 'I thought I wanted to sit on a beach forever. Two weeks later, I was staring at the ceiling. Here is the dark side of FIRE no one talks about.',
+    content: `
+      <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
+        "Retirement is not the end of the road. It is just the beginning of the open highway. And if you don't have a map, you will get lost."
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The "Pink Cloud" Phase</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        The first month of freedom is intoxicating. You sleep in. You binge-watch that series. You book a flight on a Tuesday because you can. It feels like an endless vacation.
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        But vacations are enjoyable precisely because they are <em>temporary</em>. When "vacation" becomes your Tuesday, Wednesday, and Thursday... the novelty wears off. And then, the silence sets in.
+      </p>
+
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&q=80&w=800" alt="Man sitting alone looking at view" class="w-full h-auto object-cover" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Freedom without purpose feels a lot like unemployment.</p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Identity Void</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        For 15 years, when people asked "What do you do?", I had an answer: "I'm a Project Manager." "I'm an Engineer."
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        The day I quit, I lost that badge. I underestimated how much of my ego was tied to my productivity. Without the external validation of a boss or a paycheck, I felt invisible. This is the <strong>Identity Void</strong>.
+      </p>
+
+      <div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">
+        <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-clipboard-list text-emerald-600"></i> The "Work" Requirement
+        </h3>
+        <p class="text-slate-600 mb-4">
+          Humans are built to solve problems. We need "Work"—we just don't need "Employment."
+        </p>
+        <ul class="space-y-4 text-slate-600">
+          <li class="flex items-start gap-3">
+            <span class="font-bold text-slate-900 min-w-[80px]">Hobbies:</span>
+            <span>Fun, but rarely provide deep meaning (e.g., Gaming, Golf).</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="font-bold text-slate-900 min-w-[80px]">Purpose:</span>
+            <span>Challenging, contributes to others, builds mastery (e.g., Teaching, Building this blog).</span>
+          </li>
+        </ul>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">How to inoculate yourself</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Don't wait until you quit to find a hobby. <strong>Retire TO something, not FROM something.</strong>
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Start building your "Post-Work" identity now. Start the blog. Learn the language. Volunteer. If you are boring now, you will be boring with a million dollars in the bank. Money just magnifies who you already are.
+      </p>
+    `,
+    category: 'Mindset',
+    date: 'Jan 28, 2026',
+    author: 'Fabio',
+    readTime: '7 min',
+    imageUrl: 'https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?auto=format&fit=crop&q=80&w=800'
+  },
+  {
     id: '4',
     title: 'Portfolio Reallocation: How Often Should You Press the Reset Button?',
     excerpt: 'Daily, monthly, or yearly? We analyze the data on portfolio rebalancing to find the sweet spot between neglect and over-optimization.',
