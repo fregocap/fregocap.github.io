@@ -3,6 +3,74 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '6',
+    title: 'Sequence of Returns Risk: The Silent Killer of Early Retirement',
+    excerpt: 'You can have a perfect 4% withdrawal rate and still go broke. It all depends on *when* the market crashes. Here is how to survive the first 5 years.',
+    content: `
+      <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
+        "Average returns are a myth. You don't get 7% every year. You get +20%, -15%, +5%. And the order in which those happen changes everything."
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Luck of the Draw</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Imagine two investors, Alice and Bob. Both retire with $1,000,000 and withdraw $40,000/year.
+      </p>
+      <ul class="space-y-4 mb-8">
+        <li class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
+          <div class="font-bold text-slate-900">Alice (Good Timing)</div>
+          <div class="text-sm text-slate-600">Retires into a bull market. Her portfolio grows to $1.5M in 5 years despite withdrawals. She is set for life.</div>
+        </li>
+        <li class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
+          <div class="font-bold text-slate-900">Bob (Bad Timing)</div>
+          <div class="text-sm text-slate-600">Retires into a crash (e.g., 2000 or 2008). His portfolio drops to $600k. Even when the market recovers, his capital is too depleted to catch up. He runs out of money.</div>
+        </li>
+      </ul>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        They had the same <em>average</em> return over 30 years. But Bob lost the lottery. This is Sequence of Returns Risk (SORR).
+      </p>
+
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="Stock market chart showing volatility" class="w-full h-auto object-cover" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Volatility matters more when you are withdrawing than when you are accumulating.</p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">How to Bulletproof Your Portfolio</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        You can't control the market, but you can build a shield.
+      </p>
+
+      <div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">
+        <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-umbrella text-emerald-600"></i> The "Cash Tent" Strategy
+        </h3>
+        <p class="text-slate-600 mb-4">
+          Also known as a Bond Tent. 5 years before retirement, you start shifting more assets into Cash/Bonds (e.g., from 80/20 to 60/40).
+        </p>
+        <p class="text-slate-600">
+          If the market crashes early, you spend the cash/bonds and leave your stocks alone to recover. If the market booms, you slowly spend down the tent and move back to stocks.
+        </p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">CAP Your Spending</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        The "Cape Campbell" method suggests a dynamic withdrawal rule:
+      </p>
+      <ul class="list-disc list-inside space-y-2 text-slate-600 mb-6">
+        <li>If the portfolio hits a new high, increase withdrawal by inflation.</li>
+        <li>If the portfolio drops, <strong>freeze</strong> inflation adjustments.</li>
+        <li>If it drops significantly (e.g., -20%), take a small cut (e.g., -5%).</li>
+      </ul>
+      <p class="text-slate-600 leading-relaxed">
+        This small flexibility can drastically increase your portfolio's survival rate from 80% to 99%.
+      </p>
+    `,
+    category: 'Strategy',
+    date: 'Jan 29, 2026',
+    author: 'Fabio',
+    readTime: '9 min',
+    imageUrl: 'https://images.unsplash.com/photo-1535914254981-b5012eebbd15?auto=format&fit=crop&q=80&w=800'
+  },
+  {
     id: '5',
     title: 'The "Boredom" Crisis: Why Early Retirement Might Drive You Crazy',
     excerpt: 'I thought I wanted to sit on a beach forever. Two weeks later, I was staring at the ceiling. Here is the dark side of FIRE no one talks about.',
