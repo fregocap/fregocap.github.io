@@ -137,7 +137,7 @@ Error generating stack: `+h.message+`
       </p>
 
       <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
-        <img src="https://images.unsplash.com/photo-1611974765270-ca1258634369?auto=format&fit=crop&q=80&w=800" alt="Stock market chart showing volatility" class="w-full h-auto object-cover" />
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="Stock market chart showing volatility" class="w-full h-auto object-cover" />
         <p class="text-center text-slate-500 text-sm mt-3 italic">Volatility matters more when you are withdrawing than when you are accumulating.</p>
       </div>
 
@@ -170,7 +170,7 @@ Error generating stack: `+h.message+`
       <p class="text-slate-600 leading-relaxed">
         This small flexibility can drastically increase your portfolio's survival rate from 80% to 99%.
       </p>
-    `,category:"Strategy",date:"Jan 29, 2026",author:"Fabio",readTime:"9 min",imageUrl:"https://images.unsplash.com/photo-1579532507281-29313f4102cd?auto=format&fit=crop&q=80&w=800"},{id:"5",title:'The "Boredom" Crisis: Why Early Retirement Might Drive You Crazy',excerpt:"I thought I wanted to sit on a beach forever. Two weeks later, I was staring at the ceiling. Here is the dark side of FIRE no one talks about.",content:`
+    `,category:"Strategy",date:"Jan 29, 2026",author:"Fabio",readTime:"9 min",imageUrl:"https://images.unsplash.com/photo-1535914254981-b5012eebbd15?auto=format&fit=crop&q=80&w=800"},{id:"5",title:'The "Boredom" Crisis: Why Early Retirement Might Drive You Crazy',excerpt:"I thought I wanted to sit on a beach forever. Two weeks later, I was staring at the ceiling. Here is the dark side of FIRE no one talks about.",content:`
       <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
         "Retirement is not the end of the road. It is just the beginning of the open highway. And if you don't have a map, you will get lost."
       </p>
