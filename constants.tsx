@@ -3,6 +3,90 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '7',
+    title: 'The Rich Kid Trap: Raising Grounded Children When You Are Secretly Wealthy',
+    excerpt: 'Retiring early solves your money problems, but it creates a parenting one: How do you teach grit to a child who never sees you struggle?',
+    content: `
+      <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
+        "I want my children to have enough money to do anything, but not enough to do nothing." — Warren Buffett
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Stealth Wealth Dilemma</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        When my net worth hit the FIRE number, I felt a rush of relief. Then, a rush of anxiety. My children were growing up in a world where Dad was always home, we traveled often, and the "price tag" discussion rarely happened at the grocery store.
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        How do you teach the value of a dollar when your life looks effortless? If you aren't careful, you risk raising children who are "economically outpatient"—dependent on your wealth and lacking the survival skills to build their own.
+      </p>
+
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?auto=format&fit=crop&q=80&w=800" alt="Child putting coin in piggy bank" class="w-full h-auto object-cover" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Financial literacy is the most valuable inheritance you can give.</p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">1. The "Normal" Baseline</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        We practice "Stealth Wealth." To our neighbors, we drive a 7-year-old Toyota and mow our own lawn. We could buy a luxury SUV tomorrow in cash, but we don't.
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Why? Because children calibrate their expectations based on their environment. If "normal" is business class flights and catered parties, a starting salary of $40k will feel like poverty to them. <strong>Keep their baseline low</strong> so they can experience the joy of upgrading their own lives later.
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">2. The "Bank of Dad" High-Yield Account</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Compound interest is abstract. To make it visceral, I opened the "Bank of Dad."
+      </p>
+      <div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">
+        <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-piggy-bank text-emerald-600"></i> The Rules
+        </h3>
+        <ul class="space-y-4 text-slate-600">
+          <li class="flex items-start gap-3">
+            <span class="font-bold text-slate-900 min-w-[120px]">The Rate:</span>
+            <span>I pay <strong>10% interest per month</strong> on any money they save (capped at $100).</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="font-bold text-slate-900 min-w-[120px]">The Lesson:</span>
+            <span>My 8-year-old quickly realized that spending $10 on a toy today costs him $1 in passive income <em>every month forever</em>. He stopped buying junk.</span>
+          </li>
+        </ul>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">3. Pay for Work, Not Existence</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        We don't give an allowance just for breathing. We have "Community contributions" (unpaid chores like clearing the table) and "Jobs" (paid tasks like washing the car).
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        This separates "being a good family member" from "earning money." It teaches that money is the result of value creation, not entitlement.
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">4. Transparent Conversations</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        We talk about money at dinner. Not in a stressful way, but in a factual way.
+      </p>
+      <ul class="list-disc list-inside space-y-2 text-slate-600 mb-6">
+        <li>"That vacation cost $2,000. That is equal to 100 hours of work for someone earning $20/hour."</li>
+        <li>"We invest in these companies because they provide services people need."</li>
+      </ul>
+      <p class="text-slate-600 leading-relaxed">
+        Demystifying money removes its power to intimidate or corrupt.
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Concept of "Enough"</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        In a world of infinite scrolling and influence, teaching "Enough" is a radical act. We celebrate fixing things instead of replacing them. We praise experiences over things.
+      </p>
+      <p class="text-slate-600 leading-relaxed">
+        Your wealth should be a safety net for them to take risks—to start a business, to be an artist, to fail safely—not a hammock to lie in.
+      </p>
+    `,
+    category: 'Mindset',
+    date: 'Feb 01, 2026',
+    author: 'Fabio',
+    readTime: '15 min',
+    imageUrl: 'https://images.unsplash.com/photo-1579621970795-87facc2f976d?auto=format&fit=crop&q=80&w=800'
+  },
+  {
     id: '6',
     title: 'Sequence of Returns Risk: The Silent Killer of Early Retirement',
     excerpt: 'You can have a perfect 4% withdrawal rate and still go broke. It all depends on *when* the market crashes. Here is how to survive the first 5 years.',
