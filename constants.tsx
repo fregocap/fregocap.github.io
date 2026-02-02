@@ -4,6 +4,7 @@ import { BlogPost } from './types';
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: '8',
+    slug: 'geographic-arbitrage-moving-wealth',
     title: 'Geographic Arbitrage: How Moving Can Double Your Wealth (Without a Raise)',
     excerpt: 'What if you could retire 10 years earlier just by changing your zip code? Earning in Dollars/Euros and spending in Baht/Pesos is the ultimate financial cheat code.',
     content: `
@@ -82,6 +83,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: '7',
+    slug: 'rich-kid-trap-parenting-wealth',
     title: 'The Rich Kid Trap: Raising Grounded Children When You Are Secretly Wealthy',
     excerpt: 'Retiring early solves your money problems, but it creates a parenting one: How do you teach grit to a child who never sees you struggle?',
     content: `
@@ -166,6 +168,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: '6',
+    slug: 'sequence-of-returns-risk',
     title: 'Sequence of Returns Risk: The Silent Killer of Early Retirement',
     excerpt: 'You can have a perfect 4% withdrawal rate and still go broke. It all depends on *when* the market crashes. Here is how to survive the first 5 years.',
     content: `
@@ -234,6 +237,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: '5',
+    slug: 'boredom-crisis-early-retirement',
     title: 'The "Boredom" Crisis: Why Early Retirement Might Drive You Crazy',
     excerpt: 'I thought I wanted to sit on a beach forever. Two weeks later, I was staring at the ceiling. Here is the dark side of FIRE no one talks about.',
     content: `
@@ -297,6 +301,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: '4',
+    slug: 'portfolio-reallocation-reset',
     title: 'Portfolio Reallocation: How Often Should You Press the Reset Button?',
     excerpt: 'Daily, monthly, or yearly? We analyze the data on portfolio rebalancing to find the sweet spot between neglect and over-optimization.',
     content: `
@@ -377,6 +382,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: '1',
+    slug: '4-percent-rule-relevant-2024',
     title: 'The 4% Rule: Is It Still Relevant in 2024?',
     excerpt: 'Understanding the bedrock of retirement withdrawal strategies and how to adjust for current market volatility.',
     content: `
@@ -432,6 +438,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: '2',
+    slug: 'investing-guide-europe',
     title: 'Your First Steps into Investing: A Practical Guide for European Beginners',
     excerpt: 'Starting your investment journey can feel overwhelming. Here is why the best time to start is today, and how to do it correctly in Europe.',
     content: `
@@ -501,6 +508,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     id: '3',
+    slug: 'side-hustle-stack',
     title: 'Side Hustle Stack: 5 Income Streams to Accelerate Your Journey',
     excerpt: 'Retiring early isn\'t just about saving more. It\'s about earning more. Here are 5 scalable ways to increase your income without burnout.',
     content: `
