@@ -3,6 +3,84 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '8',
+    title: 'Geographic Arbitrage: How Moving Can Double Your Wealth (Without a Raise)',
+    excerpt: 'What if you could retire 10 years earlier just by changing your zip code? Earning in Dollars/Euros and spending in Baht/Pesos is the ultimate financial cheat code.',
+    content: `
+      <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
+        "In New York, a $100,000 salary feels like a struggle. In Lisbon, it feels like royalty. The number didn't change—the context did."
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Math of Relocation</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Most people focus on the numerator (Income). But the denominator (Cost of Living) is where the magic happens.
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Let's look at the "runway" calculation. If you spend $4,000/month in London, $100,000 in savings lasts you 2 years. Move to Chiang Mai or parts of Portugal, where you live comfortably on $1,500/month, and that same $100,000 lasts <strong>5.5 years</strong>.
+      </p>
+
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&q=80&w=800" alt="Workplace with laptop and coffee" class="w-full h-auto object-cover" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Your office can be anywhere. Why choose the most expensive city?</p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Top Destinations for 2026</h2>
+      <div class="space-y-6 mb-10">
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+          <h3 class="text-xl font-bold text-slate-900 mb-2">🇵🇹 Portugal</h3>
+          <p class="text-slate-600">
+            <strong>Why:</strong> The gateway to Europe. Safe, incredible food, 300 days of sun. While the NHR tax regime has tightened, it still offers significant benefits for skilled professionals.
+          </p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+          <h3 class="text-xl font-bold text-slate-900 mb-2">🇹🇭 Thailand</h3>
+          <p class="text-slate-600">
+            <strong>Why:</strong> Unbeatable ROI. You can get a luxury condo with a pool and gym for $600/month. The food is world-class and costs $2.
+          </p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+          <h3 class="text-xl font-bold text-slate-900 mb-2">🇵🇦 Panama</h3>
+          <p class="text-slate-600">
+            <strong>Why:</strong> Dollarized economy, Miami-style skyline, and territorial tax system (foreign income is often tax-free).
+          </p>
+        </div>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The "Hidden" Benefits</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        It's not just about money. It's about <strong>Quality of Life Arbitrage</strong>.
+      </p>
+      <ul class="space-y-4 mb-8">
+        <li class="flex items-start gap-3 text-slate-600">
+          <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+          <span><strong>Healthcare:</strong> Medical tourism in places like Malaysia or Mexico offers US-quality care at 10% of the price.</span>
+        </li>
+        <li class="flex items-start gap-3 text-slate-600">
+          <i class="fa-solid fa-check text-emerald-500 mt-1"></i>
+          <span><strong>Help:</strong> In Latin America or SE Asia, affordable housekeeping allows you to buy back your time.</span>
+        </li>
+      </ul>
+
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1571767750274-4795bdfcb642?q=80&w=800&auto=format&fit=crop" alt="Red tram in Lisbon street" class="w-full h-auto object-cover" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Lisbon offers a European lifestyle at a fraction of Paris or London prices.</p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Implementation: The "Test Drive"</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Don't sell your house yet. Go for 1 month. Rent an Airbnb in a "normal" neighborhood (not a resort). Go grocery shopping. Try to work.
+      </p>
+      <p class="text-slate-600 leading-relaxed">
+        If you hate it, you had a 1-month vacation. If you love it, you just unlocked early retirement.
+      </p>
+    `,
+    category: 'Lifestyle',
+    date: 'Feb 03, 2026',
+    author: 'Fabio',
+    readTime: '11 min',
+    imageUrl: 'https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&q=80&w=800'
+  },
+  {
     id: '7',
     title: 'The Rich Kid Trap: Raising Grounded Children When You Are Secretly Wealthy',
     excerpt: 'Retiring early solves your money problems, but it creates a parenting one: How do you teach grit to a child who never sees you struggle?',
