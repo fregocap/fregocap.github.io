@@ -81,7 +81,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Feb 05, 2026',
     author: 'Fabio',
     readTime: '13 min',
-    imageUrl: 'https://images.unsplash.com/photo-1544211155-8d5978ac2278?auto=format&fit=crop&q=80&w=800'
+    imageUrl: 'https://images.squarespace-cdn.com/content/v1/64ea0bb7eea8000f5cd961c5/3f1e09b4-8bf9-4788-8c07-69cedb274308/die-with-zero-purposeful-spending-ocean.jpg'
   },
   {
     id: '8',
