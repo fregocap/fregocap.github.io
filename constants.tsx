@@ -3,6 +3,87 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '9',
+    slug: 'die-with-zero-balance-wealth-experiences',
+    title: 'The "Die With Zero" Debate: Are You Over-Saving for a Life You Will Never Live?',
+    excerpt: 'We are obsessed with not running out of money, but we rarely worry about running out of time. Why dying with millions might be the ultimate financial failure.',
+    content: `
+      <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
+        "The business of life is the acquisition of memories. In the end, that's all there is." — Bill Perkins
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Utility Curve of Money</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Here is a hard truth: A dollar spent at age 30 is worth more than a dollar spent at age 80.
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Financial utility declines with health. You can buy the same first-class ticket at 85, but you might be too tired to explore the city when you land. The "Die With Zero" philosophy argues that we should aim to spend our money when it has the highest capacity to convert into <strong>meaningful experiences</strong>.
+      </p>
+
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1526772662000-3f88f107f5d8?auto=format&fit=crop&q=80&w=800" alt="Senior couple enjoying sunset" class="w-full h-auto object-cover" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Don't wait until you can't hike the mountain to buy the gear.</p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The "Memory Dividend"</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        We understand compound interest on money, but we forget about compound interest on memories.
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        If you take that trip to Japan at 30, you get to "withdraw" the joy of that memory for 50+ years. You talk about it at dinners, you reminisce with friends, it shapes your worldview. If you wait until 65, you missed out on 35 years of memory dividends.
+      </p>
+
+      <div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">
+        <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-bucket text-emerald-600"></i> The Time Bucket Framework
+        </h3>
+        <p class="text-slate-600 mb-4">
+          Stop taking about a "Bucket List" for the end of life. Create Time Buckets:
+        </p>
+        <ul class="space-y-4 text-slate-600">
+          <li class="flex items-start gap-3">
+            <span class="font-bold text-slate-900 min-w-[100px]">Ages 30-45:</span>
+            <span>High energy activities (Skiing, Backpacking, Raising Kids).</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="font-bold text-slate-900 min-w-[100px]">Ages 45-60:</span>
+            <span>Mentorship, Luxury Travel, Career Mastery.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="font-bold text-slate-900 min-w-[100px]">Ages 60+:</span>
+            <span>Comfort, Philanthropy, Grandchildren.</span>
+          </li>
+        </ul>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The FIRE Trap</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        The FIRE community (myself included) often treats money as a high-score in a video game. We over-optimize for safety. We want a 99.9% success rate, so we work 5 extra years to accumulate an extra $500k "just in case."
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        But <strong>time is the only non-renewable resource</strong>. If you die with $5 million in the bank, that is $5 million worth of life energy you gave to an employer but never reclaimed for yourself. That isn't safety; it's a tragedy.
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">How to Find Balance</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        I'm not saying spend it all today. I'm saying <strong>stop operating on autopilot</strong>.
+      </p>
+      <ul class="list-disc list-inside space-y-2 text-slate-600 mb-6">
+        <li>Calculate your "Enough" number honestly, without 3 layers of padding.</li>
+        <li>Give money to your children when they are 30 (when they need a house/wedding), not when they are 60 (and you die).</li>
+        <li>Spend extravagantly on the things that give you distinct joy, and cut mercilessly on the rest.</li>
+      </ul>
+      <p class="text-slate-600 leading-relaxed">
+        The goal isn't to be the richest corpse in the graveyard. It's to be the most exhausted, satisfied soul when the clock runs out.
+      </p>
+    `,
+    category: 'Mindset',
+    date: 'Feb 05, 2026',
+    author: 'Fabio',
+    readTime: '13 min',
+    imageUrl: 'https://images.unsplash.com/photo-1544211155-8d5978ac2278?auto=format&fit=crop&q=80&w=800'
+  },
+  {
     id: '8',
     slug: 'geographic-arbitrage-moving-wealth',
     title: 'Geographic Arbitrage: How Moving Can Double Your Wealth (Without a Raise)',
