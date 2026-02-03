@@ -126,7 +126,7 @@ Please change the parent <Route path="${M}"> to <Route path="${M==="/"?"*":`${M}
       <p class="text-slate-600 leading-relaxed">
         The goal isn't to be the richest corpse in the graveyard. It's to be the most exhausted, satisfied soul when the clock runs out.
       </p>
-    `,category:"Mindset",date:"Feb 05, 2026",author:"Fabio",readTime:"13 min",imageUrl:"https://images.unsplash.com/photo-1544211155-8d5978ac2278?auto=format&fit=crop&q=80&w=800"},{id:"8",slug:"geographic-arbitrage-moving-wealth",title:"Geographic Arbitrage: How Moving Can Double Your Wealth (Without a Raise)",excerpt:"What if you could retire 10 years earlier just by changing your zip code? Earning in Dollars/Euros and spending in Baht/Pesos is the ultimate financial cheat code.",content:`
+    `,category:"Mindset",date:"Feb 05, 2026",author:"Fabio",readTime:"13 min",imageUrl:"https://images.squarespace-cdn.com/content/v1/64ea0bb7eea8000f5cd961c5/3f1e09b4-8bf9-4788-8c07-69cedb274308/die-with-zero-purposeful-spending-ocean.jpg"},{id:"8",slug:"geographic-arbitrage-moving-wealth",title:"Geographic Arbitrage: How Moving Can Double Your Wealth (Without a Raise)",excerpt:"What if you could retire 10 years earlier just by changing your zip code? Earning in Dollars/Euros and spending in Baht/Pesos is the ultimate financial cheat code.",content:`
       <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
         "In New York, a $100,000 salary feels like a struggle. In Lisbon, it feels like royalty. The number didn't change—the context did."
       </p>
