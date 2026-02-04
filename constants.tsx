@@ -3,6 +3,79 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '10',
+    slug: 'dating-on-fire-path-frugal-vs-luxury',
+    title: 'Dating on a FIRE Path: How to Date When You Are Frugal But Your Partner Loves Luxury',
+    excerpt: 'Money is the #1 cause of relationship stress. Here is how to navigate the minefield of splitting bills, expensive tastes, and finding love without blowing your savings rate.',
+    content: `
+      <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
+        "Love is free. Dating is expensive. Marriage is a financial contract. Let's stop pretending money doesn't matter in romance."
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The "Cheap vs. Frugal" Trap</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        There is a massive difference between being cheap and being frugal, and your dating life depends on knowing it.
+      </p>
+      <ul class="space-y-4 mb-8">
+        <li class="flex items-start gap-3">
+          <span class="font-bold text-slate-900 min-w-[80px]">Cheap:</span>
+          <span class="text-slate-600">You don't tip the waiter. You complain about the price of appetizers. You make your date feel undervalued to save $5. <strong>This is unattractive.</strong></span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="font-bold text-slate-900 min-w-[80px]">Frugal:</span>
+          <span class="text-slate-600">You prioritize value. You skip the overpriced cocktail so you can afford a better main course. You suggest a picnic with expensive wine instead of a mediocre restaurant. <strong>This is thoughtful.</strong></span>
+        </li>
+      </ul>
+
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://plus.unsplash.com/premium_photo-1680539024823-81159b3eb2ce?q=80&w=1677&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Couple toasting with wine glass at sunset" class="w-full h-auto object-cover" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Experiences > Status. A sunset picnic often beats a Michelin star restaurant.</p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">How to Talk About FIRE Without Scaring Them Off</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Do not say: "I need to save 60% of my income so I can quit my job in 5 years, so we can't go to that concert."
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Do say: "I'm working really hard right now to buy my freedom. I want to build a life where we can travel for months at a time without asking a boss for permission. To get there, I'm being intentional with my spending today."
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Sell the <strong>dream</strong> (Freedom, Time, Travel), not the <strong>sacrifice</strong> (Coupons, Budgeting).
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The "Splitting the Bill" Dilemma</h2>
+      <div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">
+        <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-hand-holding-dollar text-emerald-600"></i> The Proportional Method
+        </h3>
+        <p class="text-slate-600 mb-4">
+          If you earn $100k and your partner earns $50k, splitting everything 50/50 is unfair. It imposes <em>your</em> lifestyle costs on <em>their</em> lower budget.
+        </p>
+        <p class="text-slate-600">
+          <strong>Try this:</strong> Split shared expenses (Rent, Utilities, Travel) based on income percentages. If you want luxury (e.g., a 5-star hotel) and they can only afford a hostel, <strong>you pay the difference</strong>. It's the price of your preference.
+        </p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Finding a Middle Ground</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        You don't need a partner who is also obsessed with FIRE. You need a partner who <strong>respects your goals</strong>.
+      </p>
+      <ul class="list-disc list-inside space-y-2 text-slate-600 mb-6">
+        <li>Create a "Fun Budget" that is guilt-free.</li>
+        <li>Focus on high-impact dates (hiking, cooking classes, museums) that are naturally low-cost but high-connection.</li>
+        <li>Be generous with your time and attention, even if you are tight with your wallet.</li>
+      </ul>
+      <p class="text-slate-600 leading-relaxed">
+        Ultimately, if your financial values are fundamentally opposed (e.g., they value status symbols and you value freedom), love alone won't fix it. Money isn't just math; it's a reflection of what we value in life.
+      </p>
+    `,
+    category: 'Lifestyle',
+    date: 'Feb 07, 2026',
+    author: 'Fabio',
+    readTime: '9 min',
+    imageUrl: 'https://images.unsplash.com/photo-1758686254550-c5d8f4de1b3a?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  },
+  {
     id: '9',
     slug: 'die-with-zero-balance-wealth-experiences',
     title: 'The "Die With Zero" Debate: Are You Over-Saving for a Life You Will Never Live?',
