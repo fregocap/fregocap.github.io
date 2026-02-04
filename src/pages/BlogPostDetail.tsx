@@ -158,7 +158,7 @@ const BlogPostDetail: React.FC = () => {
                                 <i className="fa-solid fa-fire text-orange-500"></i> Trending now
                             </h4>
                             <div className="space-y-6">
-                                {BLOG_POSTS.map((p, i) => (
+                                {BLOG_POSTS.slice(0, 3).map((p, i) => (
                                     <div key={p.id} className="flex gap-4 group cursor-pointer" onClick={() => { navigate(`/blog/${p.slug}`); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                                         <span className="text-2xl font-lexend font-black text-slate-100 group-hover:text-emerald-100 transition-colors">0{i + 1}</span>
                                         <div className="font-bold text-sm text-slate-800 line-clamp-2 leading-snug group-hover:text-emerald-600 transition-colors">{p.title}</div>
