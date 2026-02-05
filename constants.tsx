@@ -3,6 +3,86 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '11',
+    slug: 'healthcare-hacking-fire-insurance-guide',
+    title: 'Healthcare Hacking: How Early Retirees Survive the "Gap Years" Before Medicare',
+    excerpt: 'The biggest fear in early retirement isn\'t running out of money—it\'s a medical emergency without insurance. Here is the deep dive into ACA subsidies, Health Shares, and Medical Tourism.',
+    content: `
+      <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
+        "In the US, health insurance is tied to employment. So when you quit your job to retire at 40, you are essentially walking a tightrope without a net. Unless you build one yourself."
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The "Gap" Problem</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        If you retire at 45, you have a 20-year gap before Medicare kicks in at 65. Private insurance can cost a family of four $2,000+ per month. That is $24,000 a year—or $600,000 taken out of your portfolio over 20 years.
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        You cannot just pay sticker price. You need to hack the system.
+      </p>
+
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1505455184862-554165e5f6ba?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Stethoscope on medical documents" class="w-full h-auto object-cover" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Understanding the fine print is your new full-time job.</p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Strategy 1: The ACA Subsidy Sweet Spot</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        The Affordable Care Act (Obamacare) offers subsidies based on your <strong>MAGI</strong> (Modified Adjusted Gross Income), not your Net Worth.
+      </p>
+      <div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">
+        <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-calculator text-emerald-600"></i> The Millionaire's Loophole
+        </h3>
+        <p class="text-slate-600 mb-4">
+          You can have $5 million in the bank, but if your taxable income is low (e.g., you live off cash savings, Roth withdrawals, or selling stocks with low capital gains), you can qualify for massive subsidies.
+        </p>
+        <p class="text-slate-600">
+          <strong>The Trick:</strong> Manage your realized gains. Keep your official income just above the Medicaid line (to avoid bad coverage) but low enough to get the Silver plans practically for free.
+        </p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Strategy 2: Health Savings Ministries (The Wild West)</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Organizations like Liberty HealthShare or Zion Health are not "insurance." They are cost-sharing communities.
+      </p>
+      <ul class="space-y-4 mb-8">
+        <li class="flex items-start gap-3">
+          <span class="font-bold text-slate-900 min-w-[120px]">Pros:</span>
+          <span class="text-slate-600">Much cheaper (e.g., $400/mo for a family).</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="font-bold text-slate-900 min-w-[120px]">Cons:</span>
+          <span class="text-slate-600">They are unregulated. They can deny pre-existing conditions. They might not pay if you got injured while drunk or doing "hazardous" activities. <strong>High risk, high reward.</strong></span>
+        </li>
+      </ul>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Strategy 3: Geo-Arbitrage & Medical Tourism</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Why pay $50,000 for a surgery in the US when the same doctor (trained at Harvard) will do it in Thailand or Mexico for $5,000?
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Many FIRE nomads carry "Expat Insurance" (like Cigna Global or IMG), which covers them worldwide <em>excluding</em> the US. This coverage is shockingly affordable (often <$200/month) because they know they won't be billed US hospital rates.
+      </p>
+      
+      <div class="bg-emerald-50 rounded-3xl p-8 my-10 border border-emerald-100">
+         <h3 class="font-bold text-emerald-800 mb-2">My Hybrid Approach</h3>
+         <p class="text-emerald-700 text-sm">
+           I keep a high-deductible ACA plan for catastrophic US coverage (to prevent bankruptcy) but pay cash for routine care overseas. Dental work in Costa Rica, checkups in Portugal. It turns healthcare into a travel adventure.
+         </p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Bottom Line</h2>
+      <p class="text-slate-600 leading-relaxed">
+        Healthcare is the biggest variable in your spreadsheet. You cannot ignore it, but you also shouldn't let it keep you handcuffed to a desk for another decade. Optimize your income for subsidies, stay healthy, and be willing to get on a plane.
+      </p>
+    `,
+    category: 'Strategy',
+    date: 'Feb 10, 2026',
+    author: 'Fabio',
+    readTime: '14 min',
+    imageUrl: 'https://images.unsplash.com/photo-1488229297570-58520851e868?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  },
+  {
     id: '10',
     slug: 'dating-on-fire-path-frugal-vs-luxury',
     title: 'Dating on a FIRE Path: How to Date When You Are Frugal But Your Partner Loves Luxury',
