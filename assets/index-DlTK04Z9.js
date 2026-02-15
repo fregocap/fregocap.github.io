@@ -146,8 +146,8 @@ Please change the parent <Route path="${P}"> to <Route path="${P==="/"?"*":`${P}
       </ul>
 
       <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
-        <img src="https://plus.unsplash.com/premium_photo-1680539024823-81159b3eb2ce?q=80&w=1677&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Couple toasting with wine glass at sunset" class="w-full h-auto object-cover" />
-        <p class="text-center text-slate-500 text-sm mt-3 italic">Experiences > Status. A sunset picnic often beats a Michelin star restaurant.</p>
+        <img src="https://plus.unsplash.com/premium_photo-1658526914485-af7b566986b2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bW9uZXklMjBzcGVuZGluZ3xlbnwwfHwwfHx8MA%3D%3D" alt="Woman holding shopping bags" class="w-full h-auto object-cover" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Navigating different spending habits is the ultimate relationship test.</p>
       </div>
 
       <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">How to Talk About FIRE Without Scaring Them Off</h2>
@@ -186,7 +186,7 @@ Please change the parent <Route path="${P}"> to <Route path="${P==="/"?"*":`${P}
       <p class="text-slate-600 leading-relaxed">
         Ultimately, if your financial values are fundamentally opposed (e.g., they value status symbols and you value freedom), love alone won't fix it. Money isn't just math; it's a reflection of what we value in life.
       </p>
-    `,category:"Lifestyle",date:"Feb 07, 2026",author:"Fabio",readTime:"9 min",imageUrl:"https://images.unsplash.com/photo-1758686254550-c5d8f4de1b3a?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},{id:"9",slug:"die-with-zero-balance-wealth-experiences",title:'The "Die With Zero" Debate: Are You Over-Saving for a Life You Will Never Live?',excerpt:"We are obsessed with not running out of money, but we rarely worry about running out of time. Why dying with millions might be the ultimate financial failure.",content:`
+    `,category:"Lifestyle",date:"Feb 07, 2026",author:"Fabio",readTime:"9 min",imageUrl:"https://plus.unsplash.com/premium_photo-1661458389646-563d829f1e18?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},{id:"9",slug:"die-with-zero-balance-wealth-experiences",title:'The "Die With Zero" Debate: Are You Over-Saving for a Life You Will Never Live?',excerpt:"We are obsessed with not running out of money, but we rarely worry about running out of time. Why dying with millions might be the ultimate financial failure.",content:`
       <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
         "The business of life is the acquisition of memories. In the end, that's all there is." — Bill Perkins
       </p>
