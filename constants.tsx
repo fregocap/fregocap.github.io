@@ -3,6 +3,64 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '12',
+    slug: '5-things-i-stopped-buying-fire',
+    title: '5 Things I Stopped Buying to Hit FIRE Faster',
+    excerpt: 'Minimalism isn\'t about deprivation; it\'s about focus. Here are the 5 biggest money drains I eliminated to reclaim my freedom.',
+    content: `
+      <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
+        "The things you own end up owning you." — Tyler Durden, Fight Club
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">1. Fast Fashion & Trends</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Buying cheap clothes every season is expensive. I shifted to a "Capsule Wardrobe" of high-quality, neutral basics. I buy less, but buy better. My cost-per-wear dropped drastically, and I no longer waste time deciding what to wear.
+      </p>
+
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1760565031198-00e39da3d9cb?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Minimalist clothing rack" class="w-full h-auto object-cover" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Clear space, clear mind. Clutter is just delayed decision making.</p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">2. The Latest Tech Upgrades</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Phone manufacturers want you to believe your 2-year-old device is obsolete. It isn't. I used to upgrade every cycle. Now, I keep my electronics until they literally break. That saves me $1,000+ every 2 years, which invested over a decade is substantial.
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">3. Single-Use Kitchen Gadgets</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Avocado slicers, egg cookers, excessive plastic containers. These clutter your kitchen and wallet. A good chef's knife does 90% of the work. Simplify your tools, master your craft.
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">4. New Cars (The Depreciation Bomb)</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        A new car loses 20% of its value the moment you drive it off the lot. I only buy trusted used cars (3-4 years old) that have already taken the depreciation hit. The difference in monthly payments goes straight into index funds.
+      </p>
+
+      <div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">
+        <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-ban text-red-500"></i> The "Subscription" Trap
+        </h3>
+        <p class="text-slate-600 mb-4">
+          <strong>5. Subscriptions I Don't Use Weekly:</strong> Check your bank statement. That $15 streaming service, the $30 app, the $50 gym membership you rarely visit. They bleed you dry silently.
+        </p>
+        <p class="text-slate-600">
+          <strong>Rule:</strong> If I haven't used it in 7 days, I cancel it. I can always resubscribe later.
+        </p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Minimalism ROI</h2>
+      <p class="text-slate-600 leading-relaxed">
+        Stopping these purchases didn't make my life smaller; it made my bank account bigger. Every dollar I didn't spend on junk bought me hours of freedom.
+      </p>
+    `,
+    category: 'Lifestyle',
+    date: 'Feb 12, 2026',
+    author: 'Fabio',
+    readTime: '6 min',
+    imageUrl: 'https://images.unsplash.com/photo-1642543348781-ed9c6d67ed20?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  },
+  {
     id: '11',
     slug: 'healthcare-hacking-fire-insurance-guide',
     title: 'Healthcare Hacking: How Early Retirees Survive the "Gap Years" Before Medicare',
