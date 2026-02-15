@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BLOG_POSTS } from '../../constants';
 import { BlogPost } from '../../types';
+import SEO from '../components/SEO';
 
 const BlogPostDetail: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
@@ -48,6 +49,12 @@ const BlogPostDetail: React.FC = () => {
 
     return (
         <div className="py-12 px-4 md:px-0 max-w-4xl mx-auto animate-in fade-in duration-700">
+            <SEO
+                title={selectedPost.title}
+                description={selectedPost.excerpt}
+                image={selectedPost.imageUrl}
+                type="article"
+            />
             <button
                 onClick={() => navigate('/blog')}
                 className="mb-10 flex items-center gap-3 text-slate-400 hover:text-slate-800 font-bold transition-all group"

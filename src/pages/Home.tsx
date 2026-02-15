@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BLOG_POSTS } from '../../constants';
 import { getFinancialAdvice } from '../../services/geminiService';
+import SEO from '../components/SEO';
 
 const Home: React.FC = () => {
     const navigate = useNavigate();
@@ -20,6 +21,10 @@ const Home: React.FC = () => {
 
     return (
         <div className="space-y-16 md:space-y-24 pb-20">
+            <SEO
+                title="Financial Independence Hub"
+                description="Empowering the next generation to reclaim their time through analytical wealth strategies. Learn about FIRE, investing, and lifestyle design."
+            />
             <section className="relative min-h-[550px] md:h-[650px] flex items-center justify-center text-center overflow-hidden rounded-[2.5rem] mt-6 mx-2 md:mx-0 shadow-2xl">
                 <div className="absolute inset-0 z-0">
                     <img
