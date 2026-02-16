@@ -2,10 +2,16 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "";
-const ai = new GoogleGenAI({ apiKey: API_KEY });
+
 
 export const getFinancialAdvice = async (userStats: string) => {
+  if (!API_KEY || API_KEY === 'PLACEHOLDER_KEY_REMOVED_FOR_SECURITY') {
+    console.warn("Gemini API Key is missing or invalid.");
+    return "AI Financial Analysis is currently disabled for security maintenance. Please check back later.";
+  }
+
   try {
+    const ai = new GoogleGenAI({ apiKey: API_KEY });
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: `You are a professional financial independence advisor for labfab.io. 
