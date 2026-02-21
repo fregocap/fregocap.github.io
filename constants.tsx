@@ -3,6 +3,67 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '13',
+    slug: 'the-withdrawal-phase-shifting-gears-in-fire',
+    title: 'The Great Shift: Navigating the Withdrawal Phase of FIRE',
+    excerpt: 'Everyone talks about the grind of accumulation. Very few prepare you for the psychological whiplash of actually spending your portfolio. Here is how to transition from saver to spender.',
+    content: `
+      <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
+        "Getting rich is about making money; staying rich is about managing it."
+      </p>
+
+      <p class="text-slate-600 leading-relaxed mb-6">
+        If you consume FIRE (Financial Independence, Retire Early) content, you've likely noticed a glaring imbalance: 95% of the literature is dedicated to the <em>accumulation</em> phase. It’s all about maximizing savings rates, extreme frugality, and relentless indexing. 
+      </p>
+
+      <p class="text-slate-600 leading-relaxed mb-6">
+        But what happens when you hit "The Number"? When the math says you're done? Most people find out the hard way that the <strong>withdrawal phase</strong> requires an entirely different psychological and strategic toolkit.
+      </p>
+
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://plus.unsplash.com/premium_photo-1675055730240-96a4ed84e482?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8d2l0aGRyYXdhbHxlbnwwfHwwfHx8MA%3D%3D" alt="Changing gears" class="w-full h-auto object-cover" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Shifting from wealth building to wealth decumulation is a profound mental transition.</p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Psychological Whiplash</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        For a decade or more, your brain has been wired to hoard. Every dollar spent was viewed as a delay to your freedom. Your self-worth and security were intrinsically tied to seeing that portfolio balance go up every month.
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Suddenly, you stop contributing. Worse, you start actively selling. The first time you sell shares to pay for groceries feels fundamentally wrong. It feels like you are eating your own seed corn. This phenomenon is often called "One More Year Syndrome"—the terrifying inability to actually pull the trigger because decumulation feels unnatural.
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Strategies for a Smooth Transition</h2>
+      
+      <div class="space-y-6 mb-10">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 border-l-4 border-l-emerald-500">
+          <h3 class="font-bold text-slate-900 mb-2">1. The Cash Buffer (Yield Shield)</h3>
+          <p class="text-slate-600 text-sm">To combat the fear of selling during a down market (Sequence of Returns Risk), keep 1-3 years of living expenses in cash or ultra-short-term bonds. Knowing your immediate needs are met regardless of the S&P 500's mood provides immense psychological safety.</p>
+        </div>
+        
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 border-l-4 border-l-emerald-500">
+          <h3 class="font-bold text-slate-900 mb-2">2. Dynamic Withdrawal Rates</h3>
+          <p class="text-slate-600 text-sm">The strict 4% rule assumes blind, robotic withdrawals. In reality, humans are flexible. Adopting a dynamic strategy (e.g., spending less on luxury travel when the market drops 20%) dramatically increases your portfolio's survival rate.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 border-l-4 border-l-emerald-500">
+          <h3 class="font-bold text-slate-900 mb-2">3. Practice "Decumulation"</h3>
+          <p class="text-slate-600 text-sm">Don't jump from a 70% savings rate to 0% overnight. Spend the last 6 months of your working career practicing your retirement budget. Start treating your portfolio dividends as actual income rather than auto-reinvesting them.</p>
+        </div>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Conclusion: You Won the Game</h2>
+      <p class="text-slate-600 leading-relaxed">
+        The accumulation phase requires discipline and sacrifice. The withdrawal phase requires trust—trust in the math, trust in your planning, and trust in yourself. You spent years building the engine; don't be afraid to finally take the car for a drive.
+      </p>
+    `,
+    category: 'Investing',
+    date: 'Feb 21, 2026',
+    author: 'Fabio',
+    readTime: '7 min',
+    imageUrl: 'https://plus.unsplash.com/premium_photo-1679619558250-41fa96ef187c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  },
+  {
     id: '12',
     slug: '5-things-i-stopped-buying-fire',
     title: '5 Things I Stopped Buying to Hit FIRE Faster',
