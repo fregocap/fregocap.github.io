@@ -3,6 +3,65 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '14',
+    slug: 'the-mental-transition-of-fire-withdrawal',
+    title: 'Beyond the 4% Rule: The Mental Transition of FIRE',
+    excerpt: 'Most people focus on the math, but the hardest part of early retirement is in your head. Surpassing the moving goalpost, avoiding deprivation, and redefining your identity.',
+    content: `
+      <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
+        "You are not your bank account balance. Uncoupling your identity from your net worth is the final barrier to true freedom."
+      </p>
+
+      <p class="text-slate-600 leading-relaxed mb-6">
+        When discussing the withdrawal phase of FIRE, the conversation almost instantly defaults to math. <em>Is 4% safe? Should I use Guyton-Klinger guardrails? What about a bond tent?</em>
+      </p>
+
+      <p class="text-slate-600 leading-relaxed mb-6">
+        These are critical questions, but they ignore the elephant in the room. The hardest part of the transition isn't calculating your Safe Withdrawal Rate (SWR); it's surviving the psychological rewiring required to actually use it.
+      </p>
+
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1646766509831-bb330d97648d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Person looking out" class="w-full h-auto object-cover" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Looking beyond the numbers to find purpose.</p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Moving Goalpost</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        You hit your target FIRE number: $1.5 million. It's cause for celebration, right? No, panic sets in. What if inflation spikes? What if there's a decade-long bear market? Suddenly, $1.5M doesn't feel safe enough. You decide you need $1.7M. Then $2M "just to be sure."
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        This is the "moving goalpost" syndrome. It happens because the anxiety of relying entirely on your portfolio is terrifying. You must recognize when your desire to keep working is driven by genuine mathematical necessity versus pure, unadulterated fear. At some point, you have to trust the spreadsheets you spent a decade obsessing over.
+      </p>
+
+      <div class="bg-indigo-50 rounded-2xl p-8 my-10 border border-indigo-100">
+        <h3 class="font-bold text-indigo-900 mb-4 flex items-center gap-2">
+          Deprivation vs. Optimization
+        </h3>
+        <p class="text-indigo-800 leading-relaxed">
+          During the accumulation phase, a high savings rate is a badge of honor. You optimize everything. But in withdrawal, that same mindset can turn toxic. Frugality crosses the line into deprivation when you refuse to spend money on things that bring you immense joy because you're terrified of seeing your balance dip. Remember: the point of accumulating wealth wasn't to look at a high score on a screen; it was to buy a life you love. Give yourself permission to spend.
+        </p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Identity Crisis</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        When you meet someone new, the second question is always, "What do you do?" For your entire adult life, your identity has been anchored to your profession. You were a software engineer, a marketing director, a quantitative analyst. 
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        When you stop working, you lose that anchor. Who are you if you aren't producing economic value in a traditional sense? This loss of identity can lead to severe depression among early retirees. Redefining your self-worth outside of a paycheck is vital. You must build a life you want to retire <em>to</em>, not just a job you want to retire <em>from</em>.
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Conclusion</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        The math will tell you <em>how</em> to retire early. The mental transition will determine if you actually <em>enjoy</em> it. Don't underestimate the psychological toll of changing gears. Prepare your mind just as diligently as you prepared your portfolio.
+      </p>
+    `,
+    category: 'Lifestyle',
+    date: 'Mar 1, 2026',
+    author: 'Fabio',
+    readTime: '6 min',
+    imageUrl: 'https://images.unsplash.com/photo-1578091436046-ecd3f4fe6992?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  },
+  {
     id: '13',
     slug: 'the-withdrawal-phase-shifting-gears-in-fire',
     title: 'The Great Shift: Navigating the Withdrawal Phase of FIRE',
