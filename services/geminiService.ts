@@ -1,17 +1,13 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "";
-
-
-export const getFinancialAdvice = async (userStats: string) => {
-  if (!API_KEY || API_KEY === 'PLACEHOLDER_KEY_REMOVED_FOR_SECURITY') {
-    console.warn("Gemini API Key is missing or invalid.");
-    return "AI Financial Analysis is currently disabled. Please configure a valid API key.";
+export const getFinancialAdvice = async (userStats: string, apiKey: string) => {
+  if (!apiKey || apiKey.trim() === '') {
+    console.warn("Gemini API Key is missing.");
+    return "AI Financial Analysis requires a valid API key. Please provide one in the input field.";
   }
 
   try {
-    const ai = new GoogleGenAI({ apiKey: API_KEY });
+    const ai = new GoogleGenAI({ apiKey: apiKey.trim() });
     const response = await ai.models.generateContent({
       model: "gemini-2.0-flash",
       contents: `You are a professional financial independence advisor for labfab.io. 
@@ -26,8 +22,6 @@ export const getFinancialAdvice = async (userStats: string) => {
     return response.text;
   } catch (error) {
     console.error("Gemini Error:", error);
-    return "I'm sorry, I couldn't process your analysis at this time. Please try again later.";
+    return "I'm sorry, I couldn't process your analysis at this time. Please check your API key and try again.";
   }
 };
-
-

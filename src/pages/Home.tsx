@@ -8,13 +8,18 @@ import SEO from '../components/SEO';
 const Home: React.FC = () => {
     const navigate = useNavigate();
     const [userProfile, setUserProfile] = useState('');
+    const [apiKey, setApiKey] = useState('');
     const [aiAdvice, setAiAdvice] = useState<string | null>(null);
     const [isGenerating, setIsGenerating] = useState(false);
 
     const handleGetAdvice = async () => {
         if (!userProfile) return;
+        if (!apiKey) {
+            setAiAdvice("Please provide a valid Gemini API key to use this feature.");
+            return;
+        }
         setIsGenerating(true);
-        const advice = await getFinancialAdvice(userProfile);
+        const advice = await getFinancialAdvice(userProfile, apiKey);
         setAiAdvice(advice);
         setIsGenerating(false);
     };
@@ -78,7 +83,7 @@ const Home: React.FC = () => {
                     </button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {BLOG_POSTS.map(post => (
+                    {BLOG_POSTS.slice(0, 3).map(post => (
                         <div
                             key={post.id}
                             onClick={() => navigate(`/blog/${post.slug}`)}
@@ -108,17 +113,31 @@ const Home: React.FC = () => {
                         </div>
                         <h2 className="text-3xl md:text-5xl font-lexend font-bold mb-6 leading-tight">Get Your <br className="hidden md:block" />Custom Roadmap</h2>
                         <p className="text-slate-400 mb-8 leading-relaxed text-lg">
-                            Enter your financial details and our advisor will create a personalized plan to accelerate your journey.
+                            Enter your financial details and our advisor will create a personalized plan to accelerate your journey. We don't store your API key; it's only used locally for the prompt.
                         </p>
+
+                        <div className="mb-4">
+                            <label className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-2 block">Gemini API Key</label>
+                            <input
+                                type="password"
+                                value={apiKey}
+                                onChange={(e) => setApiKey(e.target.value)}
+                                placeholder="AIzaSy..."
+                                className="w-full bg-slate-800/80 border border-slate-700 rounded-xl p-4 text-white placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 outline-none transition-all focus:bg-slate-800 shadow-inner"
+                            />
+                        </div>
+
+                        <label className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-2 block">Your Financial Profile</label>
                         <textarea
                             value={userProfile}
                             onChange={(e) => setUserProfile(e.target.value)}
                             placeholder="e.g., 30 years old, earning $80k, spending $35k, no debt, $50k in investments..."
-                            className="w-full bg-slate-800/80 border border-slate-700 rounded-2xl p-6 text-white placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 outline-none mb-6 h-40 transition-all focus:bg-slate-800 shadow-inner"
+                            className="w-full bg-slate-800/80 border border-slate-700 rounded-xl p-4 text-white placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 outline-none mb-6 h-32 transition-all focus:bg-slate-800 shadow-inner"
                         ></textarea>
+
                         <button
                             onClick={handleGetAdvice}
-                            disabled={isGenerating}
+                            disabled={isGenerating || !apiKey || !userProfile}
                             className="bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white px-10 py-5 rounded-2xl font-bold transition-all w-full md:w-auto shadow-lg shadow-emerald-900/20 active:scale-95 flex items-center justify-center gap-3"
                         >
                             {isGenerating ? (
