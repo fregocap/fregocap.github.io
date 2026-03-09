@@ -3,6 +3,65 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '15',
+    slug: 'lifestyle-design-the-re-in-fire',
+    title: 'Lifestyle Design: Reimagining the "RE" in FIRE',
+    excerpt: 'The community is moving away from "quitting to sit on a beach." Discover how Coast FIRE, Barista FIRE, and Slow FI allow you to engage with work on your own terms.',
+    content: `
+      <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
+        "Early retirement isn't about doing nothing; it's about having the absolute freedom to choose what you do."
+      </p>
+
+      <p class="text-slate-600 leading-relaxed mb-6">
+        When the FIRE movement first gained traction, the goal was binary: you were either working the corporate grind, or you were perfectly retired, sipping cocktails on a beach. Today, the dialogue has matured. 
+      </p>
+
+      <p class="text-slate-600 leading-relaxed mb-6">
+        The reality is that sitting on a beach gets boring after about six weeks. Humans are wired for purpose, challenge, and contribution. The modern interpretation of the "Retire Early" (RE) aspect is less about ceasing all labor and more about <strong>Lifestyle Design</strong>—engaging with work on your own terms, completely divorced from financial necessity.
+      </p>
+
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1542442828-287217bfb87f?q=80&w=2070&auto=format&fit=crop" alt="Coffee shop barista" class="w-full h-auto object-cover max-h-96" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">Trading a high-stress career for a low-stress passion.</p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Coast FIRE: The Compound Interest Runway</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Coast FIRE occurs when you have front-loaded your investments to such a degree that, without contributing another cent, they will grow to your traditional retirement number by age 65 (using a conservative growth rate like 5-7% after inflation).
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        The beauty of Coast FIRE is the immediate relief of pressure. You no longer need a high-paying, high-stress job to fund a 50% savings rate. You only need to earn exactly enough to cover your current living expenses. This opens the door to taking a lower-paying job you actually enjoy, starting a risky business, or dropping to part-time, knowing your future is already funded.
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Barista FIRE: The Health Insurance Hack</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Barista FIRE is a hybrid approach. It involves building a portfolio that can cover <em>most</em> of your living expenses, but not quite all of them. To bridge the gap—and, crucially in the US, to secure corporate health insurance—you leave your high-stress career for a part-time, low-stress job (like working as a barista at Starbucks, hence the name).
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        This approach drastically reduces your required "FIRE number" because your portfolio doesn't have to do all the heavy lifting immediately. It also provides structure, social interaction, and a sense of routine that many early retirees unexpectedly miss.
+      </p>
+
+      <div class="bg-indigo-50 rounded-2xl p-8 my-10 border border-indigo-100">
+        <h3 class="font-bold text-indigo-900 mb-4 flex items-center gap-2">
+          Slow FI: The Journey Is the Destination
+        </h3>
+        <p class="text-indigo-800 leading-relaxed">
+          The traditional FIRE path can be brutal: 15 years of intense frugality and 80-hour work weeks. Slow FI rejects the idea that you should sacrifice your prime years for a distant reward. Instead of sprinting to a finish line, Slow FI advocates for using your financial stability to make incremental lifestyle improvements <em>along the way</em>. Maybe you take a sabbatical every 5 years, or drop to a 4-day work week once your portfolio hits $250k. The focus shifts from the destination to sustainable, enjoyable progression.
+        </p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Conclusion</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Financial Independence buys you the ultimate privilege: the ability to quit a job you hate. But what you do next is up to you. Whether it's Coasting, Barista firing, or embracing Slow FI, the true power of the movement lies in intentionally designing a life you don't need a vacation from.
+      </p>
+    `,
+    category: 'Lifestyle',
+    date: 'Mar 3, 2026',
+    author: 'Fabio',
+    readTime: '6 min',
+    imageUrl: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=2020&auto=format&fit=crop'
+  },
+  {
     id: '14',
     slug: 'the-mental-transition-of-fire-withdrawal',
     title: 'Beyond the 4% Rule: The Mental Transition of FIRE',
