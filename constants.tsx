@@ -3,6 +3,68 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '16',
+    slug: 'can-we-still-do-fire-nowadays',
+    title: 'Can We Still Do FIRE Nowadays? The New Reality of Early Retirement',
+    excerpt: 'With inflation surging, housing costs skyrocketing, and market volatility becoming the norm, many are asking if the FIRE movement is dead. Here is why it is evolving, not ending.',
+    content: `
+      <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
+        "The math of FIRE hasn't died, but the assumptions we plug into the spreadsheet have fundamentally changed."
+      </p>
+
+      <p class="text-slate-600 leading-relaxed mb-6">
+        If you scroll through financial forums today, you'll see a recurring theme, often laced with despair: <em>"FIRE was only possible during the zero-interest-rate decade. It's impossible now."</em>
+      </p>
+
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Between the aggressive surge in inflation, the housing affordability crisis, and unpredictable geopolitical shifts, the goalposts for Financial Independence, Retire Early (FIRE) seem to have moved miles out of reach for the average person. But is the dream truly dead, or just demanding an upgrade?
+      </p>
+
+      <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1542353436-312f0e1f67ff?q=80&w=942&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Changing economic landscape" class="w-full h-auto object-cover max-h-96" />
+        <p class="text-center text-slate-500 text-sm mt-3 italic">The environment has shifted, meaning our strategies must adapt.</p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Death of "Lean" FIRE</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        There was a time when retiring on $30k or $40k a year (Lean FIRE) felt entirely plausible in many parts of the Western world. You could buy a modest house, cook at home, and ride out the market. Today, that thin margin of error has been devoured by inflation.
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Healthcare costs, insurance premiums, and basic groceries have surged. Relying on a historically tight budget leaves you incredibly vulnerable to sequence of returns risk. The new reality is that the "floor" for a safe FIRE number has undeniably shifted upward.
+      </p>
+
+      <div class="bg-indigo-50 rounded-2xl p-8 my-10 border border-indigo-100">
+        <h3 class="font-bold text-indigo-900 mb-4 flex items-center gap-2">
+          The 4% Rule Revisited
+        </h3>
+        <p class="text-indigo-800 leading-relaxed">
+          Many voices in the financial community now advocate for a <strong>3.25% to 3.5% safe withdrawal rate</strong>. While this requires a significantly larger portfolio, it provides the necessary padding for an era of lower expected real returns and stickier inflation. It’s not about pessimism; it’s about bulletproofing your plan against a more volatile decade.
+        </p>
+      </div>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">The Rise of Flexibility</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        If the fixed-income, sit-on-the-porch version of FIRE is harder attained, what’s taking its place? The answer is <strong>hybrid resilience</strong>.
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        The modern FIRE seeker rarely aims to completely exit the workforce. Instead, the focus has pivoted to Coast FIRE or Barista FIRE. People are building their portfolios to a self-sustaining baseline, then shifting to lower-stress, part-time, or freelance work that covers their monthly burn rate while letting their investments compound in the background.
+      </p>
+
+      <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Conclusion: The Core Paradigm Remains</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        Can we still do FIRE nowadays? Absolutely. The math of saving a high percentage of your income, investing in broad-market indexes, and cutting out mindless consumerism still works. What has died is the illusion that it is easy, or that a spreadsheet from 2012 perfectly models the world of 2026.
+      </p>
+      <p class="text-slate-600 leading-relaxed mb-6">
+        FIRE today requires more capital, more flexibility, and a willingness to continuously adapt. But the core reward—buying back your time and controlling your destiny—remains just as unparalleled.
+      </p>
+    `,
+    category: 'Mindset',
+    date: 'Mar 18, 2026',
+    author: 'Fabio',
+    readTime: '6 min',
+    imageUrl: 'https://images.unsplash.com/photo-1504194104404-433180773017?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  },
+  {
     id: '15',
     slug: 'lifestyle-design-the-re-in-fire',
     title: 'Lifestyle Design: Reimagining the "RE" in FIRE',
