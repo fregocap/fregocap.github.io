@@ -89,7 +89,7 @@ ${safeContent}
     \`,
     category: '${postData.category}',
     date: '${dateStr}',
-    author: 'AI',
+    author: 'Fabio',
     readTime: '${postData.readTime}',
     imageUrl: '${postData.imageUrl}'
   }`;

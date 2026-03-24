@@ -48,7 +48,7 @@ export const BLOG_POSTS: BlogPost[] = [
     `,
     category: 'Mindset',
     date: 'Mar 24, 2026',
-    author: 'AI',
+    author: 'Fabio',
     readTime: '6 min',
     imageUrl: 'https://picsum.photos/seed/paradox-pre-fire-frugality-saving-too-much-costs-more-cover/1000/600'
   },
@@ -90,7 +90,7 @@ export const BLOG_POSTS: BlogPost[] = [
     `,
     category: 'Mindset',
     date: 'Mar 24, 2026',
-    author: 'AI',
+    author: 'Fabio',
     readTime: '6 min',
     imageUrl: 'https://picsum.photos/seed/escaping-golden-handcuffs-hedonic-treadmill-fire-cover/1000/600'
   },
