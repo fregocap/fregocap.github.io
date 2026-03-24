@@ -29,20 +29,20 @@ The post must be formatted as a JSON object strictly adhering to this schema:
   "excerpt": "A 1-2 sentence summary of the post",
   "category": "One of: Mindset, Lifestyle, Investing, Strategy",
   "readTime": "Estimated read time (e.g. 6 min)",
-  "imageUrl": "A main cover image URL. USE EXACTLY THIS FORMAT: https://image.pollinations.ai/prompt/detailed%20description%20of%20cover%20image%20related%20to%20topic?width=1000&height=600&nologo=true",
+  "imageUrl": "A main cover image URL. USE EXACTLY THIS FORMAT: https://picsum.photos/seed/UNIQUE_SLUG_HERE-cover/1000/600 (replace UNIQUE_SLUG_HERE with the post's generated slug)",
   "content": "An HTML string containing the full markdown/HTML for the blog post."
 }
 
 CRITICAL RULES FOR "content":
 1. Write at least 4-5 substantial paragraphs.
 2. Include at least two <h2> sections.
-3. You MUST INCLUDE AT LEAST ONE INLINE IMAGE in the body of the content using the same pollinations.ai format.
+3. You MUST INCLUDE AT LEAST ONE INLINE IMAGE in the body of the content using the same picsum format.
    Example inline image:
    <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
-     <img src="https://image.pollinations.ai/prompt/detailed%20description%20of%20the%20inline%20image%20here?width=800&height=400&nologo=true" alt="Description" class="w-full h-auto object-cover max-h-96" />
+     <img src="https://picsum.photos/seed/UNIQUE_SLUG_HERE-inline/800/400" alt="Description" class="w-full h-auto object-cover max-h-96" />
      <p class="text-center text-slate-500 text-sm mt-3 italic">Write an engaging caption here.</p>
    </div>
-   This ensures we have at least TWO pertinent images per post (the main imageUrl + the inline image).
+   This ensures we have at least TWO pertinent images per post (the main imageUrl + the inline image). Replace UNIQUE_SLUG_HERE with the post's generated slug so it doesn't change on reload.
 4. Use Tailwind CSS classes for styling text exactly matching this style:
    - Paragraphs: <p class="text-slate-600 leading-relaxed mb-6">
    - Quotes: <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">

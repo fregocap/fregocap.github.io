@@ -15,7 +15,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <p class="text-slate-600 leading-relaxed mb-6">Lifestyle inflation isn't just about outright extravagant spending. It's often far more insidious. It creeps in through seemingly small upgrades: a slightly more expensive coffee, dining out a little more frequently, opting for premium brands, or upgrading tech before it's truly necessary. Each individual decision feels justified – 'I've earned it,' 'It's just a little bit more,' 'It saves time.' But collectively, these small increments push our monthly expenses higher and higher, demanding a larger FIRE number and delaying our escape.</p>
 
 <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
-  <img src="https://image.pollinations.ai/prompt/a%20person%20comparing%20two%20shopping%20carts,%20one%20full%20of%20basic%20needs%20and%20the%20other%20with%20luxury%20items,%20with%20a%20thought%20bubble%20about%20happiness%20vs%20cost,%20minimalist%20style?width=800&height=400&nologo=true" alt="A person comparing two shopping carts, symbolizing basic needs vs. luxury desires." class="w-full h-auto object-cover max-h-96" />
+  <img src="https://picsum.photos/seed/escaping-golden-handcuffs-hedonic-treadmill-fire-inline/800/400" alt="A person comparing two shopping carts, symbolizing basic needs vs. luxury desires." class="w-full h-auto object-cover max-h-96" />
   <p class="text-center text-slate-500 text-sm mt-3 italic">The eternal dilemma: distinguishing true needs from fleeting desires on the path to lasting happiness.</p>
 </div>
 
@@ -42,7 +42,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: 'Mar 24, 2026',
     author: 'AI',
     readTime: '6 min',
-    imageUrl: 'https://image.pollinations.ai/prompt/person%20running%20on%20a%20treadmill%20made%20of%20money%20or%20luxury%20items,%20looking%20frustrated%20but%20determined,%20digital%20art?width=1000&height=600&nologo=true'
+    imageUrl: 'https://picsum.photos/seed/escaping-golden-handcuffs-hedonic-treadmill-fire-cover/1000/600'
   },
   {
     id: '16',
