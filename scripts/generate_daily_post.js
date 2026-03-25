@@ -17,10 +17,16 @@ if (!GEMINI_API_KEY || !TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
 
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
-async function generatePost() {
+async function generatePost(existingTitles) {
+  const titlesList = existingTitles.map(t => `- ${t}`).join('\n');
   const prompt = `
 You are an expert personal finance and FIRE (Financial Independence, Retire Early) blogger.
 Write a high-quality, engaging blog post about a specific, nuanced topic within the FIRE movement, mindset, lifestyle design, or investing.
+
+CRITICAL REQUIREMENT: Do NOT write about any of the following topics or themes, as they have already been covered:
+${titlesList}
+
+Pick a completely fresh, unique, and uncommon concept within FIRE that is NOT on the list above.
 
 The post must be formatted as a JSON object strictly adhering to this schema:
 {
@@ -63,12 +69,15 @@ CRITICAL RULES FOR "content":
 }
 
 async function main() {
-  console.log("Generating new blog post via Gemini...");
-  const postData = await generatePost();
-  console.log("Generated post:", postData.title);
-
   const constantsPath = path.join(__dirname, '../constants.tsx');
   let content = fs.readFileSync(constantsPath, 'utf-8');
+  
+  // Extract existing titles to avoid repetition
+  const existingTitles = [...content.matchAll(/title:\s*'([^']+)'/g)].map(m => m[1]);
+
+  console.log("Generating new blog post via Gemini...");
+  const postData = await generatePost(existingTitles);
+  console.log("Generated post:", postData.title);
   
   const ids = [...content.matchAll(/id:\s*'(\d+)'/g)].map(m => parseInt(m[1]));
   const maxId = ids.length > 0 ? Math.max(...ids) : 0;
