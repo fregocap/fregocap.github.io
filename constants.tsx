@@ -34,7 +34,7 @@ export const BLOG_POSTS: BlogPost[] = [
     `,
     category: 'Mindset',
     date: 'Mar 24, 2026',
-    author: 'AI',
+    author: 'Fabio',
     readTime: '7 min',
     imageUrl: 'https://picsum.photos/seed/hedonic-treadmill-fire-breaking-cycle-cover/1000/600'
   },
