@@ -3,6 +3,41 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '29',
+    slug: 'just-one-more-year-syndrome-fire',
+    title: 'The \'Just One More Year\' Syndrome: Escaping the Perpetual Accumulation Trap',
+    excerpt: 'Discover the insidious psychological trap that keeps many financially independent individuals working past their FIRE date. Learn how to recognize and overcome the \'just one more year\' syndrome to truly embrace your freedom.',
+    content: `
+<p class="text-slate-600 leading-relaxed mb-6">You’ve crunched the numbers. You’ve modeled your expenses. You’ve even run Monte Carlo simulations. The spreadsheet, your trusted guide, flashes green: you’ve hit your FIRE number. Financial Independence is no longer a distant dream but a tangible reality. Yet, instead of submitting your resignation, you find yourself thinking, “Just one more year.” Or perhaps, “Just another \$50k.” This, my friends, is the insidious 'Just One More Year' Syndrome, a common yet rarely discussed psychological hurdle that can delay your freedom even when you’re financially ready.</p>
+<p class="text-slate-600 leading-relaxed mb-6">It’s a peculiar paradox: after years, sometimes decades, of disciplined saving and investing, the finish line appears, and suddenly, we hesitate. The drive that propelled us forward morphs into a subtle paralysis, a fear of the unknown, or perhaps, a comfort in the familiar grind. This isn’t about insufficient funds; it’s about a deeply ingrained mental pattern that can keep us shackled to a paycheck long after the chains have been broken.</p>
+
+<h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Understanding the Roots of "Just One More Year"</h2>
+<p class="text-slate-600 leading-relaxed mb-6">Why do so many of us fall into this trap? The reasons are multifaceted and often deeply personal. One primary driver is simply fear. Fear of running out of money, even with a robust withdrawal strategy. Fear of the market crashing right after you retire. Fear of boredom, of losing identity, of not knowing what to do with newfound freedom. Our brains are wired for survival, and letting go of a stable income stream, even a dissatisfying one, can trigger ancient anxieties.</p>
+<p class="text-slate-600 leading-relaxed mb-6">Another significant factor is identity. For many, our careers are not just sources of income but central pillars of who we are. They provide structure, purpose, social connection, and a sense of achievement. Stepping away means dismantling a core part of our self-perception. It’s a transition that requires not just financial readiness, but a profound psychological re-calibration. The thought of losing this structure, even if it's restrictive, can feel daunting.</p>
+<div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+  <img src="https://picsum.photos/seed/just-one-more-year-syndrome-fire-inline/800/400" alt="Person looking at a distant, hazy mountain peak, symbolizing a distant goal despite being close" class="w-full h-auto object-cover max-h-96" />
+  <p class="text-center text-slate-500 text-sm mt-3 italic">Even when the summit is within reach, the fear of what lies beyond can make us hesitate.</p>
+</div>
+<p class="text-slate-600 leading-relaxed mb-6">Lastly, there’s the moving goalpost syndrome. What started as a clear FIRE number gradually increases as we accumulate more, our lifestyle creeps up, or our perception of 'enough' expands. This continuous shifting of the target ensures we're always chasing, never quite catching. It's the hedonic treadmill applied to our retirement date, where each financial milestone achieved only sets the stage for a new, slightly higher one.</p>
+
+<h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Strategies to Break Free and Embrace True Freedom</h2>
+<p class="text-slate-600 leading-relaxed mb-6">Recognizing the 'Just One More Year' Syndrome is the first step. Overcoming it requires intentionality and a shift in perspective. Here are a few strategies:</p>
+<div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">
+  <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">"True wealth is not about having a lot of money; it's about having a lot of options."</p>
+  <p class="text-slate-600 leading-relaxed mb-6"><b>1. Redefine 'Enough':</b> Revisit your original FIRE calculations. If they were robust then, they're likely still robust now. What specifically has changed? If nothing, trust your plan. Re-evaluate your values: what truly brings you joy and fulfillment? Often, it’s not more money, but more time and autonomy.</p>
+  <p class="text-slate-600 leading-relaxed mb-6"><b>2. Plan Your 'RE' Before You 'FI':</b> Don't wait until you retire to figure out what you'll do. Start exploring hobbies, volunteering, or passion projects now. This builds a new identity and purpose to transition into, mitigating the fear of boredom or lack of meaning.</p>
+  <p class="text-slate-600 leading-relaxed mb-6"><b>3. Conduct a 'Trial Run':</b> If possible, take an extended sabbatical or a mini-retirement. This allows you to test your budget, your new routines, and your emotional readiness without fully severing ties with your employer. It’s like dipping your toes in the water before diving in.</p>
+  <p class="text-slate-600 leading-relaxed mb-6"><b>4. Embrace the 'What If' Scenario:</b> Instead of focusing on the catastrophic 'what if I run out of money?', consider the positive 'what if I don't take this leap?'. What experiences will you miss? What time will you lose? The cost of waiting isn't always financial; it's often experiential and emotional.</p>
+</div>
+<p class="text-slate-600 leading-relaxed mb-6">The journey to FIRE is a marathon, but the finish line is real. Don't let a fear of the unknown or the inertia of habit prevent you from claiming the freedom you’ve worked so hard to achieve. Your spreadsheets may say you’re ready, but your mindset needs to catch up. Take a deep breath, trust your plan, and be brave enough to step into the incredible life you’ve designed for yourself. The 'just one more year' might be the one year you regret not spending on your own terms.</p>
+    `,
+    category: 'Mindset',
+    date: 'Apr 2, 2026',
+    author: 'Fabio',
+    readTime: '7 min',
+    imageUrl: 'https://picsum.photos/seed/just-one-more-year-syndrome-fire-cover/1000/600'
+  },
+  {
     id: '28',
     slug: 'echoes-scarcity-rewiring-money-mindset-post-fire',
     title: 'The Echoes of Scarcity: Rewiring Your Money Mindset Post-FIRE',
