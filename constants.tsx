@@ -3,6 +3,47 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '30',
+    slug: 'the-portfolio-of-life-diversifying-beyond-money-for-resilient-fire',
+    title: 'The "Portfolio of Life": Diversifying Beyond Money for a Resilient FIRE Journey',
+    excerpt: 'Achieving FIRE is more than just financial numbers; it requires a diversified "Portfolio of Life" where you strategically invest your time, energy, and relationships to build true resilience and lasting fulfillment. This post explores how to design this broader portfolio.',
+    content: `
+<p class="text-slate-600 leading-relaxed mb-6">We talk a lot about financial portfolios in the FIRE community – asset allocation, diversification, risk management, and rebalancing. And rightly so; a well-managed investment portfolio is the bedrock of financial independence. But what happens after you’ve accumulated your nest egg? What truly sustains a vibrant, meaningful, and resilient life beyond the spreadsheet? The answer, I believe, lies in cultivating a equally diverse and robust ‘Portfolio of Life’ – a deliberate investment in your non-financial assets that are just as crucial for long-term fulfillment.</p>
+<p class="text-slate-600 leading-relaxed mb-6">Think of it this way: just as a financial portfolio guards against market volatility, a well-diversified ‘Portfolio of Life’ protects you from the inevitable ups and downs of human existence. It's about consciously allocating your most precious, non-renewable resources – your time, energy, and attention – into areas that compound into deep satisfaction, strong relationships, robust health, and a profound sense of purpose. This isn't just about avoiding boredom post-FIRE; it's about proactively building a life so rich in meaning that financial worries become a distant echo, rather than the primary focus of your existence.</p>
+
+<h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Why a Life Portfolio is Your Ultimate FIRE Insurance</h2>
+<p class="text-slate-600 leading-relaxed mb-6">Many pre-FIRE discussions focus intensely on the financial finish line. The 'magic number' becomes the sole north star. However, once you cross that line, the landscape changes dramatically. The external structures of work often disappear, leaving a void that money alone cannot fill. If your entire identity, social circle, or sense of accomplishment was tied to your career, achieving FIRE without a diversified life portfolio can leave you vulnerable. A single point of failure – whether it's a relationship strain, a health challenge, or a lost passion – can feel catastrophic if you haven't invested in other areas.</p>
+<p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
+  “True wealth is not measured in dollars, but in the richness of your life. Financial independence buys you the freedom to build that richness.”
+</p>
+<p class="text-slate-600 leading-relaxed mb-6">Diversifying your life investments ensures that if one area faces a downturn, you have other flourishing 'asset classes' to lean on. It’s about building a robust network of support, a resilient mind, a healthy body, and a wellspring of intrinsic motivation that doesn’t rely on external validation or a paycheck. This holistic approach makes your FIRE truly resilient, less prone to the emotional and existential risks that can sometimes derail early retirees.</p>
+
+<div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+  <img src="https://picsum.photos/seed/the-portfolio-of-life-diversifying-beyond-money-for-resilient-fire-inline/800/400" alt="A person tending to a diverse garden, symbolizing the 'Portfolio of Life'" class="w-full h-auto object-cover max-h-96" />
+  <p class="text-center text-slate-500 text-sm mt-3 italic">Just as a garden thrives with diverse plants, a well-rounded life grows richer with varied investments.</p>
+</div>
+
+<h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Building Your Life Asset Classes: Beyond Just Dollars</h2>
+<div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">
+  <p class="text-slate-600 leading-relaxed mb-4">Consider these key 'asset classes' for your Portfolio of Life:</p>
+  <ul class="list-disc pl-5 text-slate-600 leading-relaxed">
+    <li class="mb-2"><b>Social Capital:</b> Intentionally nurturing relationships with family, friends, and community. This isn't just passive connection; it's active investment through time, shared experiences, and mutual support.</li>
+    <li class="mb-2"><b>Health Capital:</b> Prioritizing physical and mental well-being through consistent exercise, nutritious food, adequate sleep, and mindful practices. Your health is your truest wealth in retirement.</li>
+    <li class="mb-2"><b>Human Capital (Reimagined):</b> Learning new skills, exploring creative hobbies, pursuing intellectual curiosity. This keeps your mind sharp and provides endless avenues for engagement and personal growth.</li>
+    <li class="mb-2"><b>Purpose Capital:</b> Engaging in activities that give your life meaning beyond personal pleasure. This could be volunteer work, mentorship, passion projects, or contributing to causes you believe in.</li>
+    <li class="mb-2"><b>Experiential Capital:</b> Actively seeking out new experiences, travel, and adventures. These create lasting memories and broaden your perspective, adding immense richness to your life narrative.</li>
+  </ul>
+</div>
+<p class="text-slate-600 leading-relaxed mb-6">Just like a financial portfolio, your Portfolio of Life isn't static. It requires periodic assessment and 'rebalancing.' Are you over-invested in one area (e.g., a single hobby) to the detriment of others (e.g., social connections)? Are there areas that are neglected and need more attention? As life evolves, so too should your allocation of time and energy across these vital asset classes. The goal isn't perfection, but a conscious, ongoing effort to build a life that is robust, fulfilling, and truly resilient.</p>
+<p class="text-slate-600 leading-relaxed mb-6">Embracing the ‘Portfolio of Life’ approach transforms FIRE from merely a financial calculation into a profound framework for holistic well-being. It recognizes that true independence is multifaceted, built not just on the foundation of money, but on the rich, diversified soil of your entire existence. Start investing in your life portfolio today; it’s the most rewarding return you’ll ever earn.</p>
+    `,
+    category: 'Lifestyle',
+    date: 'Apr 3, 2026',
+    author: 'Fabio',
+    readTime: '7 min',
+    imageUrl: 'https://picsum.photos/seed/the-portfolio-of-life-diversifying-beyond-money-for-resilient-fire-cover/1000/600'
+  },
+  {
     id: '29',
     slug: 'just-one-more-year-syndrome-fire',
     title: 'The \'Just One More Year\' Syndrome: Escaping the Perpetual Accumulation Trap',
