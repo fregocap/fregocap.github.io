@@ -3,6 +3,43 @@ import { BlogPost } from './types';
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: '32',
+    slug: 'the-soft-landing-strategy-how-to-under-retire-before-fully-firing',
+    title: 'The Soft Landing Strategy: How to "Under-Retire" Before Fully Firing',
+    excerpt: 'Don\'t jump straight into full early retirement. Discover the "Soft Landing Strategy," a deliberate approach to gradually transition into FIRE by "under-retiring" first, testing your ideal lifestyle and de-risking the emotional leap.',
+    content: `
+<p class="text-slate-600 leading-relaxed mb-6">The dream of Financial Independence, Retire Early (FIRE) often conjures images of a grand escape – a sudden, triumphant leap from the corporate grind into a life of boundless freedom. We envision the day we hit our magic number, send the resignation email, and never look back. But for many, the reality of this abrupt transition can feel more like a cliff edge than a gentle slope. The fear isn't just about the money running out; it's about the emotional void, the loss of identity, and the sudden, overwhelming freedom that can be paradoxically terrifying. This is where the 'Soft Landing Strategy' comes in – a deliberate, phased approach to 'under-retire' before you fully 'FIRE,' allowing you to test the waters without burning the boats.</p>
+<p class="text-slate-600 leading-relaxed mb-6">Unlike semi-retirement, which often implies a permanent reduction in work, under-retiring is a strategic, temporary phase designed for deep personal experimentation. It's not about extending your work life indefinitely; it's about making a conscious choice to pull back significantly from your primary career, but not completely, for a defined period. This allows you to explore what your actual 'retirement' might look like, address potential pitfalls, and build new routines and purpose, all while maintaining a flexible buffer. Think of it as a controlled descent, rather than a freefall into the unknown.</p>
+
+<h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">What is "Under-Retiring," Really?</h2>
+<p class="text-slate-600 leading-relaxed mb-6">At its core, under-retiring means reducing your work commitment to a level that covers a smaller portion of your expenses, or just enough to keep you engaged, but nowhere near the income you were generating at peak earnings. This isn't about finding a new full-time 'passion job' to replace your old one. Instead, it might involve scaling back to part-time consulting, taking on project-based freelance work a few hours a week, volunteering for a cause you deeply care about, or dedicating significant time to skill development or a nascent business idea that isn't yet profitable. The key distinction is that your portfolio *could* sustain you, but you choose to leverage a small amount of work for reasons beyond purely financial necessity.</p>
+<div class="my-10 rounded-3xl overflow-hidden shadow-xl">
+  <img src="https://picsum.photos/seed/the-soft-landing-strategy-how-to-under-retire-before-fully-firing-inline/800/400" alt="Person relaxing in a hammock, symbolizing a soft landing into retirement" class="w-full h-auto object-cover max-h-96" />
+  <p class="text-center text-slate-500 text-sm mt-3 italic">Transitioning gently allows you to savor the journey, rather than fearing the destination.</p>
+</div>
+<p class="text-slate-600 leading-relaxed mb-6">The benefits of this strategy are manifold. Financially, it offers an incredible de-risking mechanism. If the market takes a dip, your modest income stream provides an extra buffer, reducing sequence of returns risk. Emotionally, it provides a safe space to explore new identities outside of your career. Many high-achievers find a sudden lack of structure or purpose unsettling; under-retiring allows you to experiment with new routines, hobbies, and social circles before the full weight of 'retirement' rests on your shoulders. It's a chance to test your assumptions about what makes you happy and fulfilled, without the pressure of irreversible decisions.</p>
+
+<h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">Designing Your Personal Soft Landing</h2>
+<p class="text-slate-600 leading-relaxed mb-6">Implementing a Soft Landing requires thoughtful planning. First, identify your 'minimum viable lifestyle' budget – what you truly need to live comfortably, not lavishly, during this test phase. Next, explore flexible income options that align with your desired lifestyle. Could you consult for a former employer a few days a month? Teach a skill you possess? Or simply use your free time to volunteer, connecting with new communities and causes? The goal isn't to maximize income, but to provide a sense of purpose, structure, and a small financial safety net. During this phase, actively schedule your ideal week: include time for hobbies, learning, physical activity, social connection, and reflection. This isn't a vacation; it's a deliberate attempt to build the habits and routines of your future FIRE life.</p>
+<div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">
+  <p class="text-slate-600 leading-relaxed"><strong>Key Steps for Your Soft Landing:</strong></p>
+  <ul class="list-disc list-inside text-slate-600 leading-relaxed mb-4">
+    <li>Define your minimum viable lifestyle budget for the transition period.</li>
+    <li>Identify flexible, low-pressure work or engagement opportunities.</li>
+    <li>Actively prototype your ideal 'FIRE' week – schedule your days with intent.</li>
+    <li>Focus on non-monetary returns: learning, contribution, connection, and wellbeing.</li>
+    <li>Regularly reflect and adjust based on your experiences.</li>
+  </ul>
+</div>
+<p class="text-slate-600 leading-relaxed mb-6">Ultimately, the Soft Landing Strategy isn't about delaying your FIRE date; it's about making a strategic investment in the quality and sustainability of your future freedom. It transforms the daunting leap into a series of manageable, informed steps, allowing you to gradually shed your old identity and embrace your new one with confidence and joy. By taking the time to 'under-retire,' you're not just safeguarding your portfolio; you're safeguarding your happiness, ensuring that when you finally do 'FIRE,' you're stepping into a life you've already thoroughly test-driven and truly love.</p>
+    `,
+    category: 'Strategy',
+    date: 'Apr 5, 2026',
+    author: 'Fabio',
+    readTime: '7 min',
+    imageUrl: 'https://picsum.photos/seed/the-soft-landing-strategy-how-to-under-retire-before-fully-firing-cover/1000/600'
+  },
+  {
     id: '31',
     slug: 'the-fi-anchor-cultivating-non-negotiable-life-elements',
     title: 'The FI Anchor: Cultivating Your Non-Negotiable Life Elements Before FIRE',
