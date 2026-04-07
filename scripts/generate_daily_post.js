@@ -83,16 +83,26 @@ CRITICAL RULES FOR "content":
    - Info boxes: <div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">...</div>
 `;
 
-  const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
-      contents: prompt,
-      config: {
-          responseMimeType: "application/json",
+  const MAX_RETRIES = 4;
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: prompt,
+        config: { responseMimeType: "application/json" }
+      });
+      return JSON.parse(response.text);
+    } catch (err) {
+      const isRetryable = err?.status === 503 || err?.status === 429;
+      if (isRetryable && attempt < MAX_RETRIES) {
+        const waitMs = attempt * 15000; // 15s, 30s, 45s
+        console.log(`Gemini overloaded (attempt ${attempt}/${MAX_RETRIES}). Retrying in ${waitMs / 1000}s...`);
+        await new Promise(r => setTimeout(r, waitMs));
+      } else {
+        throw err;
       }
-  });
-
-  const text = response.text;
-  return JSON.parse(text);
+    }
+  }
 }
 
 async function main() {
