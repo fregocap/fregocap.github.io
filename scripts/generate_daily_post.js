@@ -19,28 +19,55 @@ const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
 async function generatePost(existingTitles) {
   const titlesList = existingTitles.map(t => `- ${t}`).join('\n');
+
+  // Alternate strategy: every 3rd post is a philosophical post, the others are SEO-driven Foundation posts
+  const totalPosts = existingTitles.length;
+  const isFoundationPost = (totalPosts % 3) !== 0;
+
+  const foundationInstructions = isFoundationPost ? `
+POST TYPE: "Foundation" — This post MUST target a high-volume Google search keyword to drive organic traffic.
+Pick one concept from this list of high-value SEO topics (or choose a similar high-traffic keyword NOT already covered):
+- "What is the 4% rule" / "Is the 4% rule still safe"
+- "How to calculate your FIRE number"
+- "Best index funds for early retirement"
+- "How much do I need to retire at [40/45/50]"
+- "What is Coast FIRE / Barista FIRE / Lean FIRE"
+- "FIRE movement explained for beginners"
+- "How to increase savings rate"
+- "Tax-efficient investing for early retirement"
+- "Best brokerage accounts in Europe / Portugal"
+- "How to invest €10,000 / €50,000"
+- "Passive income ideas for financial independence"
+- "Emergency fund: how much do you really need"
+
+Write the article so it naturally and concisely answers the search query in plain language. Use real numbers, examples, and practical steps. The goal is to rank on Google and introduce readers to the FIRE lifestyle.
+The category field MUST be set to "Foundation".
+` : `
+POST TYPE: "Philosophy" — This post should be a deeper, more nuanced, conceptually rich article about FIRE mindset, lifestyle design, or advanced strategy. Aim for something thought-provoking and distinctive. The category should be one of: Mindset, Lifestyle, Investing, Strategy.
+`;
+
   const prompt = `
-You are an expert personal finance and FIRE (Financial Independence, Retire Early) blogger.
-Write a high-quality, engaging blog post about a specific, nuanced topic within the FIRE movement, mindset, lifestyle design, or investing.
+You are an expert personal finance and FIRE (Financial Independence, Retire Early) blogger writing for a European audience.
+${foundationInstructions}
 
 CRITICAL REQUIREMENT: Do NOT write about any of the following topics or themes, as they have already been covered:
 ${titlesList}
 
-Pick a completely fresh, unique, and uncommon concept within FIRE that is NOT on the list above.
+Pick a completely fresh angle that is NOT on this list.
 
 The post must be formatted as a JSON object strictly adhering to this schema:
 {
-  "title": "A catchy, compelling title",
+  "title": "A clear, punchy title — for Foundation posts, match it to what people actually Google",
   "slug": "url-friendly-slug-based-on-title",
   "excerpt": "A 1-2 sentence summary of the post",
-  "category": "One of: Mindset, Lifestyle, Investing, Strategy",
+  "category": "Foundation | Mindset | Lifestyle | Investing | Strategy (choose based on post type above)",
   "readTime": "Estimated read time (e.g. 6 min)",
   "imageUrl": "A main cover image URL. USE EXACTLY THIS FORMAT: https://picsum.photos/seed/UNIQUE_SLUG_HERE-cover/1000/600 (replace UNIQUE_SLUG_HERE with the post's generated slug)",
   "content": "An HTML string containing the full markdown/HTML for the blog post."
 }
 
 CRITICAL RULES FOR "content":
-1. Write at least 4-5 substantial paragraphs.
+1. Write at least 4-5 substantial paragraphs with real, actionable advice.
 2. Include at least two <h2> sections.
 3. You MUST INCLUDE AT LEAST ONE INLINE IMAGE in the body of the content using the same picsum format.
    Example inline image:
@@ -48,7 +75,7 @@ CRITICAL RULES FOR "content":
      <img src="https://picsum.photos/seed/UNIQUE_SLUG_HERE-inline/800/400" alt="Description" class="w-full h-auto object-cover max-h-96" />
      <p class="text-center text-slate-500 text-sm mt-3 italic">Write an engaging caption here.</p>
    </div>
-   This ensures we have at least TWO pertinent images per post (the main imageUrl + the inline image). Replace UNIQUE_SLUG_HERE with the post's generated slug so it doesn't change on reload.
+   Replace UNIQUE_SLUG_HERE with the post's generated slug so it doesn't change on reload.
 4. Use Tailwind CSS classes for styling text exactly matching this style:
    - Paragraphs: <p class="text-slate-600 leading-relaxed mb-6">
    - Quotes: <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
