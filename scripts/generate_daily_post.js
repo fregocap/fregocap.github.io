@@ -83,7 +83,7 @@ CRITICAL RULES FOR "content":
    - Info boxes: <div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">...</div>
 `;
 
-  const MODELS = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
+  const MODELS = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-2.0-flash-lite'];
   for (const model of MODELS) {
     try {
       console.log(`Trying model: ${model}...`);
