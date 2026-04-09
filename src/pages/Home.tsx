@@ -104,6 +104,94 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
+
+            {/* Browse by Topic */}
+            <section className="px-4 md:px-0">
+                <div className="mb-10">
+                    <h2 className="text-3xl md:text-4xl font-lexend font-bold text-slate-900">Browse by Topic</h2>
+                    <p className="text-slate-500 mt-2">Start with the fundamentals or dive into advanced strategy</p>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    {[
+                        { label: 'Foundation', icon: 'fa-key', desc: 'Start here — core FIRE concepts', color: 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100' },
+                        { label: 'Investing', icon: 'fa-chart-line', desc: 'ETFs, index funds, allocation', color: 'bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100' },
+                        { label: 'Strategy', icon: 'fa-chess', desc: 'Advanced FIRE planning', color: 'bg-violet-50 text-violet-700 border-violet-200 hover:bg-violet-100' },
+                        { label: 'Mindset', icon: 'fa-brain', desc: 'Psychology of wealth', color: 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100' },
+                        { label: 'Lifestyle', icon: 'fa-sun', desc: 'Design your ideal life', color: 'bg-rose-50 text-rose-700 border-rose-200 hover:bg-rose-100' },
+                    ].map(cat => (
+                        <button
+                            key={cat.label}
+                            onClick={() => navigate(`/blog?category=${cat.label}`)}
+                            className={`group text-left p-6 rounded-3xl border-2 transition-all hover:-translate-y-1 hover:shadow-lg ${cat.color}`}
+                        >
+                            <i className={`fa-solid ${cat.icon} text-2xl mb-3 block`}></i>
+                            <div className="font-lexend font-bold text-base mb-1">{cat.label}</div>
+                            <div className="text-xs opacity-70 leading-snug">{cat.desc}</div>
+                        </button>
+                    ))}
+                </div>
+            </section>
+
+            {/* Newsletter section */}
+            <section className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-[3rem] p-10 md:p-16 text-white mx-2 md:mx-0 shadow-2xl shadow-emerald-900/30">
+                <div className="max-w-3xl mx-auto text-center">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur border border-white/20 rounded-full text-sm font-bold mb-8">
+                        <i className="fa-regular fa-paper-plane"></i> Money Milestones Newsletter
+                    </div>
+                    <h2 className="text-3xl md:text-5xl font-lexend font-extrabold mb-6 leading-tight">
+                        Weekly FIRE insights,<br className="hidden md:block" /> straight to your inbox
+                    </h2>
+                    <p className="text-emerald-100 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+                        Join hundreds of European investors getting actionable strategies on index investing, FIRE milestones, and early retirement planning every week.
+                    </p>
+                    <button
+                        onClick={() => window.open('https://substack.com/@moneymilestones', '_blank')}
+                        className="group bg-white text-emerald-700 font-bold px-10 py-5 rounded-2xl text-lg hover:bg-emerald-50 transition-all shadow-xl shadow-emerald-900/20 inline-flex items-center gap-3 active:scale-95"
+                    >
+                        <i className="fa-regular fa-paper-plane"></i>
+                        Subscribe for Free
+                        <i className="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform text-sm"></i>
+                    </button>
+                    <p className="text-emerald-200 text-xs mt-5 opacity-70">No spam. Unsubscribe any time.</p>
+                </div>
+            </section>
+
+            {/* Community / Forum section */}
+            <section className="px-4 md:px-0">
+                <div className="bg-slate-900 rounded-[3rem] p-10 md:p-16 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-[100px] -mr-48 -mt-48"></div>
+                    <div className="relative z-10 flex flex-col md:flex-row items-center gap-10 justify-between">
+                        <div className="text-white max-w-lg">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-emerald-400 text-xs font-bold uppercase tracking-widest mb-6">
+                                <i className="fa-solid fa-users"></i> Community Forum
+                            </div>
+                            <h2 className="text-3xl md:text-5xl font-lexend font-extrabold mb-6 leading-tight">
+                                Join the <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">LabFab</span> Forum
+                            </h2>
+                            <p className="text-slate-400 text-lg leading-relaxed mb-8">
+                                Ask questions, share your FIRE journey, debate strategies, and connect with a community of European investors — all in one place.
+                            </p>
+                            <button
+                                onClick={() => window.open('https://labfab.freeflarum.com/', '_blank')}
+                                className="group bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-5 rounded-2xl transition-all shadow-lg shadow-emerald-900/30 inline-flex items-center gap-3 active:scale-95"
+                            >
+                                <i className="fa-solid fa-comments"></i>
+                                Open the Forum
+                                <i className="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform text-sm"></i>
+                            </button>
+                        </div>
+                        <div className="flex flex-col gap-4 text-slate-400 text-sm min-w-[200px]">
+                            {['Share your FIRE number', 'Best European brokers', 'Tax strategies for Portugal', 'Coast FIRE vs Barista FIRE', 'PPR vs IWDA debate'].map(topic => (
+                                <div key={topic} className="flex items-center gap-3">
+                                    <i className="fa-solid fa-message text-emerald-600 text-xs"></i>
+                                    <span>{topic}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section className="bg-slate-900 rounded-[3rem] p-8 md:p-16 text-white overflow-hidden relative shadow-2xl mx-2 md:mx-0">
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] -mr-64 -mt-64"></div>
                 <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
