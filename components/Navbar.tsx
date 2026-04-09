@@ -6,10 +6,11 @@ const Navbar: React.FC = () => {
 
   const navItems = [
     { path: '/', label: 'Home', icon: 'fa-house' },
-    { path: '/about', label: 'About Me', icon: 'fa-user' },
-    { path: '/blog', label: 'Blog', icon: 'fa-newspaper' },
-    { path: '/tools', label: 'Tools', icon: 'fa-calculator' },
     { path: '/coaching', label: 'Coaching', icon: 'fa-user-tie' },
+    { path: '/tools', label: 'Tools', icon: 'fa-calculator' },
+    { path: '/blog', label: 'Blog', icon: 'fa-newspaper' },
+    { path: '/about', label: 'About Me', icon: 'fa-user' },
+    { path: 'https://labfabio.flarum.cloud/', label: 'Forum', icon: 'fa-comments', isExternal: true },
   ];
 
   return (
@@ -26,19 +27,32 @@ const Navbar: React.FC = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-1 lg:space-x-4">
             {navItems.map((item) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                className={({ isActive }) =>
-                  `px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center space-x-2 ${isActive
-                    ? 'bg-emerald-50 text-emerald-700'
-                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-                  }`
-                }
-              >
-                <i className={`fa-solid ${item.icon} text-xs`}></i>
-                <span>{item.label}</span>
-              </NavLink>
+              item.isExternal ? (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center space-x-2 text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                >
+                  <i className={`fa-solid ${item.icon} text-xs`}></i>
+                  <span>{item.label}</span>
+                </a>
+              ) : (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center space-x-2 ${isActive
+                      ? 'bg-emerald-50 text-emerald-700'
+                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                    }`
+                  }
+                >
+                  <i className={`fa-solid ${item.icon} text-xs`}></i>
+                  <span>{item.label}</span>
+                </NavLink>
+              )
             ))}
           </div>
 
@@ -59,20 +73,34 @@ const Navbar: React.FC = () => {
         <div className="md:hidden bg-white border-b border-slate-200 animate-in slide-in-from-top duration-300">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navItems.map((item) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  `w-full text-left px-3 py-3 rounded-md text-base font-medium flex items-center space-x-3 ${isActive
-                    ? 'bg-emerald-50 text-emerald-700'
-                    : 'text-slate-600 hover:bg-slate-50'
-                  }`
-                }
-              >
-                <i className={`fa-solid ${item.icon}`}></i>
-                <span>{item.label}</span>
-              </NavLink>
+              item.isExternal ? (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full text-left px-3 py-3 rounded-md text-base font-medium flex items-center space-x-3 text-slate-600 hover:bg-slate-50"
+                >
+                  <i className={`fa-solid ${item.icon}`}></i>
+                  <span>{item.label}</span>
+                </a>
+              ) : (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => setIsOpen(false)}
+                  className={({ isActive }) =>
+                    `w-full text-left px-3 py-3 rounded-md text-base font-medium flex items-center space-x-3 ${isActive
+                      ? 'bg-emerald-50 text-emerald-700'
+                      : 'text-slate-600 hover:bg-slate-50'
+                    }`
+                  }
+                >
+                  <i className={`fa-solid ${item.icon}`}></i>
+                  <span>{item.label}</span>
+                </NavLink>
+              )
             ))}
           </div>
         </div>
