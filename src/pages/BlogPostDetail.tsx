@@ -152,12 +152,16 @@ const BlogPostDetail: React.FC = () => {
                             <p className="text-slate-400 text-sm mb-6 leading-relaxed relative z-10">
                                 Join my personal newsletter for weekly insights on wealth building and FIRE strategies.
                             </p>
-                            <button
-                                onClick={() => window.open('https://substack.com/@moneymilestones', '_blank')}
-                                className="w-full py-4 bg-emerald-600 text-white font-bold rounded-2xl hover:bg-emerald-500 transition-all shadow-lg active:scale-95 relative z-10"
-                            >
-                                Subscribe for Free
-                            </button>
+                            <div className="bg-white/5 rounded-2xl overflow-hidden p-1 mt-4">
+                                <iframe 
+                                    src="https://moneymilestones.substack.com/embed" 
+                                    width="100%" 
+                                    height="150" 
+                                    style={{ border: 'none', background: 'transparent' }} 
+                                    frameBorder="0" 
+                                    scrolling="no"
+                                ></iframe>
+                            </div>
                         </div>
 
                         <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">

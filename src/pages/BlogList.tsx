@@ -17,12 +17,16 @@ const BlogList: React.FC = () => {
                         <h2 className="text-2xl md:text-3xl font-lexend font-bold text-white mb-2">Money Milestones Newsletter</h2>
                         <p className="text-slate-400 text-lg font-light max-w-xl">Get my weekly deep-dives on financial independence delivered straight to your inbox.</p>
                     </div>
-                    <button
-                        onClick={() => window.open('https://substack.com/@moneymilestones', '_blank')}
-                        className="px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-2xl transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 active:scale-95 whitespace-nowrap"
-                    >
-                        <i className="fa-regular fa-envelope mr-3"></i> Subscribe Free
-                    </button>
+                    <div className="w-full max-w-sm bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden p-2">
+                        <iframe 
+                            src="https://moneymilestones.substack.com/embed" 
+                            width="100%" 
+                            height="150" 
+                            style={{ border: 'none', background: 'transparent' }} 
+                            frameBorder="0" 
+                            scrolling="no"
+                        ></iframe>
+                    </div>
                 </div>
             </div>
             <div className="space-y-12">

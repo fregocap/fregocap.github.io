@@ -144,14 +144,16 @@ const Home: React.FC = () => {
                     <p className="text-emerald-100 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
                         Join hundreds of European investors getting actionable strategies on index investing, FIRE milestones, and early retirement planning every week.
                     </p>
-                    <button
-                        onClick={() => window.open('https://substack.com/@moneymilestones', '_blank')}
-                        className="group bg-white text-emerald-700 font-bold px-10 py-5 rounded-2xl text-lg hover:bg-emerald-50 transition-all shadow-xl shadow-emerald-900/20 inline-flex items-center gap-3 active:scale-95"
-                    >
-                        <i className="fa-regular fa-paper-plane"></i>
-                        Subscribe for Free
-                        <i className="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform text-sm"></i>
-                    </button>
+                    <div className="w-full max-w-md mx-auto bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden p-2">
+                        <iframe 
+                            src="https://moneymilestones.substack.com/embed" 
+                            width="100%" 
+                            height="100%" 
+                            style={{ border: 'none', background: 'transparent', minHeight: '150px' }} 
+                            frameBorder="0" 
+                            scrolling="no"
+                        ></iframe>
+                    </div>
                     <p className="text-emerald-200 text-xs mt-5 opacity-70">No spam. Unsubscribe any time.</p>
                 </div>
             </section>
