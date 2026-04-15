@@ -148,7 +148,7 @@ const BlogPostDetail: React.FC = () => {
 
                         <div className="bg-slate-900 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden group">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500 rounded-full blur-[60px] opacity-20 group-hover:opacity-30 transition-opacity"></div>
-                            <h3 className="text-xl font-lexend font-bold mb-3 relative z-10"><i className="fa-regular fa-paper-plane mr-2 text-emerald-400"></i> Money Milestones</h3>
+                            <h3 className="text-xl font-lexend font-bold mb-3 relative z-10"><i className="fa-regular fa-paper-plane mr-2 text-emerald-400"></i> Algorithmic Financial Freedom</h3>
                             <p className="text-slate-400 text-sm mb-6 leading-relaxed relative z-10">
                                 Join my personal newsletter for weekly insights on wealth building and FIRE strategies.
                             </p>

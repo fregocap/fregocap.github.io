@@ -119,7 +119,7 @@ const Home: React.FC = () => {
             <section className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-[3rem] p-10 md:p-16 text-white mx-2 md:mx-0 shadow-2xl shadow-emerald-900/30">
                 <div className="max-w-3xl mx-auto text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur border border-white/20 rounded-full text-sm font-bold mb-8">
-                        <i className="fa-regular fa-paper-plane"></i> Money Milestones Newsletter
+                        <i className="fa-regular fa-paper-plane"></i> Algorithmic Financial Freedom
                     </div>
                     <h2 className="text-3xl md:text-5xl font-lexend font-extrabold mb-6 leading-tight">
                         Weekly FIRE insights,<br className="hidden md:block" /> straight to your inbox

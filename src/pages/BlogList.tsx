@@ -14,7 +14,7 @@ const BlogList: React.FC = () => {
                 <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500 rounded-full blur-[100px] opacity-20"></div>
                 <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
                     <div className="text-center md:text-left">
-                        <h2 className="text-2xl md:text-3xl font-lexend font-bold text-white mb-2">Money Milestones Newsletter</h2>
+                        <h2 className="text-2xl md:text-3xl font-lexend font-bold text-white mb-2">Algorithmic Financial Freedom</h2>
                         <p className="text-slate-400 text-lg font-light max-w-xl">Get my weekly deep-dives on financial independence delivered straight to your inbox.</p>
                     </div>
                     <div className="w-full max-w-sm rounded-2xl overflow-hidden shadow-lg">
