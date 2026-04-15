@@ -19,7 +19,7 @@ const BlogList: React.FC = () => {
                     </div>
                     <div className="w-full max-w-sm rounded-2xl overflow-hidden shadow-lg">
                         <iframe 
-                            src="https://moneymilestones.substack.com/embed" 
+                            src="https://freedomcents.substack.com/embed" 
                             width="100%" 
                             height="320" 
                             style={{ border: 'none', background: 'white' }} 

@@ -154,7 +154,7 @@ const BlogPostDetail: React.FC = () => {
                             </p>
                             <div className="rounded-2xl overflow-hidden shadow-lg mt-4">
                                 <iframe 
-                                    src="https://moneymilestones.substack.com/embed" 
+                                    src="https://freedomcents.substack.com/embed" 
                                     width="100%" 
                                     height="320" 
                                     style={{ border: 'none', background: 'white' }} 

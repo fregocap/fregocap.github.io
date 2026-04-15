@@ -129,7 +129,7 @@ const Home: React.FC = () => {
                     </p>
                     <div className="w-full max-w-md mx-auto rounded-3xl overflow-hidden shadow-lg">
                         <iframe 
-                            src="https://moneymilestones.substack.com/embed" 
+                            src="https://freedomcents.substack.com/embed" 
                             width="100%" 
                             height="320" 
                             style={{ border: 'none', background: 'white' }} 
