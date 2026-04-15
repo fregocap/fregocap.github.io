@@ -1,28 +1,11 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BLOG_POSTS } from '../../constants';
-import { getFinancialAdvice } from '../../services/geminiService';
 import SEO from '../components/SEO';
 
 const Home: React.FC = () => {
     const navigate = useNavigate();
-    const [userProfile, setUserProfile] = useState('');
-    const [apiKey, setApiKey] = useState('');
-    const [aiAdvice, setAiAdvice] = useState<string | null>(null);
-    const [isGenerating, setIsGenerating] = useState(false);
-
-    const handleGetAdvice = async () => {
-        if (!userProfile) return;
-        if (!apiKey) {
-            setAiAdvice("Please provide a valid Gemini API key to use this feature.");
-            return;
-        }
-        setIsGenerating(true);
-        const advice = await getFinancialAdvice(userProfile, apiKey);
-        setAiAdvice(advice);
-        setIsGenerating(false);
-    };
 
     return (
         <div className="space-y-16 md:space-y-24 pb-20">
@@ -190,77 +173,6 @@ const Home: React.FC = () => {
                                     <span>{topic}</span>
                                 </div>
                             ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section className="bg-slate-900 rounded-[3rem] p-8 md:p-16 text-white overflow-hidden relative shadow-2xl mx-2 md:mx-0">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] -mr-64 -mt-64"></div>
-                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div className="order-2 lg:order-1">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 border border-emerald-500/30">
-                            <i className="fa-solid fa-robot"></i> AI Personal Advisor
-                        </div>
-                        <h2 className="text-3xl md:text-5xl font-lexend font-bold mb-6 leading-tight">Get Your <br className="hidden md:block" />Custom Roadmap</h2>
-                        <p className="text-slate-400 mb-8 leading-relaxed text-lg">
-                            Enter your financial details and our advisor will create a personalized plan to accelerate your journey. We don't store your API key; it's only used locally for the prompt.
-                        </p>
-
-                        <div className="mb-4">
-                            <label className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-2 block">Gemini API Key</label>
-                            <input
-                                type="password"
-                                value={apiKey}
-                                onChange={(e) => setApiKey(e.target.value)}
-                                placeholder="AIzaSy..."
-                                className="w-full bg-slate-800/80 border border-slate-700 rounded-xl p-4 text-white placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 outline-none transition-all focus:bg-slate-800 shadow-inner"
-                            />
-                        </div>
-
-                        <label className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-2 block">Your Financial Profile</label>
-                        <textarea
-                            value={userProfile}
-                            onChange={(e) => setUserProfile(e.target.value)}
-                            placeholder="e.g., 30 years old, earning $80k, spending $35k, no debt, $50k in investments..."
-                            className="w-full bg-slate-800/80 border border-slate-700 rounded-xl p-4 text-white placeholder-slate-500 focus:ring-2 focus:ring-emerald-500 outline-none mb-6 h-32 transition-all focus:bg-slate-800 shadow-inner"
-                        ></textarea>
-
-                        <button
-                            onClick={handleGetAdvice}
-                            disabled={isGenerating || !apiKey || !userProfile}
-                            className="bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white px-10 py-5 rounded-2xl font-bold transition-all w-full md:w-auto shadow-lg shadow-emerald-900/20 active:scale-95 flex items-center justify-center gap-3"
-                        >
-                            {isGenerating ? (
-                                <><i className="fa-solid fa-circle-notch animate-spin"></i> Analyzing...</>
-                            ) : (
-                                <><i className="fa-solid fa-magnifying-glass-chart"></i> Analyze Profile</>
-                            )}
-                        </button>
-                    </div>
-                    <div className="order-1 lg:order-2">
-                        <div className="bg-slate-800/40 backdrop-blur-md rounded-3xl p-8 border border-white/5 min-h-[400px] flex flex-col shadow-2xl">
-                            <div className="flex items-center gap-4 mb-8 border-b border-white/10 pb-6">
-                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white text-xl shadow-lg">
-                                    <i className="fa-solid fa-robot"></i>
-                                </div>
-                                <div>
-                                    <div className="font-bold text-base lowercase">labfab.io AI</div>
-                                    <div className="text-xs text-slate-500 font-medium">Wealth Analysis v3</div>
-                                </div>
-                            </div>
-                            <div className="flex-1 text-slate-300 text-base leading-relaxed whitespace-pre-wrap animate-in fade-in duration-1000">
-                                {aiAdvice ? (
-                                    <div className="prose prose-invert prose-emerald max-w-none">
-                                        {aiAdvice}
-                                    </div>
-                                ) : (
-                                    <div className="flex flex-col items-center justify-center h-full text-center py-12 text-slate-500">
-                                        <i className="fa-solid fa-chart-line text-4xl mb-4 opacity-20"></i>
-                                        <p>Fill in your profile details to receive personalized feedback.</p>
-                                    </div>
-                                )}
-                            </div>
                         </div>
                     </div>
                 </div>
