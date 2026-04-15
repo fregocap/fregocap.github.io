@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
     { path: '/tools', label: 'Tools', icon: 'fa-calculator' },
     { path: '/blog', label: 'Blog', icon: 'fa-newspaper' },
     { path: '/about', label: 'About Me', icon: 'fa-user' },
-    { path: 'https://labfabio.flarum.cloud/', label: 'Forum', icon: 'fa-comments', isExternal: true },
+    { path: 'https://labfab.discourse.group/', label: 'Forum', icon: 'fa-comments', isExternal: true },
   ];
 
   return (

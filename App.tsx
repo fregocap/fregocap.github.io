@@ -7,7 +7,6 @@ import Tools from './src/pages/Tools';
 import Coaching from './src/pages/Coaching';
 import BlogList from './src/pages/BlogList';
 import BlogPostDetail from './src/pages/BlogPostDetail';
-import DiscourseEmbed from './components/DiscourseEmbed';
 
 const App: React.FC = () => {
   return (
@@ -50,6 +49,7 @@ const App: React.FC = () => {
                 <ul className="space-y-5 text-sm font-medium">
                   <li><a href="#/blog" className="hover:text-emerald-400 transition-colors">Blog</a></li>
                   <li><a href="#/tools" className="hover:text-emerald-400 transition-colors">Tools</a></li>
+                  <li><a href="https://labfab.discourse.group/" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Forum</a></li>
                 </ul>
               </div>
               <div>

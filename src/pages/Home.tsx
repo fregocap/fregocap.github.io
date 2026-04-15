@@ -172,7 +172,7 @@ const Home: React.FC = () => {
                                 Ask questions, share your FIRE journey, debate strategies, and connect with a community of European investors — all in one place.
                             </p>
                             <button
-                                onClick={() => window.open('https://labfab.freeflarum.com/', '_blank')}
+                                onClick={() => window.open('https://labfab.discourse.group/', '_blank')}
                                 className="group bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-5 rounded-2xl transition-all shadow-lg shadow-emerald-900/30 inline-flex items-center gap-3 active:scale-95"
                             >
                                 <i className="fa-solid fa-comments"></i>
