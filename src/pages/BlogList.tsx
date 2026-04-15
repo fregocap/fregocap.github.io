@@ -17,14 +17,15 @@ const BlogList: React.FC = () => {
                         <h2 className="text-2xl md:text-3xl font-lexend font-bold text-white mb-2">Money Milestones Newsletter</h2>
                         <p className="text-slate-400 text-lg font-light max-w-xl">Get my weekly deep-dives on financial independence delivered straight to your inbox.</p>
                     </div>
-                    <div className="w-full max-w-sm bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden p-2">
+                    <div className="w-full max-w-sm rounded-2xl overflow-hidden shadow-lg">
                         <iframe 
                             src="https://moneymilestones.substack.com/embed" 
                             width="100%" 
-                            height="150" 
-                            style={{ border: 'none', background: 'transparent' }} 
+                            height="320" 
+                            style={{ border: 'none', background: 'white' }} 
                             frameBorder="0" 
                             scrolling="no"
+                            title="Substack Newsletter"
                         ></iframe>
                     </div>
                 </div>

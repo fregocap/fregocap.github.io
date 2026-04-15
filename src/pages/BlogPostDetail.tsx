@@ -152,14 +152,15 @@ const BlogPostDetail: React.FC = () => {
                             <p className="text-slate-400 text-sm mb-6 leading-relaxed relative z-10">
                                 Join my personal newsletter for weekly insights on wealth building and FIRE strategies.
                             </p>
-                            <div className="bg-white/5 rounded-2xl overflow-hidden p-1 mt-4">
+                            <div className="rounded-2xl overflow-hidden shadow-lg mt-4">
                                 <iframe 
                                     src="https://moneymilestones.substack.com/embed" 
                                     width="100%" 
-                                    height="150" 
-                                    style={{ border: 'none', background: 'transparent' }} 
+                                    height="320" 
+                                    style={{ border: 'none', background: 'white' }} 
                                     frameBorder="0" 
                                     scrolling="no"
+                                    title="Substack Newsletter"
                                 ></iframe>
                             </div>
                         </div>

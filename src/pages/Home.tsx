@@ -144,14 +144,15 @@ const Home: React.FC = () => {
                     <p className="text-emerald-100 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
                         Join hundreds of European investors getting actionable strategies on index investing, FIRE milestones, and early retirement planning every week.
                     </p>
-                    <div className="w-full max-w-md mx-auto bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden p-2">
+                    <div className="w-full max-w-md mx-auto rounded-3xl overflow-hidden shadow-lg">
                         <iframe 
                             src="https://moneymilestones.substack.com/embed" 
                             width="100%" 
-                            height="100%" 
-                            style={{ border: 'none', background: 'transparent', minHeight: '150px' }} 
+                            height="320" 
+                            style={{ border: 'none', background: 'white' }} 
                             frameBorder="0" 
                             scrolling="no"
+                            title="Substack Newsletter"
                         ></iframe>
                     </div>
                     <p className="text-emerald-200 text-xs mt-5 opacity-70">No spam. Unsubscribe any time.</p>
