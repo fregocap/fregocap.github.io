@@ -7,6 +7,7 @@ import Tools from './src/pages/Tools';
 import Coaching from './src/pages/Coaching';
 import BlogList from './src/pages/BlogList';
 import BlogPostDetail from './src/pages/BlogPostDetail';
+import DiscourseEmbed from './components/DiscourseEmbed';
 
 const App: React.FC = () => {
   return (
