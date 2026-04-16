@@ -55,17 +55,17 @@ const Resources: React.FC = () => {
                     name: 'The Psychology of Money',
                     tag: 'Morgan Housel',
                     description: 'Essential reading to understand that doing well with money has little to do with how smart you are and a lot to do with how you behave.',
-                    link: 'https://amzn.to/3XlGZ1H',
+                    link: 'https://www.amazon.com/Psychology-Money-Timeless-lessons-happiness/dp/0857197681',
                     icon: 'fa-book-open',
-                    logoUrl: '/resources/stock-book-1.jpg'
+                    logoUrl: '/resources/book-psychology.jpg'
                 },
                 {
                     name: 'The Simple Path to Wealth',
                     tag: 'JL Collins',
                     description: 'The "Bible" of the FIRE movement. Although US-centric, the principles of low-cost indexing are universal.',
-                    link: 'https://amzn.to/3XlGZ1H',
+                    link: 'https://www.amazon.com/Simple-Path-Wealth-financial-independence/dp/1533667926',
                     icon: 'fa-book',
-                    logoUrl: '/resources/stock-book-2.jpg'
+                    logoUrl: '/resources/book-simple-path.jpg'
                 }
             ]
         }
