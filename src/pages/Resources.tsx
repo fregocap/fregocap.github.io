@@ -13,7 +13,7 @@ const Resources: React.FC = () => {
                     description: 'The most professional and low-cost broker available in Europe. Access to all global markets and the lowest currency conversion fees.',
                     link: 'https://www.interactivebrokers.ie/',
                     icon: 'fa-chart-pie',
-                    logoUrl: 'https://static.cdnlogo.com/logos/i/12/interactive-brokers.png'
+                    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Interactive_Brokers_Logo.svg'
                 },
                 {
                     name: 'Trade Republic',
@@ -21,7 +21,7 @@ const Resources: React.FC = () => {
                     description: 'Extremely simple interface, automated savings plans for free, and currently offers 4% interest on uninvested cash.',
                     link: 'https://traderepublic.com/',
                     icon: 'fa-mobile-screen-button',
-                    logoUrl: 'https://static.cdnlogo.com/logos/t/80/trade-republic.png'
+                    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Trade_Republic_Logo.svg'
                 }
             ]
         },
@@ -35,7 +35,7 @@ const Resources: React.FC = () => {
                     description: 'Excellent for currency exchange and daily spending. Their "Flexible Accounts" offer competitive money market fund yields.',
                     link: 'https://www.revolut.com/',
                     icon: 'fa-credit-card',
-                    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Revolut.png/551px-Revolut.png'
+                    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/e1/Revolut.png'
                 },
                 {
                     name: 'N26',
@@ -43,7 +43,7 @@ const Resources: React.FC = () => {
                     description: 'A solid German bank account with a great app. Perfect for those who want a clean, no-nonsense banking experience.',
                     link: 'https://n26.com/',
                     icon: 'fa-building-columns',
-                    logoUrl: 'https://static.cdnlogo.com/logos/n/27/n26.png'
+                    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1a/N26_Logo.svg'
                 }
             ]
         },
@@ -57,7 +57,7 @@ const Resources: React.FC = () => {
                     description: 'Essential reading to understand that doing well with money has little to do with how smart you are and a lot to do with how you behave.',
                     link: 'https://amzn.to/3XlGZ1H',
                     icon: 'fa-book-open',
-                    logoUrl: 'https://m.media-amazon.com/images/I/71TR6n7Y9LL._AC_UF1000,1000_QL80_.jpg'
+                    logoUrl: 'https://m.media-amazon.com/images/I/71TR6n7Y9LL._SL1500_.jpg'
                 },
                 {
                     name: 'The Simple Path to Wealth',
@@ -65,7 +65,7 @@ const Resources: React.FC = () => {
                     description: 'The "Bible" of the FIRE movement. Although US-centric, the principles of low-cost indexing are universal.',
                     link: 'https://amzn.to/3XlGZ1H',
                     icon: 'fa-book',
-                    logoUrl: 'https://m.media-amazon.com/images/I/71S6-v-v-vL._AC_UF1000,1000_QL80_.jpg'
+                    logoUrl: 'https://m.media-amazon.com/images/I/71S6-v-v-vL._SL1500_.jpg'
                 }
             ]
         }
@@ -112,6 +112,14 @@ const Resources: React.FC = () => {
                                                     src={item.logoUrl} 
                                                     alt={`${item.name} logo`} 
                                                     className="w-full h-full object-contain p-2 transition-transform group-hover:scale-110" 
+                                                    onError={(e) => {
+                                                        // Fallback to icon if image fails to load
+                                                        e.currentTarget.style.display = 'none';
+                                                        e.currentTarget.parentElement?.classList.add('bg-slate-50');
+                                                        const icon = document.createElement('i');
+                                                        icon.className = `fa-solid ${item.icon} text-2xl text-slate-400 group-hover:text-emerald-600`;
+                                                        e.currentTarget.parentElement?.appendChild(icon);
+                                                    }}
                                                 />
                                             ) : (
                                                 <i className={`fa-solid ${item.icon} text-2xl text-slate-400 group-hover:text-emerald-600`}></i>
