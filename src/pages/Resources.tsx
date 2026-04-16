@@ -13,7 +13,7 @@ const Resources: React.FC = () => {
                     description: 'The most professional and low-cost broker available in Europe. Access to all global markets and the lowest currency conversion fees.',
                     link: 'https://www.interactivebrokers.ie/',
                     icon: 'fa-chart-pie',
-                    logoUrl: 'https://logo.clearbit.com/interactivebrokers.com'
+                    logoUrl: 'https://static.cdnlogo.com/logos/i/12/interactive-brokers.png'
                 },
                 {
                     name: 'Trade Republic',
@@ -21,7 +21,7 @@ const Resources: React.FC = () => {
                     description: 'Extremely simple interface, automated savings plans for free, and currently offers 4% interest on uninvested cash.',
                     link: 'https://traderepublic.com/',
                     icon: 'fa-mobile-screen-button',
-                    logoUrl: 'https://logo.clearbit.com/traderepublic.com'
+                    logoUrl: 'https://static.cdnlogo.com/logos/t/80/trade-republic.png'
                 }
             ]
         },
@@ -35,7 +35,7 @@ const Resources: React.FC = () => {
                     description: 'Excellent for currency exchange and daily spending. Their "Flexible Accounts" offer competitive money market fund yields.',
                     link: 'https://www.revolut.com/',
                     icon: 'fa-credit-card',
-                    logoUrl: 'https://logo.clearbit.com/revolut.com'
+                    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Revolut.png/551px-Revolut.png'
                 },
                 {
                     name: 'N26',
@@ -43,7 +43,7 @@ const Resources: React.FC = () => {
                     description: 'A solid German bank account with a great app. Perfect for those who want a clean, no-nonsense banking experience.',
                     link: 'https://n26.com/',
                     icon: 'fa-building-columns',
-                    logoUrl: 'https://logo.clearbit.com/n26.com'
+                    logoUrl: 'https://static.cdnlogo.com/logos/n/27/n26.png'
                 }
             ]
         },
@@ -57,7 +57,7 @@ const Resources: React.FC = () => {
                     description: 'Essential reading to understand that doing well with money has little to do with how smart you are and a lot to do with how you behave.',
                     link: 'https://amzn.to/3XlGZ1H',
                     icon: 'fa-book-open',
-                    logoUrl: 'https://m.media-amazon.com/images/I/71TRPBzc5DL._AC_UF1000,1000_QL80_.jpg'
+                    logoUrl: 'https://m.media-amazon.com/images/I/71TR6n7Y9LL._AC_UF1000,1000_QL80_.jpg'
                 },
                 {
                     name: 'The Simple Path to Wealth',
@@ -65,7 +65,7 @@ const Resources: React.FC = () => {
                     description: 'The "Bible" of the FIRE movement. Although US-centric, the principles of low-cost indexing are universal.',
                     link: 'https://amzn.to/3XlGZ1H',
                     icon: 'fa-book',
-                    logoUrl: 'https://m.media-amazon.com/images/I/71Y8R4u8iUL._AC_UF1000,1000_QL80_.jpg'
+                    logoUrl: 'https://m.media-amazon.com/images/I/71S6-v-v-vL._AC_UF1000,1000_QL80_.jpg'
                 }
             ]
         }
@@ -106,7 +106,7 @@ const Resources: React.FC = () => {
                                     className="group bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1"
                                 >
                                     <div className="flex justify-between items-start mb-6">
-                                        <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-white transition-colors border border-slate-100 group-hover:border-emerald-100 shadow-sm">
+                                        <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center overflow-hidden transition-colors border border-slate-100 group-hover:border-emerald-100 shadow-sm">
                                             {item.logoUrl ? (
                                                 <img 
                                                     src={item.logoUrl} 
