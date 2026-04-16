@@ -12,14 +12,16 @@ const Resources: React.FC = () => {
                     tag: 'Best for EU Residents',
                     description: 'The most professional and low-cost broker available in Europe. Access to all global markets and the lowest currency conversion fees.',
                     link: 'https://www.interactivebrokers.ie/',
-                    icon: 'fa-chart-pie'
+                    icon: 'fa-chart-pie',
+                    logoUrl: 'https://logo.clearbit.com/interactivebrokers.com'
                 },
                 {
                     name: 'Trade Republic',
                     tag: 'Best for Beginners',
                     description: 'Extremely simple interface, automated savings plans for free, and currently offers 4% interest on uninvested cash.',
                     link: 'https://traderepublic.com/',
-                    icon: 'fa-mobile-screen-button'
+                    icon: 'fa-mobile-screen-button',
+                    logoUrl: 'https://logo.clearbit.com/traderepublic.com'
                 }
             ]
         },
@@ -32,14 +34,16 @@ const Resources: React.FC = () => {
                     tag: 'Daily Management',
                     description: 'Excellent for currency exchange and daily spending. Their "Flexible Accounts" offer competitive money market fund yields.',
                     link: 'https://www.revolut.com/',
-                    icon: 'fa-credit-card'
+                    icon: 'fa-credit-card',
+                    logoUrl: 'https://logo.clearbit.com/revolut.com'
                 },
                 {
                     name: 'N26',
                     tag: 'Pure Digital Banking',
                     description: 'A solid German bank account with a great app. Perfect for those who want a clean, no-nonsense banking experience.',
                     link: 'https://n26.com/',
-                    icon: 'fa-building-columns'
+                    icon: 'fa-building-columns',
+                    logoUrl: 'https://logo.clearbit.com/n26.com'
                 }
             ]
         },
@@ -52,14 +56,16 @@ const Resources: React.FC = () => {
                     tag: 'Morgan Housel',
                     description: 'Essential reading to understand that doing well with money has little to do with how smart you are and a lot to do with how you behave.',
                     link: 'https://amzn.to/3XlGZ1H',
-                    icon: 'fa-book-open'
+                    icon: 'fa-book-open',
+                    logoUrl: 'https://m.media-amazon.com/images/I/71TRPBzc5DL._AC_UF1000,1000_QL80_.jpg'
                 },
                 {
                     name: 'The Simple Path to Wealth',
                     tag: 'JL Collins',
                     description: 'The "Bible" of the FIRE movement. Although US-centric, the principles of low-cost indexing are universal.',
                     link: 'https://amzn.to/3XlGZ1H',
-                    icon: 'fa-book'
+                    icon: 'fa-book',
+                    logoUrl: 'https://m.media-amazon.com/images/I/71Y8R4u8iUL._AC_UF1000,1000_QL80_.jpg'
                 }
             ]
         }
@@ -100,8 +106,16 @@ const Resources: React.FC = () => {
                                     className="group bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm transition-all hover:shadow-xl hover:-translate-y-1"
                                 >
                                     <div className="flex justify-between items-start mb-6">
-                                        <div className="w-14 h-14 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-emerald-50 group-hover:text-emerald-600 transition-colors">
-                                            <i className={`fa-solid ${item.icon}`}></i>
+                                        <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-white transition-colors border border-slate-100 group-hover:border-emerald-100 shadow-sm">
+                                            {item.logoUrl ? (
+                                                <img 
+                                                    src={item.logoUrl} 
+                                                    alt={`${item.name} logo`} 
+                                                    className="w-full h-full object-contain p-2 transition-transform group-hover:scale-110" 
+                                                />
+                                            ) : (
+                                                <i className={`fa-solid ${item.icon} text-2xl text-slate-400 group-hover:text-emerald-600`}></i>
+                                            )}
                                         </div>
                                         <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 bg-slate-100 text-slate-500 rounded-full">{item.tag}</span>
                                     </div>
