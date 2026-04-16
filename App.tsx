@@ -3,6 +3,9 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './src/pages/Home';
 import About from './src/pages/About';
+import StartHere from './src/pages/StartHere';
+import Resources from './src/pages/Resources';
+import Portfolio from './src/pages/Portfolio';
 import Tools from './src/pages/Tools';
 import Coaching from './src/pages/Coaching';
 import BlogList from './src/pages/BlogList';
@@ -17,6 +20,9 @@ const App: React.FC = () => {
         <main className="flex-grow max-w-7xl mx-auto px-0 md:px-8 w-full overflow-x-hidden">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/start" element={<StartHere />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/about" element={<About />} />
             <Route path="/tools" element={<Tools />} />
             <Route path="/coaching" element={<Coaching />} />

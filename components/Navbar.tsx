@@ -6,8 +6,11 @@ const Navbar: React.FC = () => {
 
   const navItems = [
     { path: '/', label: 'Home', icon: 'fa-house' },
+    { path: '/start', label: 'Start Here', icon: 'fa-compass' },
     { path: '/coaching', label: 'Coaching', icon: 'fa-user-tie' },
     { path: '/tools', label: 'Tools', icon: 'fa-calculator' },
+    { path: '/resources', label: 'Resources', icon: 'fa-toolbox' },
+    { path: '/portfolio', label: 'Portfolio', icon: 'fa-chart-pie' },
     { path: '/blog', label: 'Blog', icon: 'fa-newspaper' },
     { path: '/about', label: 'About Me', icon: 'fa-user' },
     { path: 'https://labfab.discourse.group/', label: 'Forum', icon: 'fa-comments', isExternal: true },

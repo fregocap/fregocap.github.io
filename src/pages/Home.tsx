@@ -39,11 +39,11 @@ const Home: React.FC = () => {
 
                     <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0">
                         <button
-                            onClick={() => navigate('/tools')}
+                            onClick={() => navigate('/start')}
                             className="group bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-5 rounded-2xl font-bold transition-all shadow-xl shadow-emerald-900/40 flex items-center justify-center gap-3 active:scale-95"
                         >
-                            <span>Plan Your Path</span>
-                            <i className="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                            <span>Start Your Journey</span>
+                            <i className="fa-solid fa-compass group-hover:rotate-12 transition-transform"></i>
                         </button>
                         <button
                             onClick={() => navigate('/blog')}
