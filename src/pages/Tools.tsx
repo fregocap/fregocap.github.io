@@ -23,6 +23,7 @@ const Tools: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                {/* ... existing tool buttons ... */}
                 <div
                     onClick={() => setSelectedTool('fire')}
                     className={`cursor-pointer p-6 rounded-3xl border transition-all group ${selectedTool === 'fire' ? 'bg-emerald-600 border-emerald-600 text-white shadow-xl shadow-emerald-600/20' : 'bg-white border-slate-200 hover:border-emerald-200 shadow-sm'}`}
@@ -65,6 +66,26 @@ const Tools: React.FC = () => {
                     </div>
                     <h3 className={`text-lg font-bold mb-1 ${selectedTool === 'sorr' ? 'text-white' : 'text-slate-800'}`}>Sequence Risk</h3>
                     <p className={`text-xs leading-relaxed ${selectedTool === 'sorr' ? 'text-emerald-50' : 'text-slate-500'}`}>Visualize how a market crash impacts survival.</p>
+                </div>
+            </div>
+
+            <div className="mt-20 p-8 md:p-12 bg-slate-900 rounded-[3rem] text-white relative overflow-hidden shadow-2xl">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-[100px]"></div>
+                <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
+                    <div className="max-w-xl text-center lg:text-left">
+                        <h2 className="text-2xl md:text-4xl font-lexend font-bold mb-4">Want to reach your number <span className="text-emerald-400">3 years faster?</span></h2>
+                        <p className="text-slate-400 text-lg font-light leading-relaxed">
+                            Simulations are a great start, but execution is what matters. Get a custom audit of your taxes and allocation to optimize your path.
+                        </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                        <button onClick={() => window.open('https://calendly.com/capela625/review', '_blank')} className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-4 rounded-2xl transition-all shadow-lg shadow-emerald-900/40 active:scale-95 whitespace-nowrap">
+                            Book Strategy Session
+                        </button>
+                        <button onClick={() => window.open('https://labfab.discourse.group/', '_blank')} className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-2xl font-bold transition-all active:scale-95 whitespace-nowrap">
+                            Join the Community
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

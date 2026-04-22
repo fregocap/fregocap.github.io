@@ -16,10 +16,13 @@ const About: React.FC = () => {
                 </div>
                 <div className="space-y-8">
                     <h1 className="text-4xl md:text-6xl font-lexend font-bold text-slate-900 leading-tight">
-                        I'm Fabio, and I <span className="relative inline-block text-emerald-600">quit<span className="absolute bottom-2 left-0 w-full h-3 bg-emerald-200 -z-10 rounded-full opacity-60"></span></span> the grind.
+                        I'm Fabio, and I <span className="relative inline-block text-emerald-600">quantified<span className="absolute bottom-2 left-0 w-full h-3 bg-emerald-200 -z-10 rounded-full opacity-60"></span></span> my way to freedom.
                     </h1>
                     <p className="text-lg text-slate-600 leading-relaxed font-light">
-                        Ten years ago, I realized that financial freedom isn't about luck—it's about a clear, mathematical plan. I used these principles to buy back my <span className="font-bold text-slate-800 underline decoration-emerald-400 decoration-2 underline-offset-4">time</span> and now I help others do the same.
+                        With a background in <span className="font-bold text-slate-800">analytical engineering and strategic systems</span>, I realized ten years ago that financial independence isn't a pipe dream—it's an optimization problem. I applied the same data-driven principles I used in my professional career to buy back my <span className="font-bold text-slate-800 underline decoration-emerald-400 decoration-2 underline-offset-4">time</span> at age 38.
+                    </p>
+                    <p className="text-lg text-slate-600 leading-relaxed font-light">
+                        Today, I help others navigate the European financial landscape using the same high-trust, mathematically verified frameworks that allowed me to retire decades early.
                     </p>
                     <div className="flex flex-wrap gap-4 pt-4">
                         <div className="flex items-center gap-3 px-5 py-3 bg-emerald-50 text-emerald-700 rounded-2xl font-bold text-sm shadow-sm">
