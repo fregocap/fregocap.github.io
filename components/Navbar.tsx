@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
             <div className="bg-emerald-600 p-2 rounded-lg text-white">
               <i className="fa-solid fa-flask-vial text-xl"></i>
             </div>
-            <span className="font-lexend font-bold text-xl text-slate-800 tracking-tight lowercase">labfab.io</span>
+            <span className="font-lexend font-bold text-xl text-slate-800 tracking-tight lowercase">labfab.io •</span>
           </Link>
 
           {/* Desktop Menu */}
