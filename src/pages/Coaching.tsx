@@ -22,7 +22,7 @@ const Coaching: React.FC = () => {
                     I help high-earning professionals and analytical minds cut through the noise and design a mathematically sound roadmap to financial independence.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onClick={() => window.open('https://calendly.com/capela625/review', '_blank')} className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-10 py-5 rounded-2xl transition-all shadow-xl shadow-emerald-900/20 active:scale-95 flex items-center justify-center gap-3">
+                    <button onClick={() => window.open('https://calendly.com/capela625/30min', '_blank')} className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-10 py-5 rounded-2xl transition-all shadow-xl shadow-emerald-900/20 active:scale-95 flex items-center justify-center gap-3">
                         <i className="fa-regular fa-calendar-check"></i> Book a Free Discovery Call
                     </button>
                 </div>
