@@ -1,18 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import SEO from '../components/SEO';
 import NetWorthEvolution from '../components/NetWorthEvolution';
 
 const Portfolio: React.FC = () => {
     const { t } = useTranslation();
-
-    const data = [
-        { name: 'World Index (VWCE)', value: 80, color: '#10b981' },
-        { name: 'Emerging Markets', value: 10, color: '#3b82f6' },
-        { name: 'Bitcoin / Crypto', value: 5, color: '#f59e0b' },
-        { name: 'Cash / Savings', value: 5, color: '#64748b' },
-    ];
 
     return (
         <div className="max-w-6xl mx-auto py-16 px-4 md:px-0">
@@ -25,84 +17,60 @@ const Portfolio: React.FC = () => {
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 text-blue-600 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 border border-blue-500/20">
                     <i className="fa-solid fa-eye"></i> {t('portfolio.hero_badge', 'Transparency Report')}
                 </div>
-                <h1 className="text-4xl md:text-5xl font-lexend font-extrabold text-slate-900 mb-6">{t('portfolio.title', 'Portfolio & Allocation')}</h1>
+                <h1 className="text-4xl md:text-5xl font-lexend font-extrabold text-slate-900 mb-6">{t('portfolio.title', 'FIRE Journey & Transparency')}</h1>
                 <p className="text-slate-500 text-lg max-w-2xl font-light leading-relaxed">
-                    {t('portfolio.subtitle', 'Following the Mustachian philosophy of transparency, this page shows my current investment strategy. I believe in simple, low-cost, global diversification.')}
+                    {t('portfolio.subtitle', 'Following the Mustachian philosophy of transparency, this page shows my real wealth trajectory and investment principles.')}
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                {/* Chart Section */}
-                <div className="lg:col-span-2 bg-white p-8 md:p-12 rounded-[3rem] border border-slate-200 shadow-sm">
-                    <h3 className="text-xl font-bold text-slate-800 mb-8 flex items-center gap-3">
-                        <i className="fa-solid fa-chart-pie text-emerald-500"></i> {t('portfolio.chart_title', 'Current Asset Allocation')}
-                    </h3>
-                    <div className="h-[400px] w-full">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <PieChart>
-                                <Pie
-                                    data={data}
-                                    cx="50%"
-                                    cy="50%"
-                                    innerRadius={80}
-                                    outerRadius={120}
-                                    paddingAngle={5}
-                                    dataKey="value"
-                                >
-                                    {data.map((entry, index) => (
-                                        <Cell key={`cell-${index}`} fill={entry.color} />
-                                    ))}
-                                </Pie>
-                                <Tooltip 
-                                    contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
-                                />
-                                <Legend verticalAlign="bottom" height={36}/>
-                            </PieChart>
-                        </ResponsiveContainer>
-                    </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-24">
+                {/* Info Section */}
+                <div className="bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-xl">
+                    <h4 className="font-bold mb-4 flex items-center gap-2">
+                        <i className="fa-solid fa-bullseye text-emerald-400"></i> {t('portfolio.strategy_title', 'The Strategy')}
+                    </h4>
+                    <p className="text-slate-400 text-sm leading-relaxed mb-6 font-light">
+                        {t('portfolio.strategy_desc', 'My strategy is built on three pillars:')}
+                    </p>
+                    <ul className="space-y-4 text-sm">
+                        <li className="flex items-start gap-3">
+                            <i className="fa-solid fa-check text-emerald-500 mt-1"></i>
+                            <span>{t('portfolio.pillar1', 'Minimize fees (under 0.22% TER)')}</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <i className="fa-solid fa-check text-emerald-500 mt-1"></i>
+                            <span>{t('portfolio.pillar2', 'Maximize diversification')}</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <i className="fa-solid fa-check text-emerald-500 mt-1"></i>
+                            <span>{t('portfolio.pillar3', 'Automated monthly contributions')}</span>
+                        </li>
+                    </ul>
                 </div>
 
-                {/* Info Section */}
-                <div className="space-y-8">
-                    <div className="bg-slate-900 text-white p-8 rounded-[2.5rem] shadow-xl">
-                        <h4 className="font-bold mb-4 flex items-center gap-2">
-                            <i className="fa-solid fa-bullseye text-emerald-400"></i> {t('portfolio.strategy_title', 'The Strategy')}
-                        </h4>
-                        <p className="text-slate-400 text-sm leading-relaxed mb-6 font-light">
-                            {t('portfolio.strategy_desc', 'My strategy is built on three pillars:')}
-                        </p>
-                        <ul className="space-y-4 text-sm">
-                            <li className="flex items-start gap-3">
-                                <i className="fa-solid fa-check text-emerald-500 mt-1"></i>
-                                <span>{t('portfolio.pillar1', 'Minimize fees (under 0.22% TER)')}</span>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <i className="fa-solid fa-check text-emerald-500 mt-1"></i>
-                                <span>{t('portfolio.pillar2', 'Maximize diversification')}</span>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <i className="fa-solid fa-check text-emerald-500 mt-1"></i>
-                                <span>{t('portfolio.pillar3', 'Automated monthly contributions')}</span>
-                            </li>
-                        </ul>
-                    </div>
+                <div className="bg-emerald-50 border border-emerald-100 p-8 rounded-[2.5rem]">
+                    <h4 className="font-bold text-emerald-900 mb-4 flex items-center gap-2">
+                        <i className="fa-solid fa-shield-halved text-emerald-600"></i> {t('portfolio.rebalancing_title', 'Rebalancing')}
+                    </h4>
+                    <p className="text-emerald-800/70 text-sm leading-relaxed font-light italic">
+                        {t('portfolio.rebalancing_quote', '"I rebalance only when asset classes drift more than 5% from their targets. This keeps trading costs low and emotions out of the equation."')}
+                    </p>
+                </div>
 
-                    <div className="bg-emerald-50 border border-emerald-100 p-8 rounded-[2.5rem]">
-                        <h4 className="font-bold text-emerald-900 mb-4 flex items-center gap-2">
-                            <i className="fa-solid fa-shield-halved text-emerald-600"></i> {t('portfolio.rebalancing_title', 'Rebalancing')}
-                        </h4>
-                        <p className="text-emerald-800/70 text-sm leading-relaxed font-light italic">
-                            {t('portfolio.rebalancing_quote', '"I rebalance only when asset classes drift more than 5% from their targets. This keeps trading costs low and emotions out of the equation."')}
-                        </p>
-                    </div>
+                <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm flex flex-col justify-center text-center">
+                    <div className="text-emerald-600 text-3xl font-lexend font-black mb-2">4%</div>
+                    <div className="text-slate-800 font-bold mb-4">Rule of Thumb</div>
+                    <p className="text-slate-500 text-xs leading-relaxed font-light italic">
+                        "The golden standard for safe withdrawal rates. I aim for an even more conservative 3.5% to ensure multi-generational survival."
+                    </p>
                 </div>
             </div>
 
             {/* Net Worth Evolution Section */}
             <div className="mt-24">
                 <div className="mb-10">
-                    <h2 className="text-3xl font-lexend font-bold text-slate-900 mb-2">Net Worth Growth</h2>
-                    <p className="text-slate-500">The power of consistent €10k monthly contributions combined with market returns.</p>
+                    <h2 className="text-3xl font-lexend font-bold text-slate-900 mb-2">{t('portfolio.nw_title')}</h2>
+                    <p className="text-slate-500">{t('portfolio.nw_subtitle')}</p>
                 </div>
                 <NetWorthEvolution />
             </div>

@@ -6,7 +6,8 @@ import {
     YAxis, 
     CartesianGrid, 
     Tooltip, 
-    ResponsiveContainer
+    ResponsiveContainer,
+    ReferenceLine
 } from 'recharts';
 import { useTranslation } from 'react-i18next';
 
@@ -156,7 +157,7 @@ const NetWorthEvolution: React.FC = () => {
 
                 <div className="h-[450px] w-full">
                     <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                        <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                             <defs>
                                 <linearGradient id="colorNw" x1="0" y1="0" x2="0" y2="1">
                                     <stop offset="5%" stopColor="#10b981" stopOpacity={0.1}/>
@@ -194,6 +195,19 @@ const NetWorthEvolution: React.FC = () => {
                                     const date = new Date(parseInt(year), parseInt(month) - 1);
                                     return date.toLocaleDateString(i18n.language, { month: 'long', year: 'numeric' });
                                 }}
+                            />
+                            <ReferenceLine 
+                                x="2025-01" 
+                                stroke="#059669" 
+                                strokeDasharray="5 5" 
+                                label={{ 
+                                    value: t('portfolio.nw_fire_start'), 
+                                    position: 'top', 
+                                    fill: '#059669', 
+                                    fontSize: 10, 
+                                    fontWeight: 'bold',
+                                    offset: 10
+                                }} 
                             />
                             <Area 
                                 type="monotone" 
