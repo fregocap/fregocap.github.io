@@ -1,17 +1,18 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { BLOG_POSTS } from '../../constants';
 import SEO from '../components/SEO';
 
 const Home: React.FC = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     return (
         <div className="space-y-16 md:space-y-24 pb-20">
             <SEO
-                title="Financial Independence Hub"
-                description="Empowering the next generation to reclaim their time through analytical wealth strategies. Learn about FIRE, investing, and lifestyle design."
+                title={t('hero.title_highlight')}
+                description={t('hero.description')}
             />
             <section className="relative min-h-[550px] md:h-[650px] flex items-center justify-center text-center overflow-hidden rounded-[2.5rem] mt-6 mx-2 md:mx-0 shadow-2xl">
                 <div className="absolute inset-0 z-0">
@@ -26,15 +27,15 @@ const Home: React.FC = () => {
 
                 <div className="relative z-10 max-w-4xl px-6 py-12 flex flex-col items-center">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 backdrop-blur-md border border-emerald-500/30 text-emerald-300 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-8 animate-bounce-subtle">
-                        <i className="fa-solid fa-flask"></i> labfab.io Strategic Advisor
+                        <i className="fa-solid fa-flask"></i> {t('hero.badge')}
                     </div>
 
                     <h1 className="text-4xl md:text-7xl font-lexend font-extrabold text-white mb-6 leading-[1.1] drop-shadow-2xl">
-                        Design Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">Financial Exit</span>
+                        {t('hero.title_main')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">{t('hero.title_highlight')}</span>
                     </h1>
 
                     <p className="text-lg md:text-xl text-slate-200 mb-10 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
-                        Reclaim your time with labfab.io. Join a community using analytical principles to achieve Financial Independence and early retirement.
+                        {t('hero.description')}
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto px-4 sm:px-0">
@@ -42,14 +43,14 @@ const Home: React.FC = () => {
                             onClick={() => navigate('/start')}
                             className="group bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-5 rounded-2xl font-bold transition-all shadow-xl shadow-emerald-900/40 flex items-center justify-center gap-3 active:scale-95"
                         >
-                            <span>Start Your Journey</span>
+                            <span>{t('hero.cta_primary')}</span>
                             <i className="fa-solid fa-compass group-hover:rotate-12 transition-transform"></i>
                         </button>
                         <button
                             onClick={() => navigate('/blog')}
                             className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-5 rounded-2xl font-bold transition-all active:scale-95"
                         >
-                            Read the Blog
+                            {t('hero.cta_secondary')}
                         </button>
                     </div>
                 </div>
@@ -58,11 +59,11 @@ const Home: React.FC = () => {
             <section className="px-4 md:px-0">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-lexend font-bold text-slate-900">Latest Insights</h2>
-                        <p className="text-slate-500 mt-2">New strategies from our financial research</p>
+                        <h2 className="text-3xl md:text-4xl font-lexend font-bold text-slate-900">{t('home.insights_title')}</h2>
+                        <p className="text-slate-500 mt-2">{t('home.insights_subtitle')}</p>
                     </div>
                     <button onClick={() => navigate('/blog')} className="text-emerald-600 font-bold hover:text-emerald-700 transition-colors flex items-center gap-2 group">
-                        View All Articles <i className="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        {t('home.insights_cta')} <i className="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                     </button>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -91,8 +92,8 @@ const Home: React.FC = () => {
             {/* Browse by Topic */}
             <section className="px-4 md:px-0">
                 <div className="mb-10">
-                    <h2 className="text-3xl md:text-4xl font-lexend font-bold text-slate-900">Browse by Topic</h2>
-                    <p className="text-slate-500 mt-2">Start with the fundamentals or dive into advanced strategy</p>
+                    <h2 className="text-3xl md:text-4xl font-lexend font-bold text-slate-900">{t('home.topics_title')}</h2>
+                    <p className="text-slate-500 mt-2">{t('home.topics_subtitle')}</p>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                     {[
@@ -119,13 +120,13 @@ const Home: React.FC = () => {
             <section className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-[3rem] p-10 md:p-16 text-white mx-2 md:mx-0 shadow-2xl shadow-emerald-900/30">
                 <div className="max-w-3xl mx-auto text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur border border-white/20 rounded-full text-sm font-bold mb-8">
-                        <i className="fa-regular fa-paper-plane"></i> Algorithmic Financial Freedom
+                        <i className="fa-regular fa-paper-plane"></i> {t('home.newsletter_badge')}
                     </div>
                     <h2 className="text-3xl md:text-5xl font-lexend font-extrabold mb-6 leading-tight">
-                        Weekly FIRE insights,<br className="hidden md:block" /> straight to your inbox
+                        {t('home.newsletter_title')}
                     </h2>
                     <p className="text-emerald-100 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
-                        Join hundreds of European investors getting actionable strategies on index investing, FIRE milestones, and early retirement planning every week.
+                        {t('home.newsletter_desc')}
                     </p>
                     <div className="w-full max-w-md mx-auto rounded-3xl overflow-hidden shadow-lg">
                         <iframe 
@@ -138,7 +139,7 @@ const Home: React.FC = () => {
                             title="Substack Newsletter"
                         ></iframe>
                     </div>
-                    <p className="text-emerald-200 text-xs mt-5 opacity-70">No spam. Unsubscribe any time.</p>
+                    <p className="text-emerald-200 text-xs mt-5 opacity-70">{t('home.newsletter_footer')}</p>
                 </div>
             </section>
 
@@ -149,20 +150,20 @@ const Home: React.FC = () => {
                     <div className="relative z-10 flex flex-col md:flex-row items-center gap-10 justify-between">
                         <div className="text-white max-w-lg">
                             <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-emerald-400 text-xs font-bold uppercase tracking-widest mb-6">
-                                <i className="fa-solid fa-users"></i> Community Forum
+                                <i className="fa-solid fa-users"></i> {t('home.forum_badge')}
                             </div>
                             <h2 className="text-3xl md:text-5xl font-lexend font-extrabold mb-6 leading-tight">
-                                Join the <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">LabFab</span> Forum
+                                {t('home.forum_title')}
                             </h2>
                             <p className="text-slate-400 text-lg leading-relaxed mb-8">
-                                Ask questions, share your FIRE journey, debate strategies, and connect with a community of European investors — all in one place.
+                                {t('home.forum_desc')}
                             </p>
                             <button
                                 onClick={() => window.open('https://labfab.discourse.group/', '_blank')}
                                 className="group bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-5 rounded-2xl transition-all shadow-lg shadow-emerald-900/30 inline-flex items-center gap-3 active:scale-95"
                             >
                                 <i className="fa-solid fa-comments"></i>
-                                Open the Forum
+                                {t('home.forum_cta')}
                                 <i className="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform text-sm"></i>
                             </button>
                         </div>

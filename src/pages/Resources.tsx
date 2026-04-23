@@ -1,24 +1,34 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
+import { LocalizedString } from '../../types';
 
 const Resources: React.FC = () => {
+    const { t, i18n } = useTranslation();
+
+    const getLocalized = (field: string | LocalizedString) => {
+        if (typeof field === 'string') return field;
+        const lang = i18n.language as keyof LocalizedString;
+        return field[lang] || field.en;
+    };
+
     const categories = [
         {
-            title: 'Investing & Brokers',
-            description: 'The foundation of your wealth building. These are the platforms I use and trust for long-term indexing.',
+            title: t('resources.cat1_title', 'Investing & Brokers'),
+            description: t('resources.cat1_desc', 'The foundation of your wealth building. These are the platforms I use and trust for long-term indexing.'),
             items: [
                 {
                     name: 'Interactive Brokers',
-                    tag: 'Best for EU Residents',
-                    description: 'The most professional and low-cost broker available in Europe. Access to all global markets and the lowest currency conversion fees.',
+                    tag: t('resources.tag_eu', 'Best for EU Residents'),
+                    description: t('resources.ibkr_desc', 'The most professional and low-cost broker available in Europe. Access to all global markets and the lowest currency conversion fees.'),
                     link: 'https://www.interactivebrokers.ie/',
                     icon: 'fa-chart-pie',
                     logoUrl: '/resources/stock-ib.jpg'
                 },
                 {
                     name: 'Trade Republic',
-                    tag: 'Best for Beginners',
-                    description: 'Extremely simple interface, automated savings plans for free, and currently offers 4% interest on uninvested cash.',
+                    tag: t('resources.tag_beginner', 'Best for Beginners'),
+                    description: t('resources.tr_desc', 'Extremely simple interface, automated savings plans for free, and currently offers 4% interest on uninvested cash.'),
                     link: 'https://traderepublic.com/',
                     icon: 'fa-mobile-screen-button',
                     logoUrl: '/resources/stock-tr.jpg'
@@ -26,21 +36,21 @@ const Resources: React.FC = () => {
             ]
         },
         {
-            title: 'Banking & Savings',
-            description: 'Where to keep your emergency fund and manage daily expenses while maximizing interest.',
+            title: t('resources.cat2_title', 'Banking & Savings'),
+            description: t('resources.cat2_desc', 'Where to keep your emergency fund and manage daily expenses while maximizing interest.'),
             items: [
                 {
                     name: 'Revolut',
-                    tag: 'Daily Management',
-                    description: 'Excellent for currency exchange and daily spending. Their "Flexible Accounts" offer competitive money market fund yields.',
+                    tag: t('resources.tag_daily', 'Daily Management'),
+                    description: t('resources.revolut_desc', 'Excellent for currency exchange and daily spending. Their "Flexible Accounts" offer competitive money market fund yields.'),
                     link: 'https://www.revolut.com/',
                     icon: 'fa-credit-card',
                     logoUrl: '/resources/stock-revolut.jpg'
                 },
                 {
                     name: 'N26',
-                    tag: 'Pure Digital Banking',
-                    description: 'A solid German bank account with a great app. Perfect for those who want a clean, no-nonsense banking experience.',
+                    tag: t('resources.tag_digital', 'Pure Digital Banking'),
+                    description: t('resources.n26_desc', 'A solid German bank account with a great app. Perfect for those who want a clean, no-nonsense banking experience.'),
                     link: 'https://n26.com/',
                     icon: 'fa-building-columns',
                     logoUrl: '/resources/stock-n26.jpg'
@@ -48,13 +58,13 @@ const Resources: React.FC = () => {
             ]
         },
         {
-            title: 'Recommended Books',
-            description: 'The most impactful reads that changed my perspective on money, time, and life.',
+            title: t('resources.cat3_title', 'Recommended Books'),
+            description: t('resources.cat3_desc', 'The most impactful reads that changed my perspective on money, time, and life.'),
             items: [
                 {
                     name: 'The Psychology of Money',
                     tag: 'Morgan Housel',
-                    description: 'Essential reading to understand that doing well with money has little to do with how smart you are and a lot to do with how you behave.',
+                    description: t('resources.book1_desc', 'Essential reading to understand that doing well with money has little to do with how smart you are and a lot to do with how you behave.'),
                     link: 'https://www.amazon.com/Psychology-Money-Timeless-lessons-happiness/dp/0857197681',
                     icon: 'fa-book-open',
                     logoUrl: '/resources/book-psychology.jpg'
@@ -62,7 +72,7 @@ const Resources: React.FC = () => {
                 {
                     name: 'The Simple Path to Wealth',
                     tag: 'JL Collins',
-                    description: 'The "Bible" of the FIRE movement. Although US-centric, the principles of low-cost indexing are universal.',
+                    description: t('resources.book2_desc', 'The "Bible" of the FIRE movement. Although US-centric, the principles of low-cost indexing are universal.'),
                     link: 'https://www.amazon.com/Simple-Path-Wealth-financial-independence/dp/1533667926',
                     icon: 'fa-book',
                     logoUrl: '/resources/book-simple-path.jpg'
@@ -74,19 +84,19 @@ const Resources: React.FC = () => {
     return (
         <div className="max-w-6xl mx-auto py-16 px-4 md:px-0">
             <SEO 
-                title="Resources & Tools I Use"
-                description="The exact brokers, banks, and books I use to manage my wealth and journey towards financial independence."
+                title={t('resources.seo_title', 'Resources & Tools I Use')}
+                description={t('resources.seo_desc', 'The exact brokers, banks, and books I use to manage my wealth and journey towards financial independence.')}
             />
 
             <div className="mb-16">
-                <h1 className="text-4xl md:text-5xl font-lexend font-extrabold text-slate-900 mb-6">My Setup & Resources</h1>
+                <h1 className="text-4xl md:text-5xl font-lexend font-extrabold text-slate-900 mb-6">{t('resources.title', 'My Setup & Resources')}</h1>
                 <p className="text-slate-500 text-lg max-w-2xl font-light leading-relaxed">
-                    Transparency is key. Here are the tools I personally use to manage my finances. I only recommend services I actually use and find valuable.
+                    {t('resources.subtitle', 'Transparency is key. Here are the tools I personally use to manage my finances. I only recommend services I actually use and find valuable.')}
                 </p>
                 <div className="mt-8 p-4 bg-amber-50 border border-amber-100 rounded-2xl flex items-start gap-4 text-amber-800 text-sm italic">
                     <i className="fa-solid fa-circle-info mt-1 text-amber-500"></i>
                     <p>
-                        Some of the links below are affiliate links. If you sign up using them, I may receive a small commission at no extra cost to you. This helps support labfab.io.
+                        {t('resources.affiliate_disclaimer', 'Some of the links below are affiliate links. If you sign up using them, I may receive a small commission at no extra cost to you. This helps support labfab.io.')}
                     </p>
                 </div>
             </div>
@@ -129,7 +139,7 @@ const Resources: React.FC = () => {
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center gap-2 text-emerald-600 font-bold hover:gap-3 transition-all"
                                     >
-                                        Visit {item.name} <i className="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                        {t('resources.visit', 'Visit')} {item.name} <i className="fa-solid fa-arrow-up-right-from-square text-xs"></i>
                                     </a>
                                 </div>
                             ))}
@@ -140,9 +150,9 @@ const Resources: React.FC = () => {
 
             <div className="mt-24 p-12 bg-slate-50 rounded-[3rem] border-2 border-dashed border-slate-200 text-center">
                 <i className="fa-solid fa-toolbox text-slate-300 text-4xl mb-6 block"></i>
-                <h3 className="text-2xl font-lexend font-bold text-slate-800 mb-2">Missing something?</h3>
+                <h3 className="text-2xl font-lexend font-bold text-slate-800 mb-2">{t('resources.missing_title', 'Missing something?')}</h3>
                 <p className="text-slate-500 max-w-md mx-auto mb-8">
-                    If you're looking for a specific tool or comparison that isn't listed here, let me know in the community forum.
+                    {t('resources.missing_desc', "If you're looking for a specific tool or comparison that isn't listed here, let me know in the community forum.")}
                 </p>
                 <a 
                     href="https://labfab.discourse.group/" 
@@ -150,7 +160,7 @@ const Resources: React.FC = () => {
                     rel="noopener noreferrer"
                     className="bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-slate-800 transition-all inline-block shadow-lg"
                 >
-                    Go to Forum
+                    {t('common.forum')}
                 </a>
             </div>
         </div>

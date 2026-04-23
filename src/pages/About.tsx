@@ -1,7 +1,10 @@
-
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import SEO from '../components/SEO';
 
 const About: React.FC = () => {
+    const { t } = useTranslation();
+
     return (
         <div className="py-12 px-4 md:px-0 max-w-5xl mx-auto space-y-20 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -10,40 +13,42 @@ const About: React.FC = () => {
                         <img src="/about_me.png" alt="Fabio" className="w-full h-full object-cover -rotate-3 hover:rotate-0 transition-transform duration-500" />
                     </div>
                     <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 hidden md:block">
-                        <div className="text-4xl font-lexend font-bold text-emerald-600 leading-none">Retired at 38</div>
-                        <div className="text-slate-400 text-sm font-medium mt-2">Founder of labfab.io</div>
+                        <div className="text-4xl font-lexend font-bold text-emerald-600 leading-none">{t('about.hero_badge_title', 'Retired at 38')}</div>
+                        <div className="text-slate-400 text-sm font-medium mt-2">{t('about.hero_badge_subtitle', 'Founder of labfab.io')}</div>
                     </div>
                 </div>
                 <div className="space-y-8">
                     <h1 className="text-4xl md:text-6xl font-lexend font-bold text-slate-900 leading-tight">
-                        I'm Fabio, and I <span className="relative inline-block text-emerald-600">quantified<span className="absolute bottom-2 left-0 w-full h-3 bg-emerald-200 -z-10 rounded-full opacity-60"></span></span> my way to freedom.
+                        {t('about.title_prefix', "I'm Fabio, and I")} <span className="relative inline-block text-emerald-600">{t('about.title_highlight', 'quantified')}<span className="absolute bottom-2 left-0 w-full h-3 bg-emerald-200 -z-10 rounded-full opacity-60"></span></span> {t('about.title_suffix', 'my way to freedom.')}
                     </h1>
-                    <p className="text-lg text-slate-600 leading-relaxed font-light">
-                        With a <span className="font-bold text-slate-800">PhD in Theoretical Physics</span> and a background in strategic systems, I realized ten years ago that financial independence isn't about luck—it's an optimization problem. I applied the same rigorous analytical principles I used in <a href="https://arxiv.org/search/?searchtype=author&query=Capela%2C+F" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline decoration-emerald-400 decoration-2 underline-offset-4">scientific research</a> to buy back my <span className="font-bold text-slate-800 underline decoration-emerald-400 decoration-2 underline-offset-4">time</span> at age 38.
-                    </p>
-                    <p className="text-lg text-slate-600 leading-relaxed font-light">
-                        Today, I help others navigate the European financial landscape using the same high-trust, mathematically verified frameworks that allowed me to retire decades early.
-                    </p>
+                    <div className="space-y-6">
+                        <p className="text-lg text-slate-600 leading-relaxed font-light">
+                            {t('about.bio_p1', 'With a PhD in Theoretical Physics and a background in strategic systems, I realized ten years ago that financial independence isn\'t about luck—it\'s an optimization problem. I applied the same rigorous analytical principles I used in scientific research to buy back my time at age 38.')}
+                        </p>
+                        <p className="text-lg text-slate-600 leading-relaxed font-light">
+                            {t('about.bio_p2', 'Today, I help others navigate the European financial landscape using the same high-trust, mathematically verified frameworks that allowed me to retire decades early.')}
+                        </p>
+                    </div>
                     <div className="flex flex-wrap gap-4 pt-4">
                         <div className="flex items-center gap-3 px-5 py-3 bg-emerald-50 text-emerald-700 rounded-2xl font-bold text-sm shadow-sm">
-                            <i className="fa-solid fa-chart-simple"></i> Math Focused
+                            <i className="fa-solid fa-chart-simple"></i> {t('about.tag_math', 'Math Focused')}
                         </div>
                         <div className="flex items-center gap-3 px-5 py-3 bg-blue-50 text-blue-700 rounded-2xl font-bold text-sm shadow-sm">
-                            <i className="fa-solid fa-check"></i> Proven Results
+                            <i className="fa-solid fa-check"></i> {t('about.tag_results', 'Proven Results')}
                         </div>
                     </div>
                 </div>
             </div>
 
             <div className="bg-white p-8 md:p-16 rounded-[3.5rem] border border-slate-200 shadow-sm">
-                <h2 className="text-3xl md:text-4xl font-lexend font-bold text-center mb-20">My Journey</h2>
+                <h2 className="text-3xl md:text-4xl font-lexend font-bold text-center mb-20">{t('about.journey_title', 'My Journey')}</h2>
                 <div className="space-y-12 relative">
                     <div className="absolute left-[23px] top-0 bottom-0 w-px bg-slate-100 hidden md:block"></div>
                     {[
-                        { year: '2014', title: 'The Start', desc: 'Discovered the FIRE movement and began tracking every dollar.', icon: 'fa-lightbulb', color: 'bg-emerald-100 text-emerald-600' },
-                        { year: '2017', title: 'Optimization', desc: 'Maximized savings and investment returns through simple, effective strategies.', icon: 'fa-gears', color: 'bg-blue-100 text-blue-600' },
-                        { year: '2020', title: 'Financial Freedom', desc: 'Reached my FIRE number and officially transitioned to early retirement.', icon: 'fa-square-check', color: 'bg-indigo-100 text-indigo-600' },
-                        { year: '2024', title: 'labfab.io Launch', desc: 'Sharing the exact blueprints and systems with a global community.', icon: 'fa-share-nodes', color: 'bg-orange-100 text-orange-600' }
+                        { year: '2014', title: t('about.step1_title', 'The Start'), desc: t('about.step1_desc', 'Discovered the FIRE movement and began tracking every dollar.'), icon: 'fa-lightbulb', color: 'bg-emerald-100 text-emerald-600' },
+                        { year: '2017', title: t('about.step2_title', 'Optimization'), desc: t('about.step2_desc', 'Maximized savings and investment returns through simple, effective strategies.'), icon: 'fa-gears', color: 'bg-blue-100 text-blue-600' },
+                        { year: '2020', title: t('about.step3_title', 'Financial Freedom'), desc: t('about.step3_desc', 'Reached my FIRE number and officially transitioned to early retirement.'), icon: 'fa-square-check', color: 'bg-indigo-100 text-indigo-600' },
+                        { year: '2024', title: t('about.step4_title', 'labfab.io Launch'), desc: t('about.step4_desc', 'Sharing the exact blueprints and systems with a global community.'), icon: 'fa-share-nodes', color: 'bg-orange-100 text-orange-600' }
                     ].map((step, i) => (
                         <div key={i} className="flex flex-col md:flex-row gap-6 md:gap-12 group">
                             <div className="flex items-center md:flex-col md:items-center">
