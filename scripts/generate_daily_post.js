@@ -78,16 +78,17 @@ CRITICAL RULES FOR "content":
    - Headings: <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">
    - Info boxes: <div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">...</div>
 5. Ensure the Portuguese (pt) translation is high-quality Continental Portuguese (not Brazilian).
+6. DO NOT include the "Next Steps" or call-to-action links at the end of the content; the script will handle this automatically.
 `;
 
-  const MODELS = ['gemini-2.0-flash', 'gemini-1.5-pro']; // Flash is faster for multi-lang gen
+  const MODELS = ['gemini-2.0-flash', 'gemini-1.5-pro'];
   for (const model of MODELS) {
     try {
       console.log(`Trying model: ${model}...`);
       const response = await ai.models.generateContent({
         model,
         contents: prompt,
-        config: { responseMimeType: "application/json" }
+        config: { response MimeType: "application/json" }
       });
       return JSON.parse(response.text);
     } catch (err) {
@@ -97,15 +98,69 @@ CRITICAL RULES FOR "content":
   throw new Error("Failed to generate content with any model");
 }
 
+function getNextStepsHtml(lang) {
+  const translations = {
+    en: {
+      title: 'Next Steps: Take Action',
+      tools: 'FI Projector',
+      tools_desc: 'Run your numbers.',
+      resources: 'Broker Links',
+      resources_desc: 'Direct sign-up pages.',
+      coaching: 'Setup Review',
+      coaching_desc: "I'll audit your setup."
+    },
+    pt: {
+      title: 'Próximos Passos: Entre em Ação',
+      tools: 'Projetor FI',
+      tools_desc: 'Calcule os seus números.',
+      resources: 'Corretoras',
+      resources_desc: 'Links diretos de registo.',
+      coaching: 'Revisão de Setup',
+      coaching_desc: 'Vou auditar o seu setup.'
+    },
+    fr: {
+      title: 'Prochaines étapes : Passez à l\'action',
+      tools: 'Projecteur FI',
+      tools_desc: 'Calculez vos chiffres.',
+      resources: 'Courtiers',
+      resources_desc: 'Liens d\'inscription directs.',
+      coaching: 'Audit de setup',
+      coaching_desc: 'J\'analyserai votre setup.'
+    }
+  };
+
+  const t = translations[lang] || translations.en;
+
+  return `
+<div class="mt-12 p-8 bg-emerald-50 rounded-3xl border border-emerald-100 shadow-sm">
+  <h3 class="text-xl font-lexend font-bold text-slate-900 mb-4">${t.title}</h3>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <a href="/resources" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+      <i class="fa-solid fa-toolbox text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
+      <span class="font-bold text-slate-800">${t.resources}</span>
+      <span class="text-xs text-slate-500">${t.resources_desc}</span>
+    </a>
+    <a href="/tools" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+      <i class="fa-solid fa-calculator text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
+      <span class="font-bold text-slate-800">${t.tools}</span>
+      <span class="text-xs text-slate-500">${t.tools_desc}</span>
+    </a>
+    <a href="/coaching" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+      <i class="fa-solid fa-user-tie text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
+      <span class="font-bold text-slate-800">${t.coaching}</span>
+      <span class="text-xs text-slate-500">${t.coaching_desc}</span>
+    </a>
+  </div>
+</div>`;
+}
+
 async function main() {
   const constantsPath = path.join(__dirname, '../constants.tsx');
   let content = fs.readFileSync(constantsPath, 'utf-8');
   
-  // Extract existing titles to avoid repetition (handling both string and object formats)
   const existingTitles = [...content.matchAll(/title:\s*({[^}]+}|'[^']+')/g)].map(m => {
       const match = m[1];
       if (match.startsWith('{')) {
-          // It's an object, try to grab 'en'
           const enMatch = match.match(/en:\s*'([^']+)'/);
           return enMatch ? enMatch[1] : '';
       }
@@ -122,8 +177,12 @@ async function main() {
 
   const dateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
-  // Escape backticks and dollar signs
   const escapeStr = (str) => str.replace(/`/g, '\\`').replace(/\$/g, '\\$').replace(/'/g, "\\'");
+
+  // Append next steps to content
+  const contentEn = postData.content.en + getNextStepsHtml('en');
+  const contentPt = postData.content.pt + getNextStepsHtml('pt');
+  const contentFr = postData.content.fr + getNextStepsHtml('fr');
 
   const newPostBlock = `  {
     id: '${newId}',
@@ -139,9 +198,9 @@ async function main() {
       fr: '${escapeStr(postData.excerpt.fr)}'
     },
     content: {
-      en: \`${postData.content.en.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`,
-      pt: \`${postData.content.pt.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`,
-      fr: \`${postData.content.fr.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`
+      en: \`${contentEn.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`,
+      pt: \`${contentPt.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`,
+      fr: \`${contentFr.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`
     },
     category: {
       en: '${escapeStr(postData.category.en)}',
@@ -163,7 +222,7 @@ async function main() {
 
   content = content.slice(0, arrayStart) + '\n' + newPostBlock + ',' + content.slice(arrayStart);
   fs.writeFileSync(constantsPath, content);
-  console.log("Updated constants.tsx successfully with multi-language post.");
+  console.log("Updated constants.tsx successfully with multi-language post and CTAs.");
 
   // Send Telegram message
   console.log("Sending Telegram notification...");

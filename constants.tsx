@@ -31,7 +31,7 @@ export const BLOG_POSTS: BlogPost[] = [
   <div class="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-[60px]"></div>
   <h3 class="text-2xl font-lexend font-bold mb-4">Still undecided on your setup?</h3>
   <p class="text-slate-400 mb-8 font-light italic">"The broker you choose is the engine of your wealth. Let's make sure it's the right one for your specific tax situation."</p>
-  <a href="#/coaching" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-4 rounded-2xl transition-all shadow-lg active:scale-95">
+  <a href="/coaching" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 py-4 rounded-2xl transition-all shadow-lg active:scale-95">
     Book a Setup Audit <i class="fa-solid fa-user-tie"></i>
   </a>
 </div>
@@ -42,17 +42,17 @@ export const BLOG_POSTS: BlogPost[] = [
 <div class="mt-12 p-8 bg-emerald-50 rounded-3xl border border-emerald-100 shadow-sm">
   <h3 class="text-xl font-lexend font-bold text-slate-900 mb-4">Next Steps: Get Your Tools</h3>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <a href="#/resources" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/resources" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-toolbox text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">Broker Links</span>
       <span class="text-xs text-slate-500">Direct sign-up pages.</span>
     </a>
-    <a href="#/tools" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/tools" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-calculator text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">FI Projector</span>
       <span class="text-xs text-slate-500">Run your numbers.</span>
     </a>
-    <a href="#/coaching" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/coaching" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-user-tie text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">Setup Review</span>
       <span class="text-xs text-slate-500">I'll audit your setup.</span>
@@ -95,7 +95,7 @@ export const BLOG_POSTS: BlogPost[] = [
     </div>
   </div>
   <div class="mt-6 text-center">
-    <a href="#/resources" class="text-xs font-bold text-slate-400 uppercase tracking-widest hover:text-emerald-600 transition-colors">See my full setup & resources</a>
+    <a href="/resources" class="text-xs font-bold text-slate-400 uppercase tracking-widest hover:text-emerald-600 transition-colors">See my full setup & resources</a>
   </div>
 </div>
 
@@ -157,17 +157,17 @@ export const BLOG_POSTS: BlogPost[] = [
 <div class="mt-12 p-8 bg-emerald-50 rounded-3xl border border-emerald-100 shadow-sm">
   <h3 class="text-xl font-lexend font-bold text-slate-900 mb-4">Next Steps: Secure Your Infrastructure</h3>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <a href="#/resources" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/resources" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-toolbox text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">Resources</span>
       <span class="text-xs text-slate-500">My setup & direct links.</span>
     </a>
-    <a href="#/tools" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/tools" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-calculator text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">FIRE Math</span>
       <span class="text-xs text-slate-500">Calculators for your plan.</span>
     </a>
-    <a href="#/coaching" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/coaching" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-user-tie text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">1-on-1 Help</span>
       <span class="text-xs text-slate-500">Let's find the best path.</span>
@@ -269,7 +269,7 @@ export const BLOG_POSTS: BlogPost[] = [
     <p class="text-emerald-100/70 text-lg mb-8 font-light">
       Stop guessing and start quantifying. Use our data-driven calculator to project your exact path to financial independence.
     </p>
-    <a href="#/tools" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-8 py-4 rounded-2xl transition-all shadow-lg shadow-emerald-900/40 active:scale-95">
+    <a href="/tools" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-8 py-4 rounded-2xl transition-all shadow-lg shadow-emerald-900/40 active:scale-95">
       Run Your Numbers <i class="fa-solid fa-calculator"></i>
     </a>
   </div>
@@ -278,17 +278,17 @@ export const BLOG_POSTS: BlogPost[] = [
 <div class="mt-12 p-8 bg-emerald-50 rounded-3xl border border-emerald-100 shadow-sm">
   <h3 class="text-xl font-lexend font-bold text-slate-900 mb-4">Next Steps: Start Your Strategy</h3>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <a href="#/tools" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/tools" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-calculator text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">FI Calculators</span>
       <span class="text-xs text-slate-500">Run your own FIRE numbers.</span>
     </a>
-    <a href="#/resources" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/resources" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-toolbox text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">My Setup</span>
       <span class="text-xs text-slate-500">The tools and brokers I use.</span>
     </a>
-    <a href="#/coaching" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/coaching" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-user-tie text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">1-on-1 Coaching</span>
       <span class="text-xs text-slate-500">Accelerate your journey.</span>
@@ -342,17 +342,17 @@ export const BLOG_POSTS: BlogPost[] = [
 <div class="mt-12 p-8 bg-emerald-50 rounded-3xl border border-emerald-100 shadow-sm">
   <h3 class="text-xl font-lexend font-bold text-slate-900 mb-4">Next Steps: Design Your Life</h3>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <a href="#/coaching" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/coaching" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-user-tie text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">1-on-1 Mentoring</span>
       <span class="text-xs text-slate-500">Define your life's work.</span>
     </a>
-    <a href="#/portfolio" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/portfolio" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-chart-pie text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">My Strategy</span>
       <span class="text-xs text-slate-500">How I build for freedom.</span>
     </a>
-    <a href="#/start" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/start" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-compass text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">Start Here</span>
       <span class="text-xs text-slate-500">The path from zero to FI.</span>
@@ -376,17 +376,17 @@ export const BLOG_POSTS: BlogPost[] = [
 <div class="mt-12 p-8 bg-emerald-50 rounded-3xl border border-emerald-100 shadow-sm">
   <h3 class="text-xl font-lexend font-bold text-slate-900 mb-4">Next Steps: Optimize Your Path</h3>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <a href="#/tools" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/tools" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-calculator text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">Savings Calculator</span>
       <span class="text-xs text-slate-500">How fast can you hit FI?</span>
     </a>
-    <a href="#/resources" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/resources" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-toolbox text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">Best Brokers</span>
       <span class="text-xs text-slate-500">Low-cost EU platforms.</span>
     </a>
-    <a href="#/coaching" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/coaching" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-user-tie text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">Consulting</span>
       <span class="text-xs text-slate-500">Personalized wealth plan.</span>
@@ -560,17 +560,17 @@ export const BLOG_POSTS: BlogPost[] = [
 <div class="mt-12 p-8 bg-emerald-50 rounded-3xl border border-emerald-100 shadow-sm">
   <h3 class="text-xl font-lexend font-bold text-slate-900 mb-4">Next Steps: Take Action</h3>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <a href="#/resources" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/resources" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-toolbox text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">Best Brokers</span>
       <span class="text-xs text-slate-500">Where I invest my money.</span>
     </a>
-    <a href="#/tools" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/tools" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-calculator text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">Tax Optimization</span>
       <span class="text-xs text-slate-500">Minimize your drag.</span>
     </a>
-    <a href="#/coaching" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
+    <a href="/coaching" class="flex flex-col gap-2 p-4 bg-white rounded-2xl border border-emerald-100 hover:border-emerald-300 transition-all group no-underline">
       <i class="fa-solid fa-user-tie text-emerald-600 text-xl group-hover:scale-110 transition-transform"></i>
       <span class="font-bold text-slate-800">Personal Review</span>
       <span class="text-xs text-slate-500">Let's audit your portfolio.</span>
