@@ -3,10 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BLOG_POSTS } from '../../constants';
 import SEO from '../components/SEO';
+import { LocalizedString } from '../../types';
 
 const Home: React.FC = () => {
     const navigate = useNavigate();
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+
+    const getLocalized = (field: string | LocalizedString) => {
+        if (typeof field === 'string') return field;
+        const lang = i18n.language as keyof LocalizedString;
+        return field[lang] || field.en;
+    };
 
     return (
         <div className="space-y-16 md:space-y-24 pb-20">
@@ -74,13 +81,13 @@ const Home: React.FC = () => {
                             className="cursor-pointer group bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-200 transition-all hover:shadow-2xl hover:-translate-y-2"
                         >
                             <div className="h-56 overflow-hidden relative">
-                                <img src={post.imageUrl} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1.5 rounded-xl text-[10px] font-bold uppercase tracking-widest text-emerald-700 shadow-sm">{post.category}</div>
+                                <img src={post.imageUrl} alt={getLocalized(post.title)} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur px-3 py-1.5 rounded-xl text-[10px] font-bold uppercase tracking-widest text-emerald-700 shadow-sm">{getLocalized(post.category)}</div>
                             </div>
                             <div className="p-8">
                                 <div className="text-xs text-slate-400 mb-3 font-semibold uppercase tracking-wider">{post.date} • {post.readTime} read</div>
-                                <h3 className="text-xl font-lexend font-bold text-slate-800 mb-4 group-hover:text-emerald-600 transition-colors line-clamp-2">{post.title}</h3>
-                                <p className="text-slate-500 text-sm line-clamp-3 mb-6 leading-relaxed">{post.excerpt}</p>
+                                <h3 className="text-xl font-lexend font-bold text-slate-800 mb-4 group-hover:text-emerald-600 transition-colors line-clamp-2">{getLocalized(post.title)}</h3>
+                                <p className="text-slate-500 text-sm line-clamp-3 mb-6 leading-relaxed">{getLocalized(post.excerpt)}</p>
                                 <div className="text-emerald-600 font-bold text-sm flex items-center gap-2 hover:gap-3 transition-all">Read More <i className="fa-solid fa-chevron-right text-[10px]"></i></div>
                             </div>
                         </div>
