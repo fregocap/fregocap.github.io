@@ -55,35 +55,32 @@ ${titlesList}
 
 Pick a completely fresh angle that is NOT on this list.
 
-The post must be formatted as a JSON object strictly adhering to this schema:
+The post must be formatted as a JSON object strictly adhering to this schema. 
+IMPORTANT: You must provide translations for "title", "excerpt", "category", and "content" in English (en), Portuguese (pt - continental), and French (fr).
+
 {
-  "title": "A clear, punchy title — for Foundation posts, match it to what people actually Google",
-  "slug": "url-friendly-slug-based-on-title",
-  "excerpt": "A 1-2 sentence summary of the post",
-  "category": "Foundation | Mindset | Lifestyle | Investing | Strategy (choose based on post type above)",
+  "title": { "en": "...", "pt": "...", "fr": "..." },
+  "slug": "url-friendly-slug-based-on-english-title",
+  "excerpt": { "en": "...", "pt": "...", "fr": "..." },
+  "category": { "en": "Foundation | Mindset | Lifestyle | Investing | Strategy", "pt": "...", "fr": "..." },
   "readTime": "Estimated read time (e.g. 6 min)",
-  "imageUrl": "A main cover image URL. USE EXACTLY THIS FORMAT: https://picsum.photos/seed/UNIQUE_SLUG_HERE-cover/1000/600 (replace UNIQUE_SLUG_HERE with the post's generated slug)",
-  "content": "An HTML string containing the full markdown/HTML for the blog post."
+  "imageUrl": "A main cover image URL. USE EXACTLY THIS FORMAT: https://picsum.photos/seed/UNIQUE_SLUG_HERE-cover/1000/600",
+  "content": { "en": "HTML string", "pt": "HTML string", "fr": "HTML string" }
 }
 
 CRITICAL RULES FOR "content":
 1. Write at least 4-5 substantial paragraphs with real, actionable advice.
 2. Include at least two <h2> sections.
-3. You MUST INCLUDE AT LEAST ONE INLINE IMAGE in the body of the content using the same picsum format.
-   Example inline image:
-   <div class="my-10 rounded-3xl overflow-hidden shadow-xl">
-     <img src="https://picsum.photos/seed/UNIQUE_SLUG_HERE-inline/800/400" alt="Description" class="w-full h-auto object-cover max-h-96" />
-     <p class="text-center text-slate-500 text-sm mt-3 italic">Write an engaging caption here.</p>
-   </div>
-   Replace UNIQUE_SLUG_HERE with the post's generated slug so it doesn't change on reload.
+3. You MUST INCLUDE AT LEAST ONE INLINE IMAGE in the body of the content using the picsum format.
 4. Use Tailwind CSS classes for styling text exactly matching this style:
    - Paragraphs: <p class="text-slate-600 leading-relaxed mb-6">
    - Quotes: <p class="text-xl text-slate-600 leading-relaxed mb-8 font-light italic border-l-4 border-emerald-500 pl-6 py-2">
    - Headings: <h2 class="text-3xl font-lexend font-bold text-slate-900 mt-12 mb-6">
    - Info boxes: <div class="bg-slate-50 rounded-3xl p-8 my-10 border border-slate-200">...</div>
+5. Ensure the Portuguese (pt) translation is high-quality Continental Portuguese (not Brazilian).
 `;
 
-  const MODELS = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-2.0-flash-lite'];
+  const MODELS = ['gemini-2.0-flash', 'gemini-1.5-pro']; // Flash is faster for multi-lang gen
   for (const model of MODELS) {
     try {
       console.log(`Trying model: ${model}...`);
@@ -94,26 +91,30 @@ CRITICAL RULES FOR "content":
       });
       return JSON.parse(response.text);
     } catch (err) {
-      const isRetryable = err?.status === 503 || err?.status === 429;
-      if (isRetryable && model !== MODELS[MODELS.length - 1]) {
-        console.log(`${model} overloaded, falling back to next model...`);
-      } else {
-        throw err;
-      }
+      console.error(`Error with ${model}:`, err);
     }
   }
+  throw new Error("Failed to generate content with any model");
 }
 
 async function main() {
   const constantsPath = path.join(__dirname, '../constants.tsx');
   let content = fs.readFileSync(constantsPath, 'utf-8');
   
-  // Extract existing titles to avoid repetition
-  const existingTitles = [...content.matchAll(/title:\s*'([^']+)'/g)].map(m => m[1]);
+  // Extract existing titles to avoid repetition (handling both string and object formats)
+  const existingTitles = [...content.matchAll(/title:\s*({[^}]+}|'[^']+')/g)].map(m => {
+      const match = m[1];
+      if (match.startsWith('{')) {
+          // It's an object, try to grab 'en'
+          const enMatch = match.match(/en:\s*'([^']+)'/);
+          return enMatch ? enMatch[1] : '';
+      }
+      return match.replace(/'/g, "");
+  }).filter(t => t !== '');
 
-  console.log("Generating new blog post via Gemini...");
+  console.log("Generating new multi-language blog post via Gemini...");
   const postData = await generatePost(existingTitles);
-  console.log("Generated post:", postData.title);
+  console.log("Generated post:", postData.title.en);
   
   const ids = [...content.matchAll(/id:\s*'(\d+)'/g)].map(m => parseInt(m[1]));
   const maxId = ids.length > 0 ? Math.max(...ids) : 0;
@@ -121,18 +122,32 @@ async function main() {
 
   const dateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
-  // Escape backticks and dollar signs in content
-  const safeContent = postData.content.replace(/`/g, '\\`').replace(/\$/g, '\\$');
+  // Escape backticks and dollar signs
+  const escapeStr = (str) => str.replace(/`/g, '\\`').replace(/\$/g, '\\$').replace(/'/g, "\\'");
 
   const newPostBlock = `  {
     id: '${newId}',
     slug: '${postData.slug}',
-    title: '${postData.title.replace(/'/g, "\\'")}',
-    excerpt: '${postData.excerpt.replace(/'/g, "\\'")}',
-    content: \`
-${safeContent}
-    \`,
-    category: '${postData.category}',
+    title: {
+      en: '${escapeStr(postData.title.en)}',
+      pt: '${escapeStr(postData.title.pt)}',
+      fr: '${escapeStr(postData.title.fr)}'
+    },
+    excerpt: {
+      en: '${escapeStr(postData.excerpt.en)}',
+      pt: '${escapeStr(postData.excerpt.pt)}',
+      fr: '${escapeStr(postData.excerpt.fr)}'
+    },
+    content: {
+      en: \`${postData.content.en.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`,
+      pt: \`${postData.content.pt.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`,
+      fr: \`${postData.content.fr.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`
+    },
+    category: {
+      en: '${escapeStr(postData.category.en)}',
+      pt: '${escapeStr(postData.category.pt)}',
+      fr: '${escapeStr(postData.category.fr)}'
+    },
     date: '${dateStr}',
     author: 'Fabio',
     readTime: '${postData.readTime}',
@@ -148,29 +163,22 @@ ${safeContent}
 
   content = content.slice(0, arrayStart) + '\n' + newPostBlock + ',' + content.slice(arrayStart);
   fs.writeFileSync(constantsPath, content);
-  console.log("Updated constants.tsx successfully.");
+  console.log("Updated constants.tsx successfully with multi-language post.");
 
   // Send Telegram message
   console.log("Sending Telegram notification...");
   const tgUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
   const tgPayload = {
     chat_id: TELEGRAM_CHAT_ID,
-    text: `✅ New FIRE Blog Post Generated!\n\n<b>Title:</b> ${postData.title}\n<b>Category:</b> ${postData.category}\n\nIt has been committed and will be live on your site shortly.`,
+    text: `✅ New Multi-Language Post!\n\n<b>EN:</b> ${postData.title.en}\n<b>PT:</b> ${postData.title.pt}\n<b>FR:</b> ${postData.title.fr}\n\nLive shortly on labfab.io`,
     parse_mode: "HTML"
   };
 
-  const tgRes = await fetch(tgUrl, {
+  await fetch(tgUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(tgPayload)
   });
-
-  if (!tgRes.ok) {
-    console.error("Failed to send Telegram message", await tgRes.text());
-    process.exit(1);
-  } else {
-    console.log("Telegram notification sent.");
-  }
 }
 
 main().catch(err => {
