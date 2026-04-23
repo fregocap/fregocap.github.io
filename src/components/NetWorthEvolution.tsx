@@ -56,12 +56,12 @@ const NetWorthEvolution: React.FC = () => {
                     let contribution = 0;
                     let withdrawal = 0;
 
-                    if (year < 2024) {
-                        // Accumulation phase: Add €10k
+                    if (year < 2025) {
+                        // Accumulation phase: Add €10k (Stopped in 2024, so for years < 2025)
                         contribution = monthlyContribution;
                         currentNetWorth += contribution;
                     } else {
-                        // Withdrawal phase: Subtract 3.5% / 12
+                        // Withdrawal phase: Subtract 3.5% / 12 (Starts in 2025)
                         withdrawal = (currentNetWorth * annualWithdrawalRate) / 12;
                         currentNetWorth -= withdrawal;
                     }
@@ -88,7 +88,7 @@ const NetWorthEvolution: React.FC = () => {
         };
 
         fetchData();
-    }, [t]);
+    }, [t, i18n.language]);
 
     const formatCurrency = (value: number) => {
         return new Intl.NumberFormat(i18n.language === 'en' ? 'en-EU' : i18n.language, {
@@ -129,7 +129,7 @@ const NetWorthEvolution: React.FC = () => {
                 <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
                     <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">{t('portfolio.nw_invested')}</div>
                     <div className="text-3xl font-lexend font-extrabold text-slate-800">{formatCurrency(totalInvested)}</div>
-                    <div className="text-xs text-slate-500 mt-2">{t('portfolio.nw_contributions')}</div>
+                    <div className="text-xs text-slate-500 mt-2">{t('portfolio.nw_contributions').replace('2023', '2024')}</div>
                 </div>
                 <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
                     <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">{t('portfolio.nw_gains')}</div>
@@ -144,8 +144,8 @@ const NetWorthEvolution: React.FC = () => {
                 
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4 relative z-10">
                     <div>
-                        <h3 className="text-2xl font-lexend font-bold text-slate-900">{t('portfolio.nw_path_title')}</h3>
-                        <p className="text-slate-500 font-light mt-1">{t('portfolio.nw_path_desc')}</p>
+                        <h3 className="text-2xl font-lexend font-bold text-slate-900">{t('portfolio.nw_title')}</h3>
+                        <p className="text-slate-500 font-light mt-1">{t('portfolio.nw_path_desc').replace('2024', '2025')}</p>
                     </div>
                     <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-xl border border-slate-100 text-xs font-bold text-slate-500">
                         <i className="fa-solid fa-calendar-days text-emerald-500"></i>
