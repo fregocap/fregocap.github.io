@@ -88,7 +88,7 @@ CRITICAL RULES FOR "content":
       const response = await ai.models.generateContent({
         model,
         contents: prompt,
-        config: { response MimeType: "application/json" }
+        config: { responseMimeType: "application/json" }
       });
       return JSON.parse(response.text);
     } catch (err) {
