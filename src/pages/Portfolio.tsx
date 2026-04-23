@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
 import SEO from '../components/SEO';
+import NetWorthEvolution from '../components/NetWorthEvolution';
 
 const Portfolio: React.FC = () => {
     const { t } = useTranslation();
@@ -95,6 +96,15 @@ const Portfolio: React.FC = () => {
                         </p>
                     </div>
                 </div>
+            </div>
+
+            {/* Net Worth Evolution Section */}
+            <div className="mt-24">
+                <div className="mb-10">
+                    <h2 className="text-3xl font-lexend font-bold text-slate-900 mb-2">Net Worth Growth</h2>
+                    <p className="text-slate-500">The power of consistent €10k monthly contributions combined with market returns.</p>
+                </div>
+                <NetWorthEvolution />
             </div>
 
             {/* Monthly Progress Placeholder */}
