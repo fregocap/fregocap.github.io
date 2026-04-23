@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
     AreaChart, 
     Area, 
@@ -6,8 +6,7 @@ import {
     YAxis, 
     CartesianGrid, 
     Tooltip, 
-    ResponsiveContainer,
-    ReferenceLine
+    ResponsiveContainer
 } from 'recharts';
 import { useTranslation } from 'react-i18next';
 
@@ -15,11 +14,11 @@ interface MonthlyData {
     month: string;
     netWorth: number;
     contribution: number;
-    returns: number;
+    withdrawal: number;
 }
 
 const NetWorthEvolution: React.FC = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [data, setData] = useState<MonthlyData[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -33,10 +32,9 @@ const NetWorthEvolution: React.FC = () => {
                 const returns = json.returns;
 
                 const startDate = new Date('2017-01-01');
-                const today = new Date();
-                
                 let currentNetWorth = 30000;
                 const monthlyContribution = 10000;
+                const annualWithdrawalRate = 0.035;
                 const result: MonthlyData[] = [];
 
                 // Group returns by month
@@ -50,24 +48,33 @@ const NetWorthEvolution: React.FC = () => {
                     }
                 });
 
-                // Sort month keys
                 const sortedMonths = Object.keys(monthlyReturns).sort();
 
                 sortedMonths.forEach(monthKey => {
+                    const [year] = monthKey.split('-').map(Number);
                     const monthReturns = monthlyReturns[monthKey];
-                    
-                    // Add monthly contribution at start of month
-                    currentNetWorth += monthlyContribution;
+                    let contribution = 0;
+                    let withdrawal = 0;
 
-                    // Calculate compounded return for the month
+                    if (year < 2024) {
+                        // Accumulation phase: Add €10k
+                        contribution = monthlyContribution;
+                        currentNetWorth += contribution;
+                    } else {
+                        // Withdrawal phase: Subtract 3.5% / 12
+                        withdrawal = (currentNetWorth * annualWithdrawalRate) / 12;
+                        currentNetWorth -= withdrawal;
+                    }
+
+                    // Apply compounded returns for the month
                     const monthlyMultiplier = monthReturns.reduce((acc, curr) => acc * (1 + curr), 1);
                     currentNetWorth *= monthlyMultiplier;
 
                     result.push({
                         month: monthKey,
                         netWorth: Math.round(currentNetWorth),
-                        contribution: monthlyContribution,
-                        returns: Math.round(currentNetWorth * (monthlyMultiplier - 1))
+                        contribution,
+                        withdrawal
                     });
                 });
 
@@ -75,16 +82,16 @@ const NetWorthEvolution: React.FC = () => {
                 setLoading(false);
             } catch (err) {
                 console.error('Error calculating net worth:', err);
-                setError('Could not load financial data. Please try again later.');
+                setError(t('portfolio.nw_error', 'Could not load financial data.'));
                 setLoading(false);
             }
         };
 
         fetchData();
-    }, []);
+    }, [t]);
 
     const formatCurrency = (value: number) => {
-        return new Intl.NumberFormat('en-EU', {
+        return new Intl.NumberFormat(i18n.language === 'en' ? 'en-EU' : i18n.language, {
             style: 'currency',
             currency: 'EUR',
             maximumFractionDigits: 0
@@ -92,8 +99,8 @@ const NetWorthEvolution: React.FC = () => {
     };
 
     const latestNW = data.length > 0 ? data[data.length - 1].netWorth : 0;
-    const totalInvested = data.length * 10000 + 30000;
-    const totalGain = latestNW - totalInvested;
+    const totalInvested = data.reduce((acc, curr) => acc + curr.contribution, 0) + 30000;
+    const totalGain = latestNW - totalInvested + data.reduce((acc, curr) => acc + curr.withdrawal, 0);
 
     if (loading) return (
         <div className="h-[400px] flex items-center justify-center bg-white rounded-[3rem] border border-slate-100 shadow-sm">
@@ -115,19 +122,19 @@ const NetWorthEvolution: React.FC = () => {
             {/* Stats Overview */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
-                    <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">Current Estimated Net Worth</div>
+                    <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">{t('portfolio.nw_current')}</div>
                     <div className="text-3xl font-lexend font-extrabold text-emerald-600">{formatCurrency(latestNW)}</div>
-                    <div className="text-xs text-slate-500 mt-2">Starting from €30k in 2017</div>
+                    <div className="text-xs text-slate-500 mt-2">{t('portfolio.nw_start_from')}</div>
                 </div>
                 <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
-                    <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">Total Capital Invested</div>
+                    <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">{t('portfolio.nw_invested')}</div>
                     <div className="text-3xl font-lexend font-extrabold text-slate-800">{formatCurrency(totalInvested)}</div>
-                    <div className="text-xs text-slate-500 mt-2">€10k monthly contributions</div>
+                    <div className="text-xs text-slate-500 mt-2">{t('portfolio.nw_contributions')}</div>
                 </div>
                 <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm transition-all hover:shadow-md">
-                    <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">Market Gains (Alpha)</div>
+                    <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-2">{t('portfolio.nw_gains')}</div>
                     <div className="text-3xl font-lexend font-extrabold text-blue-600">+{formatCurrency(totalGain)}</div>
-                    <div className="text-xs text-slate-500 mt-2">Compounded portfolio returns</div>
+                    <div className="text-xs text-slate-500 mt-2">{t('portfolio.nw_compounded')}</div>
                 </div>
             </div>
 
@@ -137,8 +144,8 @@ const NetWorthEvolution: React.FC = () => {
                 
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4 relative z-10">
                     <div>
-                        <h3 className="text-2xl font-lexend font-bold text-slate-900">Wealth Accumulation Path</h3>
-                        <p className="text-slate-500 font-light mt-1">Real historical returns applied to a €10k/month strategy.</p>
+                        <h3 className="text-2xl font-lexend font-bold text-slate-900">{t('portfolio.nw_path_title')}</h3>
+                        <p className="text-slate-500 font-light mt-1">{t('portfolio.nw_path_desc')}</p>
                     </div>
                     <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-xl border border-slate-100 text-xs font-bold text-slate-500">
                         <i className="fa-solid fa-calendar-days text-emerald-500"></i>
@@ -171,7 +178,7 @@ const NetWorthEvolution: React.FC = () => {
                                 axisLine={false}
                                 tickLine={false}
                                 tick={{ fontSize: 10, fill: '#94a3b8', fontWeight: 600 }}
-                                tickFormatter={(val) => `€${val/1000000}M`}
+                                tickFormatter={(val) => `€${(val/1000000).toFixed(1)}M`}
                             />
                             <Tooltip 
                                 contentStyle={{ 
@@ -180,11 +187,11 @@ const NetWorthEvolution: React.FC = () => {
                                     boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
                                     padding: '16px'
                                 }}
-                                formatter={(value: number) => [formatCurrency(value), 'Net Worth']}
+                                formatter={(value: number) => [formatCurrency(value), t('portfolio.nw_current')]}
                                 labelFormatter={(label) => {
                                     const [year, month] = label.split('-');
                                     const date = new Date(parseInt(year), parseInt(month) - 1);
-                                    return date.toLocaleDateString('en-EU', { month: 'long', year: 'numeric' });
+                                    return date.toLocaleDateString(i18n.language, { month: 'long', year: 'numeric' });
                                 }}
                             />
                             <Area 
@@ -203,12 +210,29 @@ const NetWorthEvolution: React.FC = () => {
                 <div className="mt-8 flex flex-wrap justify-center gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                     <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
-                        <span>Compounded Net Worth</span>
+                        <span>{t('portfolio.nw_compounded')}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <i className="fa-solid fa-arrow-trend-up text-emerald-500"></i>
-                        <span>Includes €10k Monthly Savings</span>
+                </div>
+            </div>
+
+            {/* Advertisement Section */}
+            <div className="p-8 md:p-12 bg-slate-900 rounded-[3rem] text-white relative overflow-hidden shadow-2xl border border-white/5">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-[100px]"></div>
+                <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
+                    <div className="max-w-xl text-center lg:text-left">
+                        <h3 className="text-2xl md:text-3xl font-lexend font-bold mb-4">{t('portfolio.nw_ad_title')}</h3>
+                        <p className="text-slate-400 text-lg font-light leading-relaxed">
+                            {t('portfolio.nw_ad_desc')}
+                        </p>
                     </div>
+                    <a 
+                        href="https://thesimpleportfol.io" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-10 py-5 rounded-2xl transition-all shadow-xl shadow-emerald-900/40 active:scale-95 whitespace-nowrap flex items-center gap-3"
+                    >
+                        {t('portfolio.nw_ad_cta')} <i className="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    </a>
                 </div>
             </div>
         </div>
