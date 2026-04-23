@@ -14,6 +14,29 @@
 
         gtag('config', 'G-Z87CKEJ2GX');
     </script>
+
+    <!-- Start Single Page Apps for GitHub Pages -->
+    <script type="text/javascript">
+        // Single Page Apps for GitHub Pages
+        // MIT License
+        // https://github.com/rafgraph/spa-github-pages
+        // This script checks to see if a redirect is present in the query string,
+        // converts it back into the correct url and adds it to the
+        // browser's history using window.history.replaceState(...),
+        // which will cause the browser to load the correct route without a page reload.
+        (function(l) {
+          if (l.search[1] === '/' ) {
+            var decoded = l.search.slice(1).split('&').map(function(s) { 
+              return s.replace(/~and~/g, '&')
+            }).join('?');
+            window.history.replaceState(null, null,
+                l.pathname.slice(0, -1) + decoded + l.hash
+            );
+          }
+        }(window.location))
+    </script>
+    <!-- End Single Page Apps for GitHub Pages -->
+
     <meta name="description"
         content="Empowering the next generation to reclaim their time through analytical wealth strategies. Learn about FIRE, investing, and lifestyle design.">
 
@@ -122,7 +145,7 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/assets/index-B8UJ8_hy.js"></script>
+  <script type="module" crossorigin src="/assets/index-oEUOfbYj.js"></script>
 </head>
 
 <body class="bg-slate-50 text-slate-900 selection:bg-emerald-100 selection:text-emerald-900">
