@@ -48,6 +48,16 @@ POST TYPE: "Philosophy" — This post should be a deeper, more nuanced, conceptu
 
   const prompt = `
 You are an expert personal finance and FIRE (Financial Independence, Retire Early) blogger writing for a European audience.
+
+WRITING STYLE: Write in the signature style of Mark Manson. 
+1. Be brutally honest and direct.
+2. Use conversational, punchy language. 
+3. Challenge conventional wisdom (be slightly contrarian).
+4. Avoid complex financial jargon where simple words work better.
+5. Tell engaging, raw stories or use vivid analogies.
+6. Focus on the psychological and philosophical realities of money and freedom.
+7. Be approachable and anti-bullshit.
+
 ${foundationInstructions}
 
 CRITICAL REQUIREMENT: Do NOT write about any of the following topics or themes, as they have already been covered:
@@ -101,31 +111,31 @@ CRITICAL RULES FOR "content":
 function getNextStepsHtml(lang) {
   const translations = {
     en: {
-      title: 'Next Steps: Take Action',
-      tools: 'FI Projector',
-      tools_desc: 'Run your numbers.',
-      resources: 'Broker Links',
-      resources_desc: 'Direct sign-up pages.',
-      coaching: 'Setup Review',
-      coaching_desc: "I'll audit your setup."
+      title: 'Next Steps: Stop Reading, Start Doing',
+      tools: 'The Math',
+      tools_desc: 'Run your own numbers.',
+      resources: 'The Setup',
+      resources_desc: 'What I actually use.',
+      coaching: 'Direct Help',
+      coaching_desc: "Let's fix your path."
     },
     pt: {
-      title: 'Próximos Passos: Entre em Ação',
-      tools: 'Projetor FI',
-      tools_desc: 'Calcule os seus números.',
-      resources: 'Corretoras',
-      resources_desc: 'Links diretos de registo.',
-      coaching: 'Revisão de Setup',
-      coaching_desc: 'Vou auditar o seu setup.'
+      title: 'Próximos Passos: Para de Ler, Começa a Fazer',
+      tools: 'A Matemática',
+      tools_desc: 'Calcula os teus números.',
+      resources: 'O Setup',
+      resources_desc: 'O que eu realmente uso.',
+      coaching: 'Ajuda Direta',
+      coaching_desc: 'Vamos ajustar o teu caminho.'
     },
     fr: {
-      title: 'Prochaines étapes : Passez à l\'action',
-      tools: 'Projecteur FI',
+      title: 'Prochaines étapes : Arrêtez de lire, passez à l\'action',
+      tools: 'Les Chiffres',
       tools_desc: 'Calculez vos chiffres.',
-      resources: 'Courtiers',
-      resources_desc: 'Liens d\'inscription directs.',
-      coaching: 'Audit de setup',
-      coaching_desc: 'J\'analyserai votre setup.'
+      resources: 'Le Setup',
+      resources_desc: 'Ce que j\'utilise vraiment.',
+      coaching: 'Aide Directe',
+      coaching_desc: 'Ajustons votre trajectoire.'
     }
   };
 
@@ -167,7 +177,7 @@ async function main() {
       return match.replace(/'/g, "");
   }).filter(t => t !== '');
 
-  console.log("Generating new multi-language blog post via Gemini...");
+  console.log("Generating new multi-language blog post via Gemini (Manson Style)...");
   const postData = await generatePost(existingTitles);
   console.log("Generated post:", postData.title.en);
   
@@ -179,7 +189,6 @@ async function main() {
 
   const escapeStr = (str) => str.replace(/`/g, '\\`').replace(/\$/g, '\\$').replace(/'/g, "\\'");
 
-  // Append next steps to content
   const contentEn = postData.content.en + getNextStepsHtml('en');
   const contentPt = postData.content.pt + getNextStepsHtml('pt');
   const contentFr = postData.content.fr + getNextStepsHtml('fr');
@@ -229,7 +238,7 @@ async function main() {
   const tgUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
   const tgPayload = {
     chat_id: TELEGRAM_CHAT_ID,
-    text: `✅ New Multi-Language Post!\n\n<b>EN:</b> ${postData.title.en}\n<b>PT:</b> ${postData.title.pt}\n<b>FR:</b> ${postData.title.fr}\n\nLive shortly on labfab.io`,
+    text: `✅ New Manson-Style Post!\n\n<b>EN:</b> ${postData.title.en}\n<b>PT:</b> ${postData.title.pt}\n<b>FR:</b> ${postData.title.fr}\n\nLive shortly on labfab.io`,
     parse_mode: "HTML"
   };
 
