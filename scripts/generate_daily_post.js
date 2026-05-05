@@ -20,11 +20,7 @@ const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 async function generatePost(existingTitles) {
   const titlesList = existingTitles.map(t => `- ${t}`).join('\n');
 
-  // Alternate strategy: every 3rd post is a philosophical post, the others are SEO-driven Foundation posts
-  const totalPosts = existingTitles.length;
-  const isFoundationPost = (totalPosts % 3) !== 0;
-
-  const foundationInstructions = isFoundationPost ? `
+  const foundationInstructions = `
 POST TYPE: "Foundation" — This post MUST target a high-volume Google search keyword to drive organic traffic.
 Pick one concept from this list of high-value SEO topics (or choose a similar high-traffic keyword NOT already covered):
 - "What is the 4% rule" / "Is the 4% rule still safe"
@@ -42,8 +38,6 @@ Pick one concept from this list of high-value SEO topics (or choose a similar hi
 
 Write the article so it naturally and concisely answers the search query in plain language. Use real numbers, examples, and practical steps. The goal is to rank on Google and introduce readers to the FIRE lifestyle.
 The category field MUST be set to "Foundation".
-` : `
-POST TYPE: "Philosophy" — This post should be a deeper, more nuanced, conceptually rich article about FIRE mindset, lifestyle design, or advanced strategy. Aim for something thought-provoking and distinctive. The category should be one of: Mindset, Lifestyle, Investing, Strategy.
 `;
 
   const prompt = `
@@ -57,6 +51,7 @@ WRITING STYLE: Write in the signature style of Mark Manson.
 5. Tell engaging, raw stories or use vivid analogies.
 6. Focus on the psychological and philosophical realities of money and freedom.
 7. Be approachable and anti-bullshit.
+8. CRITICAL: DO NOT USE ANY SWEAR WORDS OR PROFANITY.
 
 ${foundationInstructions}
 
@@ -72,7 +67,7 @@ IMPORTANT: You must provide translations for "title", "excerpt", "category", and
   "title": { "en": "...", "pt": "...", "fr": "..." },
   "slug": "url-friendly-slug-based-on-english-title",
   "excerpt": { "en": "...", "pt": "...", "fr": "..." },
-  "category": { "en": "Foundation | Mindset | Lifestyle | Investing | Strategy", "pt": "...", "fr": "..." },
+  "category": { "en": "Foundation", "pt": "Fundamental", "fr": "Fondamentaux" },
   "readTime": "Estimated read time (e.g. 6 min)",
   "imageUrl": "A main cover image URL. USE EXACTLY THIS FORMAT: https://picsum.photos/seed/UNIQUE_SLUG_HERE-cover/1000/600",
   "content": { "en": "HTML string", "pt": "HTML string", "fr": "HTML string" }
@@ -177,7 +172,7 @@ async function main() {
       return match.replace(/'/g, "");
   }).filter(t => t !== '');
 
-  console.log("Generating new multi-language blog post via Gemini (Manson Style)...");
+  console.log("Generating new multi-language blog post via Gemini (Fundamental only, Manson Style)...");
   const postData = await generatePost(existingTitles);
   console.log("Generated post:", postData.title.en);
   
@@ -238,7 +233,7 @@ async function main() {
   const tgUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
   const tgPayload = {
     chat_id: TELEGRAM_CHAT_ID,
-    text: `✅ New Manson-Style Post!\n\n<b>EN:</b> ${postData.title.en}\n<b>PT:</b> ${postData.title.pt}\n<b>FR:</b> ${postData.title.fr}\n\nLive shortly on labfab.io`,
+    text: `✅ New Fundamental Manson-Style Post!\n\n<b>EN:</b> ${postData.title.en}\n<b>PT:</b> ${postData.title.pt}\n<b>FR:</b> ${postData.title.fr}\n\nLive shortly on labfab.io`,
     parse_mode: "HTML"
   };
 
