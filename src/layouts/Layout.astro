@@ -18,6 +18,28 @@ const { title, description = "Technical research blog by Fabio Capela" } = Astro
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    
+    <!-- MathJax Configuration for beautiful scientific typesetting -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
+          processEscapes: true,
+          processEnvironments: true
+        },
+        options: {
+          enableMenu: false
+        },
+        svg: {
+          fontCache: 'global',
+          scale: 1.05,
+          displayAlign: 'center',
+          displayIndent: '0px'
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   </head>
   <body class="antialiased">
     <header class="py-12 article-grid">

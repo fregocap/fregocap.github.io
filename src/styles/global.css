@@ -102,32 +102,46 @@ code {
   @apply font-mono bg-slate-100 px-1 rounded text-sm;
 }
 
-/* MathJax Bulletproof Fix */
-mjx-container {
-  line-height: 0;
-  text-align: left;
+/* Math Styling Refinements */
+/* Target MathJax SVG output for high-end look */
+
+mjx-container[jax="SVG"] {
+  @apply transition-opacity duration-300;
+  color: #1e293b; /* slate-800 for slightly softer math than pure black */
 }
 
-mjx-container:not([display="true"]) {
-  display: inline-block !important;
-  vertical-align: middle !important;
-  margin: 0 0.1em !important;
+/* Inline Math - Seamless integration */
+mjx-container[jax="SVG"]:not([display="true"]) {
+  display: inline-block;
+  vertical-align: -0.2em; /* Precision alignment for symbols */
+  padding: 0 1px;
 }
 
-mjx-container[display="true"] {
-  display: block !important;
-  text-align: center !important;
-  @apply my-12 py-4 overflow-x-auto overflow-y-hidden !important;
-  width: 100%;
-  font-size: 1.6em !important;
+/* Display Math - The "Hero" formulas */
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  margin: 4rem 0 !important;
+  text-align: center;
+  font-size: 1.4em !important; /* Slightly more conservative than before but crisper */
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
-mjx-container svg {
-  display: inline-block !important;
-  width: auto !important;
-  height: auto !important;
-  max-width: none !important;
-  max-height: none !important;
-  vertical-align: 0 !important;
-  margin: 0 !important;
+/* Match MathJax font weight to Merriweather slightly better */
+mjx-container path {
+  stroke-width: 5; /* Subtle bolding of SVG paths for better readability */
+}
+
+/* Selection aesthetics for math */
+mjx-container::selection {
+  background: #ffedd5;
+}
+
+/* Hide horizontal scrollbar but keep functionality */
+mjx-container[display="true"]::-webkit-scrollbar {
+  height: 3px;
+}
+mjx-container[display="true"]::-webkit-scrollbar-thumb {
+  background: #f1f5f9;
+  border-radius: 10px;
 }
