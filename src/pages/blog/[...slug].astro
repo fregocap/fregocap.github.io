@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import TableOfContents from '../../components/TableOfContents';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -11,9 +12,40 @@ export async function getStaticPaths() {
 }
 
 const post = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
 ---
 
 <Layout title={post.data.title} description={post.data.description}>
-	<Content />
+	<div class="article-grid py-12">
+		<aside class="side-column">
+			<TableOfContents client:load headings={headings} />
+		</aside>
+		
+		<article class="main-column">
+			<header class="mb-12">
+				<h1 class="text-4xl md:text-6xl font-sans font-extrabold tracking-tighter mb-4">
+					{post.data.title}
+				</h1>
+				<p class="text-xl text-slate-500 font-light leading-relaxed italic">
+					{post.data.description}
+				</p>
+			</header>
+			
+			<div class="prose-content">
+				<Content />
+			</div>
+		</article>
+	</div>
 </Layout>
+
+<style is:global>
+	@media (max-width: 1000px) {
+		.side-column {
+			display: none;
+		}
+	}
+
+	.prose-content h2, .prose-content h3 {
+		scroll-margin-top: 100px;
+	}
+</style>

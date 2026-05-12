@@ -24,8 +24,6 @@ const posts = (await getCollection('blog')).sort(
 				{posts.map((post) => (
 					<article class="group">
 						<div class="flex items-center gap-4 text-xs font-sans font-bold uppercase tracking-widest text-slate-400 mb-4">
-							<span>{post.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
-							<span class="w-1 h-1 bg-slate-200 rounded-full"></span>
 							<span class="text-orange-600">{post.data.tags[0]}</span>
 						</div>
 						

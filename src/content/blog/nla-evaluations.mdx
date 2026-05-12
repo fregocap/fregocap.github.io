@@ -6,51 +6,34 @@ tags: ["Machine Learning", "Transformers", "Research"]
 ---
 import InteractiveCircle from '../../components/InteractiveCircle';
 
-<div class="article-grid">
-  <div class="side-column">
-    Published April 24, 2026 <br/>
-    Reading time: 12 min
-  </div>
+This post explores the convergence properties of non-linear analysis (NLA) in transformer models. We argue that the standard evaluation metrics often miss the underlying geometric prior that emerges during the mid-stages of training.
 
-  <div class="main-column">
-    # NLA Evaluations and the Geometric Prior
+## The Problem Statement
 
-    This post explores the convergence properties of non-linear analysis (NLA) in transformer models. We argue that the standard evaluation metrics often miss the underlying geometric prior that emerges during the mid-stages of training.
+Consider a standard transformer layer defined by the transformation $f(x) = \text{Softmax}(QK^T)V$. Traditionally, we analyze the attention patterns as a discrete graph. However, as the model scales, the latent space $Z \in \mathbb{R}^{d}$ begins to exhibit properties of a smooth manifold.
 
-    ## The Problem Statement
+We can define the information density $\rho$ as a function of the latent state $z$ and a kernel $\Omega$:
 
-    Consider a standard transformer layer defined by the transformation $f(x) = \text{Softmax}(QK^T)V$. Traditionally, we analyze the attention patterns as a discrete graph. However, as the model scales, the latent space $Z \in \mathbb{R}^{d}$ begins to exhibit properties of a smooth manifold.
+$$ \rho(z) = \int_{\Omega} \frac{\exp(-\|z - \mu\|^2 / 2\sigma^2)}{\sqrt{2\pi\sigma^2}} d\mu $$
 
-    We can define the information density $\rho$ as a function of the latent state $z$ and a kernel $\Omega$:
+Where $\sigma$ represents the resolution of our analysis. Below is an interactive demonstration of how $\sigma$ impacts the resulting manifold density.
 
-    $$ \rho(z) = \int_{\Omega} \frac{\exp(-\|z - \mu\|^2 / 2\sigma^2)}{\sqrt{2\pi\sigma^2}} d\mu $$
+<InteractiveCircle client:load />
 
-    Where $\sigma$ represents the resolution of our analysis. Below is an interactive demonstration of how $\sigma$ impacts the resulting manifold density.
-  </div>
+## Emergent Structures
 
-  <div class="main-column">
-    <InteractiveCircle client:load />
-  </div>
+As training progresses, the model minimizes the cross-entropy loss $\mathcal{L}$. Our research suggests that this minimization is equivalent to a regularized Ricci flow on the latent space manifold. 
 
-  <div class="main-column">
-    ## Emergent Structures
+This has significant implications for how we perform evaluations. Instead of looking at top-1 accuracy, we should be measuring the curvature of the embedding space.
 
-    As training progresses, the model minimizes the cross-entropy loss $\mathcal{L}$. Our research suggests that this minimization is equivalent to a regularized Ricci flow on the latent space manifold. 
-    
-    This has significant implications for how we perform evaluations. Instead of looking at top-1 accuracy, we should be measuring the curvature of the embedding space.
+### Key Insights
+- **Manifold Collapse:** High learning rates lead to a collapse of the geometric prior.
+- **Entropy Regularization:** Natural language acts as a stochastic regularizer for $\sigma$.
 
-    ### Key Insights
-    - **Manifold Collapse:** High learning rates lead to a collapse of the geometric prior.
-    - **Entropy Regularization:** Natural language acts as a stochastic regularizer for $\sigma$.
-  </div>
-
-  <div class="sidenote">
-    Note: We found that models trained with Adam optimizer exhibit faster manifold convergence but are prone to higher curvature instability.
-  </div>
-
-  <div class="main-column">
-    ## Conclusion
-
-    The path forward for evaluating large language models lies in differential geometry. By treating the weights not as static matrices but as coordinate systems on a dynamic manifold, we can predict failure modes before they manifest in natural language output.
-  </div>
+<div class="sidenote">
+  Note: We found that models trained with Adam optimizer exhibit faster manifold convergence but are prone to higher curvature instability.
 </div>
+
+## Conclusion
+
+The path forward for evaluating large language models lies in differential geometry. By treating the weights not as static matrices but as coordinate systems on a dynamic manifold, we can predict failure modes before they manifest in natural language output.
