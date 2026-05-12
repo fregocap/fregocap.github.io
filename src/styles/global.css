@@ -71,12 +71,17 @@ code {
   @apply font-mono bg-slate-100 px-1 rounded text-sm;
 }
 
-/* KaTeX Global Fixes */
-/* This prevents the "long square root" issue by ensuring KaTeX internal spans are contained */
+/* KaTeX Global Fixes - Reset Immunity */
+/* This prevents Tailwind/Preflight from breaking math symbols like square roots */
+
+.katex * {
+  box-sizing: content-box !important;
+}
+
 .katex {
-  @apply font-normal;
+  font-size: 1.1em;
+  line-height: 1.2;
   text-rendering: auto;
-  line-height: 1.1;
 }
 
 .katex-display {
@@ -87,13 +92,37 @@ code {
 .katex-display > .katex {
   @apply inline-block;
   white-space: nowrap;
+  text-align: initial;
 }
 
-/* Ensure fractions and square roots have proper spacing */
-.katex .mfrac .vlist-t {
+/* Specific fix for radicals (square roots) and bars */
+.katex .vlist-t {
+  display: inline-table !important;
+}
+
+.katex .vlist-r {
+  display: table-row !important;
+}
+
+.katex .vlist {
+  display: table-cell !important;
+  vertical-align: bottom !important;
+}
+
+.katex .svg-align {
+  width: 100% !important;
+}
+
+/* Fix for the horizontal line in square roots and fractions */
+.katex .mfrac .vlist-t,
+.katex .msqrt .vlist-t {
   border-bottom-width: 0 !important;
 }
 
-.katex .vlist-t {
-  display: inline-table !important;
+/* Ensure SVGs inside KaTeX don't stretch */
+.katex svg {
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+  vertical-align: baseline !important;
 }
