@@ -71,23 +71,29 @@ code {
   @apply font-mono bg-slate-100 px-1 rounded text-sm;
 }
 
-/* KaTeX Refinements */
-.katex-display {
-  @apply my-12 overflow-x-auto overflow-y-hidden py-4;
-  font-size: 1.2em;
-}
-
+/* KaTeX Global Fixes */
+/* This prevents the "long square root" issue by ensuring KaTeX internal spans are contained */
 .katex {
-  font-size: 1.1em;
-  line-height: 1.2;
+  @apply font-normal;
   text-rendering: auto;
+  line-height: 1.1;
 }
 
-/* Prevent Tailwind from interfering with math fonts */
+.katex-display {
+  @apply my-12 py-4 overflow-x-auto overflow-y-hidden text-center;
+  width: 100%;
+}
+
 .katex-display > .katex {
-  @apply whitespace-nowrap;
+  @apply inline-block;
+  white-space: nowrap;
 }
 
-.article-grid .main-column p .katex {
-  @apply mx-0.5;
+/* Ensure fractions and square roots have proper spacing */
+.katex .mfrac .vlist-t {
+  border-bottom-width: 0 !important;
+}
+
+.katex .vlist-t {
+  display: inline-table !important;
 }
