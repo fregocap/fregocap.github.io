@@ -15,11 +15,11 @@
   display: grid;
   grid-template-columns: 
     [screen-start] 1fr 
-    [page-start] minmax(0, 600px) 
-    [main-start] minmax(0, 600px) [main-end]
-    minmax(0, 250px) [page-end]
+    [page-start] minmax(0, 100px) 
+    [main-start] minmax(0, 800px) [main-end]
+    minmax(0, 300px) [page-end]
     1fr [screen-end];
-  column-gap: 40px;
+  column-gap: 60px;
 }
 
 @media (max-width: 1000px) {
