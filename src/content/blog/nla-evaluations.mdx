@@ -18,7 +18,24 @@ $$ \rho(z) = \int_{\Omega} \frac{\exp(-\|z - \mu\|^2 / 2\sigma^2)}{\sqrt{2\pi\si
 
 Where $\sigma$ represents the resolution of our analysis. Below is an interactive demonstration of how $\sigma$ impacts the resulting manifold density.
 
-<InteractiveCircle client:load />
+<div class="main-column">
+  <InteractiveCircle client:load />
+</div>
+
+## Experimental Framework
+
+To validate our hypothesis, we conducted a series of ablation studies on the internal representations of a 12-layer decoder-only transformer. 
+
+### Metric Definitions
+
+We focus on two primary metrics that differ from standard loss:
+
+1. **Mean Curvature ($\kappa$):** Measures the average "bending" of the manifold locally around high-density points.
+2. **Topology Persistence:** Tracks the longevity of holes in the representation space across different layers.
+
+<div class="sidenote">
+  Note: Mean curvature is computed using the Laplace-Beltrami operator applied to the normalized embedding weights.
+</div>
 
 ## Emergent Structures
 
@@ -27,12 +44,12 @@ As training progresses, the model minimizes the cross-entropy loss $\mathcal{L}$
 This has significant implications for how we perform evaluations. Instead of looking at top-1 accuracy, we should be measuring the curvature of the embedding space.
 
 ### Key Insights
+
+We observed several distinct phases during the training trajectory:
+
 - **Manifold Collapse:** High learning rates lead to a collapse of the geometric prior.
 - **Entropy Regularization:** Natural language acts as a stochastic regularizer for $\sigma$.
-
-<div class="sidenote">
-  Note: We found that models trained with Adam optimizer exhibit faster manifold convergence but are prone to higher curvature instability.
-</div>
+- **Feature Crystallization:** Late-stage training shows a transition from smooth manifolds to discrete, high-dimensional clusters.
 
 ## Conclusion
 
