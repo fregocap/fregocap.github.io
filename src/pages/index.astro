@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="labfab.io | Technical Research">
+	<section class="article-grid py-24">
+		<div class="main-column">
+			<h1 class="text-5xl md:text-7xl font-sans font-extrabold tracking-tighter mb-12">
+				Investigating the <br/>
+				<span class="text-orange-600 italic">Geometric Nature</span> of Intelligence.
+			</h1>
+			
+			<p class="text-xl text-slate-500 font-light leading-relaxed mb-24 max-w-2xl">
+				A collection of research notes, interactive experiments, and mathematical explorations 
+				into transformer circuits and emergent behavior in large language models.
+			</p>
+
+			<div class="space-y-16">
+				{posts.map((post) => (
+					<article class="group">
+						<div class="flex items-center gap-4 text-xs font-sans font-bold uppercase tracking-widest text-slate-400 mb-4">
+							<span>{post.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+							<span class="w-1 h-1 bg-slate-200 rounded-full"></span>
+							<span class="text-orange-600">{post.data.tags[0]}</span>
+						</div>
+						
+						<a href={`/blog/${post.slug}`} class="block group border-none">
+							<h2 class="text-3xl font-sans font-extrabold group-hover:text-orange-600 transition-colors duration-300 leading-tight mb-4">
+								{post.data.title}
+							</h2>
+						</a>
+						
+						<p class="text-slate-500 font-light leading-relaxed">
+							{post.data.description}
+						</p>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+</Layout>

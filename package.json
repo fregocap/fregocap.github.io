@@ -1,32 +1,27 @@
 {
-  "name": "labfab.io---financial-independence-hub",
-  "private": true,
-  "version": "0.0.0",
+  "name": "labfab.io---technical-blog",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "node scripts/generate_sitemap.js && vite build",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@google/genai": "^1.35.0",
-    "i18next": "^26.0.6",
-    "i18next-browser-languagedetector": "^8.2.1",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
-    "react-helmet-async": "^2.0.5",
-    "react-i18next": "^17.0.4",
-    "react-is": "^19.2.4",
-    "react-router-dom": "^7.13.0",
-    "recharts": "^3.6.0"
-  },
-  "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "gh-pages": "^6.3.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "@astrojs/mdx": "^4.0.8",
+    "@astrojs/react": "^4.2.0",
+    "@astrojs/tailwind": "^6.0.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "astro": "^5.4.1",
+    "katex": "^0.16.21",
+    "lucide-react": "^0.477.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
+    "tailwindcss": "^3.4.17"
   }
 }
