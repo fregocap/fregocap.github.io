@@ -33,7 +33,7 @@
 
 .main-column {
   grid-column: main;
-  min-width: 0; /* Important for preventing grid blowout */
+  min-width: 0;
 }
 
 .side-column {
@@ -72,41 +72,20 @@ code {
   @apply font-mono bg-slate-100 px-1 rounded text-sm;
 }
 
-/* KaTeX Clean Fix - Anti-Tailwind Reset */
-.katex {
-  text-indent: 0 !important;
-  font-size: 1.1em;
-  font-family: KaTeX_Main, 'Times New Roman', serif !important;
+/* MathJax Specific Tweaks */
+mjx-container {
+  @apply overflow-x-auto overflow-y-hidden max-w-full;
 }
 
-.katex * {
-  /* This is the crucial fix for stretched square roots and fraction lines */
-  box-sizing: content-box !important;
-}
-
-.katex svg {
-  display: inline-block !important;
-  width: auto !important; /* Allow internal styles to dictate width */
-  height: auto !important;
-}
-
-.katex-display {
-  @apply my-12 py-4 overflow-x-auto overflow-y-hidden text-center;
-  width: 100%;
-}
-
-.katex-display > .katex {
-  @apply inline-block;
-  white-space: nowrap;
-  text-align: initial;
-  max-width: 100%;
+mjx-container[display="true"] {
+  @apply my-12 py-4 !important;
 }
 
 /* Hide the horizontal overflow scrollbar but keep functionality */
-.katex-display::-webkit-scrollbar {
+mjx-container::-webkit-scrollbar {
   height: 4px;
 }
-.katex-display::-webkit-scrollbar-thumb {
+mjx-container::-webkit-scrollbar-thumb {
   background: #e2e8f0;
   border-radius: 4px;
 }
