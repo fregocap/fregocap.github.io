@@ -73,19 +73,26 @@ code {
 }
 
 /* MathJax Specific Tweaks */
-mjx-container {
-  @apply overflow-x-auto overflow-y-hidden max-w-full;
+
+/* Inline Math - Force it to stay in-line */
+mjx-container:not([display="true"]) {
+  display: inline !important;
+  margin: 0 0.1em !important;
+  vertical-align: baseline !important;
 }
 
+/* Display Math - The block formulas */
 mjx-container[display="true"] {
-  @apply my-12 py-4 !important;
+  display: block !important;
+  @apply my-12 py-4 overflow-x-auto overflow-y-hidden text-center !important;
+  width: 100%;
 }
 
-/* Hide the horizontal overflow scrollbar but keep functionality */
-mjx-container::-webkit-scrollbar {
+/* Hide the horizontal overflow scrollbar but keep functionality for long formulas */
+mjx-container[display="true"]::-webkit-scrollbar {
   height: 4px;
 }
-mjx-container::-webkit-scrollbar-thumb {
+mjx-container[display="true"]::-webkit-scrollbar-thumb {
   background: #e2e8f0;
   border-radius: 4px;
 }
