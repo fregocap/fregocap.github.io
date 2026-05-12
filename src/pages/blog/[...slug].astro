@@ -17,35 +17,36 @@ const { Content, headings } = await post.render();
 
 <Layout title={post.data.title} description={post.data.description}>
 	<div class="article-grid py-12">
-		<aside class="side-column">
+		<aside class="side-column-container">
 			<TableOfContents client:load headings={headings} />
 		</aside>
 		
-		<article class="main-column">
-			<header class="mb-12">
-				<h1 class="text-4xl md:text-6xl font-sans font-extrabold tracking-tighter mb-4">
-					{post.data.title}
-				</h1>
-				<p class="text-xl text-slate-500 font-light leading-relaxed italic">
-					{post.data.description}
-				</p>
-			</header>
-			
-			<div class="prose-content">
-				<Content />
-			</div>
-		</article>
+		<header class="main-column mb-12">
+			<h1 class="text-4xl md:text-6xl font-sans font-extrabold tracking-tighter mb-4">
+				{post.data.title}
+			</h1>
+			<p class="text-xl text-slate-500 font-light leading-relaxed italic">
+				{post.data.description}
+			</p>
+		</header>
+		
+		<Content />
 	</div>
 </Layout>
 
 <style is:global>
+	.side-column-container {
+		grid-column: page-start / main-start;
+		grid-row: 1 / 1000; /* Span many rows to stay on the left */
+	}
+
 	@media (max-width: 1000px) {
-		.side-column {
+		.side-column-container {
 			display: none;
 		}
 	}
 
-	.prose-content h2, .prose-content h3 {
+	h2, h3 {
 		scroll-margin-top: 100px;
 	}
 </style>

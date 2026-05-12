@@ -22,6 +22,11 @@
   column-gap: 60px;
 }
 
+/* Default all direct children to the main column */
+.article-grid > * {
+  grid-column: main;
+}
+
 @media (max-width: 1000px) {
   .article-grid {
     grid-template-columns: 
@@ -45,6 +50,15 @@
   grid-column: main-end / page-end;
   @apply text-sm text-slate-500 font-sans pt-2;
   margin-bottom: 2rem;
+  /* Ensure it doesn't get merged into the main text flow on large screens */
+  grid-row: auto;
+}
+
+@media (max-width: 1000px) {
+  .sidenote {
+    grid-column: main;
+    @apply border-l-2 border-slate-100 pl-4 my-8;
+  }
 }
 
 .wide-column {
@@ -73,21 +87,17 @@ code {
 }
 
 /* MathJax Bulletproof Fix - Anti-Tailwind Reset */
-
-/* Global container reset */
 mjx-container {
   line-height: 0;
   text-align: left;
 }
 
-/* Inline Math - Force it to stay in-line and vertically aligned */
 mjx-container:not([display="true"]) {
   display: inline-block !important;
   vertical-align: middle !important;
   margin: 0 0.1em !important;
 }
 
-/* Display Math - The block formulas */
 mjx-container[display="true"] {
   display: block !important;
   text-align: center !important;
@@ -96,7 +106,6 @@ mjx-container[display="true"] {
   font-size: 1.6em !important;
 }
 
-/* Ensure the SVG inside doesn't stretch or break line flow */
 mjx-container svg {
   display: inline-block !important;
   width: auto !important;
@@ -107,7 +116,6 @@ mjx-container svg {
   margin: 0 !important;
 }
 
-/* Hide the horizontal overflow scrollbar but keep functionality for long formulas */
 mjx-container[display="true"]::-webkit-scrollbar {
   height: 4px;
 }
