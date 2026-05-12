@@ -93,6 +93,7 @@ mjx-container[display="true"] {
   text-align: center !important;
   @apply my-12 py-4 overflow-x-auto overflow-y-hidden !important;
   width: 100%;
+  font-size: 1.6em !important;
 }
 
 /* Ensure the SVG inside doesn't stretch or break line flow */
