@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -50,7 +50,6 @@
   grid-column: main-end / page-end;
   @apply text-sm text-slate-500 font-sans pt-2;
   margin-bottom: 2rem;
-  /* Ensure it doesn't get merged into the main text flow on large screens */
   grid-row: auto;
 }
 
@@ -69,13 +68,30 @@
   grid-column: screen;
 }
 
-/* Typography refinements */
-h1, h2, h3, h4 {
-  @apply font-sans font-bold tracking-tight text-slate-900;
+/* Typography refinements - Anthropic / Distill Style */
+h1 {
+  @apply font-sans font-extrabold tracking-tighter text-slate-900 leading-[1.1] mb-12;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+}
+
+h2 {
+  @apply font-sans font-bold tracking-tight text-slate-900 mt-24 mb-6 pt-6 border-t border-slate-200;
+  font-size: 1.75rem;
+}
+
+h3 {
+  @apply font-sans font-bold tracking-tight text-slate-900 mt-12 mb-4;
+  font-size: 1.25rem;
+}
+
+h4 {
+  @apply font-sans font-bold uppercase tracking-[0.1em] text-slate-500 mt-8 mb-2;
+  font-size: 0.75rem;
 }
 
 p {
   @apply leading-relaxed mb-6;
+  font-size: 1.1rem;
 }
 
 a {
@@ -86,7 +102,7 @@ code {
   @apply font-mono bg-slate-100 px-1 rounded text-sm;
 }
 
-/* MathJax Bulletproof Fix - Anti-Tailwind Reset */
+/* MathJax Bulletproof Fix */
 mjx-container {
   line-height: 0;
   text-align: left;
@@ -114,12 +130,4 @@ mjx-container svg {
   max-height: none !important;
   vertical-align: 0 !important;
   margin: 0 !important;
-}
-
-mjx-container[display="true"]::-webkit-scrollbar {
-  height: 4px;
-}
-mjx-container[display="true"]::-webkit-scrollbar-thumb {
-  background: #e2e8f0;
-  border-radius: 4px;
 }
