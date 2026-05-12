@@ -72,20 +72,38 @@ code {
   @apply font-mono bg-slate-100 px-1 rounded text-sm;
 }
 
-/* MathJax Specific Tweaks */
+/* MathJax Bulletproof Fix - Anti-Tailwind Reset */
 
-/* Inline Math - Force it to stay in-line */
+/* Global container reset */
+mjx-container {
+  line-height: 0;
+  text-align: left;
+}
+
+/* Inline Math - Force it to stay in-line and vertically aligned */
 mjx-container:not([display="true"]) {
-  display: inline !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
   margin: 0 0.1em !important;
-  vertical-align: baseline !important;
 }
 
 /* Display Math - The block formulas */
 mjx-container[display="true"] {
   display: block !important;
-  @apply my-12 py-4 overflow-x-auto overflow-y-hidden text-center !important;
+  text-align: center !important;
+  @apply my-12 py-4 overflow-x-auto overflow-y-hidden !important;
   width: 100%;
+}
+
+/* Ensure the SVG inside doesn't stretch or break line flow */
+mjx-container svg {
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+  vertical-align: 0 !important;
+  margin: 0 !important;
 }
 
 /* Hide the horizontal overflow scrollbar but keep functionality for long formulas */
