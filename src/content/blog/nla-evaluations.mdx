@@ -21,7 +21,7 @@ import InteractiveCircle from '../../components/InteractiveCircle';
 
     Consider a standard transformer layer defined by the transformation $f(x) = \text{Softmax}(QK^T)V$. Traditionally, we analyze the attention patterns as a discrete graph. However, as the model scales, the latent space $Z \in \mathbb{R}^{d}$ begins to exhibit properties of a smooth manifold.
 
-    We can define the information density $\rho$ as:
+    We can define the information density $\rho$ as a function of the latent state $z$ and a kernel $\Omega$:
 
     $$ \rho(z) = \int_{\Omega} \frac{\exp(-\|z - \mu\|^2 / 2\sigma^2)}{\sqrt{2\pi\sigma^2}} d\mu $$
 
