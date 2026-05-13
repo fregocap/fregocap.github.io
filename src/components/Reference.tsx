@@ -16,29 +16,41 @@ const Reference: React.FC<Props> = ({ slug, text }) => {
   const [showPreview, setShowPreview] = useState(false);
 
   useEffect(() => {
-    // Read from pre-injected global metadata
-    const metadata = (window as any).__POSTS_METADATA__;
-    if (metadata) {
-      const found = metadata.find((p: PostData) => p.slug === slug);
-      if (found) setPost(found);
+    // Check global variable directly
+    const getMetadata = () => {
+      const metadata = (window as any).__POSTS_METADATA__;
+      if (metadata) {
+        const found = metadata.find((p: PostData) => p.slug === slug);
+        if (found) setPost(found);
+        return true;
+      }
+      return false;
+    };
+
+    if (!getMetadata()) {
+      // If not available yet, wait a bit
+      const interval = setInterval(() => {
+        if (getMetadata()) clearInterval(interval);
+      }, 100);
+      return () => clearInterval(interval);
     }
   }, [slug]);
 
   return (
     <span 
-      className="relative inline-block group"
+      className="relative inline group"
       onMouseEnter={() => setShowPreview(true)}
       onMouseLeave={() => setShowPreview(false)}
     >
       <a 
         href={`/blog/${slug}`} 
-        className="text-orange-600 hover:text-orange-700 transition-colors border-none font-medium cursor-pointer"
+        className="text-orange-600 hover:text-orange-700 transition-colors border-none font-semibold cursor-pointer underline decoration-orange-200 hover:decoration-orange-600 underline-offset-4"
       >
         {text || (post ? post.title : slug)}
       </a>
 
       {showPreview && post && (
-        <div className="absolute left-0 bottom-full mb-3 w-80 p-6 bg-white border border-slate-200 shadow-2xl rounded-2xl z-50 animate-in fade-in zoom-in-95 duration-200 pointer-events-none">
+        <div className="absolute left-0 bottom-full mb-3 w-80 p-6 bg-white border border-slate-200 shadow-2xl rounded-2xl z-50 animate-in fade-in zoom-in-95 duration-200 pointer-events-none text-left">
           <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-2">
             Internal Reference
           </div>

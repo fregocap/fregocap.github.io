@@ -29,33 +29,33 @@
 
 /* Overrides for specific columns */
 .side-column-container {
-  grid-column: page-start / main-start;
-  grid-row: 1 / 999;
-  height: 100%;
+  grid-column: page-start / main-start !important;
+  grid-row: 1 / 1000;
+  display: block !important;
 }
 
 .sidenote {
-  grid-column: main-end / page-end;
+  grid-column: main-end / page-end !important;
   @apply text-sm text-slate-500 font-sans pt-2;
   margin-bottom: 2rem;
 }
 
 .wide-column {
-  grid-column: main-start / page-end;
+  grid-column: main-start / page-end !important;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1100px) {
   .article-grid {
     grid-template-columns: 
       [screen-start] 1fr 
       [main-start] minmax(0, 800px) [main-end]
-      minmax(200px, 300px) [page-end]
+      minmax(0, 250px) [page-end]
       1fr [screen-end];
-    column-gap: 40px;
+    column-gap: 30px;
   }
 
   .side-column-container {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -69,7 +69,7 @@
   }
 
   .sidenote {
-    grid-column: main;
+    grid-column: main !important;
     @apply border-l-2 border-slate-100 pl-4 my-8;
   }
 }
@@ -105,7 +105,7 @@ h1 a, h2 a, h3 a, h4 a {
   opacity: 0;
   margin-left: 0.5rem;
   transition: opacity 0.2s ease;
-  color: #cbd5e1 !important; /* slate-300 */
+  color: #cbd5e1 !important;
   font-weight: normal;
 }
 
