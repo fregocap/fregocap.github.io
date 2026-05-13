@@ -102,53 +102,47 @@ code {
   @apply font-mono bg-slate-100 px-1 rounded text-sm;
 }
 
-/* KaTeX Bulletproof Reset - Fixes Tailwind stretching issues */
-.katex {
-  text-indent: 0 !important;
-  font-size: 1.1em;
+/* MathJax Specific Tweaks for Pre-rendered SVG */
+
+/* Global container reset */
+mjx-container {
+  line-height: 0;
+  text-align: left;
+  color: #1e293b; /* slate-800 */
 }
 
-.katex * {
-  /* This prevents Tailwind/Preflight from breaking math symbols like square roots */
-  box-sizing: content-box !important;
+/* Inline Math - Force it to stay in-line and vertically aligned */
+mjx-container:not([display="true"]) {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin: 0 0.1em !important;
 }
 
-.katex-display {
-  @apply my-12 py-4 overflow-x-auto overflow-y-hidden text-center;
+/* Display Math - The block formulas */
+mjx-container[display="true"] {
+  display: block !important;
+  text-align: center !important;
+  @apply my-12 py-4 overflow-x-auto overflow-y-hidden !important;
   width: 100%;
-  font-size: 1.4em !important;
+  font-size: 1.6em !important;
 }
 
-.katex-display > .katex {
-  @apply inline-block;
-  white-space: nowrap;
-  text-align: initial;
-}
-
-/* Specific fix for radicals (square roots) and bars */
-.katex .vlist-t {
-  display: inline-table !important;
-}
-
-.katex .vlist-r {
-  display: table-row !important;
-}
-
-.katex .vlist {
-  display: table-cell !important;
-  vertical-align: bottom !important;
-}
-
-/* Fix for the horizontal line in square roots and fractions */
-.katex .mfrac .vlist-t,
-.katex .msqrt .vlist-t {
-  border-bottom-width: 0 !important;
-}
-
-/* Ensure SVGs inside KaTeX don't stretch */
-.katex svg {
+/* Ensure the SVG inside doesn't stretch or break line flow */
+mjx-container svg {
   display: inline-block !important;
   width: auto !important;
   height: auto !important;
-  vertical-align: baseline !important;
+  max-width: none !important;
+  max-height: none !important;
+  vertical-align: 0 !important;
+  margin: 0 !important;
+}
+
+/* Hide the horizontal overflow scrollbar but keep functionality for long formulas */
+mjx-container[display="true"]::-webkit-scrollbar {
+  height: 4px;
+}
+mjx-container[display="true"]::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 4px;
 }
