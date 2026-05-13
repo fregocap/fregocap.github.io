@@ -15,19 +15,19 @@
   display: grid;
   grid-template-columns: 
     [screen-start] 1fr 
-    [page-start] minmax(0, 250px) 
+    [page-start] minmax(180px, 250px) 
     [main-start] minmax(0, 800px) [main-end]
-    minmax(0, 300px) [page-end]
+    minmax(180px, 300px) [page-end]
     1fr [screen-end];
-  column-gap: 60px;
+  column-gap: 40px;
 }
 
-/* All direct children of article-grid default to the main column */
+/* Default direct children to the main column */
 .article-grid > * {
   grid-column: main;
 }
 
-/* Special columns overrides */
+/* Overrides for specific columns */
 .side-column-container {
   grid-column: page-start / main-start !important;
   grid-row: 1 / 1000;
@@ -43,21 +43,28 @@
   grid-column: main-start / page-end !important;
 }
 
-.screen-column {
-  grid-column: screen !important;
-}
-
-@media (max-width: 1300px) {
+@media (max-width: 1200px) {
   .article-grid {
     grid-template-columns: 
-      [screen-start] 20px 
-      [page-start main-start] 1fr [main-end page-end]
-      20px [screen-end];
-    column-gap: 0;
+      [screen-start] 1fr 
+      [main-start] minmax(0, 800px) [main-end]
+      minmax(0, 250px) [page-end]
+      1fr [screen-end];
+    column-gap: 30px;
   }
 
   .side-column-container {
     display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .article-grid {
+    grid-template-columns: 
+      [screen-start] 20px 
+      [main-start] 1fr [main-end]
+      20px [screen-end];
+    column-gap: 0;
   }
 
   .sidenote {
@@ -82,11 +89,6 @@ h3 {
   font-size: 1.25rem;
 }
 
-h4 {
-  @apply font-sans font-bold uppercase tracking-[0.1em] text-slate-500 mt-8 mb-2;
-  font-size: 0.75rem;
-}
-
 p {
   @apply leading-relaxed mb-6;
   font-size: 1.1rem;
@@ -96,11 +98,7 @@ a {
   @apply text-orange-600 no-underline hover:border-b hover:border-orange-600 transition-all;
 }
 
-code {
-  @apply font-mono bg-slate-100 px-1 rounded text-sm;
-}
-
-/* MathJax Specific Tweaks for Pre-rendered SVG */
+/* MathJax Specific Tweaks */
 mjx-container {
   line-height: 0;
   text-align: left;
@@ -110,23 +108,18 @@ mjx-container {
 mjx-container:not([display="true"]) {
   display: inline-block !important;
   vertical-align: middle !important;
-  margin: 0 0.1em !important;
 }
 
 mjx-container[display="true"] {
   display: block !important;
   text-align: center !important;
-  @apply my-12 py-4 overflow-x-auto overflow-y-hidden !important;
+  @apply my-12 py-4 overflow-x-auto !important;
   width: 100%;
-  font-size: 1.6em !important;
+  font-size: 1.5em !important;
 }
 
 mjx-container svg {
   display: inline-block !important;
   width: auto !important;
   height: auto !important;
-  max-width: none !important;
-  max-height: none !important;
-  vertical-align: 0 !important;
-  margin: 0 !important;
 }
