@@ -23,6 +23,16 @@ Where $\sigma$ represents the resolution of our analysis. Below is an interactiv
   <InteractiveCircle client:load />
 </div>
 
+## Wikipedia-style Cross-Linking
+
+One of the key features of this research blog is the ability to cross-reference other papers with rich previews. 
+
+For instance, if we want to understand how these geometric structures relate to feature decomposition, we can look at our latest results on <Reference slug="mechanistic-interpretability" text="Sparse Autoencoders" client:load />. Hovering over that link will show you a summary of the article without you having to navigate away.
+
+<div class="sidenote">
+  <strong>Note:</strong> You can create these links by simply dropping the <code>&lt;Reference slug="post-name" client:load /&gt;</code> component into your MDX files.
+</div>
+
 ## Experimental Framework
 
 To validate our hypothesis, we conducted a series of ablation studies on the internal representations of a 12-layer decoder-only transformer. 
@@ -34,23 +44,11 @@ We focus on two primary metrics that differ from standard loss:
 1. **Mean Curvature ($\kappa$):** Measures the average "bending" of the manifold locally around high-density points.
 2. **Topology Persistence:** Tracks the longevity of holes in the representation space across different layers.
 
-<div class="sidenote">
-  Note: Mean curvature is computed using the Laplace-Beltrami operator applied to the normalized embedding weights.
-</div>
-
 ## Emergent Structures
 
 As training progresses, the model minimizes the cross-entropy loss $\mathcal{L}$. Our research suggests that this minimization is equivalent to a regularized Ricci flow on the latent space manifold. 
 
 This has significant implications for how we perform evaluations. Instead of looking at top-1 accuracy, we should be measuring the curvature of the embedding space.
-
-### Key Insights
-
-We observed several distinct phases during the training trajectory:
-
-- **Manifold Collapse:** High learning rates lead to a collapse of the geometric prior.
-- **Entropy Regularization:** Natural language acts as a stochastic regularizer for $\sigma$.
-- **Feature Crystallization:** Late-stage training shows a transition from smooth manifolds to discrete, high-dimensional clusters.
 
 ## Conclusion
 
