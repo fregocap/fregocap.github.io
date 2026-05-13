@@ -15,57 +15,55 @@
   display: grid;
   grid-template-columns: 
     [screen-start] 1fr 
-    [page-start] minmax(0, 100px) 
+    [page-start] minmax(0, 250px) 
     [main-start] minmax(0, 800px) [main-end]
     minmax(0, 300px) [page-end]
     1fr [screen-end];
   column-gap: 60px;
 }
 
-/* Default all direct children to the main column */
+/* All direct children of article-grid default to the main column */
 .article-grid > * {
   grid-column: main;
 }
 
-@media (max-width: 1000px) {
+/* Special columns overrides */
+.side-column-container {
+  grid-column: page-start / main-start !important;
+  grid-row: 1 / 1000;
+}
+
+.sidenote {
+  grid-column: main-end / page-end !important;
+  @apply text-sm text-slate-500 font-sans pt-2;
+  margin-bottom: 2rem;
+}
+
+.wide-column {
+  grid-column: main-start / page-end !important;
+}
+
+.screen-column {
+  grid-column: screen !important;
+}
+
+@media (max-width: 1300px) {
   .article-grid {
     grid-template-columns: 
       [screen-start] 20px 
       [page-start main-start] 1fr [main-end page-end]
       20px [screen-end];
+    column-gap: 0;
   }
-}
 
-.main-column {
-  grid-column: main;
-  min-width: 0;
-}
+  .side-column-container {
+    display: none !important;
+  }
 
-.side-column {
-  grid-column: page-start / main-start;
-  @apply text-sm text-slate-500 font-sans italic pt-2;
-}
-
-.sidenote {
-  grid-column: main-end / page-end;
-  @apply text-sm text-slate-500 font-sans pt-2;
-  margin-bottom: 2rem;
-  grid-row: auto;
-}
-
-@media (max-width: 1000px) {
   .sidenote {
-    grid-column: main;
+    grid-column: main !important;
     @apply border-l-2 border-slate-100 pl-4 my-8;
   }
-}
-
-.wide-column {
-  grid-column: main-start / page-end;
-}
-
-.screen-column {
-  grid-column: screen;
 }
 
 /* Typography refinements - Anthropic / Distill Style */
@@ -103,22 +101,18 @@ code {
 }
 
 /* MathJax Specific Tweaks for Pre-rendered SVG */
-
-/* Global container reset */
 mjx-container {
   line-height: 0;
   text-align: left;
-  color: #1e293b; /* slate-800 */
+  color: #1e293b;
 }
 
-/* Inline Math - Force it to stay in-line and vertically aligned */
 mjx-container:not([display="true"]) {
   display: inline-block !important;
   vertical-align: middle !important;
   margin: 0 0.1em !important;
 }
 
-/* Display Math - The block formulas */
 mjx-container[display="true"] {
   display: block !important;
   text-align: center !important;
@@ -127,7 +121,6 @@ mjx-container[display="true"] {
   font-size: 1.6em !important;
 }
 
-/* Ensure the SVG inside doesn't stretch or break line flow */
 mjx-container svg {
   display: inline-block !important;
   width: auto !important;
@@ -136,13 +129,4 @@ mjx-container svg {
   max-height: none !important;
   vertical-align: 0 !important;
   margin: 0 !important;
-}
-
-/* Hide the horizontal overflow scrollbar but keep functionality for long formulas */
-mjx-container[display="true"]::-webkit-scrollbar {
-  height: 4px;
-}
-mjx-container[display="true"]::-webkit-scrollbar-thumb {
-  background: #e2e8f0;
-  border-radius: 4px;
 }
