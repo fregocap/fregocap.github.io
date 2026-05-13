@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { getPostsMetadata } from '../data/posts';
 
 interface Props {
   title: string;
@@ -7,6 +8,7 @@ interface Props {
 }
 
 const { title, description = "Technical research blog by Fabio Capela" } = Astro.props;
+const postsMetadata = await getPostsMetadata();
 ---
 
 <!DOCTYPE html>
@@ -18,6 +20,10 @@ const { title, description = "Technical research blog by Fabio Capela" } = Astro
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    
+    <script define:vars={{ postsMetadata }}>
+      window.__POSTS_METADATA__ = postsMetadata;
+    </script>
   </head>
   <body class="antialiased">
     <header class="py-12 article-grid">

@@ -16,14 +16,12 @@ const Reference: React.FC<Props> = ({ slug, text }) => {
   const [showPreview, setShowPreview] = useState(false);
 
   useEffect(() => {
-    // Using relative path to work better on various hosting setups
-    fetch('/api/posts.json')
-      .then(res => res.json())
-      .then(data => {
-        const found = data.find((p: PostData) => p.slug === slug);
-        if (found) setPost(found);
-      })
-      .catch(err => console.warn('Reference preview fetch failed:', err));
+    // Read from pre-injected global metadata
+    const metadata = (window as any).__POSTS_METADATA__;
+    if (metadata) {
+      const found = metadata.find((p: PostData) => p.slug === slug);
+      if (found) setPost(found);
+    }
   }, [slug]);
 
   return (
