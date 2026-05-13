@@ -19,27 +19,13 @@ const { title, description = "Technical research blog by Fabio Capela" } = Astro
     <title>{title}</title>
     <meta name="description" content={description} />
     
-    <!-- MathJax Configuration for beautiful scientific typesetting -->
-    <script>
-      window.MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']],
-          displayMath: [['$$', '$$'], ['\\[', '\\]']],
-          processEscapes: true,
-          processEnvironments: true
-        },
-        options: {
-          enableMenu: false
-        },
-        svg: {
-          fontCache: 'global',
-          scale: 1.05,
-          displayAlign: 'center',
-          displayIndent: '0px'
-        }
-      };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <!-- KaTeX CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+      integrity="sha384-Xi8rHCBrBuzSoh36CvIRVG51EEuGfajJGadFiZ60QXMaruuWY6qnS6L6ZOtWCKY6"
+      crossorigin="anonymous"
+    />
   </head>
   <body class="antialiased">
     <header class="py-12 article-grid">

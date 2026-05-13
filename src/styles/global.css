@@ -102,46 +102,53 @@ code {
   @apply font-mono bg-slate-100 px-1 rounded text-sm;
 }
 
-/* Math Styling Refinements */
-/* Target MathJax SVG output for high-end look */
-
-mjx-container[jax="SVG"] {
-  @apply transition-opacity duration-300;
-  color: #1e293b; /* slate-800 for slightly softer math than pure black */
+/* KaTeX Bulletproof Reset - Fixes Tailwind stretching issues */
+.katex {
+  text-indent: 0 !important;
+  font-size: 1.1em;
 }
 
-/* Inline Math - Seamless integration */
-mjx-container[jax="SVG"]:not([display="true"]) {
-  display: inline-block;
-  vertical-align: -0.2em; /* Precision alignment for symbols */
-  padding: 0 1px;
+.katex * {
+  /* This prevents Tailwind/Preflight from breaking math symbols like square roots */
+  box-sizing: content-box !important;
 }
 
-/* Display Math - The "Hero" formulas */
-mjx-container[jax="SVG"][display="true"] {
-  display: block;
-  margin: 4rem 0 !important;
-  text-align: center;
-  font-size: 1.4em !important; /* Slightly more conservative than before but crisper */
-  overflow-x: auto;
-  overflow-y: hidden;
+.katex-display {
+  @apply my-12 py-4 overflow-x-auto overflow-y-hidden text-center;
+  width: 100%;
+  font-size: 1.4em !important;
 }
 
-/* Match MathJax font weight to Merriweather slightly better */
-mjx-container path {
-  stroke-width: 5; /* Subtle bolding of SVG paths for better readability */
+.katex-display > .katex {
+  @apply inline-block;
+  white-space: nowrap;
+  text-align: initial;
 }
 
-/* Selection aesthetics for math */
-mjx-container::selection {
-  background: #ffedd5;
+/* Specific fix for radicals (square roots) and bars */
+.katex .vlist-t {
+  display: inline-table !important;
 }
 
-/* Hide horizontal scrollbar but keep functionality */
-mjx-container[display="true"]::-webkit-scrollbar {
-  height: 3px;
+.katex .vlist-r {
+  display: table-row !important;
 }
-mjx-container[display="true"]::-webkit-scrollbar-thumb {
-  background: #f1f5f9;
-  border-radius: 10px;
+
+.katex .vlist {
+  display: table-cell !important;
+  vertical-align: bottom !important;
+}
+
+/* Fix for the horizontal line in square roots and fractions */
+.katex .mfrac .vlist-t,
+.katex .msqrt .vlist-t {
+  border-bottom-width: 0 !important;
+}
+
+/* Ensure SVGs inside KaTeX don't stretch */
+.katex svg {
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+  vertical-align: baseline !important;
 }
