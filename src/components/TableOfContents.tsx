@@ -28,7 +28,7 @@ const TableOfContents: React.FC<Props> = ({ headings }) => {
   }, [headings]);
 
   return (
-    <nav className="sticky top-24 max-h-[calc(100vh-10rem)] overflow-y-auto pr-4 scrollbar-hide">
+    <nav className="sticky top-24 max-h-[calc(100vh-10rem)] overflow-y-auto pr-4">
       <h3 className="font-sans text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">
         Contents
       </h3>
