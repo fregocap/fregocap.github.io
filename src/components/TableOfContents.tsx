@@ -4,10 +4,12 @@ interface Props {
   headings: { depth: number; slug: string; text: string }[];
 }
 
-const TableOfContents: React.FC<Props> = ({ headings }) => {
+const TableOfContents: React.FC<Props> = ({ headings = [] }) => {
   const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
+    if (!headings.length) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -26,6 +28,8 @@ const TableOfContents: React.FC<Props> = ({ headings }) => {
 
     return () => observer.disconnect();
   }, [headings]);
+
+  if (!headings.length) return null;
 
   return (
     <nav className="sticky top-24 max-h-[calc(100vh-10rem)] overflow-y-auto pr-4">

@@ -10,7 +10,7 @@
   }
 }
 
-/* Distill-style layout classes */
+/* Distill-style layout classes - GRID STABILITY FIX */
 .article-grid {
   display: grid;
   grid-template-columns: 
@@ -27,11 +27,10 @@
   grid-column: main;
 }
 
-/* Overrides for specific columns */
+/* Specific columns overrides */
 .side-column-container {
   grid-column: page-start / main-start !important;
   grid-row: 1 / 1000;
-  display: block !important;
 }
 
 .sidenote {
@@ -44,14 +43,14 @@
   grid-column: main-start / page-end !important;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1400px) {
   .article-grid {
     grid-template-columns: 
       [screen-start] 1fr 
-      [main-start] minmax(0, 800px) [main-end]
-      minmax(0, 250px) [page-end]
+      [page-start main-start] minmax(0, 800px) [main-end]
+      minmax(200px, 300px) [page-end]
       1fr [screen-end];
-    column-gap: 30px;
+    column-gap: 40px;
   }
 
   .side-column-container {
@@ -63,7 +62,7 @@
   .article-grid {
     grid-template-columns: 
       [screen-start] 20px 
-      [main-start] 1fr [main-end]
+      [page-start main-start] 1fr [main-end page-end]
       20px [screen-end];
     column-gap: 0;
   }
@@ -118,7 +117,7 @@ h1 a::after, h2 a::after, h3 a::after, h4 a::after {
   font-family: font-sans;
 }
 
-/* MathJax Specific Tweaks */
+/* MathJax Specific Tweaks for Pre-rendered SVG */
 mjx-container {
   line-height: 0;
   text-align: left;
@@ -133,7 +132,7 @@ mjx-container:not([display="true"]) {
 mjx-container[display="true"] {
   display: block !important;
   text-align: center !important;
-  @apply my-12 py-4 overflow-x-auto !important;
+  @apply my-12 py-4 overflow-x-auto overflow-y-hidden !important;
   width: 100%;
   font-size: 1.5em !important;
 }
