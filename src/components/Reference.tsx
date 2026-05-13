@@ -16,18 +16,15 @@ const Reference: React.FC<Props> = ({ slug, text }) => {
   const [showPreview, setShowPreview] = useState(false);
 
   useEffect(() => {
+    // Using relative path to work better on various hosting setups
     fetch('/api/posts.json')
       .then(res => res.json())
       .then(data => {
         const found = data.find((p: PostData) => p.slug === slug);
         if (found) setPost(found);
       })
-      .catch(console.error);
+      .catch(err => console.warn('Reference preview fetch failed:', err));
   }, [slug]);
-
-  if (!post) {
-    return <span className="text-slate-400 italic">[{text || slug}]</span>;
-  }
 
   return (
     <span 
@@ -37,13 +34,13 @@ const Reference: React.FC<Props> = ({ slug, text }) => {
     >
       <a 
         href={`/blog/${slug}`} 
-        className="text-blue-600 hover:text-blue-800 transition-colors border-none font-medium"
+        className="text-orange-600 hover:text-orange-700 transition-colors border-none font-medium cursor-pointer"
       >
-        {text || post.title}
+        {text || (post ? post.title : slug)}
       </a>
 
-      {showPreview && (
-        <div className="absolute left-0 bottom-full mb-3 w-72 p-6 bg-white border border-slate-200 shadow-2xl rounded-2xl z-50 animate-in fade-in zoom-in-95 duration-200 pointer-events-none">
+      {showPreview && post && (
+        <div className="absolute left-0 bottom-full mb-3 w-80 p-6 bg-white border border-slate-200 shadow-2xl rounded-2xl z-50 animate-in fade-in zoom-in-95 duration-200 pointer-events-none">
           <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-2">
             Internal Reference
           </div>
