@@ -99,6 +99,25 @@ a {
   @apply text-orange-600 no-underline hover:border-b hover:border-orange-600 transition-all;
 }
 
+/* Wikipedia-style Heading Anchors */
+h1 a, h2 a, h3 a, h4 a {
+  @apply border-none !important;
+  opacity: 0;
+  margin-left: 0.5rem;
+  transition: opacity 0.2s ease;
+  color: #cbd5e1 !important; /* slate-300 */
+  font-weight: normal;
+}
+
+h1:hover a, h2:hover a, h3:hover a, h4:hover a {
+  opacity: 1;
+}
+
+h1 a::after, h2 a::after, h3 a::after, h4 a::after {
+  content: '§';
+  font-family: font-sans;
+}
+
 /* MathJax Specific Tweaks */
 mjx-container {
   line-height: 0;
