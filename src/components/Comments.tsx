@@ -7,7 +7,7 @@ const Comments: React.FC = () => {
     const script = document.createElement('script');
     script.src = "https://giscus.app/client.js";
     script.setAttribute("data-repo", "fregocap/fregocap.github.io");
-    script.setAttribute("data-repo-id", "R_kgDON7u0tA"); // Placeholder ID - will need actual ID or it might work with repo name
+    script.setAttribute("data-repo-id", "MDEwOlJlcG9zaXRvcnkyNzM3OTk1NDQ=");
     script.setAttribute("data-category", "Announcements");
     script.setAttribute("data-category-id", "DIC_kwDON7u0tM4CnR7c"); // Placeholder ID
     script.setAttribute("data-mapping", "pathname");

@@ -1,0 +1,56 @@
+---
+title: "NLA Evaluations and the Geometric Prior"
+description: "Exploring how non-linear analysis improves with training in transformer circuits."
+pubDate: 2026-04-24
+tags: ["Machine Learning", "Transformers", "Research"]
+hidden: true
+---
+import InteractiveCircle from '../../components/InteractiveCircle';
+import Reference from '../../components/Reference';
+
+This post explores the convergence properties of non-linear analysis (NLA) in transformer models. We argue that the standard evaluation metrics often miss the underlying geometric prior that emerges during the mid-stages of training. This builds upon our previous work on <Reference slug="nla-evaluations" text="manifold discovery" client:load />.
+
+## The Problem Statement
+
+Consider a standard transformer layer defined by the transformation $f(x) = \text{Softmax}(QK^T)V$. Traditionally, we analyze the attention patterns as a discrete graph. However, as the model scales, the latent space $Z \in \mathbb{R}^{d}$ begins to exhibit properties of a smooth manifold.
+
+We can define the information density $\rho$ as a function of the latent state $z$ and a kernel $\Omega$:
+
+$$ \rho(z) = \int_{\Omega} \frac{\exp(-\|z - \mu\|^2 / 2\sigma^2)}{\sqrt{2\pi\sigma^2}} d\mu $$
+
+Where $\sigma$ represents the resolution of our analysis. Below is an interactive demonstration of how $\sigma$ impacts the resulting manifold density.
+
+<div class="main-column">
+  <InteractiveCircle client:load />
+</div>
+
+## Wikipedia-style Cross-Linking
+
+One of the key features of this research blog is the ability to cross-reference other papers with rich previews. 
+
+For instance, if we want to understand how these geometric structures relate to feature decomposition, we can look at our latest results on <Reference slug="mechanistic-interpretability" text="Sparse Autoencoders" client:load />. Hovering over that link will show you a summary of the article without you having to navigate away.
+
+<div class="sidenote">
+  <strong>Note:</strong> You can create these links by simply dropping the <code>&lt;Reference slug="post-name" client:load /&gt;</code> component into your MDX files.
+</div>
+
+## Experimental Framework
+
+To validate our hypothesis, we conducted a series of ablation studies on the internal representations of a 12-layer decoder-only transformer. 
+
+### Metric Definitions
+
+We focus on two primary metrics that differ from standard loss:
+
+1. **Mean Curvature ($\kappa$):** Measures the average "bending" of the manifold locally around high-density points.
+2. **Topology Persistence:** Tracks the longevity of holes in the representation space across different layers.
+
+## Emergent Structures
+
+As training progresses, the model minimizes the cross-entropy loss $\mathcal{L}$. Our research suggests that this minimization is equivalent to a regularized Ricci flow on the latent space manifold. 
+
+This has significant implications for how we perform evaluations. Instead of looking at top-1 accuracy, we should be measuring the curvature of the embedding space.
+
+## Conclusion
+
+The path forward for evaluating large language models lies in differential geometry. By treating the weights not as static matrices but as coordinate systems on a dynamic manifold, we can predict failure modes before they manifest in natural language output.
