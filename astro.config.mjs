@@ -9,7 +9,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://fregocap.github.io',
+  site: 'https://labfab.io',
   base: '/', 
   integrations: [react(), mdx(), tailwind()],
   markdown: {
