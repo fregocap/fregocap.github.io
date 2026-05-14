@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['Merriweather', 'Georgia', 'serif'],
+        serif: ['EB Garamond', 'serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },

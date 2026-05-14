@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -24,7 +24,11 @@
 
 /* Default direct children to the main column */
 .article-grid > * {
-  grid-column: main;
+  grid-column: main-start / main-end;
+}
+
+.main-column {
+  grid-column: main-start / main-end !important;
 }
 
 /* Specific columns overrides */
@@ -43,7 +47,7 @@
   grid-column: main-start / page-end !important;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
   .article-grid {
     grid-template-columns: 
       [screen-start] 1fr 
@@ -75,23 +79,70 @@
 
 /* Typography refinements - Anthropic / Distill Style */
 h1 {
-  @apply font-sans font-extrabold tracking-tighter text-slate-900 leading-[1.1] mb-12;
+  @apply font-serif font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-12;
   font-size: clamp(2.5rem, 8vw, 4.5rem);
 }
 
 h2 {
-  @apply font-sans font-bold tracking-tight text-slate-900 mt-24 mb-6 pt-6 border-t border-slate-200;
+  @apply font-serif font-bold tracking-tight text-slate-900 mt-24 mb-6 pt-6 border-t border-slate-200;
   font-size: 1.75rem;
 }
 
 h3 {
-  @apply font-sans font-bold tracking-tight text-slate-900 mt-12 mb-4;
+  @apply font-serif font-bold tracking-tight text-slate-900 mt-12 mb-4;
   font-size: 1.25rem;
 }
 
 p {
-  @apply leading-relaxed mb-6;
-  font-size: 1.1rem;
+  @apply leading-relaxed mb-6 text-justify;
+  font-size: 1.2rem;
+  hyphens: auto;
+}
+
+/* Academic Blocks */
+.abstract {
+  @apply my-12 px-8 md:px-16;
+}
+
+.abstract::before {
+  content: "Abstract";
+  @apply block text-center font-serif font-bold text-sm uppercase tracking-widest mb-4;
+}
+
+.abstract p {
+  @apply text-sm leading-relaxed italic text-slate-600 !important;
+}
+
+.theorem {
+  @apply my-8 p-6 bg-slate-50 border-l-4 border-slate-200 italic;
+}
+
+.theorem::before {
+  content: "Theorem.";
+  @apply font-serif font-bold not-italic mr-2;
+}
+
+.proof {
+  @apply my-8 p-6 relative;
+}
+
+.proof::before {
+  content: "Proof.";
+  @apply font-serif italic mr-2;
+}
+
+.proof::after {
+  content: "∎";
+  @apply absolute bottom-6 right-6 text-slate-400;
+}
+
+.definition {
+  @apply my-8 p-6 border border-slate-100;
+}
+
+.definition::before {
+  content: "Definition.";
+  @apply font-serif font-bold mr-2;
 }
 
 a {
@@ -117,10 +168,9 @@ h1 a::after, h2 a::after, h3 a::after, h4 a::after {
   font-family: font-sans;
 }
 
-/* MathJax Specific Tweaks for Pre-rendered SVG */
+/* MathJax Specific Tweaks */
 mjx-container {
   line-height: 0;
-  text-align: left;
   color: #1e293b;
 }
 
@@ -129,16 +179,22 @@ mjx-container:not([display="true"]) {
   vertical-align: middle !important;
 }
 
-mjx-container[display="true"] {
+mjx-container[display="true"], .math-block {
   display: block !important;
   text-align: center !important;
-  @apply my-12 py-4 overflow-x-auto overflow-y-hidden !important;
+  @apply my-16 py-8 overflow-x-auto overflow-y-hidden !important;
   width: 100%;
-  font-size: 1.5em !important;
+  font-size: 1.4em !important;
+  clear: both;
 }
 
 mjx-container svg {
   display: inline-block !important;
-  width: auto !important;
-  height: auto !important;
+  margin: 0 auto !important;
+}
+
+/* Ensure client-side MathJax SVG labels are visible */
+.MathJax_SVG_Display {
+  text-align: center;
+  margin: 1em 0;
 }

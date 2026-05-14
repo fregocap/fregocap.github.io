@@ -2,7 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog')).sort(
+const posts = (await getCollection('blog', ({ data }) => {
+	return data.hidden !== true;
+})).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---

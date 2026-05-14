@@ -9,6 +9,7 @@ const blog = defineCollection({
     author: z.string().default('Fabio Capela'),
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),
+    hidden: z.boolean().optional().default(false),
   }),
 });
 

@@ -4,7 +4,9 @@ import Layout from '../../layouts/Layout.astro';
 import TableOfContents from '../../components/TableOfContents';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
+	const posts = await getCollection('blog', ({ data }) => {
+		return data.hidden !== true;
+	});
 	return posts.map((post) => ({
 		params: { slug: post.slug },
 		props: post,

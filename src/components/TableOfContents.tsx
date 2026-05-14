@@ -6,9 +6,10 @@ interface Props {
 
 const TableOfContents: React.FC<Props> = ({ headings = [] }) => {
   const [activeId, setActiveId] = useState<string>('');
+  const filteredHeadings = headings.filter((h) => h.depth > 1 && h.depth < 4);
 
   useEffect(() => {
-    if (!headings.length) return;
+    if (!filteredHeadings.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -21,15 +22,15 @@ const TableOfContents: React.FC<Props> = ({ headings = [] }) => {
       { rootMargin: '-100px 0px -66% 0px' }
     );
 
-    headings.forEach((heading) => {
+    filteredHeadings.forEach((heading) => {
       const element = document.getElementById(heading.slug);
       if (element) observer.observe(element);
     });
 
     return () => observer.disconnect();
-  }, [headings]);
+  }, [filteredHeadings]);
 
-  if (!headings.length) return null;
+  if (!filteredHeadings.length) return null;
 
   return (
     <nav className="sticky top-24 max-h-[calc(100vh-10rem)] overflow-y-auto pr-4">
@@ -37,25 +38,23 @@ const TableOfContents: React.FC<Props> = ({ headings = [] }) => {
         Contents
       </h3>
       <ul className="space-y-4">
-        {headings
-          .filter((h) => h.depth > 1 && h.depth < 4)
-          .map((heading) => (
-            <li 
-              key={heading.slug}
-              style={{ paddingLeft: `${(heading.depth - 2) * 1}rem` }}
+        {filteredHeadings.map((heading) => (
+          <li 
+            key={heading.slug}
+            style={{ paddingLeft: `${(heading.depth - 2) * 1}rem` }}
+          >
+            <a
+              href={`#${heading.slug}`}
+              className={`block text-xs font-sans font-bold leading-tight transition-all duration-300 border-none ${
+                activeId === heading.slug
+                  ? 'text-orange-600 translate-x-1'
+                  : 'text-slate-400 hover:text-slate-600'
+              }`}
             >
-              <a
-                href={`#${heading.slug}`}
-                className={`block text-xs font-sans font-bold leading-tight transition-all duration-300 border-none ${
-                  activeId === heading.slug
-                    ? 'text-orange-600 translate-x-1'
-                    : 'text-slate-400 hover:text-slate-600'
-                }`}
-              >
-                {heading.text}
-              </a>
-            </li>
-          ))}
+              {heading.text}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
   );
