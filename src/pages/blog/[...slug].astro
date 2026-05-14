@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import TableOfContents from '../../components/TableOfContents';
+import Comments from '../../components/Comments';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog', ({ data }) => {
@@ -33,6 +34,10 @@ const { Content, headings } = await post.render();
 		</header>
 		
 		<Content />
+
+		<div class="main-column">
+			<Comments client:visible />
+		</div>
 	</div>
 </Layout>
 
