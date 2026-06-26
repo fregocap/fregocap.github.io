@@ -11,3 +11,5 @@ npm-debug.log*
 .DS_Store
 # Astro caches
 .astro/
+# graphify generated output
+graphify-out/
