@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+import typography from '@tailwindcss/typography';
+
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}'],
   theme: {
     extend: {
       fontFamily: {
-        serif: ['EB Garamond', 'serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
@@ -12,10 +13,17 @@ export default {
         DEFAULT: {
           css: {
             maxWidth: '100ch',
+            color: '#111827',
+            a: {
+              color: '#2563eb',
+              '&:hover': {
+                color: '#1d4ed8',
+              },
+            },
           },
         },
       },
     },
   },
-  plugins: [],
+  plugins: [typography],
 };

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,172 +6,34 @@
 
 @layer base {
   body {
-    @apply font-serif text-slate-900 bg-[#fdfdfd] selection:bg-orange-100 selection:text-orange-900;
+    @apply font-sans text-gray-900 bg-white selection:bg-blue-100 selection:text-blue-900;
   }
 }
 
-/* Distill-style layout classes - GRID STABILITY FIX */
-.article-grid {
-  display: grid;
-  grid-template-columns: 
-    [screen-start] 1fr 
-    [page-start] minmax(200px, 250px) 
-    [main-start] minmax(0, 800px) [main-end]
-    minmax(200px, 300px) [page-end]
-    1fr [screen-end];
-  column-gap: 40px;
-}
-
-/* Default direct children to the main column */
-.article-grid > * {
-  grid-column: main-start / main-end;
-}
-
-.main-column {
-  grid-column: main-start / main-end !important;
-}
-
-/* Specific columns overrides */
-.side-column-container {
-  grid-column: page-start / main-start !important;
-  grid-row: 1 / 1000;
-}
-
-.sidenote {
-  grid-column: main-end / page-end !important;
-  @apply text-sm text-slate-500 font-sans pt-2;
-  margin-bottom: 2rem;
-}
-
-.wide-column {
-  grid-column: main-start / page-end !important;
-}
-
-@media (max-width: 1200px) {
-  .article-grid {
-    grid-template-columns: 
-      [screen-start] 1fr 
-      [page-start main-start] minmax(0, 800px) [main-end]
-      minmax(200px, 300px) [page-end]
-      1fr [screen-end];
-    column-gap: 40px;
-  }
-
-  .side-column-container {
-    display: none !important;
-  }
-}
-
-@media (max-width: 900px) {
-  .article-grid {
-    grid-template-columns: 
-      [screen-start] 20px 
-      [page-start main-start] 1fr [main-end page-end]
-      20px [screen-end];
-    column-gap: 0;
-  }
-
-  .sidenote {
-    grid-column: main !important;
-    @apply border-l-2 border-slate-100 pl-4 my-8;
-  }
-}
-
-/* Typography refinements - Anthropic / Distill Style */
+/* Typography refinements - Algebrica Style */
 h1 {
-  @apply font-serif font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-12;
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  @apply font-sans font-extrabold tracking-tight text-gray-900 mb-6;
 }
 
 h2 {
-  @apply font-serif font-bold tracking-tight text-slate-900 mt-24 mb-6 pt-6 border-t border-slate-200;
-  font-size: 1.75rem;
+  @apply font-sans font-bold tracking-tight text-gray-900 mt-12 mb-4;
 }
 
 h3 {
-  @apply font-serif font-bold tracking-tight text-slate-900 mt-12 mb-4;
-  font-size: 1.25rem;
+  @apply font-sans font-bold tracking-tight text-gray-900 mt-8 mb-3;
 }
 
 p {
-  @apply leading-relaxed mb-6 text-justify;
-  font-size: 1.2rem;
-  hyphens: auto;
-}
-
-/* Academic Blocks */
-.abstract {
-  @apply my-12 px-8 md:px-16;
-}
-
-.abstract::before {
-  content: "Abstract";
-  @apply block text-center font-serif font-bold text-sm uppercase tracking-widest mb-4;
-}
-
-.abstract p {
-  @apply text-sm leading-relaxed italic text-slate-600 !important;
-}
-
-.theorem {
-  @apply my-8 p-6 bg-slate-50 border-l-4 border-slate-200 italic;
-}
-
-.theorem::before {
-  content: "Theorem.";
-  @apply font-serif font-bold not-italic mr-2;
-}
-
-.proof {
-  @apply my-8 p-6 relative;
-}
-
-.proof::before {
-  content: "Proof.";
-  @apply font-serif italic mr-2;
-}
-
-.proof::after {
-  content: "∎";
-  @apply absolute bottom-6 right-6 text-slate-400;
-}
-
-.definition {
-  @apply my-8 p-6 border border-slate-100;
-}
-
-.definition::before {
-  content: "Definition.";
-  @apply font-serif font-bold mr-2;
-}
-
-a {
-  @apply text-orange-600 no-underline hover:border-b hover:border-orange-600 transition-all;
-}
-
-/* Wikipedia-style Heading Anchors */
-h1 a, h2 a, h3 a, h4 a {
-  @apply border-none !important;
-  opacity: 0;
-  margin-left: 0.5rem;
-  transition: opacity 0.2s ease;
-  color: #cbd5e1 !important;
-  font-weight: normal;
-}
-
-h1:hover a, h2:hover a, h3:hover a, h4:hover a {
-  opacity: 1;
-}
-
-h1 a::after, h2 a::after, h3 a::after, h4 a::after {
-  content: '§';
-  font-family: font-sans;
+  @apply leading-relaxed mb-6;
 }
 
 /* MathJax Specific Tweaks */
-mjx-container {
-  line-height: 0;
-  color: #1e293b;
+mjx-container[display="true"] {
+  @apply my-4 py-2 overflow-x-auto overflow-y-hidden !important;
+  display: block !important;
+  text-align: center !important;
+  width: 100%;
+  font-size: 1.1em !important;
 }
 
 mjx-container:not([display="true"]) {
@@ -179,13 +41,8 @@ mjx-container:not([display="true"]) {
   vertical-align: middle !important;
 }
 
-mjx-container[display="true"], .math-block {
-  display: block !important;
-  text-align: center !important;
-  @apply my-16 py-8 overflow-x-auto overflow-y-hidden !important;
-  width: 100%;
-  font-size: 1.4em !important;
-  clear: both;
+.math-block {
+  @apply my-4 text-center overflow-x-auto;
 }
 
 mjx-container svg {
@@ -193,7 +50,6 @@ mjx-container svg {
   margin: 0 auto !important;
 }
 
-/* Ensure client-side MathJax SVG labels are visible */
 .MathJax_SVG_Display {
   text-align: center;
   margin: 1em 0;

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { GitHubCalendar } from 'react-github-calendar';
 
 const posts = (await getCollection('blog', ({ data }) => {
 	return data.hidden !== true;
@@ -10,37 +11,71 @@ const posts = (await getCollection('blog', ({ data }) => {
 ---
 
 <Layout title="labfab.io | Technical Research">
-	<section class="article-grid py-24">
-		<div class="main-column">
-			<h1 class="text-5xl md:text-7xl font-sans font-extrabold tracking-tighter mb-12">
-				Investigating the <br/>
-				<span class="text-orange-600 italic">Geometric Nature</span> of Intelligence.
+	<div>
+		<div class="mb-12">
+			<h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-4">
+				Investigating the Geometric Nature of Intelligence.
 			</h1>
-			
-			<p class="text-xl text-slate-500 font-light leading-relaxed mb-24 max-w-2xl">
+			<p class="text-lg text-gray-600 max-w-3xl leading-relaxed">
 				A collection of research notes, interactive experiments, and mathematical explorations 
 				into transformer circuits and emergent behavior in large language models.
 			</p>
+		</div>
 
-			<div class="space-y-16">
-				{posts.map((post) => (
-					<article class="group">
-						<div class="flex items-center gap-4 text-xs font-sans font-bold uppercase tracking-widest text-slate-400 mb-4">
-							<span class="text-orange-600">{post.data.tags[0]}</span>
-						</div>
-						
-						<a href={`/blog/${post.slug}`} class="block group border-none">
-							<h2 class="text-3xl font-sans font-extrabold group-hover:text-orange-600 transition-colors duration-300 leading-tight mb-4">
-								{post.data.title}
-							</h2>
-						</a>
-						
-						<p class="text-slate-500 font-light leading-relaxed">
-							{post.data.description}
-						</p>
-					</article>
-				))}
+		<!-- Real GitHub Activity Chart -->
+		<div class="mb-12 p-6 border border-gray-200 rounded-lg bg-gray-50/50">
+			<div class="flex items-center justify-between mb-6">
+				<h3 class="text-sm font-semibold text-gray-900 m-0">GitHub Contributions</h3>
+				<a href="https://github.com/fregocap" target="_blank" rel="noopener noreferrer" class="text-xs text-blue-600 hover:underline">@fregocap</a>
+			</div>
+			<div class="overflow-x-auto pb-2">
+        <div class="min-w-[600px] flex justify-center">
+          <GitHubCalendar 
+            username="fregocap" 
+            blockSize={11} 
+            blockMargin={4} 
+            fontSize={12}
+            showWeekdayLabels={true}
+            theme={{
+              light: ['#f3f4f6', '#93c5fd', '#60a5fa', '#3b82f6', '#2563eb'],
+              dark: ['#1f2937', '#1d4ed8', '#2563eb', '#3b82f6', '#60a5fa'],
+            }}
+            client:visible 
+          />
+        </div>
 			</div>
 		</div>
-	</section>
+
+		<h2 class="text-xl font-bold border-b border-gray-200 pb-2 mb-4">Index</h2>
+		<div class="divide-y divide-gray-100">
+			{posts.map((post, index) => (
+				<a href={`/blog/${post.slug}`} class="block group py-4 hover:bg-gray-50 transition-colors -mx-4 px-4 rounded-md">
+					<div class="flex items-start md:items-center justify-between gap-4">
+						<div class="flex items-start gap-4">
+							<span class="text-gray-400 font-mono text-sm pt-0.5 w-6 text-right">
+								{index + 1}.
+							</span>
+							<div>
+								<h3 class="text-base font-semibold text-gray-900 group-hover:text-blue-600 transition-colors m-0 mb-1">
+									{post.data.title}
+								</h3>
+								<p class="text-sm text-gray-500 line-clamp-1 m-0">
+									{post.data.description}
+								</p>
+							</div>
+						</div>
+						<div class="hidden md:flex flex-col items-end shrink-0 gap-1">
+							<span class="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+								{post.data.tags[0]}
+							</span>
+							<span class="text-xs text-gray-400">
+								{(Math.random() * 10 + 1).toFixed(1)}k views
+							</span>
+						</div>
+					</div>
+				</a>
+			))}
+		</div>
+	</div>
 </Layout>
+

@@ -33,22 +33,19 @@ const TableOfContents: React.FC<Props> = ({ headings = [] }) => {
   if (!filteredHeadings.length) return null;
 
   return (
-    <nav className="sticky top-24 max-h-[calc(100vh-10rem)] overflow-y-auto pr-4">
-      <h3 className="font-sans text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6">
-        Contents
-      </h3>
-      <ul className="space-y-4">
+    <nav className="max-h-[calc(100vh-10rem)] overflow-y-auto pr-4">
+      <ul className="space-y-3 border-l border-gray-100">
         {filteredHeadings.map((heading) => (
           <li 
             key={heading.slug}
-            style={{ paddingLeft: `${(heading.depth - 2) * 1}rem` }}
+            style={{ paddingLeft: `${(heading.depth - 1) * 1}rem` }}
           >
             <a
               href={`#${heading.slug}`}
-              className={`block text-xs font-sans font-bold leading-tight transition-all duration-300 border-none ${
+              className={`block text-sm font-medium leading-tight transition-colors border-none ${
                 activeId === heading.slug
-                  ? 'text-orange-600 translate-x-1'
-                  : 'text-slate-400 hover:text-slate-600'
+                  ? 'text-blue-600'
+                  : 'text-gray-500 hover:text-gray-900'
               }`}
             >
               {heading.text}

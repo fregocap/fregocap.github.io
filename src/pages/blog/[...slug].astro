@@ -5,13 +5,13 @@ import TableOfContents from '../../components/TableOfContents';
 import Comments from '../../components/Comments';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog', ({ data }) => {
-		return data.hidden !== true;
-	});
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+        const posts = await getCollection('blog', ({ data }) => {
+                return data.hidden !== true;
+        });
+        return posts.map((post) => ({
+                params: { slug: post.slug },
+                props: post,
+        }));
 }
 
 const post = Astro.props;
@@ -19,30 +19,44 @@ const { Content, headings } = await post.render();
 ---
 
 <Layout title={post.data.title} description={post.data.description}>
-	<div class="article-grid py-12">
-		<aside class="side-column-container">
-			<TableOfContents client:load headings={headings} />
-		</aside>
-		
-		<header class="main-column mb-12">
-			<h1 class="text-4xl md:text-6xl font-sans font-extrabold tracking-tighter mb-4">
-				{post.data.title}
-			</h1>
-			<p class="text-xl text-slate-500 font-light leading-relaxed italic">
-				{post.data.description}
-			</p>
-		</header>
-		
-		<Content />
+        <div class="flex flex-col lg:flex-row gap-12 relative">
+                <!-- Content Area -->
+                <div class="flex-1 max-w-3xl min-w-0">
+                        <header class="mb-12 border-b border-gray-200 pb-8">
+                                <div class="flex items-center gap-2 text-sm text-blue-600 font-medium mb-4">
+                                        <span>{post.data.tags[0]}</span>
+                                        <span class="text-gray-300">&bull;</span>
+                                        <span class="text-gray-500">{post.data.pubDate.toLocaleDateString()}</span>
+                                </div>
+                                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-gray-900 leading-tight">
+                                        {post.data.title}
+                                </h1>
+                                <p class="text-xl text-gray-500 leading-relaxed">
+                                        {post.data.description}
+                                </p>
+                        </header>
 
-		<div class="main-column">
-			<Comments client:visible />
-		</div>
-	</div>
+                        <div class="prose prose-gray prose-blue max-w-none prose-headings:font-bold prose-h2:border-b prose-h2:border-gray-200 prose-h2:pb-2 prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-img:rounded-lg">
+                                <Content />
+                        </div>
+
+                        <div class="mt-16 pt-8 border-t border-gray-200">
+                                <Comments client:visible />
+                        </div>
+                </div>
+
+                <!-- Table of Contents Sidebar -->
+                <aside class="hidden lg:block w-64 shrink-0">
+                        <div class="sticky top-24">
+                                <div class="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4">On this page</div>
+                                <TableOfContents client:load headings={headings} />
+                        </div>
+                </aside>
+        </div>
 </Layout>
 
 <style is:global>
-	h2, h3 {
-		scroll-margin-top: 100px;
-	}
+        h2, h3 {
+                scroll-margin-top: 100px;
+        }
 </style>

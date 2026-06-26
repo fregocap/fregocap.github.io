@@ -1,0 +1,41 @@
+---
+title: "From Phase Space to Path Integrals: Canonical Quantization in General Relativity"
+description: "Bridging the gap between symplectic structures and the Wheeler-DeWitt equation through the lens of canonical quantization."
+pubDate: 2026-06-12
+tags: ["Mathematics", "Physics", "Quantum Gravity"]
+hidden: true
+---
+
+In our previous discussion on [Symplectic Geometry](/blog/symplectic-geometry-intro), we established that General Relativity can be viewed as a constrained Hamiltonian system. This geometric realization is the starting point for **Canonical Quantization**, an ambitious program to formulate a consistent quantum theory of gravity.
+
+## 1. The Kinematical State Space
+
+The transition from classical to quantum gravity begins with the **ADM Decomposition**. We treat the 4-dimensional spacetime manifold as a foliated series of 3-dimensional spacelike hypersurfaces $\Sigma_t$. 
+
+The "coordinates" of our configuration space are the 3-metrics $g_{ij}$, and their conjugate momenta are $\pi^{ij}$. In the quantum theory, these become operators acting on a wave functional $\Psi[g_{ij}]$:
+
+$$
+\hat{g}_{ij} \Psi[g] = g_{ij} \Psi[g], \quad \hat{\pi}^{ij} \Psi[g] = -i \hbar \frac{\delta}{\delta g_{ij}} \Psi[g]
+$$
+
+## 2. The Wheeler-DeWitt Equation
+
+The most significant departure from standard quantum field theory is the absence of a background time. In the [Symplectic formulation](/blog/symplectic-geometry-intro#4-connection-to-general-relativity), this is reflected in the fact that the Hamiltonian is a sum of constraints. 
+
+Quantizing the **Hamiltonian Constraint** $\mathcal{H}_\perp \approx 0$ leads to the famous **Wheeler-DeWitt Equation**:
+
+$$
+\left[ G_{abcd} \frac{\delta^2}{\delta g_{ab} \delta g_{cd}} + \sqrt{g} R^{(3)} \right] \Psi[g] = 0
+$$
+
+This equation represents the "Schrödinger equation of the universe," where the wave functional $\Psi$ does not evolve *in* time, but rather encodes the probability of different spatial geometries.
+
+## 3. The Problem of Time
+
+Because the symplectic structure of GR is entirely defined by constraints, the physical states must be invariant under reparameterizations. This leads to the **Problem of Time**: if the physical Hamiltonian is zero, how do we recover the perception of evolution?
+
+This question forces us to reconsider the nature of the [Poisson Bracket](/blog/symplectic-geometry-intro#3-the-poisson-bracket) and its quantum counterpart, the commutator, in a purely relational framework.
+
+## Conclusion
+
+Canonical quantization reveals that the symplectic geometry of classical gravity contains the seeds of its own quantum transcendence. While the Wheeler-DeWitt approach faces significant mathematical hurdles, it remains a cornerstone of Loop Quantum Gravity and our search for a unified theory of everything.

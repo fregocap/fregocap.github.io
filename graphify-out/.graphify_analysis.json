@@ -1,0 +1,187 @@
+{
+  "communities": {
+    "0": [
+      "fregocap_github_io_package_dependencies",
+      "fregocap_github_io_package_dependencies_astro",
+      "fregocap_github_io_package_dependencies_astrojs_mdx",
+      "fregocap_github_io_package_dependencies_astrojs_react",
+      "fregocap_github_io_package_dependencies_astrojs_tailwind",
+      "fregocap_github_io_package_dependencies_lucide_react",
+      "fregocap_github_io_package_dependencies_react",
+      "fregocap_github_io_package_dependencies_react_dom",
+      "fregocap_github_io_package_dependencies_rehype_autolink_headings",
+      "fregocap_github_io_package_dependencies_rehype_mathjax",
+      "fregocap_github_io_package_dependencies_rehype_slug",
+      "fregocap_github_io_package_dependencies_remark_math",
+      "fregocap_github_io_package_dependencies_tailwindcss",
+      "fregocap_github_io_package_dependencies_tailwindcss_typography",
+      "fregocap_github_io_package_dependencies_types_react",
+      "fregocap_github_io_package_dependencies_types_react_dom"
+    ],
+    "1": [
+      "astro_content",
+      "content_config_blog",
+      "content_config_collections",
+      "data_posts_getpostsmetadata",
+      "pages_index_posts",
+      "src_content_config_ts",
+      "src_data_posts_ts",
+      "src_layouts_layout_astro",
+      "src_pages_about_astro",
+      "src_pages_index_astro",
+      "users_fabiocapela_desktop_fregocap_github_io_src_data_posts",
+      "users_fabiocapela_desktop_fregocap_github_io_src_styles_global_css"
+    ],
+    "2": [
+      "fregocap_github_io_package_name",
+      "fregocap_github_io_package_scripts",
+      "fregocap_github_io_package_scripts_astro",
+      "fregocap_github_io_package_scripts_build",
+      "fregocap_github_io_package_scripts_dev",
+      "fregocap_github_io_package_scripts_preview",
+      "fregocap_github_io_package_scripts_start",
+      "fregocap_github_io_package_type",
+      "fregocap_github_io_package_version",
+      "package_json"
+    ],
+    "3": [
+      "blog_slug_getstaticpaths",
+      "components_comments_comments",
+      "components_tableofcontents_props",
+      "components_tableofcontents_tableofcontents",
+      "src_components_comments_tsx",
+      "src_components_tableofcontents_tsx",
+      "src_pages_blog_slug_astro",
+      "users_fabiocapela_desktop_fregocap_github_io_src_components_comments",
+      "users_fabiocapela_desktop_fregocap_github_io_src_components_tableofcontents"
+    ],
+    "4": [
+      "fregocap_github_io_tsconfig_compileroptions",
+      "fregocap_github_io_tsconfig_compileroptions_baseurl",
+      "fregocap_github_io_tsconfig_compileroptions_jsx",
+      "fregocap_github_io_tsconfig_compileroptions_jsximportsource",
+      "fregocap_github_io_tsconfig_compileroptions_paths",
+      "fregocap_github_io_tsconfig_extends",
+      "fregocap_github_io_tsconfig_paths",
+      "tsconfig_json"
+    ],
+    "5": [
+      "components_reference_postdata",
+      "components_reference_props",
+      "components_reference_reference",
+      "src_components_reference_tsx"
+    ],
+    "6": [
+      "fregocap_github_io_vite_env_d_importmeta",
+      "fregocap_github_io_vite_env_d_importmetaenv",
+      "vite_env_d_ts"
+    ],
+    "7": [
+      "components_circuitdiagram_circuitdiagram",
+      "src_components_circuitdiagram_tsx"
+    ],
+    "8": [
+      "components_interactivecircle_interactivecircle",
+      "src_components_interactivecircle_tsx"
+    ],
+    "9": [
+      "components_manifolddiagram_manifolddiagram",
+      "src_components_manifolddiagram_tsx"
+    ],
+    "10": [
+      "astro_config_mjs"
+    ],
+    "11": [
+      "tailwind_config_mjs"
+    ]
+  },
+  "cohesion": {
+    "0": 0.125,
+    "1": 0.19696969696969696,
+    "2": 0.2,
+    "3": 0.2222222222222222,
+    "4": 0.25,
+    "5": 0.5,
+    "6": 0.6666666666666666,
+    "7": 1.0,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0,
+    "11": 1.0
+  },
+  "gods": [
+    {
+      "id": "src_layouts_layout_astro",
+      "label": "../../layouts/Layout.astro",
+      "degree": 7
+    },
+    {
+      "id": "fregocap_github_io_package_scripts",
+      "label": "scripts",
+      "degree": 6
+    },
+    {
+      "id": "fregocap_github_io_tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 5
+    },
+    {
+      "id": "fregocap_github_io_tsconfig_compileroptions_paths",
+      "label": "paths",
+      "degree": 2
+    },
+    {
+      "id": "data_posts_getpostsmetadata",
+      "label": "getPostsMetadata()",
+      "degree": 2
+    },
+    {
+      "id": "fregocap_github_io_package_scripts_dev",
+      "label": "dev",
+      "degree": 1
+    },
+    {
+      "id": "fregocap_github_io_package_scripts_build",
+      "label": "build",
+      "degree": 1
+    },
+    {
+      "id": "fregocap_github_io_package_scripts_preview",
+      "label": "preview",
+      "degree": 1
+    },
+    {
+      "id": "fregocap_github_io_package_scripts_astro",
+      "label": "astro",
+      "degree": 1
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_astrojs_mdx",
+      "label": "@astrojs/mdx",
+      "degree": 1
+    }
+  ],
+  "surprises": [],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `dependencies` connect `Community 0` to `Community 2`?",
+      "why": "High betweenness centrality (0.109) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `../../layouts/Layout.astro` connect `Community 1` to `Community 3`?",
+      "why": "High betweenness centrality (0.034) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `name`, `version`, `type` to the rest of the system?",
+      "why": "37 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.125 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

@@ -1,0 +1,1422 @@
+{
+  "nodes": [
+    {
+      "id": "astro_config_mjs",
+      "label": "astro.config.mjs",
+      "file_type": "code",
+      "source_file": "astro.config.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "tailwind_config_mjs",
+      "label": "tailwind.config.mjs",
+      "file_type": "code",
+      "source_file": "tailwind.config.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "package_json",
+      "label": "package.json",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "fregocap_github_io_package_name",
+      "label": "name",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L2"
+    },
+    {
+      "id": "fregocap_github_io_package_version",
+      "label": "version",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L3"
+    },
+    {
+      "id": "fregocap_github_io_package_type",
+      "label": "type",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L4"
+    },
+    {
+      "id": "fregocap_github_io_package_scripts",
+      "label": "scripts",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L5"
+    },
+    {
+      "id": "fregocap_github_io_package_scripts_dev",
+      "label": "dev",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L6"
+    },
+    {
+      "id": "fregocap_github_io_package_scripts_start",
+      "label": "start",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L7"
+    },
+    {
+      "id": "fregocap_github_io_package_scripts_build",
+      "label": "build",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L8"
+    },
+    {
+      "id": "fregocap_github_io_package_scripts_preview",
+      "label": "preview",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L9"
+    },
+    {
+      "id": "fregocap_github_io_package_scripts_astro",
+      "label": "astro",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L10"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies",
+      "label": "dependencies",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L12"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_astrojs_mdx",
+      "label": "@astrojs/mdx",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L13"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_astrojs_react",
+      "label": "@astrojs/react",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L14"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_astrojs_tailwind",
+      "label": "@astrojs/tailwind",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L15"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_tailwindcss_typography",
+      "label": "@tailwindcss/typography",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L16"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_types_react",
+      "label": "@types/react",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L17"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_types_react_dom",
+      "label": "@types/react-dom",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L18"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_astro",
+      "label": "astro",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L19"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_lucide_react",
+      "label": "lucide-react",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L20"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_react",
+      "label": "react",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L21"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_react_dom",
+      "label": "react-dom",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L22"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_rehype_autolink_headings",
+      "label": "rehype-autolink-headings",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L23"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_rehype_mathjax",
+      "label": "rehype-mathjax",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L24"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_rehype_slug",
+      "label": "rehype-slug",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L25"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_remark_math",
+      "label": "remark-math",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L26"
+    },
+    {
+      "id": "fregocap_github_io_package_dependencies_tailwindcss",
+      "label": "tailwindcss",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L27"
+    },
+    {
+      "id": "vite_env_d_ts",
+      "label": "vite-env.d.ts",
+      "file_type": "code",
+      "source_file": "vite-env.d.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "fregocap_github_io_vite_env_d_importmetaenv",
+      "label": "ImportMetaEnv",
+      "file_type": "code",
+      "source_file": "vite-env.d.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "fregocap_github_io_vite_env_d_importmeta",
+      "label": "ImportMeta",
+      "file_type": "code",
+      "source_file": "vite-env.d.ts",
+      "source_location": "L7"
+    },
+    {
+      "id": "tsconfig_json",
+      "label": "tsconfig.json",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L1"
+    },
+    {
+      "id": "fregocap_github_io_tsconfig_extends",
+      "label": "extends",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L2"
+    },
+    {
+      "id": "fregocap_github_io_tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L3"
+    },
+    {
+      "id": "fregocap_github_io_tsconfig_compileroptions_baseurl",
+      "label": "baseUrl",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L4"
+    },
+    {
+      "id": "fregocap_github_io_tsconfig_compileroptions_paths",
+      "label": "paths",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L5"
+    },
+    {
+      "id": "fregocap_github_io_tsconfig_paths",
+      "label": "@/*",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L6"
+    },
+    {
+      "id": "fregocap_github_io_tsconfig_compileroptions_jsx",
+      "label": "jsx",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L8"
+    },
+    {
+      "id": "fregocap_github_io_tsconfig_compileroptions_jsximportsource",
+      "label": "jsxImportSource",
+      "file_type": "code",
+      "source_file": "tsconfig.json",
+      "source_location": "L9"
+    },
+    {
+      "id": "src_content_config_ts",
+      "label": "config.ts",
+      "file_type": "code",
+      "source_file": "src/content/config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "content_config_blog",
+      "label": "blog",
+      "file_type": "code",
+      "source_file": "src/content/config.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "content_config_collections",
+      "label": "collections",
+      "file_type": "code",
+      "source_file": "src/content/config.ts",
+      "source_location": "L16"
+    },
+    {
+      "id": "src_components_circuitdiagram_tsx",
+      "label": "CircuitDiagram.tsx",
+      "file_type": "code",
+      "source_file": "src/components/CircuitDiagram.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_circuitdiagram_circuitdiagram",
+      "label": "CircuitDiagram()",
+      "file_type": "code",
+      "source_file": "src/components/CircuitDiagram.tsx",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_components_reference_tsx",
+      "label": "Reference.tsx",
+      "file_type": "code",
+      "source_file": "src/components/Reference.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_reference_postdata",
+      "label": "PostData",
+      "file_type": "code",
+      "source_file": "src/components/Reference.tsx",
+      "source_location": "L3"
+    },
+    {
+      "id": "components_reference_props",
+      "label": "Props",
+      "file_type": "code",
+      "source_file": "src/components/Reference.tsx",
+      "source_location": "L9"
+    },
+    {
+      "id": "components_reference_reference",
+      "label": "Reference()",
+      "file_type": "code",
+      "source_file": "src/components/Reference.tsx",
+      "source_location": "L14"
+    },
+    {
+      "id": "src_components_comments_tsx",
+      "label": "Comments.tsx",
+      "file_type": "code",
+      "source_file": "src/components/Comments.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_comments_comments",
+      "label": "Comments()",
+      "file_type": "code",
+      "source_file": "src/components/Comments.tsx",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_components_manifolddiagram_tsx",
+      "label": "ManifoldDiagram.tsx",
+      "file_type": "code",
+      "source_file": "src/components/ManifoldDiagram.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_manifolddiagram_manifolddiagram",
+      "label": "ManifoldDiagram()",
+      "file_type": "code",
+      "source_file": "src/components/ManifoldDiagram.tsx",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_components_interactivecircle_tsx",
+      "label": "InteractiveCircle.tsx",
+      "file_type": "code",
+      "source_file": "src/components/InteractiveCircle.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_interactivecircle_interactivecircle",
+      "label": "InteractiveCircle()",
+      "file_type": "code",
+      "source_file": "src/components/InteractiveCircle.tsx",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_components_tableofcontents_tsx",
+      "label": "TableOfContents.tsx",
+      "file_type": "code",
+      "source_file": "src/components/TableOfContents.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "components_tableofcontents_props",
+      "label": "Props",
+      "file_type": "code",
+      "source_file": "src/components/TableOfContents.tsx",
+      "source_location": "L3"
+    },
+    {
+      "id": "components_tableofcontents_tableofcontents",
+      "label": "TableOfContents()",
+      "file_type": "code",
+      "source_file": "src/components/TableOfContents.tsx",
+      "source_location": "L7"
+    },
+    {
+      "id": "src_layouts_layout_astro",
+      "label": "Layout.astro",
+      "file_type": "code",
+      "source_file": "src/layouts/Layout.astro",
+      "source_location": "L1"
+    },
+    {
+      "id": "users_fabiocapela_desktop_fregocap_github_io_src_styles_global_css",
+      "label": "../styles/global.css",
+      "file_type": "code",
+      "source_file": "src/styles/global.css",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "id": "users_fabiocapela_desktop_fregocap_github_io_src_data_posts",
+      "label": "../data/posts",
+      "file_type": "code",
+      "source_file": "src/data/posts",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "id": "src_data_posts_ts",
+      "label": "posts.ts",
+      "file_type": "code",
+      "source_file": "src/data/posts.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "data_posts_getpostsmetadata",
+      "label": "getPostsMetadata()",
+      "file_type": "code",
+      "source_file": "src/data/posts.ts",
+      "source_location": "L3"
+    },
+    {
+      "id": "src_pages_about_astro",
+      "label": "about.astro",
+      "file_type": "code",
+      "source_file": "src/pages/about.astro",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_layouts_layout_astro",
+      "label": "../layouts/Layout.astro",
+      "file_type": "code",
+      "source_file": "src/layouts/Layout.astro",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "id": "src_pages_index_astro",
+      "label": "index.astro",
+      "file_type": "code",
+      "source_file": "src/pages/index.astro",
+      "source_location": "L1"
+    },
+    {
+      "id": "pages_index_posts",
+      "label": "posts",
+      "file_type": "code",
+      "source_file": "src/pages/index.astro",
+      "source_location": "L5"
+    },
+    {
+      "id": "src_layouts_layout_astro",
+      "label": "../layouts/Layout.astro",
+      "file_type": "code",
+      "source_file": "src/layouts/Layout.astro",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "id": "astro_content",
+      "label": "astro:content",
+      "file_type": "code",
+      "source_file": "astro:content",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "id": "src_pages_blog_slug_astro",
+      "label": "[...slug].astro",
+      "file_type": "code",
+      "source_file": "src/pages/blog/[...slug].astro",
+      "source_location": "L1"
+    },
+    {
+      "id": "blog_slug_getstaticpaths",
+      "label": "getStaticPaths()",
+      "file_type": "code",
+      "source_file": "src/pages/blog/[...slug].astro",
+      "source_location": "L7"
+    },
+    {
+      "id": "astro_content",
+      "label": "astro:content",
+      "file_type": "code",
+      "source_file": "astro:content",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "id": "src_layouts_layout_astro",
+      "label": "../../layouts/Layout.astro",
+      "file_type": "code",
+      "source_file": "src/layouts/Layout.astro",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "id": "users_fabiocapela_desktop_fregocap_github_io_src_components_tableofcontents",
+      "label": "../../components/TableOfContents",
+      "file_type": "code",
+      "source_file": "src/components/TableOfContents",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "id": "users_fabiocapela_desktop_fregocap_github_io_src_components_comments",
+      "label": "../../components/Comments",
+      "file_type": "code",
+      "source_file": "src/components/Comments",
+      "confidence": "EXTRACTED"
+    }
+  ],
+  "edges": [
+    {
+      "source": "astro_config_mjs",
+      "target": "config",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "astro.config.mjs",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "astro_config_mjs",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "astro.config.mjs",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "astro_config_mjs",
+      "target": "mdx",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "astro.config.mjs",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "astro_config_mjs",
+      "target": "tailwind",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "astro.config.mjs",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "astro_config_mjs",
+      "target": "remark_math",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "astro.config.mjs",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "astro_config_mjs",
+      "target": "rehype_mathjax",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "astro.config.mjs",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "astro_config_mjs",
+      "target": "rehype_slug",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "astro.config.mjs",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "astro_config_mjs",
+      "target": "rehype_autolink_headings",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "astro.config.mjs",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "tailwind_config_mjs",
+      "target": "typography",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tailwind.config.mjs",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "package_json",
+      "target": "fregocap_github_io_package_name",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "package_json",
+      "target": "fregocap_github_io_package_version",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "package_json",
+      "target": "fregocap_github_io_package_type",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "package_json",
+      "target": "fregocap_github_io_package_scripts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_scripts",
+      "target": "fregocap_github_io_package_scripts_dev",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_scripts",
+      "target": "fregocap_github_io_package_scripts_start",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_scripts",
+      "target": "fregocap_github_io_package_scripts_build",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_scripts",
+      "target": "fregocap_github_io_package_scripts_preview",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_scripts",
+      "target": "fregocap_github_io_package_scripts_astro",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "package_json",
+      "target": "fregocap_github_io_package_dependencies",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_astrojs_mdx",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_astrojs_mdx",
+      "target": "astrojs_mdx",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_astrojs_react",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_astrojs_react",
+      "target": "astrojs_react",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_astrojs_tailwind",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_astrojs_tailwind",
+      "target": "astrojs_tailwind",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_tailwindcss_typography",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_tailwindcss_typography",
+      "target": "tailwindcss_typography",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_types_react",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_types_react",
+      "target": "types_react",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_types_react_dom",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_types_react_dom",
+      "target": "types_react_dom",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L18",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_astro",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_astro",
+      "target": "astro",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L19",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_lucide_react",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_lucide_react",
+      "target": "lucide_react",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L20",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_react",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_react",
+      "target": "react",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L21",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_react_dom",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_react_dom",
+      "target": "react_dom",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_rehype_autolink_headings",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_rehype_autolink_headings",
+      "target": "rehype_autolink_headings",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_rehype_mathjax",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_rehype_mathjax",
+      "target": "rehype_mathjax",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L24",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_rehype_slug",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_rehype_slug",
+      "target": "rehype_slug",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_remark_math",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_remark_math",
+      "target": "remark_math",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies",
+      "target": "fregocap_github_io_package_dependencies_tailwindcss",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_package_dependencies_tailwindcss",
+      "target": "tailwindcss",
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L27",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "vite_env_d_ts",
+      "target": "fregocap_github_io_vite_env_d_importmetaenv",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "vite-env.d.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "vite_env_d_ts",
+      "target": "fregocap_github_io_vite_env_d_importmeta",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "vite-env.d.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "tsconfig_json",
+      "target": "fregocap_github_io_tsconfig_extends",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "tsconfig_json",
+      "target": "ref_astro_tsconfigs_strict",
+      "relation": "extends",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "tsconfig_json",
+      "target": "fregocap_github_io_tsconfig_compileroptions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_tsconfig_compileroptions",
+      "target": "fregocap_github_io_tsconfig_compileroptions_baseurl",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_tsconfig_compileroptions",
+      "target": "fregocap_github_io_tsconfig_compileroptions_paths",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_tsconfig_compileroptions_paths",
+      "target": "fregocap_github_io_tsconfig_paths",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_tsconfig_paths",
+      "target": "ref_src",
+      "relation": "extends",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L6",
+      "weight": 1.0,
+      "context": "import"
+    },
+    {
+      "source": "fregocap_github_io_tsconfig_compileroptions",
+      "target": "fregocap_github_io_tsconfig_compileroptions_jsx",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "fregocap_github_io_tsconfig_compileroptions",
+      "target": "fregocap_github_io_tsconfig_compileroptions_jsximportsource",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tsconfig.json",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_content_config_ts",
+      "target": "astro_content",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/content/config.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_content_config_ts",
+      "target": "content_config_blog",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/content/config.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_content_config_ts",
+      "target": "content_config_collections",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/content/config.ts",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_circuitdiagram_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/CircuitDiagram.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_circuitdiagram_tsx",
+      "target": "components_circuitdiagram_circuitdiagram",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/CircuitDiagram.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_reference_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Reference.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_reference_tsx",
+      "target": "components_reference_postdata",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Reference.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_reference_tsx",
+      "target": "components_reference_props",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Reference.tsx",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_reference_tsx",
+      "target": "components_reference_reference",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Reference.tsx",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_comments_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Comments.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_comments_tsx",
+      "target": "components_comments_comments",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Comments.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_manifolddiagram_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ManifoldDiagram.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_manifolddiagram_tsx",
+      "target": "components_manifolddiagram_manifolddiagram",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ManifoldDiagram.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_interactivecircle_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/InteractiveCircle.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_interactivecircle_tsx",
+      "target": "components_interactivecircle_interactivecircle",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/InteractiveCircle.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_tableofcontents_tsx",
+      "target": "react",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TableOfContents.tsx",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_tableofcontents_tsx",
+      "target": "components_tableofcontents_props",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TableOfContents.tsx",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_components_tableofcontents_tsx",
+      "target": "components_tableofcontents_tableofcontents",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/TableOfContents.tsx",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_layouts_layout_astro",
+      "target": "src_data_posts_ts",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/layouts/Layout.astro",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_layouts_layout_astro",
+      "target": "data_posts_getpostsmetadata",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/layouts/Layout.astro",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_layouts_layout_astro",
+      "target": "users_fabiocapela_desktop_fregocap_github_io_src_styles_global_css",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/layouts/Layout.astro"
+    },
+    {
+      "source": "src_layouts_layout_astro",
+      "target": "users_fabiocapela_desktop_fregocap_github_io_src_data_posts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/layouts/Layout.astro"
+    },
+    {
+      "source": "src_data_posts_ts",
+      "target": "astro_content",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/posts.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "src_data_posts_ts",
+      "target": "data_posts_getpostsmetadata",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/posts.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_about_astro",
+      "target": "src_layouts_layout_astro",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/about.astro"
+    },
+    {
+      "source": "src_pages_index_astro",
+      "target": "astro_content",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/index.astro",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_index_astro",
+      "target": "pages_index_posts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/index.astro",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_index_astro",
+      "target": "src_layouts_layout_astro",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/index.astro"
+    },
+    {
+      "source": "src_pages_index_astro",
+      "target": "astro_content",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/index.astro"
+    },
+    {
+      "source": "src_pages_blog_slug_astro",
+      "target": "src_layouts_layout_astro",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/blog/[...slug].astro",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_blog_slug_astro",
+      "target": "src_components_tableofcontents_tsx",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/blog/[...slug].astro",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_blog_slug_astro",
+      "target": "src_components_comments_tsx",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/blog/[...slug].astro",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_blog_slug_astro",
+      "target": "blog_slug_getstaticpaths",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/blog/[...slug].astro",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "src_pages_blog_slug_astro",
+      "target": "astro_content",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/blog/[...slug].astro"
+    },
+    {
+      "source": "src_pages_blog_slug_astro",
+      "target": "src_layouts_layout_astro",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/blog/[...slug].astro"
+    },
+    {
+      "source": "src_pages_blog_slug_astro",
+      "target": "users_fabiocapela_desktop_fregocap_github_io_src_components_tableofcontents",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/blog/[...slug].astro"
+    },
+    {
+      "source": "src_pages_blog_slug_astro",
+      "target": "users_fabiocapela_desktop_fregocap_github_io_src_components_comments",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/blog/[...slug].astro"
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

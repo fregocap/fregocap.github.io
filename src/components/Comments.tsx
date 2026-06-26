@@ -32,8 +32,8 @@ const Comments: React.FC = () => {
   }, []);
 
   return (
-    <div className="mt-24 pt-12 border-t border-slate-100">
-      <h3 className="font-sans text-xs uppercase tracking-widest font-bold text-slate-400 mb-12">
+    <div className="mt-8">
+      <h3 className="text-xl font-bold tracking-tight text-gray-900 mb-8 border-b border-gray-200 pb-2">
         Discussion
       </h3>
       <div ref={commentsRef} />

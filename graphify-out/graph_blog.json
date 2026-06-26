@@ -1,0 +1,376 @@
+{
+  "nodes": [
+    {
+      "id": "post_symplectic_intro",
+      "label": "The Geometry of Phase Space: An Introduction to Symplectic Manifolds",
+      "file_type": "post",
+      "community": 0,
+      "slug": "symplectic-geometry-intro"
+    },
+    {
+      "id": "post_nla_evaluations",
+      "label": "NLA Evaluations and the Geometric Prior",
+      "file_type": "post",
+      "community": 1,
+      "slug": "nla-evaluations"
+    },
+    {
+      "id": "post_adjoint_state",
+      "label": "The Adjoint State: A 4000-Word Deep Dive into the Mathematical Foundations of Deep Learning",
+      "file_type": "post",
+      "community": 2,
+      "slug": "adjoint-state-deep-learning"
+    },
+    {
+      "id": "post_canonical_quantization_gr",
+      "label": "From Phase Space to Path Integrals: Canonical Quantization in General Relativity",
+      "file_type": "post",
+      "community": 0,
+      "slug": "canonical-quantization-gr"
+    },
+    {
+      "id": "concept_symplectic_geometry",
+      "label": "Symplectic Geometry",
+      "file_type": "concept",
+      "community": 0,
+      "slug": null
+    },
+    {
+      "id": "concept_classical_mechanics",
+      "label": "Classical Mechanics",
+      "file_type": "concept",
+      "community": 0,
+      "slug": null
+    },
+    {
+      "id": "concept_hamiltonian_dynamics",
+      "label": "Hamiltonian Dynamics",
+      "file_type": "concept",
+      "community": 0,
+      "slug": null
+    },
+    {
+      "id": "concept_phase_space",
+      "label": "Phase Space",
+      "file_type": "concept",
+      "community": 3,
+      "slug": null
+    },
+    {
+      "id": "concept_symplectic_manifold",
+      "label": "Symplectic Manifold",
+      "file_type": "concept",
+      "community": 0,
+      "slug": null
+    },
+    {
+      "id": "concept_liouville_theorem",
+      "label": "Liouville's Theorem",
+      "file_type": "concept",
+      "community": 0,
+      "slug": null
+    },
+    {
+      "id": "concept_poisson_bracket",
+      "label": "Poisson Bracket",
+      "file_type": "concept",
+      "community": 0,
+      "slug": null
+    },
+    {
+      "id": "concept_general_relativity",
+      "label": "General Relativity",
+      "file_type": "concept",
+      "community": 0,
+      "slug": null
+    },
+    {
+      "id": "concept_hamiltonian_gravity",
+      "label": "Hamiltonian formulation of Gravity",
+      "file_type": "concept",
+      "community": 0,
+      "slug": null
+    },
+    {
+      "id": "concept_non_linear_analysis",
+      "label": "Non-linear Analysis",
+      "file_type": "concept",
+      "community": 3,
+      "slug": null
+    },
+    {
+      "id": "concept_transformer_models",
+      "label": "Transformer Models",
+      "file_type": "concept",
+      "community": 1,
+      "slug": null
+    },
+    {
+      "id": "concept_manifold_discovery",
+      "label": "Manifold Discovery",
+      "file_type": "concept",
+      "community": 3,
+      "slug": null
+    },
+    {
+      "id": "concept_latent_space",
+      "label": "Latent Space",
+      "file_type": "concept",
+      "community": 1,
+      "slug": null
+    },
+    {
+      "id": "concept_mechanistic_interpretability",
+      "label": "Mechanistic Interpretability",
+      "file_type": "concept",
+      "community": 1,
+      "slug": null
+    },
+    {
+      "id": "concept_ricci_flow",
+      "label": "Ricci Flow",
+      "file_type": "concept",
+      "community": 2,
+      "slug": null
+    },
+    {
+      "id": "concept_differential_geometry",
+      "label": "Differential Geometry",
+      "file_type": "concept",
+      "community": 3,
+      "slug": null
+    },
+    {
+      "id": "concept_deep_learning",
+      "label": "Deep Learning",
+      "file_type": "concept",
+      "community": 3,
+      "slug": null
+    },
+    {
+      "id": "concept_optimal_control_theory",
+      "label": "Optimal Control Theory",
+      "file_type": "concept",
+      "community": 2,
+      "slug": null
+    },
+    {
+      "id": "concept_adjoint_state_method",
+      "label": "Adjoint State Method",
+      "file_type": "concept",
+      "community": 2,
+      "slug": null
+    },
+    {
+      "id": "concept_neural_odes",
+      "label": "Neural ODEs",
+      "file_type": "concept",
+      "community": 2,
+      "slug": null
+    },
+    {
+      "id": "concept_backpropagation",
+      "label": "Backpropagation",
+      "file_type": "concept",
+      "community": 2,
+      "slug": null
+    },
+    {
+      "id": "concept_flow_matching",
+      "label": "Flow Matching",
+      "file_type": "concept",
+      "community": 2,
+      "slug": null
+    },
+    {
+      "id": "concept_optimal_transport",
+      "label": "Optimal Transport",
+      "file_type": "concept",
+      "community": 2,
+      "slug": null
+    },
+    {
+      "id": "concept_transformer",
+      "label": "Transformer",
+      "file_type": "concept",
+      "community": 1,
+      "slug": null
+    },
+    {
+      "id": "concept_induction_head_circuit",
+      "label": "Induction Head Circuit",
+      "file_type": "concept",
+      "community": 1,
+      "slug": null
+    },
+    {
+      "id": "concept_adm_decomposition",
+      "label": "ADM Decomposition",
+      "file_type": "concept",
+      "community": 0,
+      "slug": null
+    }
+  ],
+  "links": [
+    {
+      "source": "post_symplectic_intro",
+      "target": "concept_symplectic_geometry",
+      "label": "mentions"
+    },
+    {
+      "source": "post_symplectic_intro",
+      "target": "concept_hamiltonian_dynamics",
+      "label": "mentions"
+    },
+    {
+      "source": "post_symplectic_intro",
+      "target": "concept_general_relativity",
+      "label": "mentions"
+    },
+    {
+      "source": "post_symplectic_intro",
+      "target": "concept_adm_decomposition",
+      "label": "mentions"
+    },
+    {
+      "source": "post_symplectic_intro",
+      "target": "concept_poisson_bracket",
+      "label": "mentions"
+    },
+    {
+      "source": "post_nla_evaluations",
+      "target": "concept_non_linear_analysis",
+      "label": "mentions"
+    },
+    {
+      "source": "post_nla_evaluations",
+      "target": "concept_transformer_models",
+      "label": "mentions"
+    },
+    {
+      "source": "post_nla_evaluations",
+      "target": "concept_latent_space",
+      "label": "mentions"
+    },
+    {
+      "source": "post_nla_evaluations",
+      "target": "concept_manifold_discovery",
+      "label": "references"
+    },
+    {
+      "source": "post_adjoint_state",
+      "target": "concept_deep_learning",
+      "label": "mentions"
+    },
+    {
+      "source": "post_adjoint_state",
+      "target": "concept_optimal_control_theory",
+      "label": "mentions"
+    },
+    {
+      "source": "post_adjoint_state",
+      "target": "concept_adjoint_state_method",
+      "label": "mentions"
+    },
+    {
+      "source": "post_adjoint_state",
+      "target": "concept_neural_odes",
+      "label": "mentions"
+    },
+    {
+      "source": "post_adjoint_state",
+      "target": "concept_flow_matching",
+      "label": "mentions"
+    },
+    {
+      "source": "post_adjoint_state",
+      "target": "concept_transformer",
+      "label": "mentions"
+    },
+    {
+      "source": "post_canonical_quantization_gr",
+      "target": "concept_symplectic_geometry",
+      "label": "references"
+    },
+    {
+      "source": "post_canonical_quantization_gr",
+      "target": "concept_general_relativity",
+      "label": "references"
+    },
+    {
+      "source": "post_canonical_quantization_gr",
+      "target": "concept_hamiltonian_dynamics",
+      "label": "references"
+    },
+    {
+      "source": "post_canonical_quantization_gr",
+      "target": "concept_adm_decomposition",
+      "label": "references"
+    },
+    {
+      "source": "post_canonical_quantization_gr",
+      "target": "concept_poisson_bracket",
+      "label": "references"
+    },
+    {
+      "source": "post_canonical_quantization_gr",
+      "target": "post_symplectic_intro",
+      "label": "references_post"
+    },
+    {
+      "source": "concept_symplectic_geometry",
+      "target": "concept_classical_mechanics",
+      "label": "references"
+    },
+    {
+      "source": "concept_symplectic_geometry",
+      "target": "concept_hamiltonian_dynamics",
+      "label": "references"
+    },
+    {
+      "source": "concept_symplectic_geometry",
+      "target": "concept_general_relativity",
+      "label": "references"
+    },
+    {
+      "source": "concept_hamiltonian_dynamics",
+      "target": "concept_phase_space",
+      "label": "references"
+    },
+    {
+      "source": "concept_symplectic_manifold",
+      "target": "concept_symplectic_geometry",
+      "label": "references"
+    },
+    {
+      "source": "concept_general_relativity",
+      "target": "concept_hamiltonian_gravity",
+      "label": "references"
+    },
+    {
+      "source": "concept_ricci_flow",
+      "target": "concept_latent_space",
+      "label": "references"
+    },
+    {
+      "source": "concept_backpropagation",
+      "target": "concept_adjoint_state_method",
+      "label": "references"
+    },
+    {
+      "source": "concept_flow_matching",
+      "target": "concept_optimal_transport",
+      "label": "references"
+    },
+    {
+      "source": "concept_transformer",
+      "target": "concept_induction_head_circuit",
+      "label": "references"
+    },
+    {
+      "source": "concept_differential_geometry",
+      "target": "concept_non_linear_analysis",
+      "label": "references"
+    }
+  ]
+}

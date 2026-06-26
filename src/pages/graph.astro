@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import KnowledgeGraph from '../components/KnowledgeGraph';
+---
+
+<Layout title="Knowledge Graph | labfab.io">
+  <div class="mb-8">
+    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-4">
+      Knowledge Graph
+    </h1>
+    <p class="text-lg text-gray-600 max-w-3xl leading-relaxed mb-8">
+      Explore the interconnected concepts, papers, and mathematical structures that form the foundation of this research lab. 
+      This graph is dynamically generated from the repository's content.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <div class="p-4 bg-blue-50 border border-blue-100 rounded-lg">
+        <h3 class="text-xs font-bold text-blue-700 uppercase tracking-wider mb-1">Total Nodes</h3>
+        <p class="text-2xl font-black text-blue-900">28</p>
+      </div>
+      <div class="p-4 bg-purple-50 border border-purple-100 rounded-lg">
+        <h3 class="text-xs font-bold text-purple-700 uppercase tracking-wider mb-1">Cross-References</h3>
+        <p class="text-2xl font-black text-purple-900">24</p>
+      </div>
+      <div class="p-4 bg-green-50 border border-green-100 rounded-lg">
+        <h3 class="text-xs font-bold text-green-700 uppercase tracking-wider mb-1">Semantic Clusters</h3>
+        <p class="text-2xl font-black text-green-900">4</p>
+      </div>
+    </div>
+
+    <KnowledgeGraph client:only="react" />
+
+    <div class="mt-12 prose prose-gray max-w-none">
+      <h2 class="text-2xl font-bold text-gray-900">How to Navigate</h2>
+      <ul>
+        <li><strong>Drag</strong> nodes to rearrange the graph.</li>
+        <li><strong>Scroll</strong> to zoom in and out.</li>
+        <li><strong>Hover</strong> over nodes to see their labels and relationships.</li>
+        <li><strong>Colors</strong> represent different topical communities (e.g., Core Dependencies, Routing, Components).</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

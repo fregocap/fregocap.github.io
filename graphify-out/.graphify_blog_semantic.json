@@ -1,0 +1,384 @@
+{
+  "nodes": [
+    {
+      "id": "post_symplectic_intro",
+      "label": "The Geometry of Phase Space: An Introduction to Symplectic Manifolds",
+      "file_type": "post",
+      "source_file": "src/content/blog/symplectic-geometry-intro.mdx"
+    },
+    {
+      "id": "post_nla_evaluations",
+      "label": "NLA Evaluations and the Geometric Prior",
+      "file_type": "post",
+      "source_file": "src/content/blog/nla-evaluations.mdx"
+    },
+    {
+      "id": "post_adjoint_state",
+      "label": "The Adjoint State: A 4000-Word Deep Dive into the Mathematical Foundations of Deep Learning",
+      "file_type": "post",
+      "source_file": "src/content/blog/adjoint-state-deep-learning.mdx"
+    },
+    {
+      "id": "post_canonical_quantization_gr",
+      "label": "From Phase Space to Path Integrals: Canonical Quantization in General Relativity",
+      "file_type": "post",
+      "source_file": "src/content/blog/canonical-quantization-gr.mdx"
+    },
+    {
+      "id": "concept_symplectic_geometry",
+      "label": "Symplectic Geometry",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_classical_mechanics",
+      "label": "Classical Mechanics",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_hamiltonian_dynamics",
+      "label": "Hamiltonian Dynamics",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_phase_space",
+      "label": "Phase Space",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_symplectic_manifold",
+      "label": "Symplectic Manifold",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_liouville_theorem",
+      "label": "Liouville's Theorem",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_poisson_bracket",
+      "label": "Poisson Bracket",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_general_relativity",
+      "label": "General Relativity",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_hamiltonian_gravity",
+      "label": "Hamiltonian formulation of Gravity",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_non_linear_analysis",
+      "label": "Non-linear Analysis",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_transformer_models",
+      "label": "Transformer Models",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_manifold_discovery",
+      "label": "Manifold Discovery",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_latent_space",
+      "label": "Latent Space",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_mechanistic_interpretability",
+      "label": "Mechanistic Interpretability",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_ricci_flow",
+      "label": "Ricci Flow",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_differential_geometry",
+      "label": "Differential Geometry",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_deep_learning",
+      "label": "Deep Learning",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_optimal_control_theory",
+      "label": "Optimal Control Theory",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_adjoint_state_method",
+      "label": "Adjoint State Method",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_neural_odes",
+      "label": "Neural ODEs",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_backpropagation",
+      "label": "Backpropagation",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_flow_matching",
+      "label": "Flow Matching",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_optimal_transport",
+      "label": "Optimal Transport",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_transformer",
+      "label": "Transformer",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_induction_head_circuit",
+      "label": "Induction Head Circuit",
+      "file_type": "concept"
+    },
+    {
+      "id": "concept_adm_decomposition",
+      "label": "ADM Decomposition",
+      "file_type": "concept"
+    }
+  ],
+  "edges": [
+    {
+      "source": "post_symplectic_intro",
+      "target": "concept_symplectic_geometry",
+      "relation": "mentions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_symplectic_intro",
+      "target": "concept_hamiltonian_dynamics",
+      "relation": "mentions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_symplectic_intro",
+      "target": "concept_general_relativity",
+      "relation": "mentions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_symplectic_intro",
+      "target": "concept_adm_decomposition",
+      "relation": "mentions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_symplectic_intro",
+      "target": "concept_poisson_bracket",
+      "relation": "mentions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_nla_evaluations",
+      "target": "concept_non_linear_analysis",
+      "relation": "mentions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_nla_evaluations",
+      "target": "concept_transformer_models",
+      "relation": "mentions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_nla_evaluations",
+      "target": "concept_latent_space",
+      "relation": "mentions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_nla_evaluations",
+      "target": "concept_manifold_discovery",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_adjoint_state",
+      "target": "concept_deep_learning",
+      "relation": "mentions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_adjoint_state",
+      "target": "concept_optimal_control_theory",
+      "relation": "mentions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_adjoint_state",
+      "target": "concept_adjoint_state_method",
+      "relation": "mentions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_adjoint_state",
+      "target": "concept_neural_odes",
+      "relation": "mentions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_adjoint_state",
+      "target": "concept_flow_matching",
+      "relation": "mentions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_adjoint_state",
+      "target": "concept_transformer",
+      "relation": "mentions",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_canonical_quantization_gr",
+      "target": "concept_symplectic_geometry",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_canonical_quantization_gr",
+      "target": "concept_general_relativity",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_canonical_quantization_gr",
+      "target": "concept_hamiltonian_dynamics",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_canonical_quantization_gr",
+      "target": "concept_adm_decomposition",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_canonical_quantization_gr",
+      "target": "concept_poisson_bracket",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "post_canonical_quantization_gr",
+      "target": "post_symplectic_intro",
+      "relation": "references_post",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "concept_symplectic_geometry",
+      "target": "concept_classical_mechanics",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "concept_symplectic_geometry",
+      "target": "concept_hamiltonian_dynamics",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "concept_symplectic_geometry",
+      "target": "concept_general_relativity",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.8
+    },
+    {
+      "source": "concept_hamiltonian_dynamics",
+      "target": "concept_phase_space",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "concept_symplectic_manifold",
+      "target": "concept_symplectic_geometry",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "concept_general_relativity",
+      "target": "concept_hamiltonian_gravity",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "concept_ricci_flow",
+      "target": "concept_latent_space",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.8
+    },
+    {
+      "source": "concept_backpropagation",
+      "target": "concept_adjoint_state_method",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "concept_flow_matching",
+      "target": "concept_optimal_transport",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "concept_transformer",
+      "target": "concept_induction_head_circuit",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9
+    },
+    {
+      "source": "concept_differential_geometry",
+      "target": "concept_non_linear_analysis",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.8
+    }
+  ]
+}
