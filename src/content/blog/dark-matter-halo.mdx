@@ -1,0 +1,526 @@
+---
+title: "Dark Matter During Star Formation"
+description: "A self-contained derivation of the dark-matter density profile that adiabatic contraction builds around a forming star - why it is a power law, why the exponent is 3/2 and not 9/4, what a supernova does to it, and what it means for the debate over dark-matter spikes around stellar-mass black holes."
+pubDate: 2026-07-03
+tags: ["Astrophysics"]
+hidden: false
+---
+
+import Figure from '../../components/Figure';
+
+### Glossary and prerequisites
+
+*Assumes classical mechanics (action-angle variables) and introductory statistical
+mechanics. The astrophysics terms used below:*
+
+- **Distribution function $f(E)$** - the density of particles in phase space
+  (position-velocity space). For an isotropic system it depends only on energy $E$.
+  The real-space density is its velocity integral, $\rho(r)=\int f\, \mathrm d^3v$.
+- **Phase space** - the 6D space of positions and velocities $(\mathbf r, \mathbf v)$.
+  Liouville's theorem: $f$ is conserved along orbits, so it is invariant under
+  slow (adiabatic) changes of the potential.
+- **Isotropic velocity distribution** - velocities have no preferred direction;
+  equivalently a full, unbiased spread of orbital eccentricities. A *Maxwellian*
+  is the thermal (Gaussian-in-velocity) isotropic case.
+- **Virialised halo** - a self-gravitating system in equilibrium, obeying the
+  virial theorem $2K+W=0$; its particles have random (not ordered) velocities.
+- **Adiabatic invariant** - a phase-space integral ($L$, $J_r$) conserved when
+  the potential changes slowly compared to the orbital period.
+- **Cusp / spike** - a power-law central density rise, $\rho\propto r^{-\gamma}$.
+  "Spike" usually denotes the steep enhancement around a compact object.
+- **Loss cone** - the region of the orbit-space whose pericentres reach the central
+  object; such orbits are captured and removed.
+- **Collisional relaxation** - slow evolution of orbits from cumulative two-body
+  gravitational encounters, characterized by a *relaxation time* $t_\mathrm{relax}$.
+- **Fokker-Planck / detailed balance** - the diffusion equation governing $f$ under
+  relaxation; its stationary state is fixed by the balance of drift and diffusion
+  (fluctuation-dissipation).
+- **Dynamical friction** - the drag a massive body feels moving through a background
+  of lighter particles (here, DM), which it gravitationally focuses into a trailing
+  wake.
+- **EMRI** - extreme-mass-ratio inspiral: a compact object spiralling into a much
+  larger black hole, a key gravitational-wave source for LISA.
+
+---
+
+## 0. The question
+
+A star forms inside a dark-matter (DM) halo. Initially the DM is spread out in an
+approximately **uniform** density profile, $\rho_\mathrm{DM}\simeq\text{const}$.
+As the baryonic gas collapses to form the star, it deepens the gravitational
+potential at the centre. Dark matter feels **only gravity** - no cooling, no
+radiation, no collisions - so it responds by contracting too.
+
+The questions we answer here, from first principles:
+
+1. What is the final DM density profile ? (It is a power law, $\rho\propto r^{-\gamma}$.)
+2. What is the exponent $\gamma$?
+3. Why do two standard methods give **two different answers** - $\gamma=9/4$ and $\gamma=3/2$?
+4. What survives a supernova, and what survives billions of years of stellar scattering?
+5. What does all this say about whether observed DM spikes imply *primordial* black holes?
+
+The punchline for (2)-(3): the answer depends entirely on **what orbits the DM particles
+are on**. Circular orbits give $\gamma=9/4$; a realistic isotropic (Maxwellian) velocity
+distribution gives $\gamma=3/2$. The difference is a lesson in why "adiabatic contraction"
+is not a single number.
+
+---
+
+## 1. The tool: adiabatic invariants
+
+When a system's potential changes **slowly** compared to the orbital period of a particle
+(the *adiabatic* regime), certain phase-space integrals are conserved. For a particle in
+a spherical potential the two relevant **adiabatic invariants** are:
+
+
+$$
+L = |\,\mathbf r \times \mathbf v\,| \qquad\text{(angular momentum)}
+$$
+
+$$
+J_r = \frac{1}{2 \pi} \oint p_r\, \mathrm dr = \frac{1}{\pi} \int_{r_-}^{r_+}\!\sqrt{2\big(E-\Phi(r)\big)-\frac{L^2}{r^2}}\;\mathrm dr \qquad\text{(radial action)}
+$$
+
+where $r_\pm$ are the peri/apocentre. The physical content of "adiabatic" is:
+**as the potential $\Phi$ morphs from initial to final, each particle keeps its
+$(J_r, L)$ fixed**, and this determines its new orbit.
+
+Two limits use these differently, and that is the entire origin of the $9/4$-vs-$3/2$
+discrepancy.
+
+---
+
+## 2. The circular-orbit model (Blumenthal et al. 1986)
+
+The simplest and oldest prescription assumes every DM particle is on a **circular orbit**.
+A circular orbit has $J_r=0$; it is fully specified by $L$ alone. Conservation
+of $L$ for a circular orbit is equivalent to the statement that the quantity
+
+$$
+M(<r)\,r = \text{const}
+$$
+
+is conserved for each shell, where $M(<r)$ is the total enclosed mass. This is the
+**Blumenthal invariant**. Concretely: label a DM shell by its initial radius $r_i$; after
+the baryons collapse to a central mass, its final radius $r_f$ satisfies
+
+$$
+\big[M_\mathrm{DM}(<r_f)+M_\mathrm{bar}(<r_f)\big]\,r_f \;=\; M_\mathrm{tot, init}(<r_i)\,r_i.
+$$
+
+### Derivation of the slope
+
+Start from a uniform sphere, $\rho_i=\text{const}$, so $M_\mathrm{tot, init}(<r_i)\propto r_i^3$.
+For inner shells the collapsed baryons dominate and act like a point mass $M_\star$, so
+$M_\mathrm{bar}(<r_f)\approx M_\star$. Then,
+
+$$
+M_\star\, r_f \;\propto\; r_i^3\cdot r_i = r_i^4 \quad \Longrightarrow\quad r_f \propto r_i^4 .
+$$
+
+Mass conservation shell-by-shell, $\rho_f\,r_f^2\,\mathrm dr_f = \rho_i\,r_i^2\,\mathrm dr_i$
+with $\rho_i=\text{const}$ and $\mathrm dr_f\propto r_i^3\, \mathrm dr_i$, gives
+
+$$
+\rho_f \;\propto\; \frac{r_i^2}{r_i^4\cdot r_i^3}\cdot r_i^2
+\;=\; r_i^{-9} \;\propto\; \big(r_f^{1/4}\big)^{-9} \;=\; r_f^{-9/4}.
+$$
+
+$$
+\boxed{\;\gamma_\mathrm{circ} = \tfrac{9}{4} = 2.25 \;}
+$$
+
+More generally, for an initial cusp $\rho_i \propto r^{-\alpha}$ the circular model
+gives $\gamma = (9-2\alpha)/(4-\alpha)$, which is $9/4$ for $\alpha$ and rises slowly to
+$7/3$ for $\alpha=1$.
+
+The figure below shows a numerical implementation: a uniform profile is contracted through
+successive stages and the inner slope locks onto $\approx 2.2$-$2.3$.
+
+<Figure client:load
+	src="/assets/adiabatic_contraction_dm.png"
+	alt="circular-orbit adiabatic contraction"
+	caption="Fig. 1 — Blumenthal circular-orbit adiabatic contraction. Left: DM
+	density profiles through successive collapse stages, steepening from uniform
+	toward a power law. Right: local slope converging to gamma ~ 2.2 - 2.35 in the
+	inner region."
+/>
+
+
+** But circular orbits are a fiction.** Real DM in a virialised halo has an isotropic
+velocity distribution - a full spread of eccentricities. That changes the answer.
+
+---
+
+## 3. The Liouville / phase-space model (Young 1980)
+
+Now we do it honestly. The DM starts with an **isotropic Maxwellian** velocity distribution
+inside the uniform sphere. We conserve the *full* adiabatic invariants $(J_r, L)$, not just
+$L$.
+
+### The initial potential is harmonic
+
+A uniform sphere of total density $\rho_0$ produces, inside itself, a **harmonic**
+potential:
+
+$$
+\Phi_i(r) = \Phi_c + \tfrac12\,\omega_0^2\, r^2, \qquad \omega_0^2 = \frac{4\pi G \rho_0}{3}=\frac{GM_\mathrm{tot}}{R^3}.
+$$
+
+For the harmonic oscillator the radial action has a **closed form**:
+
+$$
+J_r^{\rm HO} = \frac{E-\Phi_c}{\omega_0} -L.
+$$
+
+### The final potential is Keplerian
+
+After the baryons collapse to a point mass $M_\star$, an inner DM particle sees a
+**Keplerian** potential $\Phi_f=-GM_\star/r$, whose radial action is also closed-form
+
+$$
+J_r^{\rm Kep} = \frac{GM_\star}{\sqrt{2|E_f|}} - L.
+$$
+
+### Equate the invariants - and $L$ cancels
+
+Setting $J_r^{\rm HO} = J_r^{\rm Kep}$ (and using that $L$ is separately conserved,
+so the $-L$ on both sides cancels):
+
+$$
+\frac{E_i - \Phi_c}{\omega_0} = \frac{GM_\star}{\sqrt{2|E_f|}}
+\quad\Longrightarrow\quad
+\boxed{\;|E_f| = \frac{(GM_\star\,\omega_0)^2}{2\, \varepsilon_i^2}\;}, \qquad
+\varepsilon_i \equiv E_i - \Phi_c = \tfrac12 v^2 + \tfrac12\omega_0^2 r^2 .
+$$
+
+This is an **exact, analytic map** from a particle's initial energy to its final
+Keplerian orbit - no time integration required. The final semi-major axis is
+$a_f= GM_\star/2|E_f|$ and the eccentricity follows from $L$:
+$e_f^2 = 1 - (L\omega_0/\varepsilon_i)^2$.
+
+### Why the density goes as $r^{-3/2}$
+
+Here is the crucial kinematic fact. In a Keplerian potential a particle at small
+radius moves fast: $v_r(r)\sim\sqrt{2GM_\star/r}\propto r^{-1/2}$. The **time it spends**
+near radius $r$ is $\propto 1/v_r \propto r^{1/2}$. The time-averaged density contribution
+of *any* orbit passing through $r$ is therefore
+
+$$
+\rho(r) \;\propto\; \frac{1}{r^2\,v_r(r)} \;\propto\; \frac{r^{1/2}}{r^2} \;=\; r^{-3/2}.
+$$
+
+This $r^{-3/2}$ is **universal**: it does not depend on the orbit's $a$ or $e$, only on
+the Keplerian potential. Summed over the population of orbits, the inner density is
+
+$$
+\boxed{\;\rho_f(r)\propto r^{-3/2},\qquad \gamma_\mathrm{Liouville}=\tfrac32=1.5\;}
+$$
+
+This is the result of **Young (1980)** and, in the DM-during-star-formation context,
+**Capela, Pshirkov & Tinyakov (2014)** (arXiv:1403.7098).
+
+### Numerical confirmation
+
+In order to get a numerical confirmation, we have created a script that samples $3\times10^5$
+particles from a uniform Maxwellian sphere, applies the exact invariant map, and reconstructs
+the density by solving Kepler's equation (sampling mean anomaly uniformly correctly weights
+positions by time spent). The measured slope is $\gamma = 1.500$ to three digits. Note the
+median eccentricity of the final orbits is $e\approx 0.67$ - the orbits are **highly eccentric**,
+which is the whole point.
+
+<Figure client:load
+	src="/assets/adiabatic_liouville_dm.png"
+	alt=""
+	caption="Liouville / Maxwellian adiabatic contraction. Left: the reconstructed DM density follows r^-1.5 (Young 1980), shown against the r^-9/4 Blumenthal slope for comparison. Right: local slope sits at gamma=1.5 across the inner region"
+/>
+
+---
+
+## 4. Why $9/4$ and $3/2$ differ - the physical heart of it
+
+The two models conserve **different things** because they assume different orbits:
+
+| | Circular (Blumenthal) | Eccentric / isotropic (Liouville) |
+|---|---|---|
+| Conserved | $L$ only ($J_r=0$) | $L$ **and** $J_r$ |
+| Each particle occupies | a fixed radius | a *range* $[r_-, r_+]$ |
+| Density at $r$ built from | the one shell mapped to $r$ | time-averaging of many orbits |
+| Result | $\gamma = 9/4$ | $\gamma = 3/2$ |
+
+**The one-sentence version**: the circular model pins each particle to a *radius*;
+the Liouville model puts each particle on an *orbit*, and an eccentric particle spends
+most of its time near **apocenter** - far from the center - which dilutes the inner
+density and makes the cusp shallower.
+
+**Interpolation.** If you allowed only orbits up to some maximum eccentricity
+$e_\mathrm{max}$, you would interpolate: $e_\mathrm{max}\to0$ recovers $9/4$,
+$e_\mathrm{max}\to1$ (full isotropic) gives $3/2$. The value $3/2$ is essentially a
+kinematic identity of the Keplerian potential (the $r^{-1/2}$ velocity law), not
+a coincidence - which is why, as we will see, it is remarkably robust.
+
+### A cleaner bookkeeping: slope ↔ distribution function
+
+For an isotropic population in a Keplerian potential with distribution function
+$f(E)\propto |E|^p$, a short calculation
+($\rho(r)=\int f\,\mathrm d^3v \propto \int_0^{v_\mathrm{esc}} (\,\phi-\tfrac12 v^2)^p v^2\,\mathrm dv \propto \phi^{p+3/2}$, with $\phi=GM_\star/r$) gives
+
+$$
+\boxed{\;\gamma = p + \tfrac32\;}
+$$
+
+So $\gamma=3/2 \Leftrightarrow p=0$ (a **flat** DF in energy - the Young spike); $\gamma=9/4 \Leftrightarrow p=3/4$. We will reuse this identity constantly below.
+
+---
+
+## 5. General-relativistic corrections
+
+The Newtonian $r^{-3/2}$ spike would run to $r\to0$. GR modifies the innermost region:
+
+- **Loss-cone cutoff (dominant).** Any DM particle whose pericentre falls inside
+  the innermost stable circular orbit is captured. For Schwarzschild,
+  $r_\mathrm{ISCO}=6GM_\star/c^2$. The spike is simply truncated below
+  $\sim r_\mathrm{ISCO}$: $\rho\approx0$ there, $r^{-3/2}$ outside.
+- **Black-hole spin.** For a maximally spinning Kerr hole,
+  $r_\mathrm{ISCO}\to GM_\star/c^2$, six times smaller. Since $\rho\propto r^{-3/2}$,
+  the density at the inner edge is enhanced by $\sim6^{3/2}\approx15$ - a large factor for
+  annihilation or gravitational-wave signals.
+- **The asymptotic slope is unchanged.** The GR correction to the effective potential enters
+  at $\mathcal O(r_s/r)$, so $\gamma(r)=\tfrac32+\mathcal O(r_s/r)$; in the observable
+  region $r\gg r_s$ the slope $3/2$.
+
+The GR-consistent Schwarzschild treatment (Sadeghian, Ferrer & Will 2013) confirms
+the slope is preserved outside the loss cone with a modest inner-normalisation change.
+
+
+## 6. What a supernova does: the slope is invariant
+
+Most stars that leave a compact remnant explode first, ejecting a mass fraction
+$f_\mathrm{ej}$ **impulsively** - fast compared to any DM orbital period. In the
+impulsive limit the DM positions are frozen while the potential suddenly shallows.
+A particle at position $r_\mathrm{SN}$ at the instant of explosion get an energy kick
+
+$$
+E \;\to\; E' = E + \frac{G\,f_\mathrm{ej}M_\star}{r_\mathrm{SN}}.
+$$
+
+It escapes if $E'>0$. Writing $E=-GM_\star/2a_f$, the **survival condition** is
+
+$$
+r_\mathrm{SN} > 2\,a_f\, f_\mathrm{ej}
+\quad\Longleftrightarrow\quad
+1-e_f\cos\eta > 2 f_\mathrm{ej},
+$$
+
+where $\eta$ is the orbital phase. **This condition is scale-free** - it depends
+only on the orbital phase and eccentricity, not on the absolute orbit size $a_f$.
+Because the eccentricity distribution is the same at every radial scale, the SN removes
+the **same fraction of particles at every radius**. Therefore:
+
+$$
+\boxed{\;\gamma_\mathrm{remnant} = \gamma_\mathrm{formation}\quad\text{for any }f_\mathrm{ej}\;}
+$$
+
+Only the **normalisation** drops (down to $\sim$8% survival for a neutron-star-forming
+$f_\mathrm{ej}=0.9$). The classic Blaauw (1961) result - a circular orbit unbinds
+at $f_\mathrm{ej}>1/2$ - is recovered as the $e\to0$ edge case, but eccentric orbits
+caught near apocenter survive even $f_\mathrm{ej}>1/2$.
+
+I have created a script to confirm this: the remnant slope stays pinned at $1.5$ across
+the entire range $f_\mathrm{ej}\in[0,0.95]$, while the amplitude falls.
+
+<Figure client:load
+	src="/assets/sn_disruption_dm.png"
+	alt=""
+	caption="Supernova disruption of the spike. Left: remnant slope stays locked at
+	gamma = 1.5 for every ejected-mass fraction (only the normalization changes).
+	Right: post-SN density profiles drop in amplitude but keep the same slope."
+/>
+
+The same invariance holds for adiabatic re-accretion of fallback material:
+Keplerian-to-Keplerian mass growth rescales every orbit by a common factor and
+leaves the slope untouched. **Neither impulsive mass loss nor subsequent accretion
+can move $\gamma$ away from its formation value in the Keplerian regime.**
+
+---
+
+## 7. Billions of years later: stellar scattering and the Bahcall-Wolf attractor
+
+Over cosmic time the DM cusp is stirred by **two-body gravitational encounters**
+with stars - collisional relaxation. Bahcall & Wolf (1976, ApJ 209, 214) solved the
+energy-space Fokker-Planck equation for stars around a massive black hole and found
+a **steady-state attractor**: a constant-flux cusp
+
+$$
+f(E)\propto|E|^{1/4},\qquad \rho\propto r^{-7/4},
+$$
+
+independent of initial conditions. In our $\gamma=p+3/2$ language this is $p=1/4$.
+The exponent $7/4$ is the unique power law for which the inward energy flux is
+radius-independent - a genuine dynamical fixed point.
+
+Their 1977 sequel (ApJ 216, 883) and Alexander & Hopman (2009) treat **multiple
+masses**: heavy species keep $\gamma_H=7/4$, while a **light** species (like DM,
+much lighter than stars) relaxes to a shallower $\gamma\to 3/2$. So:
+
+| Regime | What scatters the DM | Attractor $\gamma_\mathrm{eq}$ | $p_\mathrm{eq}$ |
+|---|---|---|---|
+| DM self-relaxation (single mass) | DM-DM | $7/4 = 1.75$ | $1/4$ |
+| DM as light species | heavier stars | $\to 3/2 = 1.50$ | $0$ |
+
+### Emulating relaxation
+
+Rather than solve the full Fokker-Planck PDE, we have emulated relaxation with a
+stochastic (Langevin) process **engineered to have the correct stationary
+distribution**. Working in binding energy $x=-E$, we use the fluctuation-dissipation
+relation $A=D\,(\ln\pi)' + D'$ to pick drift $A$ and diffusion $D$ so the equilibrium
+is exactly the target attractor $\pi(x)\propto x^{\,p_\mathrm{eq}-5/2}$. Choosing
+$D\propto x^2$ makes the process a geometric Brownian motion in $\ln x$ - every
+radius relaxes on one timescale - integrated exactly in log-space:
+
+$$
+\mathrm d (\ln x) = \mu\,\mathrm dt + \sigma\,\mathrm dW,\qquad \mu = p_\mathrm{eq}-\tfrac32,\quad \sigma=\sqrt2 .
+$$
+
+Reflecting boundaries represent resupply by the outer halo and the inner loss cone.
+The result: **both** formation slopes converge to the attractor, erasing the memory
+of the initial condition.
+
+<Figure client:load
+	src="/assets/stellar_scattering_dm.png"
+	alt=""
+	caption="Fig. 4 — Stellar scattering / collisional relaxation. Left: both the
+	stellar (gamma0 = 1.5) and PBH (gamma0 = 2.25) formation slopes converge onto the
+	Bahcall-Wolf attractor. Right: the local slope relaxes toward gamma = 7/4, erasing
+	the memory of the initial condition."
+/>
+
+*(Caveat: this is an illustrative model whose equilibrium is set by construction -
+it correctly captures the direction, rate, and endpoint of relaxation, but it is
+not a first-principles Fokker-Planck solve. For a paper one would cite/use the
+Alexander-Hopman coefficients.)*
+
+The physically important corollary: because DM is much lighter than stars, the
+relevant attractor is the **mass-segregation** one, $\gamma\to 3/2$ - the *same*
+value as the formation slope. **Relaxation of DM by stars reinforces $\gamma=1.5$;
+it does not lift it.**
+
+---
+
+## 8. The payoff: do observed spikes imply *primordial* black holes ?
+
+Several black-hole low-mass X-ray binaries (A0620-00, XTE J1118+480, Nova Muscae
+1991) show anomalous orbital-period decay that has been attributed to dynamical
+friction against a **DM spike**. Because a light black hole formed by stellar
+collapse is "not expected" to carry a spike, some authors (e.g. arXiv:2406.07624)
+argue the primaries could be **primordial** black holes, which form dense
+secondary-infall spikes with $\gamma\simeq 9/4$
+
+Two things sharpen this:
+
+1. **How steep must the observed spike be?** An N-body analysis *with feedback*
+   (arXiv:2510.11635) finds the friction requires
+   $$\gamma \gtrsim 2.15\text{–}2.2\ \ (\text{A0620-00, XTE J1118+480}),\qquad \gamma\gtrsim2.3\ \ (\text{Nova Muscae}).$$
+
+2. **How steep can a *stellar-origin* spike be?** Everything above gives a hard ceiling:
+   - Formation (Young/Liouville): $\gamma = 3/2$.
+   - Supernova: preserves it exactly.
+   - Fallback accretion: preserves it (Keplerian rescaling).
+   - Relaxation: mass-segregation drives DM toward $3/2$; self-relaxation caps at $7/4$.
+   $$\boxed{\;\gamma_\mathrm{stellar}\ \le\ 7/4 = 1.75\;}$$
+
+
+### The verdict
+
+There is a **clean gap**: a stellar-origin black hole cannot exceed $\gamma\simeq1.75$,
+while the observation require $\gamma\gtrsim2.2$, which only the **primordial**
+secondary-infall channel ($\gamma=9/4$) naturally reaches. So the quantitative
+calculation **supports** the primordial interpretation - but it replaces the hand-wave
+("hard to see how a spike survives") in the literature with an actual number and an
+actual mechanism-by-mechanism argument.
+
+**Honest caveats.** (i) This confirms, rather than overturns, the prevailing
+assumption. (ii) The whole edifice is contingent on the period decays being due
+to DM at all, which is contested. (iii) The relaxation ceiling should be nailed
+with real Alexander-Hopman coefficients, not the toy. (iv) One genuinely open
+effect could change the picture: the **natal kick**.
+
+---
+
+## 9. The open problem: natal kicks
+
+A supernova imparts a **kick velocity** to the newborn compact object (from
+asymmetric ejecta and neutrino emission), typically tens to hundreds of km/s. This
+moves the black hole **out of the center of its own DM spike**. Unlike the
+symmetric mass loss of §6 - which we showed preserves the slope - a kick
+displaces the potential minimum relative to the frozen DM, and could:
+
+- strip the spike almost entirely if the kick exceeds the DM orbital velocities, or
+- leave a lopsided remnant cusp that the black hole slowly re-captures.
+
+Neither the primordial-origin papers nor the pipeline here has modelled it, and it
+is the one ingredient that could move $\gamma_\mathrm{stellar}$ or destroy the spike
+outright. **It is the natural next calculation** - and the impulsive machinery of
+§6 extends to it directly: add a common velocity boost $\mathbf v_\mathrm{kick}$ to
+every particle's frame at the SN instant and re-evaluate which orbits stay bound.
+
+---
+
+## 10. Summary
+
+| Stage | Mechanism | Effect on slope $\gamma$ |
+|---|---|---|
+| Formation (circular approx.) | Blumenthal $M r=$const | $9/4 = 2.25$ |
+| Formation (isotropic, correct) | Liouville / Young 1980 | $3/2 = 1.50$ |
+| Supernova (mass loss) | impulsive, scale-free | **unchanged** |
+| Fallback accretion | Keplerian rescaling | **unchanged** |
+| Relaxation (DM by stars) | mass-segregation | $\to 3/2$ |
+| Relaxation (DM self) | Bahcall-Wolf | $\to 7/4$ |
+| **Stellar-origin ceiling** | - | $\le 7/4 = 1.75$ |
+| Observations require | dynamical friction (N-body) | $\gtrsim 2.2$ |
+| Primordial (secondary infall) | Bertschinger 1985 | $9/4 = 2.25$ |
+
+The DM density profile built during star formation is a **power law** because
+the final potential is Keplerian; its exponent is **$3/2$, not $9/4$**, because real
+DM is on eccentric orbits and spends its time near apocentre; that exponent is
+**robust** against supernovae, accretion, and stellar relaxation; and the gap
+between the stellar ceiling ($\le1.75$) and the observational requirement
+($\gtrsim2.2$) is what makes DM spikes around X-ray binaries a genuine probe of
+primordial black holes.
+
+---
+
+## how to cite
+
+if this post was useful in your work, please cite it. Two guidelines:
+
+**Plain text:**
+
+Capela F. (2026). *Dark Matter During Star Formation: How a Uniform Halo Becomes a Spike.*
+       Available at: https://labfab.io/blog/dark-matter-halo
+
+**BibTex:**
+
+```bibtex
+@misc{capela2026dmspikes,
+author		= {Capela, Fabio}
+title		= {Dark Matter During Star Formation:How a Uniform Halo Becomes a Spike},
+year 		= {2026},
+howpublished    = {\url{https://labfab.io/blog/dark-matter-halo}}
+}
+```
+
+## References
+
+- Blumenthal, Faber, Flores & Primack (1986), *ApJ* **301**, 27 - adiabatic contraction, circular-orbit model.
+- Young (1980), *ApJ* **242**, 1232 - phase-space adiabatic growth, $\rho\propto r^{-3/2}$.
+- Bahcall & Wolf (1976), *ApJ* **209**, 214 - the $r^{-7/4}$ relaxation cusp.
+- Bahcall & Wolf (1977), *ApJ* **216**, 883 - multi-mass / mass segregation.
+- Blaauw (1961), *BAN* **15**, 265 - impulsive mass-loss disruption threshold.
+- Bertschinger (1985), *ApJS* **58**, 39 - secondary infall, self-similar $r^{-9/4}$.
+- Gondolo & Silk (1999), *PRL* **83**, 1719 - spikes around massive black holes.
+- Sadeghian, Ferrer & Will (2013), *PRD* **88**, 063522 - GR-consistent spike.
+- Alexander & Hopman (2009), *ApJ* **697**, 1861 - strong mass segregation.
+- Capela, Pshirkov & Tinyakov (2014), arXiv:1403.7098 - adiabatic contraction & primordial black holes.
+- arXiv:2406.07624 - primordial-origin interpretation of X-ray-binary spikes.
+- arXiv:2510.11635 - N-body critical assessment; $\gamma\gtrsim2.2$ requirement.

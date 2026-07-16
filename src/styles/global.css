@@ -54,3 +54,12 @@ mjx-container svg {
   text-align: center;
   margin: 1em 0;
 }
+
+/* Figure captions */
+figure {
+  @apply my-8;
+}
+
+figcaption {
+  @apply text-center text-sm text-gray-500 mt-2 italic;
+}
