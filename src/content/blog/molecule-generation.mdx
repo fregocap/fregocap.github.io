@@ -1,0 +1,738 @@
+---
+title: "Generative Molecular Design in 2026: Representations, Mathematics, and the Synthesis Bottleneck"
+description: "A technical review of in-silico molecule generation - small molecules, biomolecules, conditioning mechanisms, and retrosynthesis"
+pubDate: 2026-09-16
+tags: ["Machine Learning"]
+hidden: false
+---
+
+## 1. The problem, stated properly
+
+Computational chemistry has traditionally been a _forward_ discipline. You have a molecule, you compute a property. Formally, you have some oracle
+
+$$
+f: \mathcal{M}\rightarrow \mathbb{R}^k
+$$
+
+Mapping the space of molecules $\mathcal{M}$ to a vector of properties - binding affinity, solubility, metabolic half-life, HOMO-LUMO gap. Density functional theory is such an oracle. So is a docking program. So is a trained property predictor. So, expensively, is a wet-lab assay.
+
+Drug discovery and materials science want the inverse. Given a desired property profile $\mathbf y^*$, find molecules such that $f(m) \approx \mathbf y^*$. Written as an optimization problem:
+
+$$
+m^* = \arg \max_{m\in \mathcal{M}} \sum_{i=1}^k w_i O_i(m) \quad \text{subject to} \quad m \in \mathcal{M}_{\text{synth}}
+$$
+
+where $O_i$ are objective functions and $\mathcal{M}_{\text{synth}} \subset \mathcal M$ is the subset of molecules that can actually be made. This looks tractable until you notice what is wrong with it:
+
+1. **$\mathcal{M}$ is discrete.** You cannot take a gradient with respect to "add a nitrogen here." There is no meaningful $\partial O / \partial m$.
+2. **$\mathcal{M}$ is astronomically large.** Estimates of the drug-like chemical space run to $10^{23}$–$10^{60}$ molecules depending on how you define "drug-like." Enumeration is out of the question.
+3. **$\mathcal{M}_{\text{synth}}$ is not characterized.** We have no membership oracle for "can be synthesized." We have heuristics, and they are bad ones.
+
+Generative modelling attacks (1) and (2) by reframing the search as sampling. Instead of optimizing over a discrete set, learn a parameterized distribution $p_\theta(m \mid \mathbf{c})$ conditioned on context $\mathbf{c}$, and draw samples from it. The discrete search becomes a continuous problem in $\theta$-space, which gradients can handle. Problem (3) is the subject of the second half of this article, and it is the one the field has been worst at.
+
+Everything that follows decomposes along four axes:
+
+| Axis | Question |
+|---|---|
+| **Representation** | What object is the model actually generating? |
+| **Model family** | What generative process produces it? |
+| **Conditioning** | How do you steer it toward what you want? |
+| **Evaluation** | How do you know if it worked? |
+
+The fourth is the one most papers handle worst, so it gets its own section.
+
+---
+
+## 2. Representations: the choice that determines everything else
+
+Before you pick an architecture you must pick what a "molecule" *is* to your model. This decision constrains everything downstream: which symmetries you must respect, which tasks are natural, whether 3D geometry is available, and whether the model can even express an invalid molecule.
+
+### 2.1 Strings
+
+**SMILES** (Simplified Molecular Input Line Entry System) linearizes a molecular graph via depth-first traversal. `CC(=O)Oc1ccccc1C(=O)O` is aspirin. It is compact, and it makes molecules directly amenable to sequence models borrowed wholesale from NLP.
+
+Its pathology is that the map from strings to molecules is *partial and non-injective*. Most strings over the SMILES alphabet are not valid molecules: unbalanced ring closures, impossible valences. And a single molecule has many valid SMILES depending on which atom you start from. A naive language model trained on SMILES emits invalid strings at a nontrivial rate.
+
+**SELFIES** (SELF-referencing Embedded Strings) fixes validity by construction. Its grammar is designed so that *every* string in the alphabet decodes to a chemically valid molecule. Validity becomes 100% for free. The cost is that the representation is less semantically smooth. Small edits in SELFIES space can produce large, chemically unintuitive jumps, which hurts local optimization.
+
+**SAFE** (Sequential Attachment-based Fragment Embedding) reorders SMILES so that molecular fragments appear as contiguous, independently-parseable blocks separated by attachment points. This turns out to matter a great deal: it makes fragment-level operations expressible as *text infilling*. If your fragments are contiguous substrings, then "design a linker between these two fragments" is literally "fill in the middle." We will return to this in §3.5.
+
+### 2.2 Molecular graphs
+
+A molecule as $G = (V, E)$ with atom features on nodes and bond types on edges. Generation proceeds atom-by-atom, bond-by-bond, or fragment-by-fragment. Graph representations respect permutation symmetry naturally and make valence constraints easy to enforce during generation (mask out actions that would exceed an atom's valence).
+
+The cost is likelihood evaluation. There are $n!$ orderings of $n$ nodes, so the marginal likelihood of a graph under an autoregressive model requires summing over orderings:
+
+$$
+p_\theta(G) = \sum_{\pi \in S_n} p_\theta(G, \pi)
+$$
+
+which is intractable. In practice one fixes a canonical ordering (e.g. BFS from a canonical root) and trains on that, accepting the resulting bias.
+
+### 2.3 3D point clouds
+
+A molecule as $(\mathbf{X}, \mathbf{h})$ where $\mathbf{X} \in \mathbb{R}^{n \times 3}$ are atomic coordinates and $\mathbf{h} \in \mathbb{R}^{n \times d}$ are atom-type features. This is mandatory if you want to condition on a binding pocket, since the pocket only means anything geometrically.
+
+3D introduces a symmetry requirement. Physics does not care where you put the origin or how you rotate the axes, so the learned density must be invariant under the special Euclidean group $SE(3)$:
+
+$$
+p(\mathbf{R}\mathbf{X} + \mathbf{t}) = p(\mathbf{X}) \qquad \forall\, \mathbf{R} \in SO(3),\; \mathbf{t} \in \mathbb{R}^3
+$$
+
+and the denoising network must be *equivariant*:
+
+$$
+\boldsymbol{\epsilon}_\theta(\mathbf{R}\mathbf{X} + \mathbf{t}) = \mathbf{R}\,\boldsymbol{\epsilon}_\theta(\mathbf{X})
+$$
+
+One subtlety trips people up here. Translation invariance is impossible for a normalizable density on $\mathbb{R}^{n\times3}$: you cannot have a probability distribution that is invariant to arbitrary translation and also integrates to 1. The standard fix is to work in the *zero-centre-of-mass subspace*:
+
+$$
+\mathcal{X}_0 = \Big\{ \mathbf{X} \in \mathbb{R}^{n \times 3} : \textstyle\sum_i \mathbf{x}_i = \mathbf{0} \Big\}
+$$
+
+Combine an $SO(3)$-invariant prior on $\mathcal{X}_0$ (an isotropic Gaussian projected to remove the CoM component) with an equivariant transition kernel, and the resulting marginal is $SE(3)$-invariant. This is why virtually every 3D molecular diffusion model subtracts the mean coordinate at every step.
+
+### 2.4 Synthesis programs
+
+Here the molecule is not represented at all. What is represented is a *procedure*: a tree whose leaves are purchasable building blocks and whose internal nodes are reaction templates. The molecule is whatever falls out when you execute the tree.
+
+$$
+m = \Phi(\tau), \qquad \tau = \big( (b_1, \dots, b_L),\; (r_1, \dots, r_{L-1}) \big)
+$$
+
+where $b_i$ are building blocks from a catalogue $\mathcal{B}$ and $r_j$ are reaction templates from a library $\mathcal{R}$, and $\Phi$ is the execution function.
+
+The payoff is large and underappreciated: **the synthesis route comes free with the molecule**, and $\mathcal{M}_{\text{synth}}$ membership is guaranteed by construction rather than estimated post hoc. The price is that the reachable space is now $\mathcal{B} \times \mathcal{R}$-limited, and the action space is combinatorial. A catalogue of $10^5$–$10^6$ building blocks times a few hundred templates gives a branching factor that scales badly.
+
+### 2.5 Fields
+
+Rather than atoms, generate a continuous scalar or vector field over space, such as electron density, or a pharmacophore field encoding donor/acceptor/hydrophobe propensity, and decode atoms from it afterwards. ECloudGen (Nature Computational Science, 2025) generates electron clouds from protein pockets via latent diffusion and then decodes molecules. The appeal is that fields capture what a molecule *does* to its environment rather than what it *is*, which is the right abstraction for scaffold hopping. The difficulty is that decoding a field to a discrete molecule is itself a hard inverse problem.
+
+### 2.6 Summary
+
+| Representation | 3D? | Validity | Natural tasks | Main weakness |
+|---|---|---|---|---|
+| SMILES | No | ~95–99% learned | de novo, RL optimization | invalid outputs, non-unique |
+| SELFIES | No | 100% by construction | RL, genetic algorithms | poor local smoothness |
+| SAFE | No | high | fragment infilling | fragment vocabulary dependence |
+| Graph | No (or add-on) | enforceable | scaffold ops, property prediction | ordering ambiguity |
+| 3D point cloud | Yes | must be checked | pocket-conditioned design | needs equivariance, data-hungry |
+| Synthesis tree | Optional | 100% + route | synthesizable design | restricted chemical space |
+| Field | Yes | requires decoding | scaffold hopping, shape matching | decoding is lossy |
+
+---
+
+## 3. Model families
+
+### 3.1 Variational autoencoders and the latent-space dream
+
+The 2018 ChemVAE paper established the template that dominated the field's imagination for years: encode molecules into a continuous latent $\mathbf{z}$, optimize properties by moving through $\mathbf{z}$-space, decode back.
+
+Train by maximizing the evidence lower bound:
+
+$$
+\mathcal{L}_{\text{ELBO}}(\theta,\phi;\, m) \;=\; \mathbb{E}_{q_\phi(\mathbf{z}\mid m)}\big[\log p_\theta(m \mid \mathbf{z})\big] \;-\; \beta\, D_{\mathrm{KL}}\!\big(q_\phi(\mathbf{z}\mid m)\,\|\,p(\mathbf{z})\big)
+$$
+
+with $q_\phi(\mathbf{z}\mid m) = \mathcal{N}(\boldsymbol{\mu}_\phi(m), \mathrm{diag}\,\boldsymbol{\sigma}^2_\phi(m))$, sampled via the reparameterization trick $\mathbf{z} = \boldsymbol{\mu}_\phi + \boldsymbol{\sigma}_\phi \odot \boldsymbol{\varepsilon}$, $\boldsymbol{\varepsilon} \sim \mathcal{N}(0, \mathbf{I})$.
+
+The *semi-supervised* variant (SSVAE) adds a property-prediction head, so the latent space becomes organized by property and you can condition generation on a target property range directly.
+
+Latent-space optimization then does gradient ascent or Bayesian optimization on a surrogate $g_\psi(\mathbf{z}) \approx f(\mathrm{dec}(\mathbf{z}))$:
+
+$$
+\mathbf{z}_{t+1} = \mathbf{z}_t + \eta \,\nabla_{\mathbf{z}}\, g_\psi(\mathbf{z}_t)
+$$
+
+This disappointed, and the reasons are structural rather than fixable by better engineering:
+
+- *Off-manifold drift.* The surrogate $g_\psi$ is only accurate where training data lived. Aggressive optimization walks $\mathbf{z}$ into regions where both the surrogate and the decoder are extrapolating, and you get high predicted scores on garbage molecules. This is adversarial-example behaviour by another name.
+- *Posterior collapse.* With a powerful autoregressive decoder, the KL term drives $q_\phi(\mathbf{z}\mid m) \to p(\mathbf{z})$ and the latent stops carrying information.
+- *Discreteness.* Chemistry is not smooth. Adding one methyl group can abolish binding (the "activity cliff"). A continuous latent that decodes smoothly is, in a real sense, misrepresenting the underlying object.
+
+Recent work such as MoltenFlow (2026) tries to rescue latent optimization by combining property-organized latents with flow-matching priors, so that guided moves stay on-manifold. This helps, but the field's centre of gravity has moved elsewhere.
+
+### 3.2 Autoregressive models
+
+Factorize the joint over tokens (or graph-construction actions):
+
+$$
+p_\theta(\mathbf{x}) = \prod_{t=1}^{T} p_\theta(x_t \mid x_{<t})
+$$
+
+trained by maximum likelihood, i.e. minimizing token-level cross-entropy:
+
+$$
+\mathcal{L} = -\mathbb{E}_{\mathbf{x} \sim \mathcal{D}} \sum_{t=1}^{T} \log p_\theta(x_t \mid x_{<t})
+$$
+
+Sampling uses temperature $\tau$ to trade novelty against validity:
+
+$$
+p_\tau(x_t \mid x_{<t}) \propto p_\theta(x_t \mid x_{<t})^{1/\tau}
+$$
+
+For molecules these are called **chemical language models** (CLMs). They are old and well understood, and still among the most-deployed methods in industry. They pair cleanly with reinforcement learning (§3.8), and a transformer trained on $10^8$ ChEMBL/ZINC molecules is a genuinely good prior over "things that look like drugs."
+
+### 3.3 Diffusion models
+
+The dominant paradigm for 3D generation. Define a forward noising process that destroys structure, learn to reverse it.
+
+Forward (DDPM formulation), with variance schedule $\{\beta_t\}$ and $\alpha_t = 1-\beta_t$, $\bar{\alpha}_t = \prod_{s\le t}\alpha_s$:
+
+$$
+q(\mathbf{x}_t \mid \mathbf{x}_0) = \mathcal{N}\!\big(\mathbf{x}_t;\, \sqrt{\bar{\alpha}_t}\,\mathbf{x}_0,\; (1-\bar{\alpha}_t)\mathbf{I}\big)
+$$
+
+which admits the useful reparameterization $\mathbf{x}_t = \sqrt{\bar{\alpha}_t}\,\mathbf{x}_0 + \sqrt{1-\bar{\alpha}_t}\,\boldsymbol{\epsilon}$.
+
+Reverse process, parameterized as Gaussian:
+
+$$
+p_\theta(\mathbf{x}_{t-1}\mid \mathbf{x}_t) = \mathcal{N}\!\big(\mathbf{x}_{t-1};\, \boldsymbol{\mu}_\theta(\mathbf{x}_t,t),\, \sigma_t^2 \mathbf{I}\big)
+$$
+
+with the standard mean parameterization
+
+$$
+\boldsymbol{\mu}_\theta(\mathbf{x}_t, t) = \frac{1}{\sqrt{\alpha_t}}\left( \mathbf{x}_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}} \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t) \right)
+$$
+
+The training objective collapses to a simple denoising regression:
+
+$$
+\mathcal{L}_{\text{simple}} = \mathbb{E}_{t,\,\mathbf{x}_0,\,\boldsymbol{\epsilon}}\Big[\big\| \boldsymbol{\epsilon} - \boldsymbol{\epsilon}_\theta\big(\sqrt{\bar{\alpha}_t}\mathbf{x}_0 + \sqrt{1-\bar{\alpha}_t}\boldsymbol{\epsilon},\, t\big) \big\|^2\Big]
+$$
+
+The connection to score-based generative modelling is that the noise predictor is a rescaled score estimate:
+
+$$
+\nabla_{\mathbf{x}_t} \log p_t(\mathbf{x}_t) \;\approx\; -\frac{\boldsymbol{\epsilon}_\theta(\mathbf{x}_t,t)}{\sqrt{1-\bar{\alpha}_t}}
+$$
+
+which is what makes guidance (§4.2) possible.
+
+A molecule is not a homogeneous tensor, and that complicates matters. Coordinates $\mathbf{X}$ are continuous; atom types $\mathbf{h}$ and bond orders are categorical. Models therefore run a hybrid process: Gaussian diffusion on coordinates, categorical diffusion on types, with a shared equivariant backbone (typically an EGNN or an SE(3)-transformer). Notable examples in structure-based drug design: TargetDiff, DiffSBDD, DecompDiff (which uses decomposed priors over scaffold and arms), and PILOT (large-scale pretraining plus multi-objective guidance).
+
+### 3.4 Flow matching
+
+Diffusion's successor on efficiency grounds. Instead of a stochastic noising process, define a deterministic probability path from noise $p_0$ to data $p_1$ and learn the velocity field that transports one to the other.
+
+Sample a time $t \sim \mathcal{U}[0,1]$, a data point $\mathbf{x}_1$, and noise $\mathbf{x}_0 \sim \mathcal{N}(0,\mathbf{I})$. Under the conditional optimal-transport path, the interpolant and its target velocity are simply
+
+$$
+\mathbf{x}_t = (1-t)\,\mathbf{x}_0 + t\,\mathbf{x}_1, \qquad \mathbf{u}_t(\mathbf{x}_t \mid \mathbf{x}_1) = \mathbf{x}_1 - \mathbf{x}_0
+$$
+
+and the conditional flow-matching loss is
+
+$$
+\mathcal{L}_{\text{CFM}} = \mathbb{E}_{t,\,\mathbf{x}_0,\,\mathbf{x}_1} \big\| \mathbf{v}_\theta(\mathbf{x}_t, t) - (\mathbf{x}_1 - \mathbf{x}_0) \big\|^2
+$$
+
+Sampling integrates the learned ODE $\mathrm{d}\mathbf{x}/\mathrm{d}t = \mathbf{v}_\theta(\mathbf{x},t)$ from $t{=}0$ to $t{=}1$. Because the paths are straight rather than diffusive, far fewer function evaluations are needed: tens rather than hundreds or thousands. PropMolFlow (Nature Computational Science, 2026) reports matching diffusion-model quality on property-guided generation while producing stable, valid structures considerably faster, and being better at reaching under-represented property values.
+
+For 3D molecules the same zero-CoM and equivariance machinery applies, and Riemannian flow matching handles the rotational components properly.
+
+### 3.5 Discrete diffusion and masked infilling
+
+For strings and graphs, the cleanest formulation is *absorbing-state* (masking) diffusion. The forward process replaces tokens with a `[MASK]` symbol at a time-dependent rate:
+
+$$
+q(x_t^{(i)} \mid x_0^{(i)}) =
+\begin{cases}
+\alpha_t & \text{if } x_t^{(i)} = x_0^{(i)} \\
+1 - \alpha_t & \text{if } x_t^{(i)} = \texttt{[MASK]}
+\end{cases}
+$$
+
+with $\alpha_t$ decreasing from 1 to 0. The reverse process unmasks. The training objective is a weighted cross-entropy over masked positions:
+
+$$
+\mathcal{L} = \mathbb{E}_{t, \mathbf{x}_0, \mathbf{x}_t} \left[ \frac{\alpha_t'}{1-\alpha_t} \sum_{i:\, x_t^{(i)} = \texttt{[MASK]}} -\log p_\theta\big(x_0^{(i)} \mid \mathbf{x}_t\big) \right]
+$$
+
+The reason this matters for chemistry is that **masked diffusion makes constrained generation a native operation rather than a bolt-on**. If you want to keep a scaffold and design R-groups, you simply do not mask the scaffold tokens. Combine masked discrete diffusion with SAFE (where fragments are contiguous), and linker design, scaffold decoration, motif extension, and superstructure generation all become the *same* forward pass with different mask patterns. GenMol (2025) is the clearest demonstration: one model, no task-specific fine-tuning, covering the whole fragment-constrained task family.
+
+### 3.6 Bayesian flow networks
+
+A newer alternative that sidesteps the awkwardness of applying continuous diffusion to discrete data. Rather than noising *samples*, BFNs operate on the *parameters* of the data distribution (for categorical variables, the probability simplex), which is continuous even when the data is not. This gives a fully continuous, differentiable process over discrete objects. MolCRAFT applies this to structure-based drug design and is now a standard comparison point in benchmarks alongside autoregressive and diffusion baselines.
+
+### 3.7 GFlowNets
+
+A conceptually different objective, and the right tool when you want *diversity* rather than a single optimum.
+
+Standard RL maximizes expected reward, which drives the policy toward a single mode. A GFlowNet instead learns a policy that samples terminal states in proportion to reward:
+
+$$
+p_\theta(x) \;\propto\; R(x)
+$$
+
+This is trained by enforcing a flow-conservation condition. The most common objective is *trajectory balance*: for a complete trajectory $\tau = (s_0 \to s_1 \to \cdots \to s_n = x)$,
+
+$$
+\mathcal{L}_{\text{TB}}(\tau) = \left( \log \frac{Z_\theta \prod_{t=1}^{n} P_F(s_t \mid s_{t-1};\theta)}{R(x) \prod_{t=1}^{n} P_B(s_{t-1} \mid s_t;\theta)} \right)^2
+$$
+
+where $P_F$ is the forward policy, $P_B$ the backward policy, and $Z_\theta$ a learned partition-function estimate.
+
+Why chemists should care: in a drug program you do not want the single highest-scoring molecule, because your scoring function is wrong. You want a diverse set of chemotypes hedging across the ways it might be wrong. GFlowNets encode that goal directly in the objective rather than bolting on a diversity penalty. This is why the synthesis-aware literature has converged on them so heavily: SynFlowNet, SynGFN, S3-GFN.
+
+### 3.8 Reinforcement learning fine-tuning
+
+The industrial workhorse. Pretrain a CLM on a large corpus to get a prior $\pi_{\text{prior}}$, then fine-tune against a multi-objective scoring function $S(m) \in [0,1]$.
+
+The REINVENT formulation defines an *augmented likelihood* that shifts the prior in proportion to score:
+
+$$
+\log \pi_{\text{aug}}(m) = \log \pi_{\text{prior}}(m) + \sigma \, S(m)
+$$
+
+and trains the agent to match it:
+
+$$
+\mathcal{L}(\theta) = \Big( \log \pi_{\text{aug}}(m) - \log \pi_\theta(m) \Big)^2
+$$
+
+The $\log \pi_{\text{prior}}$ term acts as an implicit KL anchor: the agent is pulled toward high scores but penalized for abandoning the chemistry it learned during pretraining. The hyperparameter $\sigma$ trades exploitation against staying drug-like. Without such an anchor, RL on molecules reliably degenerates. The agent discovers that the scoring function can be maximized by chemically absurd structures, and produces them enthusiastically.
+
+RL is also architecture-agnostic, which is a real advantage. A 2026 Chemical Science paper argues for handling synthesizability as a post-training RL objective precisely because it requires no architectural surgery and adapts to changing reagent availability, unlike methods that bake synthesis constraints into training. And the scoring function is the entire product. Everything interesting is in $S$, and everything that goes wrong goes wrong there.
+
+### 3.9 Genetic algorithms, which keep winning
+
+Well-tuned genetic algorithms operating on SELFIES or graph mutations remain competitive with sophisticated deep generative models on goal-directed optimization tasks like the Practical Molecular Optimization (PMO) benchmark, and beat them outright on some. GA baselines are ML-free, fast, and trivially parallelizable.
+
+The methodological consequence: **any new generative method that does not report a strong GA baseline should be treated as unevaluated.** A surprising number do not.
+
+---
+
+## 4. Conditioning: putting characteristics into the model
+
+Having a generative model is easy. Getting it to generate what you actually want is the whole problem. The mechanisms below are genuinely different from each other, not interchangeable stylistic choices.
+
+### 4.1 Conditional training
+
+Feed the property in as an input during training: a token, an embedding, a concatenated vector. The model learns $p_\theta(m \mid \mathbf{y})$ directly.
+
+Simple, cheap, and soft: nothing forces the model to respect the condition, and it will happily ignore you in regions where the conditional data was sparse. Any-property-conditional models add a property-prediction auxiliary loss ("self-criticism") to tighten the coupling.
+
+### 4.2 Classifier guidance
+
+Given an unconditional diffusion model and a separately-trained property predictor $p_\varphi(\mathbf{y} \mid \mathbf{x}_t)$ that operates on *noisy* inputs, Bayes' rule gives the conditional score:
+
+$$
+\nabla_{\mathbf{x}_t} \log p(\mathbf{x}_t \mid \mathbf{y}) = \nabla_{\mathbf{x}_t} \log p(\mathbf{x}_t) + \nabla_{\mathbf{x}_t} \log p_\varphi(\mathbf{y} \mid \mathbf{x}_t)
+$$
+
+Translating to the noise-prediction parameterization, the modified noise estimate is
+
+$$
+\tilde{\boldsymbol{\epsilon}}_\theta(\mathbf{x}_t, t) = \boldsymbol{\epsilon}_\theta(\mathbf{x}_t,t) - w\sqrt{1-\bar{\alpha}_t}\;\nabla_{\mathbf{x}_t}\log p_\varphi(\mathbf{y}\mid \mathbf{x}_t)
+$$
+
+with guidance strength $w$.
+
+The advantage is modularity: one unconditional model, many swappable property classifiers, no retraining. The cost is that you must train predictors on noisy intermediates, which is awkward, and the gradient is only as good as the predictor.
+
+### 4.3 Classifier-free guidance
+
+Train a single model with the condition randomly dropped (replaced by a null token $\varnothing$) some fraction of the time. At sampling, extrapolate away from the unconditional prediction:
+
+$$
+\tilde{\boldsymbol{\epsilon}}_\theta(\mathbf{x}_t, t, \mathbf{y}) = (1+w)\,\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, \mathbf{y}) - w\,\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t, \varnothing)
+$$
+
+with $w=0$ recovering plain conditional sampling. This is the default in image generation and is widely used in molecular latent diffusion (GeoLDM variants, SOLD, COATI-LDM) and even in autoregressive property-conditional models.
+
+One caution from the molecular literature does not transfer from images. The COATI-LDM authors found classifier-free guidance *underperformed* classifier guidance for LogP optimization, failing to improve the property while preserving similarity to the starting molecule. Classifier guidance handled the similarity-preservation constraint better. Do not assume image-domain folklore holds here.
+
+### 4.4 Latent-space optimization
+
+Covered in §3.1. Bayesian optimization or gradient ascent over $\mathbf{z}$. Still useful for global exploration under expensive oracles, still fragile.
+
+### 4.5 Partial noising: designing *around* a known molecule
+
+This is the direct answer to "can I generate variations around an existing compound," and it is simple.
+
+Take a reference molecule $m_{\text{ref}}$ with representation $\mathbf{x}_{\text{ref}}$. Instead of starting the reverse process from pure noise at $t=T$, run the *forward* process only partway, to some intermediate time $\tau < T$:
+
+$$
+\mathbf{x}_\tau \sim q(\mathbf{x}_\tau \mid \mathbf{x}_{\text{ref}}) = \mathcal{N}\!\big(\sqrt{\bar{\alpha}_\tau}\,\mathbf{x}_{\text{ref}},\, (1-\bar{\alpha}_\tau)\mathbf{I}\big)
+$$
+
+then denoise from $\tau$ back to $0$. Because only $\tau$ steps of information have been destroyed, the output retains structure from the reference.
+
+**$\tau$ is a continuous similarity dial.** Small $\tau$ gives trivial analogues; intermediate $\tau$ gives same-chemotype variation; large $\tau$ approaches unconditional generation. You can sweep it to generate a controlled radius of exploration around a hit. COATI-LDM demonstrates exactly this behaviour: the number of forward noising steps controls similarity to the starting point.
+
+The protein-design world uses the identical trick under the name **partial diffusion**. RFdiffusion refines existing designs by successive noising and denoising, and this was central to generating picomolar binders to flexible helical peptide targets.
+
+### 4.6 Inpainting: hard structural constraints
+
+Partial noising gives *soft* similarity. Often you want a *hard* guarantee: this scaffold must survive exactly, these atoms are non-negotiable.
+
+Let $\mathbf{m} \in \{0,1\}^n$ be a mask, $1$ for atoms to preserve. At each reverse step:
+
+$$
+\mathbf{x}^{\text{known}}_{t-1} \sim q(\mathbf{x}_{t-1} \mid \mathbf{x}_{\text{ref}}), \qquad
+\mathbf{x}^{\text{unknown}}_{t-1} \sim p_\theta(\mathbf{x}_{t-1} \mid \mathbf{x}_t)
+$$
+
+$$
+\mathbf{x}_{t-1} = \mathbf{m} \odot \mathbf{x}^{\text{known}}_{t-1} + (1-\mathbf{m}) \odot \mathbf{x}^{\text{unknown}}_{t-1}
+$$
+
+That is, the preserved region is *re-noised to the correct level* at every step and spliced in, while the free region is denoised normally.
+
+One implementation detail matters more than it looks. Naive splicing produces incoherent joins, because the generated region never gets a chance to "see" the fixed region and adapt to it: information only flows one way through the denoising step. The RePaint fix, imported directly into molecular models, is *resampling with jump-back*: repeat each denoising step $r$ times, re-applying the forward process between repetitions, so the model can iteratively harmonize the generated part with the fixed scaffold. A jump length $j > 1$ steps further back in time per repetition. Papers using inpainting for molecules consistently report that skipping this produces visibly poor completions.
+
+DiffSBDD supports exactly this: de novo design, property optimization, and molecular inpainting under protein-pocket constraints. PMDM uses seed-fragment inpainting for scaffold hopping and linker generation without task-specific retraining.
+
+### 4.7 The task taxonomy
+
+Once you have masking, an entire vocabulary of medicinal-chemistry operations becomes expressible:
+
+| Task | Fixed (mask = 1) | Generated (mask = 0) | Typical use |
+|---|---|---|---|
+| **Linker design** | two fragments | connecting linker | PROTACs, fragment linking |
+| **Scaffold morphing** | two side chains | new core between them | IP escape |
+| **Scaffold decoration** | core + attachment points | R-groups | SAR exploration |
+| **Motif extension** | a motif | everything else | fragment growing |
+| **Superstructure generation** | a substructure | the surrounding molecule | hit expansion |
+| **Scaffold hopping** | pharmacophore / side chains | entirely new core | novelty, patent space |
+
+DiffHopp raises a caveat that is easy to miss. Fragment-linking models redesign *small* linkers between *large* fixed fragments, whereas scaffold hopping redesigns *most* of the molecule. Repurposing a linker model for hopping is out-of-distribution and it shows. Match the model to the mask fraction you actually need.
+
+### 4.8 Pocket conditioning
+
+Rather than conditioning on a molecule, condition on the *protein cavity*: the model sees pocket atoms $(\mathbf{X}_P, \mathbf{h}_P)$ as fixed context and generates the ligand into the void.
+
+$$
+p_\theta\big(\mathbf{X}_L, \mathbf{h}_L \mid \mathbf{X}_P, \mathbf{h}_P\big)
+$$
+
+This is structure-based drug design as a conditional generation problem, and it is where TargetDiff, DiffSBDD, DecompDiff, PILOT, MolCRAFT and dozens of others live. It requires 3D and it requires equivariance, and it is bottlenecked by data: the number of high-quality experimentally-determined protein–ligand complexes is in the tens of thousands, not millions. Models are typically trained on CrossDocked (large, simulated, noisy) or BindingMOAD (smaller, crystal-derived, cleaner), and this choice measurably changes behaviour.
+
+### 4.9 Shape and pharmacophore conditioning
+
+The most chemically principled form of "design around an existing molecule": preserve not the *atoms* but the *field*. Condition on the reference's shape, electrostatics, or pharmacophore arrangement and let the atoms be anything.
+
+SynthFormer encodes 3D pharmacophores with an equivariant GNN and decodes *synthetic trees*, achieving 100% synthesizability while matching purely-3D models on docking. ECloudGen works in electron-density space. This is what scaffold hopping should mean: keep the interaction pattern, discard the chemotype.
+
+### 4.10 Which of these hold up
+
+Ranked by reliability, based on how they behave when pushed:
+
+1. **Hard masking / inpainting.** The most reliable. Constraints are satisfied by construction, and the failure mode is poor harmonization, which resampling largely fixes.
+2. **Partial noising.** Very reliable, one interpretable knob, no retraining.
+3. **Synthesis-space generation.** Reliable for its constraint (synthesizability), restrictive in chemical coverage.
+4. **RL fine-tuning.** Powerful, but only as good as $S(m)$, and prone to reward hacking.
+5. **Guidance (classifier / classifier-free).** Works, but strength is a fiddly hyperparameter and gains often come at the cost of validity or similarity.
+6. **Latent-space optimization.** The most elegant, the least dependable.
+
+The general lesson: the 2018 vision of a smooth, semantically-organized latent manifold in which you navigate to your desired molecule turned out to be leakier than hoped, because chemistry is genuinely discrete and genuinely cliffy. **Constraints imposed structurally beat constraints imposed by steering.**
+
+---
+
+## 5. Big molecules: proteins, peptides, and the modality gap
+
+So far everything has concerned small molecules, a few dozen heavy atoms. Biologics are a different regime, and somewhat counterintuitively, **de novo design is further along for proteins than for small molecules.**
+
+### 5.1 Why proteins are easier (in a specific sense)
+
+The advantages are structural:
+
+- **A trustworthy in-silico oracle.** AlphaFold2/3 and successors predict structure well enough that "does this designed sequence fold into the intended backbone, and does it dock where intended?" can be asked computationally with real predictive value. Small-molecule design has no equivalent. Docking scores are not a trustworthy affinity oracle, and this asymmetry drives everything.
+- **A cheaper experimental loop.** Yeast display and deep mutational scanning let you test $10^5$–$10^8$ designs. Synthesizing $10^5$ novel small molecules is not a thing anyone does.
+- **A more homogeneous object.** Proteins are polymers of 20 monomers with a well-characterized backbone geometry. Small molecules have no such uniformity.
+
+### 5.2 The canonical pipeline
+
+The established workflow, and the one against which everything is benchmarked:
+
+1. **Backbone generation.** RFdiffusion, an SE(3)-equivariant diffusion model over residue frames (each residue represented as a rotation–translation pair in $SE(3)$, with the noising process operating on $\mathbb{R}^3 \times SO(3)$). Or BindCraft.
+2. **Sequence design.** ProteinMPNN, a graph neural network that predicts amino acid identity conditioned on backbone geometry. Fast, and it has largely displaced physics-based sequence design.
+3. **In-silico filtering.** AlphaFold2 "initial guess," which re-predicts the complex and reports confidence. Designs that AF2 does not confidently re-predict are discarded.
+
+BindCraft takes a different route to step 1: rather than diffusing, it backpropagates through AlphaFold2 to hallucinate a binder, co-folding binder and target at every iteration. The consequence is that it accounts for **target flexibility**, which rigid-backbone diffusion does not. Reported success rates are strong enough that on the order of ten designs need to be screened experimentally for some targets.
+
+### 5.3 The generalist turn
+
+The most significant recent development is the move to single, all-atom, multi-modality models. **BoltzGen** (Stark et al., 2025) unifies design and structure prediction in one all-atom generative model. That has the side effect of achieving state-of-the-art *folding* performance, since the model must reason structurally in order to design. Generation is controlled by a design specification language over covalent bonds, structure constraints, and binding sites, which is essentially the conditioning vocabulary of §4 exposed as a user-facing API.
+
+The validation is what makes it notable: eight wet-lab campaigns across 26 targets, spanning nanobodies, miniproteins, linear peptides, disulfide-bonded peptides and macrocycles, against protein, peptide, enzyme, small-molecule and intrinsically-disordered targets. On a deliberately hard benchmark of nine novel targets with under 30% sequence similarity to anything with a known bound structure in the PDB, nanomolar binders were obtained for roughly two-thirds of targets while testing fifteen or fewer designs per target–modality pair.
+
+### 5.4 Known limitations
+
+The recent reviews are clear about where this breaks down:
+
+- **Helical bias.** Generative binder models overrepresent helical motifs and underproduce β-rich architectures, reflecting both training distribution and the relative ease of designing helical interfaces. This motivates prior reweighting or explicit diversity objectives.
+- **Rigid receptors.** Most diffusion-based methods treat the target as fixed, neglecting induced fit and conformational selection. BindCraft's co-folding is one answer; MD- or ensemble-based conditioning is another.
+- **Implicit memorization.** Designs can end up with more sequence similarity to natural proteins than "de novo" implies, and filtering thresholds tuned on standard metrics may systematically deprioritize unusual geometries.
+
+### 5.5 The middle ground
+
+Macrocycles, cyclic peptides, stapled peptides and PROTACs sit between the two worlds and are the fastest-moving segment, because they inherit tooling from both. Deep-learning frameworks for protein-binding macrocycles now report accurate de novo design at high affinity, and HELM-GPT-style generative transformers handle macrocyclic peptides at the sequence level.
+
+### 5.6 What transfers back
+
+Two ideas from protein design deserve wider adoption in small-molecule work. **Partial diffusion as a refinement operator** (take an existing design, noise it partially, redesign) is used far more systematically in protein work than in small-molecule work. And **design specification languages**: BoltzGen's declarative constraint interface is more usable than the ad-hoc masking APIs typical of small-molecule tools, and there is no reason the same abstraction could not be exposed for ligand design.
+
+---
+
+## 6. Retrosynthesis: the half of the problem that generative models kept skipping
+
+A generative model that proposes a molecule nobody can make has produced a picture, not a compound. Retrosynthesis has its own deep methodology, and it is where the claims get tested.
+
+### 6.1 Problem statement
+
+**Single-step retrosynthesis**: given a product $P$, predict a set of reactants $\mathcal{R} = \{R_1, \dots, R_k\}$ such that $\mathcal{R} \to P$ is a feasible reaction. Formally, model $p(\mathcal{R} \mid P)$.
+
+Two properties make this harder than it looks:
+
+- **One-to-many.** Many disconnections are valid. The "correct" answer in the dataset is one chemist's choice, not the unique truth. This makes exact-match accuracy a badly-behaved metric.
+- **Feasibility is not validity.** A structurally sensible disconnection may be a terrible reaction: bad yield, incompatible functional groups, unavailable reagent.
+
+**Multi-step retrosynthesis (synthesis planning)**: recursively apply single-step prediction until every leaf is a purchasable building block. This is a search problem over an AND/OR graph, and the single-step model is its transition function.
+
+### 6.2 Template-based methods
+
+A **reaction template** is a graph-rewrite rule extracted from atom-mapped reaction data, expressed in SMARTS. It encodes the local bond changes of a transformation while leaving the rest of the molecule untouched.
+
+The model is a classifier over a template library $\mathcal{T}$:
+
+$$
+p(\mathcal{R} \mid P) = \sum_{T \in \mathcal{T}} p(\mathcal{R} \mid T, P)\, p(T \mid P)
+$$
+
+where $p(T \mid P)$ is learned (typically from Morgan fingerprints or a GNN encoding of $P$) and $p(\mathcal{R} \mid T, P)$ is deterministic template application via a tool like RDChiral.
+
+*Strengths:* every prediction is chemically interpretable and corresponds to a known transformation; outputs are always valid; the reaction type is known, which downstream planning can use.
+
+*Weaknesses:* zero generalization beyond the library. A template not extracted is a reaction not predictable, and libraries grow to $10^5$+ rules with severe class imbalance and a long tail seen once or twice. Modern Hopfield network approaches (MHNreact) address the few- and zero-shot template problem by treating template retrieval as associative memory lookup rather than flat classification.
+
+### 6.3 Template-free methods
+
+Treat retrosynthesis as translation: product SMILES in, reactant SMILES out, standard encoder–decoder transformer trained with cross-entropy and decoded with beam search.
+
+$$
+p_\theta(\mathcal{R} \mid P) = \prod_{t} p_\theta\big(r_t \mid r_{<t}, P\big)
+$$
+
+The pivotal engineering insight is **SMILES augmentation**, specifically *root-aligned* augmentation (R-SMILES): because reactants and products overlap heavily, writing both with the same atom as SMILES root minimizes the edit distance between input and output strings and makes the translation task dramatically easier. Combined with random augmentation this eliminated a large chunk of the memorization behaviour that plagued early seq2seq attempts.
+
+Contemporary systems layer a proposal–reranking decomposition on top. RETROSPECT (2026) pairs a transformer generator (root-aligned plus random augmentation, pre-LayerNorm, tied embeddings, EMA weights, and a differentiable atom-balance auxiliary loss) with a LambdaMART reranker over structural, template-derived and optionally DFT-derived features. On the standard USPTO-50K test split the generator alone reaches roughly 55% top-1 and 86% top-10 exact match at ~99.9% validity; reranking a merged candidate pool lifts top-1 to about 59%. As the authors note, if the correct precursor is absent from the proposal pool, no reranker recovers it.
+
+*Weaknesses:* no interpretability, no guarantee of chemical validity (though augmentation has pushed validity above 99%), and a tendency to produce low-diversity beams because beam search explores minor token variations rather than genuinely different disconnections.
+
+### 6.4 Semi-template and graph-edit methods
+
+The middle path, and arguably the most chemically natural. Decompose the task in two stages:
+
+1. **Reaction-centre identification.** Predict which bonds break, yielding *synthons* (fragments with open valences).
+2. **Leaving-group / synthon completion.** Attach the appropriate groups to convert synthons into real reactants.
+
+LocalRetro embodies the key insight that molecular change during reaction is *local*: rather than reasoning over the global structure, predict atom-level and bond-level edits with local templates. Retro-MTGR (Nature Communications, 2025) frames both subtasks as multitask graph representation learning, solving reaction-centre deduction and leaving-group identification jointly, and reports superiority over a broad set of prior methods.
+
+### 6.5 Iterative string editing
+
+A newer framing: rather than regenerating the entire reactant string token by token, treat retrosynthesis as *iterative editing* of the product string. Since reactions induce local changes, and reactants and products overlap substantially, editing directly exploits that overlap and improves both accuracy and prediction diversity relative to full regeneration.
+
+### 6.6 The evaluation problem, which is severe
+
+Retrosynthesis benchmarking is in worse shape than the headline numbers suggest:
+
+- **USPTO-50K is close to saturated and structurally leaky.** Around 94% of test-set reactions match templates extractable from the training set, so the benchmark does not test generalization at all. That is awkward, given that generalization is precisely what template-free methods claim as their advantage.
+- **Only ten reaction classes.** USPTO-50K covers ten classes with roughly ten thousand unique templates. Real corpora are far more diverse: comparably-sized subsets of USPTO-PaRoutes and proprietary AstraZeneca data contain 315,000 and 440,000 unique templates respectively.
+- **No transfer between datasets.** Single-step performance rankings do not survive a change of dataset, and performance degrades for *all* models as template diversity increases. Methods built for 50,000 reactions frequently need refactoring at the million-reaction scale, or fail outright there.
+- **Top-1 exact match is the wrong metric** for a one-to-many problem, and has been criticized as such within the chemistry community for years.
+
+### 6.7 Multi-step planning as search
+
+Formalize the search space as an **AND/OR graph**. OR nodes are molecules (any one of several reactions can make it); AND nodes are reactions (all reactants must be obtainable). A route is *solved* when every leaf lies in the purchasable stock $\mathcal{B}$.
+
+**Retro\*** frames this as best-first search in the style of A\*. It maintains a value estimate $V_\theta(m)$ for each molecule node $m$, a neural network trained on extracted routes to predict the cost of synthesizing $m$ from stock, and expands the frontier node minimizing
+
+$$
+f(n) = g(n) + h(n)
+$$
+
+where $g(n)$ is the accumulated cost of reactions already committed to along the route to $n$, and $h(n) = \sum_{m \in \text{frontier}(n)} V_\theta(m)$ is the learned admissible-ish estimate of remaining cost. Reaction costs are typically $-\log p(T \mid P)$ from the single-step model.
+
+**Monte Carlo tree search** is the other standard, and it is what AiZynthFinder uses by default. Selection follows a PUCT-style rule:
+
+$$
+a^\star = \arg\max_a \left[ Q(s,a) + c\, \pi(a \mid s)\, \frac{\sqrt{N(s)}}{1 + N(s,a)} \right]
+$$
+
+where $\pi(a\mid s)$ is the single-step policy's prior over disconnections, $Q$ the running value estimate, $N$ visit counts, and $c$ an exploration constant.
+
+What the benchmarks actually say: PaRoutes (two sets of 10,000 patent-derived routes, a defined stock, and scripts for both route quality and route *diversity*) found depth-first proof-number search clearly inferior, with MCTS and Retro\* broadly comparable and MCTS somewhat better on route quality and diversity. Other studies using different single-step models find Retro\* ahead on solvability and number of solved routes. The sensible reading is that **the ranking depends on which single-step model you plug in**, which is itself an important finding: the single-step model and the search algorithm cannot be evaluated independently.
+
+Newer directions include multi-objective MCTS (combining objectives without hand-weighting them, and supporting human-specified "freeze this bond" / "break this bond" constraints, which is genuinely useful when planning a common route for a compound series), and sequence-model formulations such as decision-transformer route planners that predict whole routes rather than searching.
+
+### 6.8 Closing the loop: retrosynthesis as a generative constraint
+
+So how do you get retrosynthesis *into* the generative model? Three strategies, in increasing order of strictness.
+
+**(a) Post-hoc filtering.** Generate freely, then score with a heuristic (SAScore, which is fragment-frequency plus complexity penalties), a learned classifier (RAScore, trained to predict whether a route-finder will succeed), or the route-finder itself. Simple, wasteful, and the heuristics are known to correlate poorly with actual synthetic difficulty.
+
+**(b) Reward-based integration.** Treat synthesizability as a term in the RL scoring function:
+
+$$
+S(m) = \sum_i w_i O_i(m) + w_{\text{synth}} \, \mathbb{1}\big[\text{AiZynthFinder solves } m\big]
+$$
+
+Retrosynthesis models can be used as *oracles* in goal-directed generation this way. The 2026 Chemical Science argument for this approach is pragmatic: it requires no architectural modification, works with any pre-trained generator, and adapts to real-world drift in reagent availability, reaction preference and parallel-synthesis constraints, which training-time approaches cannot. The cost is that the oracle is expensive, so you are budget-limited on calls.
+
+**(c) Constrained generative processes.** Make the model generate the *route*, so the molecule is synthesizable by construction. The generation is a sequential decision process with action space
+
+$$
+\mathcal{A} = \big(\mathcal{B} \cup \{\text{current intermediate}\}\big) \times \mathcal{R}
+$$
+
+Representative systems: SynNet (synthesis trees via building blocks and templates), SynFormer (transformer over synthetic pathways, with an encoder–decoder variant for analogue generation and an RL-tunable decoder-only variant), SynFlowNet and SynGFN (GFlowNet policies over synthesis actions, giving diversity as well as validity), ReaSyn and SynLLaMA (language-model formulations over pathways), and SynthFormer (pharmacophore-conditioned tree generation).
+
+The 2026 frontier here is *co-generation*: SynCoGen combines masked graph diffusion with flow matching to sample jointly from building blocks, reactions, **and** atomic coordinates, so you get a 2D structure, a 3D conformer, and a synthesis route from one model. It is trained on SynSpace, a curated set of over 1.2M synthesis-aware building-block graphs and 7.5M conformers.
+
+The tradeoff between these is real. Strategy (c) guarantees synthesizability but restricts you to $\mathcal{B} \times \mathcal{R}$-reachable chemistry, which skews toward flat, sp²-rich, linearly-constructed molecules: precisely the "parallel-synthesis-friendly" chemotypes that medicinal chemists already worry are over-represented. Complex natural-product-like scaffolds, and sp³-rich three-dimensional chemistry, are poorly covered. Action spaces also scale badly with catalogue size. Strategy (b) preserves chemical freedom at the cost of guarantees. Most serious programs run both.
+
+A related caveat: synthon-based representations, which many methods use as an intermediate, do not actually guarantee that a valid synthesis route exists, do not provide one if it does, and lack the flexibility to restrict the reaction space to high-yield or automation-compatible chemistry. That last point matters more every year, as self-driving labs impose hard constraints on which reactions are physically runnable on the platform.
+
+---
+
+## 7. Evaluation: what to trust and what to discard
+
+### 7.1 Distribution-matching metrics
+
+Validity, uniqueness, novelty, and Fréchet ChemNet Distance (FCD):
+
+$$
+\mathrm{FCD} = \|\boldsymbol{\mu}_g - \boldsymbol{\mu}_r\|^2 + \mathrm{Tr}\big(\boldsymbol{\Sigma}_g + \boldsymbol{\Sigma}_r - 2(\boldsymbol{\Sigma}_g\boldsymbol{\Sigma}_r)^{1/2}\big)
+$$
+
+computed on ChemNet activations of generated ($g$) and reference ($r$) sets.
+
+These are close to worthless as evidence of usefulness. Validity is 100% by construction for SELFIES and for anything valence-masked. Novelty is trivially maximized by generating nonsense. FCD rewards a model for reproducing the training distribution, which is the opposite of what design requires. Report them for sanity-checking; do not draw conclusions from them.
+
+### 7.2 Goal-directed benchmarks
+
+GuacaMol and the Practical Molecular Optimization (PMO) benchmark score *optimization* rather than distribution matching. PMO's important contribution is fixing the **oracle budget** (typically 10,000 calls) and reporting AUC over the top-$k$ trajectory, which correctly penalizes sample-inefficient methods. Under this framing, several fashionable deep methods lose to genetic algorithms.
+
+### 7.3 3D geometry checks
+
+If your model outputs 3D, geometric plausibility must be checked separately from score. **PoseBusters** applies physical and chemical validity tests to predicted poses. **PoseCheck** adds strain energy, steric clash counts, and comparison between the generated conformation and the re-docked one.
+
+This matters because a model can score wonderfully on docking while producing structures that are physically absurd. If the generated pose has enormous internal strain energy and clashes with the protein, and the re-docked pose bears no resemblance to the generated one, the docking score is measuring nothing.
+
+### 7.4 Application-oriented benchmarks
+
+MolGenBench (2025) is the most direct attempt to evaluate structure-based generative models against real, multi-stage pharmaceutical workflows rather than single-shot generation. It disentangles representation (1D/2D/3D), architecture (autoregressive, diffusion, Bayesian flow networks), prior knowledge (pharmacophore constraints, protein surface features) and training data source (simulated complexes such as CrossDocked versus crystal-derived data such as BindingMOAD).
+
+Its headline finding: **both de novo and hit-to-lead models show limited ability to rediscover known active molecules**, indicating a fundamental difficulty in navigating bioactive chemical space rather than a tuning problem. 3DOpt (2026) plays an analogous role for automated 3D structure design across the periodic table.
+
+### 7.5 Why docking scores are gameable
+
+This is the single most common source of overstated results. Empirical scoring functions like AutoDock Vina compute an approximately additive sum over atom-pair terms:
+
+$$
+\Delta G \approx \sum_{i<j} \big[ w_1 \, \text{gauss}(d_{ij}) + w_2\, \text{repulsion}(d_{ij}) + w_3\, \text{hydrophobic}(d_{ij}) + w_4\, \text{hbond}(d_{ij}) \big] + w_5 N_{\text{rot}}
+$$
+
+Because the favourable terms are roughly additive in contacts and the penalty terms are weak, the function can be driven arbitrarily low by simply adding more atoms that make more contacts. The result is greasy, high-molecular-weight, high-clogP molecules with excellent Vina scores and no prospect of being drugs. Desolvation, entropy and strain are handled crudely or not at all.
+
+An optimizer that treats Vina as ground truth *will* find this exploit. That is the model doing its job against a flawed objective, not a bug in the model. The mitigations are ligand-efficiency normalization ($\mathrm{LE} = -\Delta G / N_{\text{heavy}}$), property constraints, PoseCheck-style physical filters, and best of all an ensemble of orthogonal scoring functions rather than a single one.
+
+---
+
+## 8. Open problems
+
+**Receptor flexibility.** Nearly all pocket-conditioned generation treats the protein as rigid. Real binding involves induced fit and conformational selection. Integrating ensemble docking, MD-derived pocket ensembles, or co-folding is an active and unsolved direction.
+
+**Data scarcity in 3D.** The number of high-quality experimentally-determined protein–ligand complexes is small enough that 3D generative models are chronically data-limited, and the CrossDocked-vs-crystal-structure tradeoff (volume versus fidelity) has no good answer yet.
+
+**Multi-objective reality.** Real programs optimize potency, selectivity, solubility, permeability, metabolic stability, hERG liability, and synthetic cost simultaneously. Scalarizing into $\sum_i w_i O_i$ requires weights nobody can justify. Pareto-front methods and multi-objective search are underused relative to their importance.
+
+**Closing the DMTA loop.** The endgame is not better generation in isolation but generation embedded in a design–make–test–analyse cycle with active learning selecting what to synthesize, and eventually self-driving labs executing it. This imposes constraints generative models mostly ignore today: reactions must be runnable on the specific platform, compounds must be makeable in parallel rather than as one-off singletons, and reagent inventories change weekly.
+
+**Uncertainty quantification.** Generative models rarely report calibrated confidence in their proposals. Given that the whole enterprise is optimization against imperfect oracles, knowing when the oracle is extrapolating is arguably more valuable than a marginally better mean prediction.
+
+**Foundation models and agents.** Large pretrained molecular models (GP-MolFormer and successors) and LLM-orchestrated design agents are the obvious next wave. The open question is whether they add genuine chemical reasoning or merely a more fluent interface over the same underlying limitations.
+
+---
+
+## 9. A practical stack, if you were building today
+
+**Small molecules, pocket known:**
+- Generation: a 3D diffusion or flow-matching model with inpainting support (DiffSBDD-family) *or* a synthesis-constrained model (SynFormer / SynFlowNet family) if route-guarantees matter more than geometric novelty.
+- Constrained design around a hit: partial noising for soft similarity control; inpainting with resampling for hard scaffold preservation.
+- Filtering: PoseBusters + PoseCheck, ligand-efficiency normalization, an ensemble of scoring functions rather than one.
+- Baseline you must beat: a well-tuned genetic algorithm on SELFIES under equal oracle budget.
+
+**Small molecules, ligand-based only:**
+- A pretrained chemical language model plus REINVENT-style RL, with synthesizability handled as a scoring-function term via a retrosynthesis oracle.
+- SAFE + masked discrete diffusion (GenMol-style) if fragment-constrained tasks dominate your workflow.
+
+**Proteins and peptides:**
+- BoltzGen for generalist all-atom binder design across modalities, or RFdiffusion → ProteinMPNN → AF2-initial-guess for the most battle-tested path. BindCraft when target flexibility is a real concern.
+
+**Synthesis planning:**
+- AiZynthFinder with MCTS or Retro\*, benchmarked on PaRoutes with *your* stock, not the default one. Evaluate the single-step model and the search algorithm as a pair, since they interact.
+
+---
+
+## 10. Closing thought
+
+The field has spent about eight years getting very good at the tractable part of the problem, sampling plausible molecular structures conditioned on almost anything you like, and comparatively little effort on the two parts that actually gate progress: knowing whether a proposed molecule will work, and knowing whether it can be made.
+
+What has changed in the last two years is that both gaps are now being attacked directly rather than papered over. Synthesis-aware generation has moved from a niche concern to a mainstream research programme. Benchmarks like MolGenBench and PoseCheck are actively embarrassing methods that previously looked strong. And on the biologics side, wet-lab validation across dozens of genuinely novel targets has become table stakes for a credible design paper.
+
+That last norm is the one small-molecule design most needs to import.
+
+---
+
+## References and further reading
+
+**Reviews**
+- Chen & Xue, *Machine Learning for De Novo Molecular Generation: A Comprehensive Review*, ACS Chem. Neurosci. (2026). Taxonomy plus, unusually, a systematic treatment of failure modes.
+- *Molecular Design with Artificial Intelligence: Progress and Perspectives for Small Molecules*, Chem. Rev. 126(5) (2026).
+- *The past, present and future of de novo protein design*, Nature (2026).
+- Papidocha et al., *The elephant in the lab: synthesizability in generative small-molecule design*, Curr. Opin. Chem. Eng. (2026).
+- *Recent advances in artificial intelligence for retrosynthesis*, arXiv:2301.05864.
+
+**Generative methods**
+- Gómez-Bombarelli et al. (2018), the original chemical VAE.
+- Olivecrona et al. (2017); REINVENT 4, RL fine-tuning of chemical language models.
+- Hoogeboom et al., EDM; Schneuing et al., DiffSBDD; Guan et al., TargetDiff; Zhou et al., DecompDiff/DecompOpt; PILOT; MolCRAFT.
+- Zeng, Jin & Liu, PropMolFlow, Nat. Comput. Sci. (2026), flow matching for property-guided generation.
+- GenMol (2025), discrete masked diffusion for fragment-constrained generation.
+- Igashov et al., DiffLinker; Torge et al., DiffHopp; Imrie et al., DeLinker.
+- COATI-LDM, latent diffusion with classifier and classifier-free guidance for molecules.
+- Lugmayr et al., RePaint, the resampling/jump-length inpainting algorithm everyone reuses.
+
+**Synthesizability**
+- Gao & Coley (2020), *The synthesizability of molecules proposed by generative models*, the paper that started the reckoning.
+- SynNet, SynFormer (PNAS, 2025), SynFlowNet, SynGFN (Nat. Comput. Sci., 2026), S3-GFN, ReaSyn, SynthFormer.
+- SynCoGen (ICLR 2026), joint 2D/3D/route co-generation, with the SynSpace dataset.
+- *Synthesizability via reward engineering*, Chem. Sci. (2026), the post-training RL argument.
+
+**Retrosynthesis**
+- Coley et al., template extraction and RDChiral.
+- Segler et al. (2018), MCTS synthesis planning.
+- Chen et al., Retro\*, AND/OR graph best-first search with a learned value function.
+- LocalRetro; Retro-MTGR (Nat. Commun., 2025); MHNreact.
+- Tetko et al., SMILES augmentation; R-SMILES root-alignment.
+- RETROSPECT (2026), proposal + reranking decomposition.
+- Genheden et al., PaRoutes (Digital Discovery, 2022); AiZynthFinder.
+- *Models Matter: The Impact of Single-Step Retrosynthesis on Synthesis Planning* (arXiv:2308.05522), the dataset-transfer failure analysis.
+
+**Protein and biologics design**
+- Watson et al., RFdiffusion, Nature (2023); Dauparas et al., ProteinMPNN, Science (2022).
+- Pacesa et al., BindCraft (2025).
+- Stark et al., *BoltzGen: Toward Universal Binder Design*, bioRxiv (2025).
+- Rettie et al., de novo protein-binding macrocycles, Nat. Chem. Biol. (2025).
+
+**Evaluation**
+- GuacaMol; MOSES; PMO.
+- PoseBusters; PoseCheck.
+- MolGenBench (bioRxiv, 2025); 3DOpt (JCIM, 2026).
